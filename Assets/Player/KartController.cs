@@ -41,6 +41,13 @@ public class KartController : MonoBehaviour
     public int coins = 0;
     public float speedPerCoin = 0.5f;
     public int maxCoins = 10;
+    
+    [Header("Jump")]
+    public float jumpPower = 10f;
+    public float gravityMultiplier = 2f;
+    public bool isGrounded = false;
+    
+
 
     private Rigidbody rb;
 
@@ -77,6 +84,11 @@ public class KartController : MonoBehaviour
             isDrifting = false;
             driftDirection = 0;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            HandleJump();
+        }
         
         
         // ----- Cosas que afectan a la camara -------
@@ -100,6 +112,8 @@ public class KartController : MonoBehaviour
         HandleMovement();
         HandleSteering();
         HandleDriftVisual();
+        HandleBetterGravity();
+        CheckGround();
     }
 
     void HandleMovement()
@@ -117,7 +131,8 @@ public class KartController : MonoBehaviour
         }
         else
         {
-            currentSpeed = Mathf.Lerp(currentSpeed, 0, 3f * Time.fixedDeltaTime);
+            float deceleration = acceleration * 0.8f; // puedes ajustar
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
         }
         
         // Toma en cuenta el boost que otorga las monedas y da la velocidad max final
@@ -183,11 +198,46 @@ public class KartController : MonoBehaviour
         visualModel.localRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
     }
 
+    public void HandleJump()
+    {
+        if (!isGrounded) return;
+        
+        rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+    }
+
+    public void HandleBetterGravity()
+    {
+        if (!isGrounded)
+        {
+            // Subiendo
+            if (rb.linearVelocity.y > 0)
+            {
+                rb.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
+            }
+            // Cayendo
+            else
+            {
+                rb.AddForce(Physics.gravity * 4f, ForceMode.Acceleration);
+            }
+        }
+    }
     
     // Agrega las monedas
     public void AddCoin()
     {
         coins++;
         coins = Mathf.Clamp(coins, 0, maxCoins);
+    }
+    
+    public void CheckGround()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.5f);
+        if (isGrounded && rb.linearVelocity.y < -2f)
+        {
+            rb.linearVelocity = new Vector3(
+                rb.linearVelocity.x,
+                0f,
+                rb.linearVelocity.z);
+        }
     }
 }
