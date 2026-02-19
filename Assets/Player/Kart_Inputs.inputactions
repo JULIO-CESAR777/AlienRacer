@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Kart_Inputs",
+    "maps": [
+        {
+            "name": "Kart",
+            "id": "fffa1403-5404-4b62-a4a6-00cba4d70816",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "b0bcd8a4-1f90-4653-9068-376cacd24480",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a7a8da14-6cb2-4319-924c-d4a8ef188557",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
