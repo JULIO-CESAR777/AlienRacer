@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Kart/Items/Oil Barrel")]
 public class OilBarrelItem : ItemBase
 {
     public GameObject oilPrefab;

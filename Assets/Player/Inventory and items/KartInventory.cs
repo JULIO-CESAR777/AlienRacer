@@ -9,6 +9,8 @@ public class KartInventory : MonoBehaviour
 
     private KartController kart;
 
+    public ItemSynergyManager synergyManager;
+
     private void Awake()
     {
         kart = GetComponent<KartController>();
@@ -23,9 +25,22 @@ public class KartInventory : MonoBehaviour
             UseSlot(2);
 
         if (Input.GetKeyDown(KeyCode.Space)){}
-            //TryUseSynergy();
+            TryUseSynergy();
     }
 
+    void TryUseSynergy()
+    {
+        if (slot1 == null || slot2 == null) return;
+
+        bool executed = synergyManager.TryExecuteSynergy(slot1, slot2, kart);
+
+        if (executed)
+        {
+            slot1 = null;
+            slot2 = null;
+        }
+    }
+    
     void UseSlot(int slotIndex)
     {
         ItemBase item = slotIndex == 1 ? slot1 : slot2;
@@ -33,8 +48,8 @@ public class KartInventory : MonoBehaviour
 
         item.Use(kart);
 
-        if (slotIndex == 1) slot1 = null;
-        else slot2 = null;
+        //if (slotIndex == 1) slot1 = null;
+        //else slot2 = null;
     }
     
 }

@@ -48,8 +48,10 @@ public class KartController : MonoBehaviour
     public float gravityMultiplier = 2f;
     public bool isGrounded = false;
     
-
-
+    [Header("Boost")]
+    private bool isBoosting;
+    private float boostMultiplier = 1f;
+    
     private Rigidbody rb;
 
     private float currentSpeed;
@@ -58,6 +60,7 @@ public class KartController : MonoBehaviour
     private float moveInput;
     private float turnInput;
 
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -125,7 +128,8 @@ public class KartController : MonoBehaviour
         // Si hay input agrega movimiento
         if (moveInput > 0)
         {
-            currentSpeed += acceleration * Time.fixedDeltaTime;
+            float finalAcceleration = acceleration * boostMultiplier;
+            currentSpeed += finalAcceleration * Time.fixedDeltaTime;
         }
         // Si no, desacelera
         else if(moveInput < 0)
@@ -140,7 +144,7 @@ public class KartController : MonoBehaviour
         
         // Toma en cuenta el boost que otorga las monedas y da la velocidad max final
         float coinBoost = coins * speedPerCoin;
-        float finalMaxSpeed = maxSpeed + coinBoost;
+        float finalMaxSpeed = (maxSpeed + coinBoost) * boostMultiplier;
         
         // Hace un clamp en la velocidad
         currentSpeed = Mathf.Clamp(currentSpeed, -maxReverseSpeed, finalMaxSpeed);
@@ -180,7 +184,11 @@ public class KartController : MonoBehaviour
 
     void HandleDriftVisual()
     {
-        float speedPercent = Mathf.Abs(currentSpeed) / maxSpeed;
+        float coinBoost = coins * speedPerCoin;
+        float realMaxSpeed = (maxSpeed + coinBoost) * boostMultiplier;
+
+        float speedPercent = Mathf.Abs(currentSpeed) / realMaxSpeed;
+        speedPercent = Mathf.Clamp01(speedPercent);
 
         if (isDrifting)
         {
@@ -250,7 +258,23 @@ public class KartController : MonoBehaviour
 
     public IEnumerator ApplyBoost(float boostForce, float duration)
     {
-        yield return new WaitForSeconds(duration);
+        print("Se uso el item de boost");
+        if (isBoosting)
+            yield break;
+
+        isBoosting = true;
+
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            boostMultiplier = Mathf.Lerp(boostForce, 1f, timer / duration);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        boostMultiplier = 1f;
+        isBoosting = false;
     }
 
     #endregion
