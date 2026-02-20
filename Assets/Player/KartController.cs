@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
 public class KartController : MonoBehaviour
@@ -115,6 +116,8 @@ public class KartController : MonoBehaviour
         HandleBetterGravity();
         CheckGround();
     }
+    
+    #region HandleMovement
 
     void HandleMovement()
     {
@@ -222,13 +225,6 @@ public class KartController : MonoBehaviour
         }
     }
     
-    // Agrega las monedas
-    public void AddCoin()
-    {
-        coins++;
-        coins = Mathf.Clamp(coins, 0, maxCoins);
-    }
-    
     public void CheckGround()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.5f);
@@ -240,4 +236,24 @@ public class KartController : MonoBehaviour
                 rb.linearVelocity.z);
         }
     }
+    
+    #endregion
+    
+    // Agrega las monedas
+    public void AddCoin()
+    {
+        coins++;
+        coins = Mathf.Clamp(coins, 0, maxCoins);
+    }
+
+    #region items Use
+
+    public IEnumerator ApplyBoost(float boostForce, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+    }
+
+    #endregion
+    
+    
 }
