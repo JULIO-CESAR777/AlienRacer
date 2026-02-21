@@ -256,7 +256,7 @@ public class KartController : MonoBehaviour
 
     #region items Use
 
-    public IEnumerator ApplyBoost(float boostForce, float duration)
+    public IEnumerator ApplyBoost(float boostForce, float duration, bool withSynergy)
     {
         print("Se uso el item de boost");
         if (isBoosting)

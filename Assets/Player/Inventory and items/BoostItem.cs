@@ -8,6 +8,6 @@ public class BoostItem : ItemBase
 
     public override void Use(KartController user)
     {
-        user.StartCoroutine(user.ApplyBoost(boostForce, duration));
+        user.StartCoroutine(user.ApplyBoost(boostForce, duration, false));
     }
 }

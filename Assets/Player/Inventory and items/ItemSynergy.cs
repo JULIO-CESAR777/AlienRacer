@@ -16,7 +16,9 @@ public class ItemSynergy: ScriptableObject, ISynergy
 
     public void Execute(KartController user)
     {
-        user.StartCoroutine(user.ApplyBoost(specialBoostForce, 3f));
+        Debug.Log("Synergy " + itemA.itemName + " " + itemB.itemName + "puede hacer el super boost");
+        // Hacer el boost con sinergia (velocidad, duracion, con o sin sinergia)
+        //user.StartCoroutine(user.ApplyBoost(specialBoostForce, 2f, true));
     }
     
 }

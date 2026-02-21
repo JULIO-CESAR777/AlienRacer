@@ -24,8 +24,11 @@ public class KartInventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
             UseSlot(2);
 
-        if (Input.GetKeyDown(KeyCode.Space)){}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             TryUseSynergy();
+        }
+            
     }
 
     void TryUseSynergy()
