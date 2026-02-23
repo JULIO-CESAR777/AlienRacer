@@ -18,6 +18,14 @@ public class KartController : MonoBehaviour
     public float maxSpeed = 20f;
     public float turnSpeed = 120f;
     
+    [Header("Steering Settings")]
+    [SerializeField] private float baseTurnSpeed = 120f;
+    [SerializeField] private float minTurnSpeed = 80f;
+    [SerializeField] private float maxTurnSpeed = 200f;
+    [SerializeField] private float speedTurnReduction = 0.5f;
+    [SerializeField] private float rotationSmoothness = 10f;
+    [SerializeField] private float reverseTurnMultiplier = 1.6f;
+    
     [Header("Reverse")]
     public float reverseAcceleration = 8f;
     public float maxReverseSpeed = 8f;
@@ -118,6 +126,12 @@ public class KartController : MonoBehaviour
         HandleDriftVisual();
         HandleBetterGravity();
         CheckGround();
+        
+        // Mantener pegado al suelo
+        if (isGrounded)
+        {
+            rb.AddForce(-groundNormal * 10f, ForceMode.Acceleration);
+        }
     }
     
     #region HandleMovement
@@ -156,32 +170,79 @@ public class KartController : MonoBehaviour
 
     void HandleSteering()
     {
+        // Para rotar checamos si esta en el piso
+        if (!isGrounded) return;
+        // y que tenga la suficiente velocidad
         if (Mathf.Abs(currentSpeed) <= 0.1f) return;
-
-        float speedPercent = currentSpeed / maxSpeed;
-
-        float turnMultiplier = isDrifting ? driftTurnMultiplier : 1f;
         
         float steeringInput = turnInput;
 
+        // Si esta haciendo drift bloquea cambiar de direccion
         if (isDrifting)
         {
-            steeringInput = driftDirection; // BLOQUEA dirección física
+            steeringInput = driftDirection;
         }
 
-        float direction = Mathf.Sign(currentSpeed);
-        float rotationAmount = steeringInput * turnSpeed * speedPercent * turnMultiplier * direction * Time.fixedDeltaTime;
+        // Calculo de la velocidad total (monedas, boost e inputs)
+        float realMaxSpeed = (maxSpeed + (coins * speedPerCoin)) * boostMultiplier;
+        float speedPercent = Mathf.Clamp01(Mathf.Abs(currentSpeed) / realMaxSpeed);
 
-        Quaternion turnRotation = Quaternion.Euler(0f, rotationAmount, 0f);
-        rb.MoveRotation(rb.rotation * turnRotation);
+        // Potencia de giro dependiendo de la velocidad
+        float dynamicTurnSpeed = Mathf.Lerp(
+            maxTurnSpeed,
+            minTurnSpeed,
+            speedPercent * speedTurnReduction
+        );
 
+        // Mas giro mientras este el drift
         if (isDrifting)
         {
-            Vector3 sidewaysVelocity = Vector3.Project(rb.linearVelocity, transform.right);
+            dynamicTurnSpeed *= driftTurnMultiplier;
+        }
+
+        // Esto es para que cuando vaya en reversa gire mas
+        if (currentSpeed < 0)
+        {
+            dynamicTurnSpeed *= reverseTurnMultiplier;
+        }
+
+        // La cantidad de giro que va a tener
+        float rotationAmount =
+            steeringInput *
+            dynamicTurnSpeed *
+            Time.fixedDeltaTime;
+
+        // Consigue rotacion que debe de tener el coche (esto es para las pendientes)
+        Quaternion steerRotation = Quaternion.AngleAxis(rotationAmount, groundNormal);
+        // Esto basicamente va a conseguir los datos de cuanto a rotas entre su rotacion actual y a donde tiene que rotar
+        Quaternion alignToGround = Quaternion.FromToRotation(transform.up, groundNormal) * rb.rotation;
+        // Suma de rotaciones
+        Quaternion finalRotation = steerRotation * alignToGround;
+        // La rotacion - Todo esto principalmente lo hice para cuando sube colinas o algo asi
+        rb.MoveRotation(
+            Quaternion.Slerp(
+                rb.rotation,
+                finalRotation,
+                rotationSmoothness * Time.fixedDeltaTime
+            )
+        );
+
+        // Controlacion de velocidades en el drift
+        if (isDrifting)
+        {
+            /*
+             * Aquí mentiria si digo que lo entendi al 100 pero esto sirve para reducir la velocidad del eje Z para cuando va de lado
+             * El tema del Vector3.Project otorga la proyeccion de cierto vector del eje que le pidas y asi lo reducimos para que este
+             * no termine girando como loco por el exceso de velocidad lateral
+             */
+            Vector3 sidewaysVelocity =
+                Vector3.Project(rb.linearVelocity, transform.right);
+
             rb.linearVelocity -= sidewaysVelocity * driftGrip;
         }
     }
-
+    
+    
     void HandleDriftVisual()
     {
         float coinBoost = coins * speedPerCoin;
@@ -233,16 +294,29 @@ public class KartController : MonoBehaviour
         }
     }
     
+    private Vector3 groundNormal = Vector3.up;
+    
     public void CheckGround()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.5f);
-        if (isGrounded && rb.linearVelocity.y < -2f)
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.5f))
         {
-            rb.linearVelocity = new Vector3(
-                rb.linearVelocity.x,
-                0f,
-                rb.linearVelocity.z);
+            isGrounded = true;
+            groundNormal = hit.normal;
+            if (rb.linearVelocity.y < -2f)
+            {
+                rb.linearVelocity = new Vector3(
+                    rb.linearVelocity.x,
+                    0f,
+                    rb.linearVelocity.z);
+            }
         }
+        else
+        {
+            isGrounded = false;
+            groundNormal = Vector3.up;
+        }
+        
     }
     
     #endregion
@@ -258,7 +332,6 @@ public class KartController : MonoBehaviour
 
     public IEnumerator ApplyBoost(float boostForce, float duration, bool withSynergy)
     {
-        print("Se uso el item de boost");
         if (isBoosting)
             yield break;
 
