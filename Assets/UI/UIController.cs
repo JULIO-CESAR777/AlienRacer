@@ -20,6 +20,9 @@ namespace UI
     {
         public static UIController Instance { get; private set; }
 
+        [Header("Main Menu UI Panels")]
+        [SerializeField] private GameObject _mainMenuPanel = default;
+
         private void Awake()
         {
             // TODO: If the UI is a persistent HUD across scenes, add back the duplicate 
@@ -34,6 +37,23 @@ namespace UI
                 Debug.LogError("UIController instance is null! Make sure it exists in the scene.");
             }
             return Instance;
+        }
+        
+        public void Play()
+        {
+            Debug.Log("Play button clicked!");
+            _mainMenuPanel.SetActive(false);
+        }
+
+        public void ToSettingsPanel()
+        {
+            Debug.Log("To settings panel clicked!");
+        }
+        
+        public void ExitGameUIButton()
+        {
+            Debug.Log("Exit game button clicked!");
+            Application.Quit();
         }
     }
 }
