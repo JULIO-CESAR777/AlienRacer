@@ -1,3 +1,16 @@
+// HOW TO CALL FUNCTIONS FROM THIS CONTROLLER:
+// Instead of using Instance directly, always use GetInstance() for safety.
+//
+// Example:
+//      SoundController.GetInstance()?.NameOfTheFunction();
+//
+// The ?. (null-conditional operator) ensures that if the controller is missing
+// from the scene, the call is simply skipped instead of crashing the game.
+// You will also see a descriptive error in the Console telling you what's missing.
+//
+// NEVER do this:
+//      SoundController.Instance.NameOfTheFunction(); // can throw a NullReferenceException
+
 using UnityEngine;
 
 [DisallowMultipleComponent]

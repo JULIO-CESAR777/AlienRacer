@@ -1,3 +1,11 @@
+/* Instead of calling the function like that (unsafe, can throw NullReferenceException silently)
+    GameManager.Instance.DeathEvent();
+
+    To call the function in general safely, use the null-conditional operator like this:
+    GameManager.GetInstance()?.DeathEvent();
+    The ?. (null-conditional) means if GetInstance() returns null, it won't crash —
+    it'll just skip the call, and you'll see the LogError in the console telling you why*/
+
 using System;
 using UnityEngine;
 
@@ -18,7 +26,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    
+
     public static GameManager GetInstance()
     {
         if (Instance == null)
@@ -28,13 +36,6 @@ public class GameManager : MonoBehaviour
         return Instance;
     }
 
-    /* Instead of calling the function like that (unsafe, can throw NullReferenceException silently)
-    GameManager.Instance.DeathEvent();
-
-    To call the function in general safely, use the null-conditional operator like this:
-    GameManager.GetInstance()?.DeathEvent();
-    The ?. (null-conditional) means if GetInstance() returns null, it won't crash —
-    it'll just skip the call, and you'll see the LogError in the console telling you why*/
 
     public void DeathEvent()
     {
