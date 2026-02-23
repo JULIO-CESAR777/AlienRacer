@@ -26,6 +26,11 @@ public class KartController : MonoBehaviour
     [SerializeField] private float rotationSmoothness = 10f;
     [SerializeField] private float reverseTurnMultiplier = 1.6f;
     
+    
+    
+    [Header("Particles")]
+    public  GameObject[] particlesDrift;
+    
     [Header("Reverse")]
     public float reverseAcceleration = 8f;
     public float maxReverseSpeed = 8f;
@@ -68,6 +73,7 @@ public class KartController : MonoBehaviour
     private float moveInput;
     private float turnInput;
 
+  
     
     void Start()
     {
@@ -83,16 +89,18 @@ public class KartController : MonoBehaviour
         // Drifting
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+          
             if (Mathf.Abs(turnInput) > 0.2f)
             {
                 isDrifting = true;
                 driftDirection = (int)Mathf.Sign(turnInput);
             }
-            
+            SetDriftParticlesGO(true);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            SetDriftParticlesGO(false);
             isDrifting = false;
             driftDirection = 0;
         }
@@ -352,5 +360,10 @@ public class KartController : MonoBehaviour
 
     #endregion
     
-    
+    private void SetDriftParticlesGO(bool on)
+    {
+        for (int i = 0; i < particlesDrift.Length; i++)
+            if (particlesDrift[i] != null)
+                particlesDrift[i].SetActive(on);
+    }
 }
