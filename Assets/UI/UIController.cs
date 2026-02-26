@@ -22,6 +22,7 @@ namespace UI
 
         [Header("Main Menu UI Panels")]
         [SerializeField] private GameObject _mainMenuPanel = default;
+        [SerializeField] private GameObject _winMenuPanel = default;
 
         private void Awake()
         {
@@ -54,6 +55,13 @@ namespace UI
         {
             Debug.Log("Exit game button clicked!");
             Application.Quit();
+        }
+
+        public void ShowWinMenuPanel()
+        {
+            Debug.Log("Shows WIn");
+            _winMenuPanel.SetActive(true);
+            _mainMenuPanel.SetActive(false);
         }
     }
 }
