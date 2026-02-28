@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    #region singleton
-        static InputManager inputManager;
+        #region singleton
+        public static InputManager inputManager;
     
         public static InputManager GetInstance() => inputManager;
     
@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
             KeyCode.Y,
             KeyCode.L,
             KeyCode.R,
-            KeyCode.Space,
+            KeyCode.P,
             KeyCode.Tab,
         }; 
     
