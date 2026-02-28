@@ -69,13 +69,80 @@ public class KartController : MonoBehaviour
     private float turnInput;
 
     
+    // Managers
+    MainManager gm;
+    InputManager inputManager;
+    
+    // Sistema de pausa
+    [Header("Pause System")]
+    public bool isPaused;
+    
+    private Vector3 savedVelocity;
+    private Vector3 savedAngularVelocity;
+    private float savedSpeed;
+    
+    [Header("Bump Settings")]
+    public float pushBackForce = 3f;
+    public float bumpDuration = 0.2f;
+    private float bumpTimer = 0f;
+    private float bumpSpeed = 0f;
+    private bool isBumping = false;
+    
+    
+    //Esta es la funcion que quiero que se haga cada vez que pauso o despauso el juego
+    public void OnChangeGameStateCallback(GameState newState)
+    {
+        isPaused = newState != GameState.Play;
+        
+        if (isPaused)
+        {
+            // Guarda la velocidad en variable
+            savedSpeed = currentSpeed;
+            
+            // Cambia las propiedades del RB
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            
+            // Cancela el drift
+            isDrifting = false;
+            driftDirection = 0;
+        }
+        else
+        {
+            rb.isKinematic = false;
+            currentSpeed = savedSpeed;
+        }
+    }
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gm = MainManager.GetInstance();
+        gm.onChangeGameState += OnChangeGameStateCallback;
+        inputManager = InputManager.GetInstance();
+        
+        if (gm.gameState == GameState.Pause)
+            isPaused = true;
     }
 
     void Update()
     {
+
+        if (inputManager != null && inputManager.IsButtonDown(BUTTONS.START))
+        {
+            if (isPaused)
+            {
+                gm.ChangeGameState(GameState.Play);
+            }
+            else
+            {
+                gm.ChangeGameState(GameState.Pause);
+            }
+        }
+        
+        if (isPaused) return;
+        
         // Obtencion de inputs pero se va a cambiar seguramente
         moveInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
@@ -121,8 +188,25 @@ public class KartController : MonoBehaviour
 
     void FixedUpdate()
     {
-        HandleMovement();
-        HandleSteering();
+        if (isPaused) return;
+        
+        if (!isBumping)
+        {
+            HandleMovement();
+            HandleSteering();
+        }
+        else
+        {
+            bumpTimer -= Time.fixedDeltaTime;
+
+            currentSpeed = bumpSpeed;
+
+            if (bumpTimer <= 0f)
+            {
+                isBumping = false;
+            }
+        }
+        
         HandleDriftVisual();
         HandleBetterGravity();
         CheckGround();
@@ -132,6 +216,14 @@ public class KartController : MonoBehaviour
         {
             rb.AddForce(-groundNormal * 10f, ForceMode.Acceleration);
         }
+        
+        Vector3 alignedVelocity = transform.forward * currentSpeed;
+        rb.linearVelocity = new Vector3(
+            alignedVelocity.x,
+            rb.linearVelocity.y,
+            alignedVelocity.z
+        );
+        
     }
     
     #region HandleMovement
@@ -327,7 +419,34 @@ public class KartController : MonoBehaviour
         coins++;
         coins = Mathf.Clamp(coins, 0, maxCoins);
     }
+    
+    // Collisiones
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.contacts.Length == 0) return;
 
+        ContactPoint contact = collision.contacts[0];
+        Vector3 normal = contact.normal;
+
+        normal.y = 0f;
+        normal.Normalize();
+
+        Vector3 forward = transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        float impactDot = Vector3.Dot(forward, -normal);
+
+        if (impactDot > 0.2f)
+        {
+            isBumping = true;
+            bumpTimer = bumpDuration;
+
+            // Rebote real hacia atrás
+            bumpSpeed = -Mathf.Abs(currentSpeed) * 0.7f;
+        }
+    }
+    
     #region items Use
 
     public IEnumerator ApplyBoost(float boostForce, float duration, bool withSynergy)
