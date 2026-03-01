@@ -31,6 +31,10 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private float boostTimer = 0f;
     [SerializeField] private float boostMultiplier = 1f;
 
+    [Header("Spawn Points")]
+    [SerializeField] public Transform behindSpawnPoint;
+    
+    
     
     public bool IgnoreBumpThisFrame { get; private set; }
 
@@ -81,6 +85,7 @@ public class KartPowerUpController : MonoBehaviour
 
         kart.SetSpeedMultiplier(boostMultiplier);
     }
+    
 
     public void Stun(float seconds, bool refresh = true)
     {

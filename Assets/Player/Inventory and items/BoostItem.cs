@@ -8,6 +8,8 @@ public class BoostItem : ItemBase
 
     public override void Use(KartController user)
     {
+        
+        
         user.GetComponent<KartPowerUpController>().ApplyBoost(boostForce, duration);
     }
 }

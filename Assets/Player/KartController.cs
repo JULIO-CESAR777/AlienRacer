@@ -228,9 +228,14 @@ public class KartController : MonoBehaviour
             speedPercent * speedTurnReduction
         );
 
+       
+        dynamicTurnSpeed *= steeringMultiplier;
+
+      
         if (isDrifting)
             dynamicTurnSpeed *= driftTurnMultiplier;
 
+       
         if (currentSpeed < 0)
             dynamicTurnSpeed *= reverseTurnMultiplier;
 
@@ -395,5 +400,12 @@ public class KartController : MonoBehaviour
         for (int i = 0; i < particlesDrift.Length; i++)
             if (particlesDrift[i] != null)
                 particlesDrift[i].SetActive(on);
+    }
+    
+    private float steeringMultiplier = 1f;
+
+    public void SetSteeringMultiplier(float multiplier)
+    {
+        steeringMultiplier = Mathf.Clamp(multiplier, 0.1f, 2f);
     }
 }

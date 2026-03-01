@@ -6,6 +6,12 @@ public class OilBarrelItem : ItemBase
     public GameObject oilPrefab;
     public override void Use(KartController user)
     {
-        Instantiate(oilPrefab, user.transform.position - user.transform.forward * 2f, Quaternion.identity);
+        KartPowerUpController powerUp = user.GetComponent<KartPowerUpController>();
+        if (powerUp == null) return;
+
+        Transform spawnPoint = powerUp.behindSpawnPoint;
+        if (spawnPoint == null) return;
+
+        Object.Instantiate(oilPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
