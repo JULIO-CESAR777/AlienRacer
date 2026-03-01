@@ -57,6 +57,8 @@ public class MainManager : MonoBehaviour
 
     public void ChangeGameState(GameState newGameState)
     {
+        if (!canPause) return;
+        
         gameState = newGameState;
         onChangeGameState?.Invoke(gameState);
     }

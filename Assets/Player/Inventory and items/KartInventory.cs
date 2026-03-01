@@ -15,15 +15,16 @@ public class KartInventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) UseSlot(1);
-        if (Input.GetKeyDown(KeyCode.E)) UseSlot(2);
+        if (InputManager.GetInstance().IsButtonDown(BUTTONS.L1)) UseSlot(1);
+        if (InputManager.GetInstance().IsButtonDown(BUTTONS.R1)) UseSlot(2);
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (InputManager.GetInstance().IsButtonDown(BUTTONS.Y))
             TryUseSynergy();
     }
 
     void TryUseSynergy()
     {
+        print("sinergia");
         if (!slot1 || !slot2) return;
 
         if (synergyManager.TryExecuteSynergy(slot1, slot2, kart))

@@ -64,7 +64,11 @@ public class KartController : MonoBehaviour
     private float turnInput;
 
     private Vector3 groundNormal = Vector3.up;
-
+    
+    // Manager 
+    MainManager gm;
+    InputManager input;
+    
     // ---- Control & Multipliers (PowerUps los modifican) ----
     private bool controlEnabled = true;
     private float speedMultiplier = 1f;
@@ -80,25 +84,78 @@ public class KartController : MonoBehaviour
     public Rigidbody RB => rb;
     public float CurrentSpeed => currentSpeed;
 
+    private bool isPaused = false;
+    private float savedSpeed;
+    //Esta es la funcion que quiero que se haga cada vez que pauso o despauso el juego
+    public void OnChangeGameStateCallback(GameState newState)
+    {
+        isPaused = newState != GameState.Play;
+        
+        if (isPaused)
+        {
+            // Guarda la velocidad en variable
+            savedSpeed = currentSpeed;
+            
+            // Cambia las propiedades del RB
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            
+            // Cancela el drift
+            isDrifting = false;
+            driftDirection = 0;
+        }
+        else
+        {
+            rb.isKinematic = false;
+            currentSpeed = savedSpeed;
+        }
+    }
+    
     void Awake()
     {
+        gm = MainManager.GetInstance();
+        gm.onChangeGameState += OnChangeGameStateCallback;
+        input = InputManager.GetInstance();
+        
+        if (gm.gameState == GameState.Pause)
+            isPaused = true;
+        
         rb = GetComponent<Rigidbody>();
         powerUps = GetComponent<KartPowerUpController>();
     }
 
     void Update()
-    { 
+    {
+
+        if (input.IsButtonDown(BUTTONS.START))
+        {
+            if (isPaused)
+            {
+                gm.ChangeGameState(GameState.Play);
+            }
+            else
+            {
+                gm.ChangeGameState(GameState.Pause);
+            }
+        }
+
+        if (isPaused) return;
+        
         moveInput = 0f; 
         turnInput = 0f;
        
-        moveInput = Input.GetAxis("Vertical");
-        turnInput = Input.GetAxis("Horizontal");
+        //moveInput = Input.GetAxis("Vertical");
+        moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        
+        //turnInput = Input.GetAxis("Horizontal");
+        turnInput = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
         
 
         // Drift (solo si está permitido)
         if (driftAllowed && controlEnabled)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (input.IsButtonDown(BUTTONS.B))
             {
                 if (Mathf.Abs(turnInput) > 0.2f)
                 {
@@ -108,7 +165,7 @@ public class KartController : MonoBehaviour
                 SetDriftParticlesGO(true);
             }
 
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (input.IsButtonUp(BUTTONS.B))
             {
                 SetDriftParticlesGO(false);
                 isDrifting = false;
@@ -123,7 +180,7 @@ public class KartController : MonoBehaviour
             driftDirection = 0;
         }
 
-        if (controlEnabled && Input.GetKeyDown(KeyCode.Space))
+        if (controlEnabled && input.IsButtonDown(BUTTONS.A))
         {
             HandleJump();
         }
