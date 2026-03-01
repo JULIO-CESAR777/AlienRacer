@@ -4,16 +4,7 @@ using Unity.Cinemachine;
 [RequireComponent(typeof(Rigidbody))]
 public class KartController : MonoBehaviour
 {
-    [Header("Camera")]
-    public CinemachineCamera vcam;
-    public float baseFov = 75f;
-    public float maxFov = 90f;
-
-    [Header("Camera Tilt")]
-    public float maxTilt = 8f;
-    public float tiltSpeed = 5f;
-    private float currentTilt;
-
+    
     [Header("Movement")]
     public float acceleration = 15f;
     public float maxSpeed = 20f;
@@ -83,7 +74,9 @@ public class KartController : MonoBehaviour
 
     // Referencia al PowerUpController (para forward de colisiones, etc.)
     private KartPowerUpController powerUps;
-
+    public bool IsBoosting => speedMultiplier > 1.05f;
+    
+    
     public Rigidbody RB => rb;
     public float CurrentSpeed => currentSpeed;
 
@@ -94,14 +87,12 @@ public class KartController : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
+        moveInput = 0f; 
+        turnInput = 0f;
        
-      
-            moveInput = 0f;
-            turnInput = 0f;
-       
-            moveInput = Input.GetAxis("Vertical");
-            turnInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxis("Vertical");
+        turnInput = Input.GetAxis("Horizontal");
         
 
         // Drift (solo si está permitido)
@@ -136,17 +127,7 @@ public class KartController : MonoBehaviour
         {
             HandleJump();
         }
-
-        // Cámara
-        float speedPercent = (maxSpeed <= 0.01f) ? 0f : (Mathf.Abs(currentSpeed) / maxSpeed);
-        if (vcam != null)
-        {
-            vcam.Lens.FieldOfView = Mathf.Lerp(baseFov, maxFov, speedPercent);
-
-            float targetTilt = -turnInput * maxTilt;
-            currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSpeed);
-            vcam.transform.localRotation = Quaternion.Euler(0f, 0f, currentTilt);
-        }
+        
     }
 
     void FixedUpdate()
