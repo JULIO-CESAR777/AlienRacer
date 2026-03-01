@@ -7,7 +7,7 @@ public interface IItem
 
 public interface ISynergy
 {
-    bool CanSynergize(IItem itemA, IItem itemB);
+    bool CanSynergize(ItemBase a, ItemBase b);
     void Execute(KartController user);
 }
 

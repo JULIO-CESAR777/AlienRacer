@@ -1,36 +1,33 @@
-using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
+
+[RequireComponent(typeof(Rigidbody))]
 public class KartController : MonoBehaviour
 {
     [Header("Camera")]
     public CinemachineCamera vcam;
     public float baseFov = 75f;
     public float maxFov = 90f;
-    
+
     [Header("Camera Tilt")]
     public float maxTilt = 8f;
     public float tiltSpeed = 5f;
     private float currentTilt;
-    
+
     [Header("Movement")]
     public float acceleration = 15f;
     public float maxSpeed = 20f;
-    public float turnSpeed = 120f;
-    
+
     [Header("Steering Settings")]
-    [SerializeField] private float baseTurnSpeed = 120f;
     [SerializeField] private float minTurnSpeed = 80f;
     [SerializeField] private float maxTurnSpeed = 200f;
     [SerializeField] private float speedTurnReduction = 0.5f;
     [SerializeField] private float rotationSmoothness = 10f;
     [SerializeField] private float reverseTurnMultiplier = 1.6f;
-    
-    
-    
+
     [Header("Particles")]
-    public  GameObject[] particlesDrift;
-    
+    public GameObject[] particlesDrift;
+
     [Header("Reverse")]
     public float reverseAcceleration = 8f;
     public float maxReverseSpeed = 8f;
@@ -38,15 +35,15 @@ public class KartController : MonoBehaviour
     [Header("Drift")]
     public float driftTurnMultiplier = 1.5f;
     public float driftGrip = 0.5f;
-    private int driftDirection = 0; // -1 izquierda, 1 derecha
-    
+    private int driftDirection = 0; 
+
     [Header("Drift Visual")]
     public Transform visualModel;
-    
+
     [Header("Advanced Drift Visual")]
-    public float driftYawAngle = 35f;      // Giro horizontal exagerado
-    public float driftRollAngle = 30f;     // Inclinación lateral (2 ruedas)
-    public float driftVisualSpeed = 8f;    // Qué tan rápido rota
+    public float driftYawAngle = 35f;
+    public float driftRollAngle = 30f;
+    public float driftVisualSpeed = 8f;
 
     private float currentYaw;
     private float currentRoll;
@@ -55,16 +52,18 @@ public class KartController : MonoBehaviour
     public int coins = 0;
     public float speedPerCoin = 0.5f;
     public int maxCoins = 10;
-    
+
     [Header("Jump")]
     public float jumpPower = 10f;
-    public float gravityMultiplier = 2f;
     public bool isGrounded = false;
-    
-    [Header("Boost")]
-    private bool isBoosting;
-    private float boostMultiplier = 1f;
-    
+
+    [Header("Bump Settings")]
+    public float bumpDuration = 0.2f;
+
+    private float bumpTimer = 0f;
+    private float bumpSpeed = 0f;
+    private bool isBumping = false;
+
     private Rigidbody rb;
 
     private float currentSpeed;
@@ -73,131 +72,85 @@ public class KartController : MonoBehaviour
     private float moveInput;
     private float turnInput;
 
-  
-    
-    // Managers
-    MainManager gm;
-    InputManager inputManager;
-    
-    // Sistema de pausa
-    [Header("Pause System")]
-    public bool isPaused;
-    
-    private Vector3 savedVelocity;
-    private Vector3 savedAngularVelocity;
-    private float savedSpeed;
-    
-    [Header("Bump Settings")]
-    public float pushBackForce = 3f;
-    public float bumpDuration = 0.2f;
-    private float bumpTimer = 0f;
-    private float bumpSpeed = 0f;
-    private bool isBumping = false;
-    
-    
-    //Esta es la funcion que quiero que se haga cada vez que pauso o despauso el juego
-    public void OnChangeGameStateCallback(GameState newState)
-    {
-        isPaused = newState != GameState.Play;
-        
-        if (isPaused)
-        {
-            // Guarda la velocidad en variable
-            savedSpeed = currentSpeed;
-            
-            // Cambia las propiedades del RB
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.isKinematic = true;
-            
-            // Cancela el drift
-            isDrifting = false;
-            driftDirection = 0;
-        }
-        else
-        {
-            rb.isKinematic = false;
-            currentSpeed = savedSpeed;
-        }
-    }
-    
-    void Start()
+    private Vector3 groundNormal = Vector3.up;
+
+    // ---- Control & Multipliers (PowerUps los modifican) ----
+    private bool controlEnabled = true;
+    private float speedMultiplier = 1f;
+
+    // Opcional: si quieres que PowerUps “bloqueen” drift
+    private bool driftAllowed = true;
+
+    // Referencia al PowerUpController (para forward de colisiones, etc.)
+    private KartPowerUpController powerUps;
+
+    public Rigidbody RB => rb;
+    public float CurrentSpeed => currentSpeed;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        gm = MainManager.GetInstance();
-        gm.onChangeGameState += OnChangeGameStateCallback;
-        inputManager = InputManager.GetInstance();
-        
-        if (gm.gameState == GameState.Pause)
-            isPaused = true;
+        powerUps = GetComponent<KartPowerUpController>();
     }
 
     void Update()
     {
+       
+      
+            moveInput = 0f;
+            turnInput = 0f;
+       
+            moveInput = Input.GetAxis("Vertical");
+            turnInput = Input.GetAxis("Horizontal");
+        
 
-        if (inputManager != null && inputManager.IsButtonDown(BUTTONS.START))
+        // Drift (solo si está permitido)
+        if (driftAllowed && controlEnabled)
         {
-            if (isPaused)
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                gm.ChangeGameState(GameState.Play);
+                if (Mathf.Abs(turnInput) > 0.2f)
+                {
+                    isDrifting = true;
+                    driftDirection = (int)Mathf.Sign(turnInput);
+                }
+                SetDriftParticlesGO(true);
             }
-            else
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                gm.ChangeGameState(GameState.Pause);
+                SetDriftParticlesGO(false);
+                isDrifting = false;
+                driftDirection = 0;
             }
         }
-        
-        if (isPaused) return;
-        
-        // Obtencion de inputs pero se va a cambiar seguramente
-        moveInput = Input.GetAxis("Vertical");
-        turnInput = Input.GetAxis("Horizontal");
-
-        // Drifting
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        else
         {
-          
-            if (Mathf.Abs(turnInput) > 0.2f)
-            {
-                isDrifting = true;
-                driftDirection = (int)Mathf.Sign(turnInput);
-            }
-            SetDriftParticlesGO(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
+            // si te bloquean, apaga drift
             SetDriftParticlesGO(false);
             isDrifting = false;
             driftDirection = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (controlEnabled && Input.GetKeyDown(KeyCode.Space))
         {
             HandleJump();
         }
-        
-        
-        // ----- Cosas que afectan a la camara -------
-        float speedPercent = currentSpeed / maxSpeed;
-        
-        // Cambio de FOV por velocidad
-        vcam.Lens.FieldOfView = Mathf.Lerp(baseFov, maxFov, speedPercent);
-        
-        // Agregar una inclinacion en la camara cuando se gira
-        float targetTilt = -turnInput * maxTilt;
-        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSpeed);
 
-        // Rotación solo en Z
-        vcam.transform.localRotation = Quaternion.Euler(0f, 0f, currentTilt);
+        // Cámara
+        float speedPercent = (maxSpeed <= 0.01f) ? 0f : (Mathf.Abs(currentSpeed) / maxSpeed);
+        if (vcam != null)
+        {
+            vcam.Lens.FieldOfView = Mathf.Lerp(baseFov, maxFov, speedPercent);
 
-        
+            float targetTilt = -turnInput * maxTilt;
+            currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSpeed);
+            vcam.transform.localRotation = Quaternion.Euler(0f, 0f, currentTilt);
+        }
     }
 
     void FixedUpdate()
     {
-        if (isPaused) return;
-        
         if (!isBumping)
         {
             HandleMovement();
@@ -206,119 +159,87 @@ public class KartController : MonoBehaviour
         else
         {
             bumpTimer -= Time.fixedDeltaTime;
-
             currentSpeed = bumpSpeed;
 
             if (bumpTimer <= 0f)
-            {
                 isBumping = false;
-            }
         }
-        
+
         HandleDriftVisual();
         HandleBetterGravity();
         CheckGround();
-        
-        // Mantener pegado al suelo
+
+        // Pegado al suelo
         if (isGrounded)
-        {
             rb.AddForce(-groundNormal * 10f, ForceMode.Acceleration);
-        }
-        
+
         Vector3 alignedVelocity = transform.forward * currentSpeed;
-        rb.linearVelocity = new Vector3(
-            alignedVelocity.x,
-            rb.linearVelocity.y,
-            alignedVelocity.z
-        );
-        
+        rb.linearVelocity = new Vector3(alignedVelocity.x, rb.linearVelocity.y, alignedVelocity.z);
     }
-    
-    #region HandleMovement
 
     void HandleMovement()
     {
-
-        // Si hay input agrega movimiento
+        // acelera / frena
         if (moveInput > 0)
         {
-            float finalAcceleration = acceleration * boostMultiplier;
+            float finalAcceleration = acceleration * speedMultiplier;
             currentSpeed += finalAcceleration * Time.fixedDeltaTime;
         }
-        // Si no, desacelera
-        else if(moveInput < 0)
+        else if (moveInput < 0)
         {
             currentSpeed -= reverseAcceleration * Time.fixedDeltaTime;
         }
         else
         {
-            float deceleration = acceleration * 0.8f; // puedes ajustar
+            float deceleration = acceleration * 0.8f;
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
         }
-        
-        // Toma en cuenta el boost que otorga las monedas y da la velocidad max final
+
+        // monedas
         float coinBoost = coins * speedPerCoin;
-        float finalMaxSpeed = (maxSpeed + coinBoost) * boostMultiplier;
-        
-        // Hace un clamp en la velocidad
+
+        // maxSpeed final
+        float finalMaxSpeed = (maxSpeed + coinBoost) * speedMultiplier;
+
+        // clamp
         currentSpeed = Mathf.Clamp(currentSpeed, -maxReverseSpeed, finalMaxSpeed);
 
-        // Agrega velocidad al RigidBody
+        // aplica al RB
         Vector3 forwardMove = transform.forward * currentSpeed;
         rb.linearVelocity = new Vector3(forwardMove.x, rb.linearVelocity.y, forwardMove.z);
     }
 
     void HandleSteering()
     {
-        // Para rotar checamos si esta en el piso
         if (!isGrounded) return;
-        // y que tenga la suficiente velocidad
         if (Mathf.Abs(currentSpeed) <= 0.1f) return;
-        
+
         float steeringInput = turnInput;
 
-        // Si esta haciendo drift bloquea cambiar de direccion
         if (isDrifting)
-        {
             steeringInput = driftDirection;
-        }
 
-        // Calculo de la velocidad total (monedas, boost e inputs)
-        float realMaxSpeed = (maxSpeed + (coins * speedPerCoin)) * boostMultiplier;
-        float speedPercent = Mathf.Clamp01(Mathf.Abs(currentSpeed) / realMaxSpeed);
+        float realMaxSpeed = (maxSpeed + (coins * speedPerCoin)) * speedMultiplier;
+        float speedPercent = Mathf.Clamp01(Mathf.Abs(currentSpeed) / Mathf.Max(0.01f, realMaxSpeed));
 
-        // Potencia de giro dependiendo de la velocidad
         float dynamicTurnSpeed = Mathf.Lerp(
             maxTurnSpeed,
             minTurnSpeed,
             speedPercent * speedTurnReduction
         );
 
-        // Mas giro mientras este el drift
         if (isDrifting)
-        {
             dynamicTurnSpeed *= driftTurnMultiplier;
-        }
 
-        // Esto es para que cuando vaya en reversa gire mas
         if (currentSpeed < 0)
-        {
             dynamicTurnSpeed *= reverseTurnMultiplier;
-        }
 
-        // La cantidad de giro que va a tener
-        float rotationAmount =
-            steeringInput *
-            dynamicTurnSpeed *
-            Time.fixedDeltaTime;
+        float rotationAmount = steeringInput * dynamicTurnSpeed * Time.fixedDeltaTime;
 
-        // Consigue rotacion que debe de tener el coche (esto es para las pendientes)
         Quaternion steerRotation = Quaternion.AngleAxis(rotationAmount, groundNormal);
-        // Esto basicamente va a conseguir los datos de cuanto a rotas entre su rotacion actual y a donde tiene que rotar
         Quaternion alignToGround = Quaternion.FromToRotation(transform.up, groundNormal) * rb.rotation;
-        // Suma de rotaciones
         Quaternion finalRotation = steerRotation * alignToGround;
-        // La rotacion - Todo esto principalmente lo hice para cuando sube colinas o algo asi
+
         rb.MoveRotation(
             Quaternion.Slerp(
                 rb.rotation,
@@ -327,28 +248,19 @@ public class KartController : MonoBehaviour
             )
         );
 
-        // Controlacion de velocidades en el drift
         if (isDrifting)
         {
-            /*
-             * Aquí mentiria si digo que lo entendi al 100 pero esto sirve para reducir la velocidad del eje Z para cuando va de lado
-             * El tema del Vector3.Project otorga la proyeccion de cierto vector del eje que le pidas y asi lo reducimos para que este
-             * no termine girando como loco por el exceso de velocidad lateral
-             */
-            Vector3 sidewaysVelocity =
-                Vector3.Project(rb.linearVelocity, transform.right);
-
+            Vector3 sidewaysVelocity = Vector3.Project(rb.linearVelocity, transform.right);
             rb.linearVelocity -= sidewaysVelocity * driftGrip;
         }
     }
-    
-    
+
     void HandleDriftVisual()
     {
         float coinBoost = coins * speedPerCoin;
-        float realMaxSpeed = (maxSpeed + coinBoost) * boostMultiplier;
+        float realMaxSpeed = (maxSpeed + coinBoost) * speedMultiplier;
 
-        float speedPercent = Mathf.Abs(currentSpeed) / realMaxSpeed;
+        float speedPercent = Mathf.Abs(currentSpeed) / Mathf.Max(0.01f, realMaxSpeed);
         speedPercent = Mathf.Clamp01(speedPercent);
 
         if (isDrifting)
@@ -367,13 +279,13 @@ public class KartController : MonoBehaviour
             currentRoll = Mathf.Lerp(currentRoll, 0f, Time.deltaTime * driftVisualSpeed);
         }
 
-        visualModel.localRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
+        if (visualModel != null)
+            visualModel.localRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
     }
 
     public void HandleJump()
     {
         if (!isGrounded) return;
-        
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
 
@@ -381,34 +293,21 @@ public class KartController : MonoBehaviour
     {
         if (!isGrounded)
         {
-            // Subiendo
-            if (rb.linearVelocity.y > 0)
-            {
-                rb.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
-            }
-            // Cayendo
-            else
-            {
-                rb.AddForce(Physics.gravity * 4f, ForceMode.Acceleration);
-            }
+            if (rb.linearVelocity.y > 0) rb.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
+            else rb.AddForce(Physics.gravity * 4f, ForceMode.Acceleration);
         }
     }
-    
-    private Vector3 groundNormal = Vector3.up;
-    
+
     public void CheckGround()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.5f))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.5f))
         {
             isGrounded = true;
             groundNormal = hit.normal;
+
             if (rb.linearVelocity.y < -2f)
             {
-                rb.linearVelocity = new Vector3(
-                    rb.linearVelocity.x,
-                    0f,
-                    rb.linearVelocity.z);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             }
         }
         else
@@ -416,21 +315,58 @@ public class KartController : MonoBehaviour
             isGrounded = false;
             groundNormal = Vector3.up;
         }
-        
     }
-    
-    #endregion
-    
-    // Agrega las monedas
+
+    // --- API para PowerUps (sin meter lógica de powerups aquí) ---
+    public void SetControlEnabled(bool enabled)
+    {
+        controlEnabled = enabled;
+        if (!enabled)
+        {
+            moveInput = 0f;
+            turnInput = 0f;
+        }
+    }
+
+    public void SetDriftAllowed(bool allowed)
+    {
+        driftAllowed = allowed;
+        if (!allowed)
+        {
+            SetDriftParticlesGO(false);
+            isDrifting = false;
+            driftDirection = 0;
+        }
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        speedMultiplier = Mathf.Max(0f, multiplier);
+    }
+
+    public void ForceStopHorizontal()
+    {
+        currentSpeed = 0f;
+        rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+        rb.angularVelocity = Vector3.zero;
+    }
+
     public void AddCoin()
     {
         coins++;
         coins = Mathf.Clamp(coins, 0, maxCoins);
     }
-    
-    // Collisiones
+
     void OnCollisionEnter(Collision collision)
     {
+        // Forward a PowerUps (Star stun, etc.)
+        if (powerUps != null)
+            powerUps.OnKartCollision(collision);
+
+        // Bump base (PowerUps puede pedir que se ignore)
+        if (powerUps != null && powerUps.IgnoreBumpThisFrame)
+            return;
+
         if (collision.contacts.Length == 0) return;
 
         ContactPoint contact = collision.contacts[0];
@@ -449,38 +385,13 @@ public class KartController : MonoBehaviour
         {
             isBumping = true;
             bumpTimer = bumpDuration;
-
-            // Rebote real hacia atrás
             bumpSpeed = -Mathf.Abs(currentSpeed) * 0.7f;
         }
     }
-    
-    #region items Use
 
-    public IEnumerator ApplyBoost(float boostForce, float duration, bool withSynergy)
-    {
-        if (isBoosting)
-            yield break;
-
-        isBoosting = true;
-
-        float timer = 0f;
-
-        while (timer < duration)
-        {
-            boostMultiplier = Mathf.Lerp(boostForce, 1f, timer / duration);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        boostMultiplier = 1f;
-        isBoosting = false;
-    }
-
-    #endregion
-    
     private void SetDriftParticlesGO(bool on)
     {
+        if (particlesDrift == null) return;
         for (int i = 0; i < particlesDrift.Length; i++)
             if (particlesDrift[i] != null)
                 particlesDrift[i].SetActive(on);
