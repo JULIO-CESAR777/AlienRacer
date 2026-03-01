@@ -125,6 +125,9 @@ public class KartController : MonoBehaviour
         powerUps = GetComponent<KartPowerUpController>();
     }
 
+
+    public Transform shootPoint;
+    public GameObject bulletPrefab;
     void Update()
     {
 
@@ -183,6 +186,13 @@ public class KartController : MonoBehaviour
         if (controlEnabled && input.IsButtonDown(BUTTONS.A))
         {
             HandleJump();
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().Initialize(shootPoint.forward);
         }
         
     }
