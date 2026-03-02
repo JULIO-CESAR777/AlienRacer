@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Coin_Item
   m_EditorClassIdentifier: Assembly-CSharp::CoinItem
   itemName: Coins
-  icon: {fileID: -2024195278, guid: 468caccb6a6bcef4f8475c0254bbbf4d, type: 3}
+  icon: {fileID: 0}
   coins: 3
