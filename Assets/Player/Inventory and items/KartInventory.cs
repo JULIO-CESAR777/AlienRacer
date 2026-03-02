@@ -1,14 +1,11 @@
-using System;
 using UnityEngine;
 
 public class KartInventory : MonoBehaviour
 {
-
     public ItemBase slot1;
     public ItemBase slot2;
 
     private KartController kart;
-
     public ItemSynergyManager synergyManager;
 
     private void Awake()
@@ -18,41 +15,32 @@ public class KartInventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-            UseSlot(1);
+        if (InputManager.GetInstance().IsButtonDown(BUTTONS.L1)) UseSlot(1);
+        if (InputManager.GetInstance().IsButtonDown(BUTTONS.R1)) UseSlot(2);
 
-        if (Input.GetKeyDown(KeyCode.E))
-            UseSlot(2);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        if (InputManager.GetInstance().IsButtonDown(BUTTONS.Y))
             TryUseSynergy();
-        }
-            
     }
 
     void TryUseSynergy()
     {
-        if (slot1 == null || slot2 == null) return;
+        print("sinergia");
+        if (!slot1 || !slot2) return;
 
-        bool executed = synergyManager.TryExecuteSynergy(slot1, slot2, kart);
-
-        if (executed)
+        if (synergyManager.TryExecuteSynergy(slot1, slot2, kart))
         {
             slot1 = null;
             slot2 = null;
         }
     }
-    
+
     void UseSlot(int slotIndex)
     {
         ItemBase item = slotIndex == 1 ? slot1 : slot2;
-        if (item == null) return;
+        if (!item) return;
 
         item.Use(kart);
-
-        //if (slotIndex == 1) slot1 = null;
-        //else slot2 = null;
+        // Decide si se consume:
+        // if(slotIndex==1) slot1=null; else slot2=null;
     }
-    
 }

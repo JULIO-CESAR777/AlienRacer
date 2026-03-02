@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    #region singleton
-        static InputManager inputManager;
+        #region singleton
+        public static InputManager inputManager;
     
         public static InputManager GetInstance() => inputManager;
     
@@ -21,13 +21,13 @@ public class InputManager : MonoBehaviour
     
         KeyCode[] KeyboardController =
         {
-            KeyCode.K,
-            KeyCode.B,
-            KeyCode.X,
-            KeyCode.Y,
-            KeyCode.L,
-            KeyCode.R,
             KeyCode.Space,
+            KeyCode.LeftShift,
+            KeyCode.X,
+            KeyCode.R,
+            KeyCode.Q,
+            KeyCode.E,
+            KeyCode.P,
             KeyCode.Tab,
         }; 
     
@@ -195,7 +195,18 @@ public class InputManager : MonoBehaviour
                 
             if (pressed)
             {
-                Debug.Log("Button Pressed: " + _button + " | Device: " + currentInputType);
+                //Debug.Log("Button Pressed: " + _button + " | Device: " + currentInputType);
+            }    
+            return pressed;
+        }
+
+        public bool IsButtonUp(BUTTONS _button)
+        {
+            bool pressed = Input.GetKeyUp(controllers[(byte)currentInputType][(byte)_button]); 
+                
+            if (pressed)
+            {
+                //Debug.Log("Button Pressed: " + _button + " | Device: " + currentInputType);
             }    
             return pressed;
         }
@@ -210,7 +221,7 @@ public class InputManager : MonoBehaviour
     
             if (valueAbs >= 0.3f)
             {
-                Debug.Log("Axis Used: " + _axis + " | Value: " + value + " | Device: " + currentInputType);
+                //Debug.Log("Axis Used: " + _axis + " | Value: " + value + " | Device: " + currentInputType);
                 return value;
             }
     
@@ -249,8 +260,8 @@ public enum BUTTONS
     B,
     X,
     Y,
-    L,
-    R,
+    L1,
+    R1,
     START,
     SELECT,
 }

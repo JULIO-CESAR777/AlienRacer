@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745e2360df0cc7649b58df4db1b94cce, type: 3}
+  m_Name: Boost+Coin
+  m_EditorClassIdentifier: Assembly-CSharp::BoostSynergy
+  itemA: {fileID: 11400000, guid: 196ea9b7eefbe944a92334a02e490d60, type: 2}
+  itemB: {fileID: 11400000, guid: 0fee5f6838ad65043b2a3c368b883f2a, type: 2}
+  boostMultiplier: 1.5
+  duration: 2
+  coins: 3
