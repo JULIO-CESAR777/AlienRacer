@@ -23,6 +23,7 @@ namespace UI
         [Header("Main Menu UI Panels")]
         [SerializeField] private GameObject _mainMenuPanel = default;
         [SerializeField] private GameObject _winMenuPanel = default;
+        [SerializeField] private GameObject _loseMenuPanel = default;
 
         private void Awake()
         {
@@ -68,6 +69,19 @@ namespace UI
         {
             Debug.Log("Changing from Win Menu to Main Menu Panel");
             _winMenuPanel.SetActive(false);
+            _mainMenuPanel.SetActive(true);
+        }
+
+        public void ReloadButton()
+        {
+            Debug.Log(" Reload button clicked!");
+            //TODO: Call the load from last savepoint function here.
+        }
+
+        public void FromLoseToMainMenu()
+        {
+            Debug.Log("Changing from Lose Menu to Main Menu Panel");
+            _loseMenuPanel.SetActive(false);
             _mainMenuPanel.SetActive(true);
         }
     }
