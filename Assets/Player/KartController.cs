@@ -442,18 +442,6 @@ public class KartController : MonoBehaviour
         }
     }
 
-    
-    // COSAS JULIO
-    
-    public bool TrySpendCoins(int amount)
-    {
-        if (amount <= 0) return true;
-        if (coins < amount) return false;
-
-        coins -= amount;
-        coins = Mathf.Clamp(coins, 0, maxCoins);
-        return true;
-    }
     private void SetDriftParticlesGO(bool on)
     {
         if (particlesDrift == null) return;
