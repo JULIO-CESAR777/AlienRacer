@@ -9,15 +9,15 @@ public class CoinGachaBuyer : MonoBehaviour
 
     [Header("Loot")]
     [SerializeField] private LootTable lootTable;
-    [SerializeField] private PositionBasedLootConfig positionConfig; // opcional
+    [SerializeField] private PositionBasedLootConfig positionConfig; 
     [SerializeField] private bool usePositionWeights = true;
 
     [Header("UI Roulette")]
     [SerializeField] private ItemRouletteUI rouletteUI;
-    [SerializeField] private List<ItemBase> ribbonVisualPool; // opcional (si no, usa lootTable entries)
+    [SerializeField] private List<ItemBase> ribbonVisualPool;
 
     [Header("Input")]
-    [SerializeField] private BUTTONS buyButton = BUTTONS.X; // cambia al que quieras
+    [SerializeField] private BUTTONS buyButton = BUTTONS.X; 
 
     private KartController kart;
     private KartInventory inv;
@@ -27,7 +27,7 @@ public class CoinGachaBuyer : MonoBehaviour
     {
         kart = GetComponent<KartController>();
         inv = GetComponent<KartInventory>();
-        participante = GetComponent<ParticipanteCarrera>(); // si lo tienes
+        participante = GetComponent<ParticipanteCarrera>(); 
     }
 
     private void Update()
@@ -44,14 +44,14 @@ public class CoinGachaBuyer : MonoBehaviour
     {
         if (lootTable == null || rouletteUI == null) return;
 
-        // 1) Cobrar
+        
         if (!kart.TrySpendCoins(coinCost))
         {
-            // Debug.Log("No tienes coins suficientes");
+          
             return;
         }
 
-        // 2) Calcular pesos (por posición o default)
+     
         float c = 60, u = 25, r = 10, e = 4, l = 1;
 
         if (usePositionWeights && positionConfig != null && participante != null && GestorPosiciones.instancia != null)
@@ -62,16 +62,16 @@ public class CoinGachaBuyer : MonoBehaviour
             positionConfig.GetWeights(pos, total, out c, out u, out r, out e, out l);
         }
 
-        // 3) Roll
+     
         ItemBase result = lootTable.RollWithRarityWeights(c, u, r, e, l);
         if (result == null) return;
 
-        // 4) Pool visual para la cinta
+        // pool visual
         List<ItemBase> visualPool = (ribbonVisualPool != null && ribbonVisualPool.Count > 0)
             ? ribbonVisualPool
             : LootTableToItemList(lootTable);
 
-        // 5) Animación + dar item
+        // lo gira y da el item
         rouletteUI.Spin(result, visualPool, (finalItem) =>
         {
             inv.TryAddItem(finalItem);

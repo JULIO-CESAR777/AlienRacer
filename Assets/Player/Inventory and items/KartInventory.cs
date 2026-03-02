@@ -51,7 +51,7 @@ public class KartInventory : MonoBehaviour
         if (slot1 == null) { slot1 = item; return true; }
         if (slot2 == null) { slot2 = item; return true; }
 
-        // Regla si está lleno: reemplaza slot1 (o cambia a lo que prefieras)
+        // si queremos que reemplaze el slot 1
         slot1 = item;
         return true;
     }
