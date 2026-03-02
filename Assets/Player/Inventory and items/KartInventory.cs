@@ -40,6 +40,18 @@ public class KartInventory : MonoBehaviour
 
         item.Use(kart);
         // Decide si se consume:
-        // if(slotIndex==1) slot1=null; else slot2=null;
+         if(slotIndex==1) slot1=null; else slot2=null;
+    }
+    
+    public bool TryAddItem(ItemBase item)
+    {
+        if (item == null) return false;
+
+        if (slot1 == null) { slot1 = item; return true; }
+        if (slot2 == null) { slot2 = item; return true; }
+
+        // Regla si está lleno: reemplaza slot1 (o cambia a lo que prefieras)
+        slot1 = item;
+        return true;
     }
 }
