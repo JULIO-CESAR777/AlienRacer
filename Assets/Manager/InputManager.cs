@@ -4,13 +4,20 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
         #region singleton
-        public static InputManager inputManager;
+        public static InputManager instance;
     
-        public static InputManager GetInstance() => inputManager;
+        public static InputManager GetInstance() => instance;
     
-        void Awake()
+        private void Awake()
         {
-            inputManager = this;
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     
         #endregion

@@ -48,7 +48,7 @@ public class KartCamera : MonoBehaviour
 
     void HandleFOV()
     {
-        float speedPercent = Mathf.InverseLerp(0f, kart.maxSpeed, Mathf.Abs(kart.CurrentSpeed));
+        float speedPercent = Mathf.InverseLerp(0f, kart.maxSpeed, Mathf.Abs(kart.currentSpeed));
 
         float targetFOV = Mathf.Lerp(baseFOV, maxFOV, speedPercent);
 
@@ -64,7 +64,7 @@ public class KartCamera : MonoBehaviour
 
     void HandleTilt()
     {
-        float turnAmount = kart.RB.angularVelocity.y;
+        float turnAmount = kart.rb.angularVelocity.y;
 
         float targetTilt = Mathf.Clamp(
             -turnAmount * 4f,

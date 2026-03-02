@@ -55,10 +55,10 @@ public class KartController : MonoBehaviour
     private float bumpSpeed = 0f;
     private bool isBumping = false;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
-    private float currentSpeed;
-    private bool isDrifting;
+    public float currentSpeed;
+    public bool isDrifting;
 
     private float moveInput;
     private float turnInput;
@@ -79,10 +79,6 @@ public class KartController : MonoBehaviour
     // Referencia al PowerUpController (para forward de colisiones, etc.)
     private KartPowerUpController powerUps;
     public bool IsBoosting => speedMultiplier > 1.05f;
-    
-    
-    public Rigidbody RB => rb;
-    public float CurrentSpeed => currentSpeed;
 
     private bool isPaused = false;
     private float savedSpeed;
@@ -114,15 +110,27 @@ public class KartController : MonoBehaviour
     
     void Awake()
     {
-        gm = MainManager.GetInstance();
-        gm.onChangeGameState += OnChangeGameStateCallback;
-        input = InputManager.GetInstance();
-        
-        if (gm.gameState == GameState.Pause)
-            isPaused = true;
-        
         rb = GetComponent<Rigidbody>();
         powerUps = GetComponent<KartPowerUpController>();
+
+        gm = MainManager.GetInstance();
+        if (gm != null)
+        {
+            gm.onChangeGameState += OnChangeGameStateCallback;
+
+            if (gm.gameState == GameState.Pause)
+                isPaused = true;
+        }
+        else
+        {
+            Debug.LogError("MainManager is NULL in KartController");
+        }
+
+        input = InputManager.GetInstance();
+        if (input == null)
+        {
+            Debug.LogError("InputManager is NULL in KartController");
+        }
     }
 
 
