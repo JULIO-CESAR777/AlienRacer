@@ -108,7 +108,7 @@ public class KartController : MonoBehaviour
         }
     }
     
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         powerUps = GetComponent<KartPowerUpController>();
