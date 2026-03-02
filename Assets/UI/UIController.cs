@@ -63,5 +63,12 @@ namespace UI
             _winMenuPanel.SetActive(true);
             _mainMenuPanel.SetActive(false);
         }
+        
+        public void FromWinToMainMenu()
+        {
+            Debug.Log("Changing from Win Menu to Main Menu Panel");
+            _winMenuPanel.SetActive(false);
+            _mainMenuPanel.SetActive(true);
+        }
     }
 }
