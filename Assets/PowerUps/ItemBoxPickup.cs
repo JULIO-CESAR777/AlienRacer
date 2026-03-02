@@ -32,7 +32,6 @@ public class ItemBoxPickup : MonoBehaviour
         ItemBase result = lootTable.RollWithRarityWeights(c, u, r, e, l);
         if (result == null) return;
 
-        // si no pasas pool visual, usa todos los items de la tabla como pool (simple)
         List<ItemBase> visualPool = (ribbonVisualPool != null && ribbonVisualPool.Count > 0)
             ? ribbonVisualPool
             : LootTableToItemList(lootTable);
