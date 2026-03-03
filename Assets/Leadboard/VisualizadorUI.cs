@@ -11,7 +11,7 @@ public class VisualizadorPosicionUI : MonoBehaviour
     {
         if (cocheJugador != null && textoPosicion != null)
         {
-            // Le pedimos al Singleton la posición del transform del jugador
+            //Posición del transform del jugador
             int puesto = GestorPosiciones.Instancia.ObtenerPosicionDe(cocheJugador);
 
             // Mostramos 1°, 2°, etc. (Si es 0 es que aún no se registra)
