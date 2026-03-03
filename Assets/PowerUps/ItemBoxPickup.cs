@@ -18,15 +18,23 @@ public class ItemBoxPickup : MonoBehaviour
         KartInventory inv = other.GetComponentInParent<KartInventory>();
         if (!inv) return;
 
-        ParticipanteCarrera p = other.GetComponentInParent<ParticipanteCarrera>();
-        if (!p) return;
+        // MODIFICACIÓN: Ya no buscamos el componente ParticipanteCarrera.
+        if (!other.CompareTag("Player") && !other.CompareTag("Bot")) return;
 
         if (!lootTable || !positionConfig || !rouletteUI) return;
         if (rouletteUI.IsSpinning) return;
 
-        int total = (GestorPosiciones.instancia != null) ? GestorPosiciones.instancia.participantes.Count : 1;
-        int pos = p.posicionActual;
+        // MODIFICACIÓN: Obtenemos el total y la posición desde el Singleton 'Instancia'
+        int total = 1;
+        int pos = 1;
 
+        if (GestorPosiciones.Instancia != null)
+        {
+            total = GestorPosiciones.Instancia.ObtenerTotalCorredores();
+            // Usamos transform.root o GetComponentInParent para asegurar que pasamos el objeto raíz registrado
+            pos = GestorPosiciones.Instancia.ObtenerPosicionDe(other.transform.root);
+            if (pos <= 0) pos = 1;
+        }
         positionConfig.GetWeights(pos, total, out float c, out float u, out float r, out float e, out float l);
 
         ItemBase result = lootTable.RollWithRarityWeights(c, u, r, e, l);
@@ -36,11 +44,11 @@ public class ItemBoxPickup : MonoBehaviour
             ? ribbonVisualPool
             : LootTableToItemList(lootTable);
 
+        //  la ruleta 
         rouletteUI.Spin(result, visualPool, (finalItem) =>
         {
             inv.TryAddItem(finalItem);
         });
-
         gameObject.SetActive(false);
     }
 

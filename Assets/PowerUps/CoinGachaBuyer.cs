@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class CoinGachaBuyer : MonoBehaviour
 {
     [Header("Cost")]
@@ -9,7 +8,7 @@ public class CoinGachaBuyer : MonoBehaviour
 
     [Header("Loot")]
     [SerializeField] private LootTable lootTable;
-    [SerializeField] private PositionBasedLootConfig positionConfig; 
+    [SerializeField] private PositionBasedLootConfig positionConfig;
     [SerializeField] private bool usePositionWeights = true;
 
     [Header("UI Roulette")]
@@ -17,17 +16,16 @@ public class CoinGachaBuyer : MonoBehaviour
     [SerializeField] private List<ItemBase> ribbonVisualPool;
 
     [Header("Input")]
-    [SerializeField] private BUTTONS buyButton = BUTTONS.X; 
+    [SerializeField] private BUTTONS buyButton = BUTTONS.X;
 
     private KartController kart;
     private KartInventory inv;
-    private ParticipanteCarrera participante;
+    
 
     private void Awake()
     {
         kart = GetComponent<KartController>();
         inv = GetComponent<KartInventory>();
-        participante = GetComponent<ParticipanteCarrera>(); 
     }
 
     private void Update()
@@ -44,25 +42,30 @@ public class CoinGachaBuyer : MonoBehaviour
     {
         if (lootTable == null || rouletteUI == null) return;
 
-        
+
         if (!kart.TrySpendCoins(coinCost))
         {
-          
+
             return;
         }
 
-     
+
         float c = 60, u = 25, r = 10, e = 4, l = 1;
 
-        if (usePositionWeights && positionConfig != null && participante != null && GestorPosiciones.instancia != null)
+        // MODIFICACIÓN: Ahora le pedimos la posición al GestorPosiciones.Instancia directamente
+        if (usePositionWeights && positionConfig != null && GestorPosiciones.Instancia != null)
         {
-            int total = Mathf.Max(1, GestorPosiciones.instancia.participantes.Count);
-            int pos = Mathf.Clamp(participante.posicionActual, 1, total);
+            // Obtenemos el total y la posición desde el Singleton usando nuestro transform
+            int total = Mathf.Max(1, GestorPosiciones.Instancia.ObtenerTotalCorredores());
+            int posActual = GestorPosiciones.Instancia.ObtenerPosicionDe(transform);
+
+            // Si por alguna razón no está en la lista (pos 0), lo tratamos como posición 1
+            int pos = Mathf.Clamp(posActual == 0 ? 1 : posActual, 1, total);
 
             positionConfig.GetWeights(pos, total, out c, out u, out r, out e, out l);
         }
 
-     
+
         ItemBase result = lootTable.RollWithRarityWeights(c, u, r, e, l);
         if (result == null) return;
 
