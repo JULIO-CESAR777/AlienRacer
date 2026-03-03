@@ -6977,7 +6977,6 @@ MonoBehaviour:
   - {fileID: 7450243985680942234}
   - {fileID: 7640355474749432228}
   - {fileID: 2796785103721575930}
-  participantes: []
 --- !u!1 &1248552027163071723
 GameObject:
   m_ObjectHideFlags: 0
@@ -40057,7 +40056,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9022781973475775044, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
