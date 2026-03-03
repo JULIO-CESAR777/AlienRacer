@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/[CoreArquitecture]/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/[CoreArquitecture]/SceneLoader.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +85,7 @@
       <workItem from="1772082259293" duration="693000" />
       <workItem from="1772447989969" duration="2831000" />
       <workItem from="1772511117216" duration="1887000" />
+      <workItem from="1772561825624" duration="775000" />
     </task>
     <servers />
   </component>

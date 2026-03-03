@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //This is a persistent object it does not gets
 //destroyed when loading a new scene, 
@@ -32,9 +33,37 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    /*private IEnumerator LoadSceneRoutine(object sceneRef, float minLoadTime)
+    private IEnumerator LoadSceneRoutine(object sceneRef, float minLoadTime)
     {
         _isLoading = true;
         // Start the async operation but does not activate the secene yet
-    }*/
+        
+        AsyncOperation asyncOperation = sceneRef is string name
+            ? SceneManager.LoadSceneAsync(name)
+            : SceneManager.LoadSceneAsync((int)sceneRef);
+        asyncOperation.allowSceneActivation = false;
+        
+        float elapsed = 0f;
+        //
+        while (!asyncOperation.isDone)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+            OnLoadProgress?.Invoke(progress);
+            
+            bool assetsDone = asyncOperation.progress >= 0.9f;
+            bool timeDone = elapsed >= minLoadTime;
+
+            if (assetsDone && timeDone)
+            {
+                OnLoadProgress?.Invoke(1f);
+                yield return null;
+                asyncOperation.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+        OnLoadComplete?.Invoke();
+        _isLoading = false;
+    }
 }
