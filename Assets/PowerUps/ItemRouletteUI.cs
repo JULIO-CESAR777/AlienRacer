@@ -56,7 +56,7 @@ public class ItemRouletteUI : MonoBehaviour
             yield return null;
         }
 
-        // Snap al finalResult (última aparición para que se sienta natural)
+       
         int targetIndex = FindLastIndexOf(finalResult);
         float targetX = GetContentXToCenterIndex(targetIndex);
 
@@ -84,13 +84,13 @@ public class ItemRouletteUI : MonoBehaviour
 
     private void BuildRibbon(ItemBase finalResult, List<ItemBase> visualPool)
     {
-        // limpia
+      
         for (int i = content.childCount - 1; i >= 0; i--)
             Destroy(content.GetChild(i).gameObject);
 
         ribbon.Clear();
 
-        // llena con pool visual aleatorio
+        
         if (visualPool == null || visualPool.Count == 0)
         {
             visualPool = new List<ItemBase>() { finalResult };

@@ -25,7 +25,7 @@ public class ItemSynergyManager : MonoBehaviour
 
     private string MakeKey(ItemBase a, ItemBase b)
     {
-        // ordena por nombre (puedes cambiar a GUID si quieres)
+        // ordena por nombre 
         return string.CompareOrdinal(a.name, b.name) <= 0
             ? $"{a.name}|{b.name}"
             : $"{b.name}|{a.name}";
