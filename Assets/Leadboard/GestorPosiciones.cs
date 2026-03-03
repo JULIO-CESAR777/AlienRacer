@@ -16,7 +16,7 @@ public class GestorPosiciones : MonoBehaviour
     public static GestorPosiciones Instancia;
 
     public Transform[] hitosDePista;
-    private List<DatosCorredor> listaCorredores = new List<DatosCorredor>();
+    public List<DatosCorredor> listaCorredores = new List<DatosCorredor>();
 
     void Awake()
     {

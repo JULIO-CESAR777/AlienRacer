@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
     {
         if (isPaused) return;
         
-        if(!collision.gameObject.CompareTag("Wall")) Destroy(gameObject);
+        if(collision.gameObject.layer != LayerMask.NameToLayer("Wall")) Destroy(gameObject);
 
         if (bounceCount >= maxBounces)
         {
