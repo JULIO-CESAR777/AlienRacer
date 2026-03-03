@@ -4,8 +4,7 @@ using UnityEngine;
 public class PositionBasedLootConfig : ScriptableObject
 {
     [Header("Rarity weights by position (1..N)")]
-    // Si quieres simple: usa AnimationCurves por rareza (x = normalized position 0..1)
-    // normalizedPosition: 0 = 1er lugar, 1 = último lugar
+   
 
     public AnimationCurve common = AnimationCurve.Linear(0, 70, 1, 20);
     public AnimationCurve uncommon = AnimationCurve.Linear(0, 20, 1, 25);

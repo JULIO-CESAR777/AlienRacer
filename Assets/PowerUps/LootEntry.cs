@@ -7,6 +7,5 @@ public class LootEntry
     public ItemBase item;
     public ItemRarity rarity = ItemRarity.Common;
 
-    [Min(0f)]
-    public float weight = 1f; // peso dentro de su rareza
-}
+    [Min(0f)] public float weight = 1f; // probabilidad
+} 
