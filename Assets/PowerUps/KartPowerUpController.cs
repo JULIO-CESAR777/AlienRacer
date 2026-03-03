@@ -53,9 +53,7 @@ public class KartPowerUpController : MonoBehaviour
         TickStun();
     }
 
-    // ======================
-    // PUBLIC API (Items/Synergies)
-    // ======================
+  
 
     public void ActivateShield(float duration)
     {
@@ -91,7 +89,7 @@ public class KartPowerUpController : MonoBehaviour
     {
         if (seconds <= 0f) return;
 
-        // Inmunidad por escudo (y si quieres, también por star)
+       
         if (hasShield) return;
 
         if (isStunned)
@@ -114,9 +112,7 @@ public class KartPowerUpController : MonoBehaviour
     public bool HasStar() => hasStar;
     public bool HasBoost() => hasBoost;
 
-    // ======================
-    // COLLISION HOOK (Star hits)
-    // ======================
+   
 
     public void OnKartCollision(Collision collision)
     {
@@ -139,9 +135,6 @@ public class KartPowerUpController : MonoBehaviour
         }
     }
 
-    // ======================
-    // TIMERS
-    // ======================
 
     private void TickShield()
     {
