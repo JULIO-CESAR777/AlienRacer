@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Coin
+  - Bot
+  - Waypoint
   layers:
   - Default
   - TransparentFX
