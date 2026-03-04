@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 //This is a persistent object it does not gets
 //destroyed when loading a new scene, 
+[DisallowMultipleComponent]
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance { get; private set; }

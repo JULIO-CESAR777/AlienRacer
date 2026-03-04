@@ -45,6 +45,7 @@ namespace UI
         {
             Debug.Log("Play button clicked!");
             _mainMenuPanel.SetActive(false);
+            SceneLoader.Instance.LoadScene(1);
         }
 
         public void ToSettingsPanel()

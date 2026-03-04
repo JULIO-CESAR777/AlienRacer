@@ -9,6 +9,11 @@ public class LoadingScreenUI : MonoBehaviour
     [SerializeField] private Slider _progressBar;
     [SerializeField] private TMP_Text _progressText;
 
+    private void Start()
+    {
+        _loadingScreenPanel.SetActive(false);
+    }
+    
     private void OnEnable()
     {
         SceneLoader.OnLoadProgress += HandleProgress;

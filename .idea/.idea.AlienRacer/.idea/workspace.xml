@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/[CoreArquitecture]/LoadingScreenUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/[CoreArquitecture]/LoadingScreenUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/[CoreArquitecture]/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/[CoreArquitecture]/SceneLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +93,7 @@
       <workItem from="1772511117216" duration="1887000" />
       <workItem from="1772561825624" duration="775000" />
       <workItem from="1772599620323" duration="809000" />
+      <workItem from="1772648097044" duration="2428000" />
     </task>
     <servers />
   </component>
