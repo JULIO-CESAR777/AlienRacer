@@ -29,7 +29,15 @@ public class SceneLoader : MonoBehaviour
     {
         if (_isLoading) return;
         {
-            
+            StartCoroutine(LoadSceneRoutine(sceneName, minLoadTime));
+        }
+    }
+    
+    public void LoadScene(int buildIndex, float minLoadTime = 1.5f)
+    {
+        if (_isLoading) return;
+        {
+            StartCoroutine(LoadSceneRoutine(buildIndex, minLoadTime));
         }
     }
 
