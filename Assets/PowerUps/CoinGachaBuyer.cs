@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,13 +15,11 @@ public class CoinGachaBuyer : MonoBehaviour
     [Header("UI Roulette")]
     [SerializeField] private ItemRouletteUI rouletteUI;
     [SerializeField] private List<ItemBase> ribbonVisualPool;
-
-    [Header("Input")]
-    [SerializeField] private BUTTONS buyButton = BUTTONS.X;
+    
 
     private KartController kart;
     private KartInventory inv;
-    
+    private InputManager input;
 
     private void Awake()
     {
@@ -28,11 +27,16 @@ public class CoinGachaBuyer : MonoBehaviour
         inv = GetComponent<KartInventory>();
     }
 
+    private void Start()
+    {
+        input = InputManager.GetInstance();
+    }
+
     private void Update()
     {
         if (rouletteUI != null && rouletteUI.IsSpinning) return;
 
-        if (InputManager.GetInstance().IsButtonDown(buyButton))
+        if (input.IsButtonDown(BUTTONS.X))
         {
             TryBuy();
         }
@@ -44,10 +48,7 @@ public class CoinGachaBuyer : MonoBehaviour
 
 
         if (!kart.TrySpendCoins(coinCost))
-        {
-
             return;
-        }
 
 
         float c = 60, u = 25, r = 10, e = 4, l = 1;
