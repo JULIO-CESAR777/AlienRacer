@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class KartInventory : MonoBehaviour
@@ -7,16 +8,23 @@ public class KartInventory : MonoBehaviour
 
     private KartController kart;
     public ItemSynergyManager synergyManager;
+    
+    private InputManager input;
 
     private void Awake()
     {
         kart = GetComponent<KartController>();
     }
 
+    private void Start()
+    {
+        input = InputManager.GetInstance();
+    }
+
     void Update()
     {
-        if (InputManager.GetInstance().IsButtonDown(BUTTONS.L1)) UseSlot(1);
-        if (InputManager.GetInstance().IsButtonDown(BUTTONS.R1)) UseSlot(2);
+        if (input.IsButtonDown(BUTTONS.L1)) UseSlot(1);
+        if (input.IsButtonDown(BUTTONS.R1)) UseSlot(2);
 
         if (InputManager.GetInstance().IsButtonDown(BUTTONS.Y))
             TryUseSynergy();

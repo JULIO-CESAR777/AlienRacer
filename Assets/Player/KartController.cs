@@ -144,9 +144,12 @@ public class KartController : MonoBehaviour
 
     public Transform shootPoint;
     public GameObject bulletPrefab;
+
+    private float accelerate;
+    private float brake;
     void Update()
     {
-
+        
         if (input.IsButtonDown(BUTTONS.START))
         {
             if (isPaused)
@@ -165,7 +168,10 @@ public class KartController : MonoBehaviour
         turnInput = 0f;
        
         //moveInput = Input.GetAxis("Vertical");
-        moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        //moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f;
+        brake = input.IsButton(BUTTONS.L2) ? 1f : 0f;
+        moveInput = accelerate - brake;
         
         //turnInput = Input.GetAxis("Horizontal");
         turnInput = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
@@ -174,7 +180,7 @@ public class KartController : MonoBehaviour
         // Drift (solo si está permitido)
         if (driftAllowed && controlEnabled)
         {
-            if (input.IsButtonDown(BUTTONS.B))
+            if (input.IsButtonDown(BUTTONS.A))
             {
                 if (Mathf.Abs(turnInput) > 0.2f)
                 {
@@ -184,7 +190,7 @@ public class KartController : MonoBehaviour
                 SetDriftParticlesGO(true);
             }
 
-            if (input.IsButtonUp(BUTTONS.B))
+            if (input.IsButtonUp(BUTTONS.A))
             {
                 SetDriftParticlesGO(false);
                 isDrifting = false;
@@ -199,22 +205,18 @@ public class KartController : MonoBehaviour
             driftDirection = 0;
         }
 
-        if (controlEnabled && input.IsButtonDown(BUTTONS.A) && !isDrifting)
+        if (controlEnabled && input.IsButtonDown(BUTTONS.B) && !isDrifting)
         {
             HandleJump();
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().Initialize(shootPoint.forward);
         }
         
     }
 
     void FixedUpdate()
     {
+
+        if (isPaused) return;
+        
         if (!isBumping)
         {
             HandleMovement();
@@ -275,7 +277,16 @@ public class KartController : MonoBehaviour
         }
         else if (moveInput < 0)
         {
-            currentSpeed -= reverseAcceleration * Time.fixedDeltaTime;
+            if (currentSpeed > 0)
+            {
+                // Frenar fuerte si vas hacia adelante
+                currentSpeed -= acceleration * 1.5f * Time.fixedDeltaTime;
+            }
+            else
+            {
+                // Reversa cuando ya estás en negativo
+                currentSpeed -= reverseAcceleration * Time.fixedDeltaTime;
+            }
         }
         else
         {
@@ -534,7 +545,6 @@ public class KartController : MonoBehaviour
 
     
     // COSAS JULIO
-    
     public bool TrySpendCoins(int amount)
     {
         if (amount <= 0) return true;
@@ -542,6 +552,7 @@ public class KartController : MonoBehaviour
 
         coins -= amount;
         coins = Mathf.Clamp(coins, 0, maxCoins);
+        uiManager.UpdateCoinText(coins.ToString());
         return true;
     }
     private void SetDriftParticlesGO(bool on)

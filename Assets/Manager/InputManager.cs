@@ -28,14 +28,16 @@ public class InputManager : MonoBehaviour
     
         KeyCode[] KeyboardController =
         {
-            KeyCode.Space,
-            KeyCode.LeftShift,
-            KeyCode.X,
-            KeyCode.R,
-            KeyCode.Q,
-            KeyCode.E,
-            KeyCode.P,
-            KeyCode.Tab,
+            KeyCode.LeftShift, // Drift
+            KeyCode.Space, // Salto
+            KeyCode.X, // Compra de items
+            KeyCode.R, // Sinergia
+            KeyCode.Q, // Item 1
+            KeyCode.E, // Item 2
+            KeyCode.S, // L2
+            KeyCode.W, // R2
+            KeyCode.P, // Start
+            KeyCode.Tab, // Select
         }; 
     
         KeyCode[] XboxController =
@@ -46,8 +48,10 @@ public class InputManager : MonoBehaviour
             KeyCode.Joystick1Button3, // Y
             KeyCode.Joystick1Button4, // L1
             KeyCode.Joystick1Button5, // R1
-            KeyCode.Joystick1Button6, // Start
-            KeyCode.Joystick1Button7, // Select
+            KeyCode.Joystick1Button6, // L2
+            KeyCode.Joystick1Button7, // R2
+            KeyCode.Joystick1Button9, // Start
+            KeyCode.Joystick1Button10, // Select
         };
     
         private KeyCode[] PlaystationController =
@@ -58,8 +62,10 @@ public class InputManager : MonoBehaviour
             KeyCode.Joystick1Button3 , // Y
             KeyCode.Joystick1Button4, // L1
             KeyCode.Joystick1Button5, //R1
-            KeyCode.Joystick1Button6, //Start
-            KeyCode.Joystick1Button7, //Select
+            KeyCode.Joystick1Button6, // L2
+            KeyCode.Joystick1Button7, // R2
+            KeyCode.Joystick1Button9, //Start ---- El joystick6 es el L2
+            KeyCode.Joystick1Button10, //Select ---- El joystick7 es el R2
         };
         
         KeyCode[][] controllers;
@@ -80,8 +86,6 @@ public class InputManager : MonoBehaviour
             "Vertical", // Left stick vertical
             "Axis5", // Right stick horizontal
             "Axis4", // Right stick vertical
-            "Axis9", // LEFT TRIGGER
-            "Axis10" // RiGHT TRIGGER
         };
     
         private string[] playstationAxis =
@@ -90,8 +94,6 @@ public class InputManager : MonoBehaviour
             "Vertical",
             "Axis5",
             "Axis4",
-            "Axis9",
-            "Axis10"
         };
     
         #endregion
@@ -196,6 +198,11 @@ public class InputManager : MonoBehaviour
             }
         }
     
+        public bool IsButton(BUTTONS _button)
+        {
+            return Input.GetKey(controllers[(byte)currentInputType][(byte)_button]);
+        }
+        
         public bool IsButtonDown(BUTTONS _button)
         {
             bool pressed = Input.GetKeyDown(controllers[(byte)currentInputType][(byte)_button]); 
@@ -269,6 +276,8 @@ public enum BUTTONS
     Y,
     L1,
     R1,
+    L2,
+    R2,
     START,
     SELECT,
 }
@@ -279,6 +288,4 @@ public enum AXIS
     LEFT_STICK_VERTICAL,
     RIGHT_STICK_HORIZONTAL,
     RIGHT_STICK_VERTICAL,
-    LEFT_TRIGGER,
-    RIGHT_TRIGGER
 }
