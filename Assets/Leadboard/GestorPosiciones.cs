@@ -8,15 +8,24 @@ public class DatosCorredor
     public float distanciaAlSiguiente;
     public float progresoTotal;
     public int posicion;
+
+    // --- CONDICIÓN DE VICTORIA ---
+    public int vueltasDadas;
+    public bool haTerminado;
 }
 
 public class GestorPosiciones : MonoBehaviour
 {
-    
     public static GestorPosiciones Instancia;
 
     public Transform[] hitosDePista;
     public List<DatosCorredor> listaCorredores = new List<DatosCorredor>();
+
+    // --- VARIABLES DE CONFIGURACIÓN ---
+    [Header("Configuración de Carrera")]
+    public int totalVueltas = 3;
+    public GameObject panelFinCarrera;
+    public TMPro.TextMeshProUGUI textoResultado;
 
     void Awake()
     {
@@ -26,7 +35,7 @@ public class GestorPosiciones : MonoBehaviour
 
     void Start()
     {
-        // Buscamos a todos por Tag 
+        // Buscamos por Tag 
         ConfigurarCorredoresConTag("Player");
         ConfigurarCorredoresConTag("Bot");
     }
@@ -44,11 +53,40 @@ public class GestorPosiciones : MonoBehaviour
     public void RegistrarPasoPorHito(Transform corredor, int indice)
     {
         var datos = listaCorredores.Find(c => c.transform == corredor);
-        if (datos != null)
+
+        if (datos == null || datos.haTerminado) return;
+
+        // Lógica de vueltas...
+        if (datos.ultimoHito == hitosDePista.Length - 1 && indice == 0)
         {
-            if (indice == (datos.ultimoHito + 1) % hitosDePista.Length)
+            datos.vueltasDadas++;
+            // Log opcional para vueltas
+            Debug.Log($"<color=yellow>¡{corredor.name} completó la vuelta {datos.vueltasDadas}!</color>");
+
+            if (datos.vueltasDadas >= totalVueltas)
             {
-                datos.ultimoHito = indice;
+                FinalizarCarreraCorredor(datos);
+            }
+        }
+
+        if (indice == (datos.ultimoHito + 1) % hitosDePista.Length)
+        {
+            datos.ultimoHito = indice;
+            Debug.Log($"Corredor: <b>{corredor.name}</b> paso por el <b>Hito {indice}</b>");
+        }
+    }
+    // --- LÓGICA DE FINALIZACIÓN ---
+    private void FinalizarCarreraCorredor(DatosCorredor corredor)
+    {
+        corredor.haTerminado = true;
+
+        // Si es el jugador, mostramos la UI de resultados
+        if (corredor.transform.CompareTag("Player"))
+        {
+            if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
+            if (textoResultado != null)
+            {
+                textoResultado.text = (corredor.posicion == 1) ? "¡VICTORIA!" : "Posición: " + corredor.posicion + "°";
             }
         }
     }
@@ -57,18 +95,22 @@ public class GestorPosiciones : MonoBehaviour
     {
         if (hitosDePista.Length == 0) return;
 
-        // 1. Calculamos progreso de todos
+        // progreso de todos
         foreach (var c in listaCorredores)
         {
+            // Si ya terminó, no seguimos recalculando su progreso para que mantenga su posición final
+            if (c.haTerminado) continue;
+
             int siguienteHito = (c.ultimoHito + 1) % hitosDePista.Length;
             c.distanciaAlSiguiente = Vector3.Distance(c.transform.position, hitosDePista[siguienteHito].position);
-            c.progresoTotal = (c.ultimoHito * 10000) - c.distanciaAlSiguiente;
+            // vueltas para que tengan prioridad absoluta
+            c.progresoTotal = (c.vueltasDadas * 100000) + (c.ultimoHito * 1000) - c.distanciaAlSiguiente;
         }
 
-        // 2. Ordenamos por progreso
+        // Ordenamos por progreso
         var ordenados = listaCorredores.OrderByDescending(c => c.progresoTotal).ToList();
 
-        // 3. Asignamos el número de posición
+        // Asignamos el número de posición
         for (int i = 0; i < ordenados.Count; i++)
         {
             ordenados[i].posicion = i + 1;
@@ -76,15 +118,12 @@ public class GestorPosiciones : MonoBehaviour
     }
 
     // --- FUNCIONES PARA OTROS SCRIPTS ---
-
-    // Esta función la usa la UI y el Gacha para saber el puesto
     public int ObtenerPosicionDe(Transform coche)
     {
         var datos = listaCorredores.Find(c => c.transform == coche);
         return datos != null ? datos.posicion : 0;
     }
-
-    // Esta función la necesita el Gacha para calcular los pesos (Weights)
+    //función Gacha para calcular
     public int ObtenerTotalCorredores()
     {
         return listaCorredores.Count;
