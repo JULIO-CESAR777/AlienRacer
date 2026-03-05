@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
@@ -35,11 +37,16 @@ public class MainManager : MonoBehaviour
     
     public bool canPause;
 
-
+    // Begin Race
+    [SerializeField] public TextMeshProUGUI countDownText; 
+    
+    
     private void Start()
     {
         gameState = GameState.Play;
         canPause = true;
+        
+        BeginRace();
     }
 
     public void PauseGame()
@@ -65,6 +72,29 @@ public class MainManager : MonoBehaviour
         onChangeGameState?.Invoke(gameState);
     }
     
+    public void BeginRace()
+    {
+        StartCoroutine(RaceInit());
+    }
+
+    IEnumerator RaceInit()
+    {
+        ChangeGameState(GameState.Pause);
+        
+        for (int i = 3; i > 0; i--)
+        {
+            countDownText.text = i.ToString();
+            yield return new WaitForSecondsRealtime(1f);
+        }
+
+        countDownText.text = "GO!";
+
+        yield return new WaitForSecondsRealtime(1f);
+
+        countDownText.gameObject.SetActive(false);
+        ChangeGameState(GameState.Play);
+        
+    }
 }
 
 

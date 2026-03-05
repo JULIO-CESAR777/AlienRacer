@@ -48,6 +48,8 @@ public class KartController : MonoBehaviour
     public float jumpPower = 10f;
     public bool isGrounded = false;
 
+    private Vector3 smoothedGroundNormal = Vector3.up;
+    
     [Header("Bump Settings")]
     public float bumpDuration = 0.2f;
 
@@ -68,6 +70,7 @@ public class KartController : MonoBehaviour
     // Manager 
     MainManager gm;
     InputManager input;
+    UiManagerPlayer uiManager;
     
     // ---- Control & Multipliers (PowerUps los modifican) ----
     private bool controlEnabled = true;
@@ -131,14 +134,22 @@ public class KartController : MonoBehaviour
         {
             Debug.LogError("InputManager is NULL in KartController");
         }
+        
+        uiManager = UiManagerPlayer.GetInstance();
+        
+        uiManager.UpdateCoinText(coins.ToString());
+
     }
 
 
     public Transform shootPoint;
     public GameObject bulletPrefab;
+
+    private float accelerate;
+    private float brake;
     void Update()
     {
-
+        
         if (input.IsButtonDown(BUTTONS.START))
         {
             if (isPaused)
@@ -157,7 +168,10 @@ public class KartController : MonoBehaviour
         turnInput = 0f;
        
         //moveInput = Input.GetAxis("Vertical");
-        moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        //moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f;
+        brake = input.IsButton(BUTTONS.L2) ? 1f : 0f;
+        moveInput = accelerate - brake;
         
         //turnInput = Input.GetAxis("Horizontal");
         turnInput = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
@@ -166,7 +180,7 @@ public class KartController : MonoBehaviour
         // Drift (solo si está permitido)
         if (driftAllowed && controlEnabled)
         {
-            if (input.IsButtonDown(BUTTONS.B))
+            if (input.IsButtonDown(BUTTONS.A))
             {
                 if (Mathf.Abs(turnInput) > 0.2f)
                 {
@@ -176,7 +190,7 @@ public class KartController : MonoBehaviour
                 SetDriftParticlesGO(true);
             }
 
-            if (input.IsButtonUp(BUTTONS.B))
+            if (input.IsButtonUp(BUTTONS.A))
             {
                 SetDriftParticlesGO(false);
                 isDrifting = false;
@@ -191,22 +205,18 @@ public class KartController : MonoBehaviour
             driftDirection = 0;
         }
 
-        if (controlEnabled && input.IsButtonDown(BUTTONS.A))
+        if (controlEnabled && input.IsButtonDown(BUTTONS.B) && !isDrifting)
         {
             HandleJump();
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().Initialize(shootPoint.forward);
         }
         
     }
 
     void FixedUpdate()
     {
+
+        if (isPaused) return;
+        
         if (!isBumping)
         {
             HandleMovement();
@@ -226,11 +236,35 @@ public class KartController : MonoBehaviour
         CheckGround();
 
         // Pegado al suelo
-        if (isGrounded)
-            rb.AddForce(-groundNormal * 10f, ForceMode.Acceleration);
+        if (isGrounded && rb.linearVelocity.y <= 0.1f)
+        {
+            rb.AddForce(-smoothedGroundNormal * 3f, ForceMode.Acceleration);
+        }
+        
+        Vector3 verticalVelocity = Vector3.up * rb.linearVelocity.y;
 
-        Vector3 alignedVelocity = transform.forward * currentSpeed;
-        rb.linearVelocity = new Vector3(alignedVelocity.x, rb.linearVelocity.y, alignedVelocity.z);
+        // Base forward
+        Vector3 forwardVelocity = transform.forward * currentSpeed;
+
+        if (isBumping)
+            return;
+        
+        // Si NO hay input lateral y NO está drifteando
+        if (Mathf.Abs(turnInput) < 0.05f && !isDrifting)
+        {
+            // eliminar cualquier componente lateral
+            rb.linearVelocity = forwardVelocity + verticalVelocity;
+        }
+        else
+        {
+            // permitir que la física conserve parte del lateral controlado
+            Vector3 projectedForward = Vector3.Project(rb.linearVelocity, transform.forward);
+            rb.linearVelocity = projectedForward + verticalVelocity;
+        }
+
+        // eliminar torque no deseado
+        rb.angularVelocity = Vector3.zero;
+        
     }
 
     void HandleMovement()
@@ -243,7 +277,16 @@ public class KartController : MonoBehaviour
         }
         else if (moveInput < 0)
         {
-            currentSpeed -= reverseAcceleration * Time.fixedDeltaTime;
+            if (currentSpeed > 0)
+            {
+                // Frenar fuerte si vas hacia adelante
+                currentSpeed -= acceleration * 1.5f * Time.fixedDeltaTime;
+            }
+            else
+            {
+                // Reversa cuando ya estás en negativo
+                currentSpeed -= reverseAcceleration * Time.fixedDeltaTime;
+            }
         }
         else
         {
@@ -269,6 +312,7 @@ public class KartController : MonoBehaviour
     {
         if (!isGrounded) return;
         if (Mathf.Abs(currentSpeed) <= 0.1f) return;
+        if (Mathf.Abs(turnInput) < 0.05f && !isDrifting) return;
 
         float steeringInput = turnInput;
 
@@ -297,9 +341,14 @@ public class KartController : MonoBehaviour
 
         float rotationAmount = steeringInput * dynamicTurnSpeed * Time.fixedDeltaTime;
 
-        Quaternion steerRotation = Quaternion.AngleAxis(rotationAmount, groundNormal);
-        Quaternion alignToGround = Quaternion.FromToRotation(transform.up, groundNormal) * rb.rotation;
-        Quaternion finalRotation = steerRotation * alignToGround;
+        // Construir rotación limpia desde cero
+        Vector3 forwardProjected = Vector3.ProjectOnPlane(transform.forward, smoothedGroundNormal).normalized;
+
+        Quaternion baseRotation = Quaternion.LookRotation(forwardProjected, smoothedGroundNormal);
+
+        Quaternion steerRotation = Quaternion.AngleAxis(rotationAmount, smoothedGroundNormal);
+
+        Quaternion finalRotation = steerRotation * baseRotation;
 
         rb.MoveRotation(
             Quaternion.Slerp(
@@ -359,12 +408,35 @@ public class KartController : MonoBehaviour
         }
     }
 
+    public float groundCheckDistance = 1.2f;
+    public float groundSphereRadius = 0.4f;
+
     public void CheckGround()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.5f))
+        Vector3 origin = transform.position + Vector3.up * 0.5f;
+
+        if (Physics.SphereCast(origin, groundSphereRadius, Vector3.down, out RaycastHit hit, groundCheckDistance))
         {
+            
+            if (hit.normal.y < 0.3f)
+            {
+                isGrounded = false;
+                return;
+            }
+            
+            float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+
+            // Si es demasiado vertical, es pared/banqueta grande
+            if (slopeAngle > 50f)
+            {
+                isGrounded = false;
+                return;
+            }
+
             isGrounded = true;
+
             groundNormal = hit.normal;
+            smoothedGroundNormal = Vector3.Slerp(smoothedGroundNormal, groundNormal, 12f * Time.deltaTime);
 
             if (rb.linearVelocity.y < -2f)
             {
@@ -374,7 +446,7 @@ public class KartController : MonoBehaviour
         else
         {
             isGrounded = false;
-            groundNormal = Vector3.up;
+            smoothedGroundNormal = Vector3.Slerp(smoothedGroundNormal, Vector3.up, 5f * Time.deltaTime);
         }
     }
 
@@ -416,10 +488,14 @@ public class KartController : MonoBehaviour
     {
         coins++;
         coins = Mathf.Clamp(coins, 0, maxCoins);
+        uiManager.UpdateCoinText(coins.ToString());
+        
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Wall")) return;
+        
         // Forward a PowerUps (Star stun, etc.)
         if (powerUps != null)
             powerUps.OnKartCollision(collision);
@@ -432,6 +508,8 @@ public class KartController : MonoBehaviour
 
         ContactPoint contact = collision.contacts[0];
         Vector3 normal = contact.normal;
+        
+        if (Mathf.Abs(normal.y) > 0.7f) return;
 
         normal.y = 0f;
         normal.Normalize();
@@ -444,6 +522,21 @@ public class KartController : MonoBehaviour
 
         if (impactDot > 0.2f)
         {
+            // Cancelar movimiento hacia la pared
+            Vector3 velocity = rb.linearVelocity;
+
+            // Quitar componente en dirección de la normal
+            Vector3 pushDir = Vector3.Project(velocity, -normal);
+            velocity -= pushDir;
+
+            // Matar vertical
+            velocity.y = 0f;
+
+            rb.linearVelocity = velocity;
+            rb.angularVelocity = Vector3.zero;
+
+            currentSpeed = 0f;
+
             isBumping = true;
             bumpTimer = bumpDuration;
             bumpSpeed = -Mathf.Abs(currentSpeed) * 0.7f;
@@ -452,7 +545,6 @@ public class KartController : MonoBehaviour
 
     
     // COSAS JULIO
-    
     public bool TrySpendCoins(int amount)
     {
         if (amount <= 0) return true;
@@ -460,6 +552,7 @@ public class KartController : MonoBehaviour
 
         coins -= amount;
         coins = Mathf.Clamp(coins, 0, maxCoins);
+        uiManager.UpdateCoinText(coins.ToString());
         return true;
     }
     private void SetDriftParticlesGO(bool on)

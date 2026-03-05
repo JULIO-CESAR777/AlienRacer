@@ -8,7 +8,6 @@ TagManager:
   - Bot
   - Waypoint
   - Bullet
-  - Racer IA
   layers:
   - Default
   - TransparentFX
@@ -17,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Obstaculos
+  - Wall
   - 
   - 
   - 

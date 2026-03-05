@@ -3,14 +3,19 @@ using TMPro;
 
 public class VisualizadorPosicionUI : MonoBehaviour
 {
-    public ParticipanteCarrera participanteASeguir;
+    [Header("Referencias")]
+    public Transform cocheJugador;
     public TextMeshProUGUI textoPosicion;
 
     void Update()
     {
-        if (participanteASeguir != null)
+        if (cocheJugador != null && textoPosicion != null)
         {
-            textoPosicion.text = participanteASeguir.posicionActual + "°";
+            //Posición del transform del jugador
+            int puesto = GestorPosiciones.Instancia.ObtenerPosicionDe(cocheJugador);
+
+            // Mostramos 1°, 2°, etc. (Si es 0 es que aún no se registra)
+            textoPosicion.text = puesto > 0 ? puesto + "°" : "--";
         }
     }
 }
