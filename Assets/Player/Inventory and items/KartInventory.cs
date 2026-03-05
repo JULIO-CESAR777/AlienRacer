@@ -8,8 +8,11 @@ public class KartInventory : MonoBehaviour
 
     private KartController kart;
     public ItemSynergyManager synergyManager;
-    
+
     private InputManager input;
+
+    
+    public event Action<ItemBase, ItemBase> OnInventoryChanged;
 
     private void Awake()
     {
@@ -19,6 +22,7 @@ public class KartInventory : MonoBehaviour
     private void Start()
     {
         input = InputManager.GetInstance();
+        NotifyChanged(); // refresca UI al iniciar
     }
 
     void Update()
@@ -32,13 +36,13 @@ public class KartInventory : MonoBehaviour
 
     void TryUseSynergy()
     {
-        print("sinergia");
         if (!slot1 || !slot2) return;
 
-        if (synergyManager.TryExecuteSynergy(slot1, slot2, kart))
+        if (synergyManager != null && synergyManager.TryExecuteSynergy(slot1, slot2, kart))
         {
             slot1 = null;
             slot2 = null;
+            NotifyChanged();
         }
     }
 
@@ -48,19 +52,29 @@ public class KartInventory : MonoBehaviour
         if (!item) return;
 
         item.Use(kart);
-        // Decide si se consume:
-         if(slotIndex==1) slot1=null; else slot2=null;
+
+        // consume
+        if (slotIndex == 1) slot1 = null;
+        else slot2 = null;
+
+        NotifyChanged();
     }
-    
+
     public bool TryAddItem(ItemBase item)
     {
         if (item == null) return false;
 
-        if (slot1 == null) { slot1 = item; return true; }
-        if (slot2 == null) { slot2 = item; return true; }
+        if (slot1 == null) { slot1 = item; NotifyChanged(); return true; }
+        if (slot2 == null) { slot2 = item; NotifyChanged(); return true; }
 
-        // si queremos que reemplaze el slot 1
+        // reemplaza slot1
         slot1 = item;
+        NotifyChanged();
         return true;
+    }
+
+    private void NotifyChanged()
+    {
+        OnInventoryChanged?.Invoke(slot1, slot2);
     }
 }

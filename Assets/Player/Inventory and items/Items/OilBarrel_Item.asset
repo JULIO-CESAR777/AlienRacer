@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: OilBarrel_Item
   m_EditorClassIdentifier: Assembly-CSharp::OilBarrelItem
   itemName: Oil Barrel
-  icon: {fileID: 95082051, guid: 468caccb6a6bcef4f8475c0254bbbf4d, type: 3}
+  icon: {fileID: 1905988203, guid: 5371f78dcf2a1484bb7731e21a1768df, type: 3}
   oilPrefab: {fileID: 1818211593542640236, guid: 6b03795f63b23af4d8fffef2913cd812, type: 3}

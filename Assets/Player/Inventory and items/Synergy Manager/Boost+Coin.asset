@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoostSynergy
   itemA: {fileID: 11400000, guid: 196ea9b7eefbe944a92334a02e490d60, type: 2}
   itemB: {fileID: 11400000, guid: 0fee5f6838ad65043b2a3c368b883f2a, type: 2}
+  icon: {fileID: 1788771058, guid: 47b96cea08609bf4a808ec7a52febdb5, type: 3}
   boostMultiplier: 1.5
   duration: 2
   coins: 3

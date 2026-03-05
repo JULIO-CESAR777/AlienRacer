@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Boost_Item
   m_EditorClassIdentifier: Assembly-CSharp::BoostItem
   itemName: BoostItem
-  icon: {fileID: 244261472, guid: 468caccb6a6bcef4f8475c0254bbbf4d, type: 3}
+  icon: {fileID: 649552667, guid: a86cd5e7dedbc4a458c9f33fb0e67617, type: 3}
   boostForce: 10
   duration: 1
