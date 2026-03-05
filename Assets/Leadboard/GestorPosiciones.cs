@@ -14,7 +14,7 @@ public class GestorPosiciones : MonoBehaviour
     {
         // Buscamos automáticamente a todos por sus etiquetas
         GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] bots = GameObject.FindGameObjectsWithTag("Bot");
+        GameObject[] bots = GameObject.FindGameObjectsWithTag("Racer IA");
 
         foreach (GameObject j in jugadores) participantes.Add(j.GetComponent<ParticipanteCarrera>());
         foreach (GameObject b in bots) participantes.Add(b.GetComponent<ParticipanteCarrera>());
