@@ -23,6 +23,7 @@ namespace UI
         [Header("Main Menu UI Panels")]
         [SerializeField] private GameObject _mainMenuPanel = default;
         [SerializeField] private GameObject _winMenuPanel = default;
+        [SerializeField] private GameObject _loseMenuPanel = default;
 
         private void Awake()
         {
@@ -35,7 +36,7 @@ namespace UI
         {
             if (Instance == null)
             {
-                Debug.LogError("UIController instance is null! Make sure it exists in the scene.");
+                Debug.LogWarning("UIController instance is null! Make sure it exists in the scene.");
             }
             return Instance;
         }
@@ -44,6 +45,7 @@ namespace UI
         {
             Debug.Log("Play button clicked!");
             _mainMenuPanel.SetActive(false);
+            SceneLoader.GetInstance()?.LoadScene(1);
         }
 
         public void ToSettingsPanel()
@@ -62,6 +64,30 @@ namespace UI
             Debug.Log("Shows WIn");
             _winMenuPanel.SetActive(true);
             _mainMenuPanel.SetActive(false);
+        }
+        
+        public void FromWinToMainMenu()
+        {
+            Debug.Log("Changing from Win Menu to Main Menu Panel");
+            _winMenuPanel.SetActive(false);
+            _mainMenuPanel.SetActive(true);
+        }
+
+        public void ReloadButton()
+        {
+            Debug.Log(" Reload button clicked!");
+            SceneLoader.GetInstance()?.LoadScene(1);
+        }
+
+        public void FromLoseToMainMenu()
+        {
+            Debug.Log("Changing from Lose Menu to Main Menu Panel");
+            _loseMenuPanel.SetActive(false);
+            _mainMenuPanel.SetActive(true);
+        }
+        public void FromGameplayToUIEndRace()
+        {
+            SceneLoader.GetInstance()?.LoadScene(0);
         }
     }
 }
