@@ -26,6 +26,16 @@ public class SceneLoader : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public static SceneLoader GetInstance()
+    {
+        if (Instance == null)
+        {
+            Debug.LogError("SceneLoader instance is null! Make sure it exists in the Boot Scene.");
+        }
+
+        return Instance;
+    }
+
     public void LoadScene(string sceneName, float minLoadTime = 1.5f)
     {
         if (_isLoading) return;

@@ -36,7 +36,7 @@ namespace UI
         {
             if (Instance == null)
             {
-                Debug.LogError("UIController instance is null! Make sure it exists in the scene.");
+                Debug.LogWarning("UIController instance is null! Make sure it exists in the scene.");
             }
             return Instance;
         }
@@ -45,7 +45,7 @@ namespace UI
         {
             Debug.Log("Play button clicked!");
             _mainMenuPanel.SetActive(false);
-            SceneLoader.Instance.LoadScene(1);
+            SceneLoader.GetInstance()?.LoadScene(1);
         }
 
         public void ToSettingsPanel()
@@ -76,7 +76,7 @@ namespace UI
         public void ReloadButton()
         {
             Debug.Log(" Reload button clicked!");
-            SceneLoader.Instance.LoadScene(1);
+            SceneLoader.GetInstance()?.LoadScene(1);
         }
 
         public void FromLoseToMainMenu()
@@ -84,6 +84,10 @@ namespace UI
             Debug.Log("Changing from Lose Menu to Main Menu Panel");
             _loseMenuPanel.SetActive(false);
             _mainMenuPanel.SetActive(true);
+        }
+        public void FromGameplayToUIEndRace()
+        {
+            SceneLoader.GetInstance()?.LoadScene(0);
         }
     }
 }

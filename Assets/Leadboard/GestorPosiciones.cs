@@ -1,6 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UI;
+
 public class DatosCorredor
 {
     public Transform transform;
@@ -80,14 +83,22 @@ public class GestorPosiciones : MonoBehaviour
     {
         corredor.haTerminado = true;
 
-        // Si es el jugador, mostramos la UI de resultados
         if (corredor.transform.CompareTag("Player"))
         {
+            bool gano = corredor.posicion == 1;
+
+            // Show the result panel immediately
             if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
             if (textoResultado != null)
-            {
-                textoResultado.text = (corredor.posicion == 1) ? "¡VICTORIA!" : "Posición: " + corredor.posicion + "°";
-            }
+                textoResultado.text = gano ? "¡VICTORIA!" : "Posición: " + corredor.posicion + "°";
+
+            // Store result and load after delay
+            GameResultManager.Instance.SetResult(
+                gano ? GameResultManager.RaceResult.Win
+                    : GameResultManager.RaceResult.Lose
+            );
+
+            StartCoroutine(CargarEscenaResultados(3f));
         }
     }
 
@@ -127,5 +138,11 @@ public class GestorPosiciones : MonoBehaviour
     public int ObtenerTotalCorredores()
     {
         return listaCorredores.Count;
+    }
+
+    private IEnumerator CargarEscenaResultados(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UIController.GetInstance()?.FromGameplayToUIEndRace();
     }
 }
