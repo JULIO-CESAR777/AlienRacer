@@ -186,8 +186,9 @@ public class KartController : MonoBehaviour
                 {
                     isDrifting = true;
                     driftDirection = (int)Mathf.Sign(turnInput);
+                    SetDriftParticlesGO(true);
                 }
-                SetDriftParticlesGO(true);
+               
             }
 
             if (input.IsButtonUp(BUTTONS.A))

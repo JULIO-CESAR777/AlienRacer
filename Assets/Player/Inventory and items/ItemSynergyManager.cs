@@ -45,4 +45,17 @@ public class ItemSynergyManager : MonoBehaviour
 
         return false;
     }
+    
+    
+    public ItemSynergy GetSynergy(ItemBase slot1, ItemBase slot2)
+    {
+        if (slot1 == null || slot2 == null) return null;
+
+        string key = MakeKey(slot1, slot2);
+
+        if (map != null && map.TryGetValue(key, out var synergy))
+            return synergy;
+
+        return null;
+    }
 }
