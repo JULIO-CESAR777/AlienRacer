@@ -6,17 +6,14 @@ public class KartPowerUpController : MonoBehaviour
 {
     private KartController kart;
 
-    // ---- STUN ----
     [Header("Stun")]
     [SerializeField] private bool isStunned = false;
     [SerializeField] private float stunTimer = 0f;
 
-    // ---- SHIELD ----
     [Header("Shield")]
     [SerializeField] private bool hasShield = false;
     [SerializeField] private float shieldTimer = 0f;
 
-    // ---- STAR ----
     [Header("Star")]
     [SerializeField] private bool hasStar = false;
     [SerializeField] private float starTimer = 0f;
@@ -25,7 +22,6 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private float starHitCooldown = 0.5f;
     private readonly Dictionary<int, float> starHitCdByTarget = new Dictionary<int, float>();
 
-    // ---- BOOST ----
     [Header("Boost")]
     [SerializeField] private bool hasBoost = false;
     [SerializeField] private float boostTimer = 0f;
@@ -33,9 +29,7 @@ public class KartPowerUpController : MonoBehaviour
 
     [Header("Spawn Points")]
     [SerializeField] public Transform behindSpawnPoint;
-    
-    
-    
+
     public bool IgnoreBumpThisFrame { get; private set; }
 
     void Awake()
@@ -53,43 +47,35 @@ public class KartPowerUpController : MonoBehaviour
         TickStun();
     }
 
-  
-
     public void ActivateShield(float duration)
     {
-        Debug.Log("Escudo");
         hasShield = true;
         shieldTimer = Mathf.Max(shieldTimer, duration);
     }
 
     public void ActivateStar(float duration, float stunSeconds = 1.5f)
     {
-        Debug.Log("Estrella");
         hasStar = true;
         starTimer = Mathf.Max(starTimer, duration);
         starStunSeconds = stunSeconds;
 
-     
         hasShield = true;
         shieldTimer = Mathf.Max(shieldTimer, duration);
     }
 
     public void ApplyBoost(float multiplier, float duration)
     {
-        Debug.Log("Boost");
         hasBoost = true;
         boostMultiplier = Mathf.Max(multiplier, 1f);
         boostTimer = Mathf.Max(boostTimer, duration);
 
         kart.SetSpeedMultiplier(boostMultiplier);
     }
-    
 
     public void Stun(float seconds, bool refresh = true)
     {
         if (seconds <= 0f) return;
 
-       
         if (hasShield) return;
 
         if (isStunned)
@@ -101,7 +87,6 @@ public class KartPowerUpController : MonoBehaviour
         isStunned = true;
         stunTimer = seconds;
 
-        // Bloquear control + frenar
         kart.SetControlEnabled(false);
         kart.SetDriftAllowed(false);
         kart.ForceStopHorizontal();
@@ -112,29 +97,34 @@ public class KartPowerUpController : MonoBehaviour
     public bool HasStar() => hasStar;
     public bool HasBoost() => hasBoost;
 
-   
-
     public void OnKartCollision(Collision collision)
     {
         if (!hasStar) return;
 
-        // Mario-style: con star no quieres que te haga bump
         IgnoreBumpThisFrame = true;
 
-       
-        KartPowerUpController other = collision.collider.GetComponentInParent<KartPowerUpController>();
-        if (other == null || other == this) return;
+        KartPowerUpController otherPlayer = collision.collider.GetComponentInParent<KartPowerUpController>();
+        KartObstaculosIA otherIA = collision.collider.GetComponentInParent<KartObstaculosIA>();
 
-        int id = other.GetInstanceID();
+        if ((otherPlayer == null && otherIA == null) || otherPlayer == this) return;
+
+        int id = collision.collider.gameObject.GetInstanceID();
         float now = Time.time;
 
         if (!starHitCdByTarget.TryGetValue(id, out float nextAllowed) || now >= nextAllowed)
         {
-            other.Stun(starStunSeconds, refresh: true);
+            if (otherPlayer != null)
+            {
+                otherPlayer.Stun(starStunSeconds, true);
+            }
+            else if (otherIA != null)
+            {
+                otherIA.AplicarStun(starStunSeconds);
+            }
+
             starHitCdByTarget[id] = now + starHitCooldown;
         }
     }
-
 
     private void TickShield()
     {
@@ -172,7 +162,6 @@ public class KartPowerUpController : MonoBehaviour
             boostTimer = 0f;
             boostMultiplier = 1f;
 
-            // regresar multiplicador a normal
             kart.SetSpeedMultiplier(1f);
         }
     }
@@ -187,7 +176,6 @@ public class KartPowerUpController : MonoBehaviour
             isStunned = false;
             stunTimer = 0f;
 
-            // regresar control
             kart.SetControlEnabled(true);
             kart.SetDriftAllowed(true);
         }
