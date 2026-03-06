@@ -192,9 +192,10 @@ GameObject:
   - component: {fileID: 4801583418770474811}
   - component: {fileID: 5185618828332409631}
   - component: {fileID: 6671215431751331360}
+  - component: {fileID: 2483296970306983563}
   m_Layer: 0
   m_Name: Racer 2
-  m_TagString: Racer IA
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,8 +208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3045467933629644184}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.17228, y: 0.186, z: 2.3172774}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2737999, y: 0, z: -10.314001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -279,24 +280,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0599c92eb54c89e41b70405ed6bab2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KartObstaculosIA
-  waypoints: []
-  distanciaCambio: 3
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  distanciaCambio: 6
+  anticipacionCurva: 7
   velocidadMaxima: 15
   velocidadMinima: 5
   aceleracion: 5
   velocidadGiro: 4
+  factorDerrape: 6
+  fuerzaGravedadExtra: 20
+  tiempoEsperaSalida: 3
+  boostRecta: 1.2
+  boostRebufo: 1.35
+  distanciaRebufo: 20
+  fuerzaAdelantamiento: 4.5
   longitudSensor: 5
-  anguloSensoresFrontales: 30
-  fuerzaEvasion: 2.5
+  anguloSensores: 25
+  fuerzaEvasionMuro: 4
   capaObstaculos:
     serializedVersion: 2
     m_Bits: 128
-  distanciaChoque: 1.5
-  tiempoEsperaReversa: 1
+  distanciaChoqueFrontal: 1.5
   tiempoReversa: 1.2
   velocidadReversa: 8
-  velocidadGiroReversa: 45
-  longitudSensorReversa: 2
+--- !u!114 &2483296970306983563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045467933629644184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab47a5838731b0429abe2391c7e0486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacionLlantas
+  llantasDelanteras:
+  - {fileID: 3530978625649797762}
+  - {fileID: 6044387912210347615}
+  llantasTraseras:
+  - {fileID: 5912799210125881955}
+  - {fileID: 5792436573062009499}
+  multiplicadorRodada: 200
+  anguloMaximoDireccion: 35
+  sensibilidadDireccion: 0.5
+  suavidadDireccion: 15
 --- !u!1 &3977358200676697712
 GameObject:
   m_ObjectHideFlags: 0

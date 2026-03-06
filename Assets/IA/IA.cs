@@ -44,6 +44,11 @@ public class KartObstaculosIA : MonoBehaviour
     private float adnAceleracion;
     private float direccionRebase = 1f;
 
+    private float tiempoStun = 0f;
+    private float tiempoBoost = 0f;
+    private float multiplicadorBoostActual = 1f;
+    private float tiempoEscudo = 0f;
+
     private Rigidbody rb;
 
     void Start()
@@ -66,6 +71,14 @@ public class KartObstaculosIA : MonoBehaviour
             return;
         }
 
+        ActualizarTimersPowerUps();
+
+        if (tiempoStun > 0)
+        {
+            ProcesarStun();
+            return;
+        }
+
         if (enReversa)
         {
             EjecutarReversa();
@@ -73,6 +86,27 @@ public class KartObstaculosIA : MonoBehaviour
         }
 
         ProcesarConduccion();
+    }
+
+    void ActualizarTimersPowerUps()
+    {
+        if (tiempoStun > 0) tiempoStun -= Time.fixedDeltaTime;
+        if (tiempoBoost > 0) tiempoBoost -= Time.fixedDeltaTime;
+        if (tiempoEscudo > 0) tiempoEscudo -= Time.fixedDeltaTime;
+    }
+
+    void ProcesarStun()
+    {
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, Time.fixedDeltaTime * 3f);
+
+        Vector3 normalSuelo = Vector3.up;
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos))
+        {
+            normalSuelo = hitSuelo.normal;
+        }
+
+        Quaternion rotacionGiro = Quaternion.AngleAxis(720f * Time.fixedDeltaTime, normalSuelo);
+        rb.MoveRotation(rb.rotation * rotacionGiro);
     }
 
     void ProcesarConduccion()
@@ -143,7 +177,8 @@ public class KartObstaculosIA : MonoBehaviour
                 }
                 frenarPorMuroFrontal = true;
                 float intensidad = 1f - (hitFrente.distance / longitudSensor);
-                multiplicadorGiroEvasion -= (fuerzaEvasionMuro * intensidad) * direccionRebase;
+                float dirHaciaRuta = Mathf.Sign(Vector3.SignedAngle(transform.forward, direccionBase, Vector3.up));
+                multiplicadorGiroEvasion += (fuerzaEvasionMuro * intensidad) * dirHaciaRuta;
             }
         }
 
@@ -182,7 +217,14 @@ public class KartObstaculosIA : MonoBehaviour
         }
 
         velocidadObjetivo *= multiVelocidadDinamica;
-        velocidadActual = Mathf.Lerp(velocidadActual, velocidadObjetivo, (aceleracion * adnAceleracion) * Time.fixedDeltaTime);
+
+        if (tiempoBoost > 0)
+        {
+            velocidadObjetivo *= multiplicadorBoostActual;
+        }
+
+        float aceleracionFinal = tiempoBoost > 0 ? aceleracion * 1.5f : aceleracion;
+        velocidadActual = Mathf.Lerp(velocidadActual, velocidadObjetivo, (aceleracionFinal * adnAceleracion) * Time.fixedDeltaTime);
 
         Vector3 normalSuelo = Vector3.up;
         bool tocandoSuelo = false;
@@ -256,13 +298,35 @@ public class KartObstaculosIA : MonoBehaviour
         if (direccionVisual != Vector3.zero)
         {
             Quaternion rotacionNormal = Quaternion.LookRotation(direccionVisual, normalSuelo);
-            Quaternion giroAtras = Quaternion.Euler(0f, -velocidadGiro * 20f * Time.fixedDeltaTime, 0f);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, rotacionNormal * giroAtras, 10f * Time.fixedDeltaTime));
+            rb.MoveRotation(rotacionNormal * Quaternion.Euler(0f, -velocidadGiro * 15f * Time.fixedDeltaTime, 0f));
         }
 
         if (temporizadorReversa <= 0)
         {
             enReversa = false;
         }
+    }
+
+    public void AplicarStun(float duracion)
+    {
+        if (tiempoEscudo > 0)
+        {
+            tiempoEscudo = 0f;
+            return;
+        }
+
+        tiempoStun = duracion;
+        enReversa = false;
+    }
+
+    public void AplicarBoost(float duracion, float multiplicador)
+    {
+        tiempoBoost = duracion;
+        multiplicadorBoostActual = multiplicador;
+    }
+
+    public void AplicarEscudo(float duracion)
+    {
+        tiempoEscudo = duracion;
     }
 }
