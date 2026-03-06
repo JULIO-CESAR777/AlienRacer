@@ -4531,7 +4531,7 @@ PrefabInstance:
     - target: {fileID: 1589708136272893680, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: slot2
       value: 
-      objectReference: {fileID: 11400000, guid: a4ec9578a26a50c4d856ff92eb3421f3, type: 2}
+      objectReference: {fileID: 11400000, guid: e1814d86e251a414cb48df89f077cf5a, type: 2}
     - target: {fileID: 1589708136272893680, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: synergyManager
       value: 
