@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class TimedDestroy : MonoBehaviour
 {
-    public float lifetime = 5f;
-
-    private void Start()
+    public float timedDestroy;  
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject, lifetime);
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject, timedDestroy);
+        }
     }
 }

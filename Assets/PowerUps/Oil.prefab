@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3219144746028933868}
   - component: {fileID: 7688454796805515491}
   - component: {fileID: 4810009981821109742}
-  - component: {fileID: 8164930748631182651}
+  - component: {fileID: 7095959920407183745}
   m_Layer: 0
   m_Name: Oil
   m_TagString: Untagged
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OilSlick
   steeringMultiplierInOil: 0.4
---- !u!114 &8164930748631182651
+--- !u!114 &7095959920407183745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,4 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc75931828765544fb66c432d7d006fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimedDestroy
-  lifetime: 5
+  timedDestroy: 3
