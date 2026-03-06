@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+
 public class DatosCorredor
 {
     public Transform transform;
@@ -26,6 +27,9 @@ public class GestorPosiciones : MonoBehaviour
     public int totalVueltas = 3;
     public GameObject panelFinCarrera;
     public TMPro.TextMeshProUGUI textoResultado;
+
+    // CAMBIO RECIENTE: Contador para asignar el puesto exacto al cruzar la meta
+    private int corredoresFinalizados = 0;
 
     void Awake()
     {
@@ -66,6 +70,7 @@ public class GestorPosiciones : MonoBehaviour
             if (datos.vueltasDadas >= totalVueltas)
             {
                 FinalizarCarreraCorredor(datos);
+                return; // CAMBIO RECIENTE: Salimos para que no procese el hito 0 como hito normal
             }
         }
 
@@ -75,12 +80,15 @@ public class GestorPosiciones : MonoBehaviour
             Debug.Log($"Corredor: <b>{corredor.name}</b> paso por el <b>Hito {indice}</b>");
         }
     }
+
     // --- LÓGICA DE FINALIZACIÓN ---
     private void FinalizarCarreraCorredor(DatosCorredor corredor)
     {
+        // CAMBIO RECIENTE: Asignamos el puesto por orden de llegada física
         corredor.haTerminado = true;
-
-        // Si es el jugador, mostramos la UI de resultados
+        corredoresFinalizados++;
+        corredor.posicion = corredoresFinalizados;
+        corredor.progresoTotal = float.MaxValue - corredoresFinalizados;
         if (corredor.transform.CompareTag("Player"))
         {
             if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
@@ -113,7 +121,10 @@ public class GestorPosiciones : MonoBehaviour
         // Asignamos el número de posición
         for (int i = 0; i < ordenados.Count; i++)
         {
-            ordenados[i].posicion = i + 1;
+            if (!ordenados[i].haTerminado)
+            {
+                ordenados[i].posicion = i + 1;
+            }
         }
     }
 
@@ -123,6 +134,7 @@ public class GestorPosiciones : MonoBehaviour
         var datos = listaCorredores.Find(c => c.transform == coche);
         return datos != null ? datos.posicion : 0;
     }
+
     //función Gacha para calcular
     public int ObtenerTotalCorredores()
     {
