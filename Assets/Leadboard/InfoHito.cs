@@ -9,7 +9,6 @@ public class InfoHito : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Bot"))
         {
-            Debug.Log($"¡Detectado! {other.name} entró al hito {indiceHito}"); // <--- Añade esto
             GestorPosiciones.Instancia.RegistrarPasoPorHito(other.transform, indiceHito);
         }
     }
