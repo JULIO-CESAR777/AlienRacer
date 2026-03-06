@@ -15487,7 +15487,7 @@ MonoBehaviour:
   - {fileID: 1365428540}
   - {fileID: 1522123366}
   - {fileID: 509589604}
-  totalVueltas: 1
+  totalVueltas: 3
   panelFinCarrera: {fileID: 1736194109}
   textoResultado: {fileID: 2047539703}
 --- !u!1 &780154818
