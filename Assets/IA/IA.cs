@@ -3,12 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class KartObstaculosIA : MonoBehaviour
 {
-    [Header("Ruta y Navegaci�n")]
+    [Header("Ruta y Navegación")]
     public Transform[] waypoints;
     public float distanciaCambio = 6f;
     public float anticipacionCurva = 12f;
 
-    [Header("Motor y F�sicas")]
+    [Header("Motor y Físicas")]
     public float velocidadMaxima = 16f;
     public float velocidadMinima = 7f;
     public float aceleracion = 8f;
@@ -17,12 +17,13 @@ public class KartObstaculosIA : MonoBehaviour
     public float fuerzaGravedadExtra = 20f;
 
     [Header("Competitividad (Overtake & Boost)")]
+    public float tiempoEsperaSalida = 3f;
     public float boostRecta = 1.2f;
     public float boostRebufo = 1.35f;
     public float distanciaRebufo = 20f;
     public float fuerzaAdelantamiento = 4.5f;
 
-    [Header("Sensores y Evasi�n")]
+    [Header("Sensores y Evasión")]
     public float longitudSensor = 8f;
     public float anguloSensores = 25f;
     public float fuerzaEvasionMuro = 4f;
@@ -48,6 +49,7 @@ public class KartObstaculosIA : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = new Vector3(0, -0.5f, 0);
         adnVelocidad = Random.Range(0.98f, 1.05f);
         adnAceleracion = Random.Range(0.95f, 1.08f);
         direccionRebase = Random.value > 0.5f ? 1f : -1f;
@@ -56,6 +58,13 @@ public class KartObstaculosIA : MonoBehaviour
     void FixedUpdate()
     {
         if (waypoints.Length == 0) return;
+
+        if (tiempoEsperaSalida > 0)
+        {
+            tiempoEsperaSalida -= Time.fixedDeltaTime;
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
 
         if (enReversa)
         {
@@ -73,8 +82,10 @@ public class KartObstaculosIA : MonoBehaviour
         posicionObjetivo.y = transform.position.y;
 
         float distanciaAlPunto = Vector3.Distance(transform.position, posicionObjetivo);
+        Vector3 direccionHaciaPunto = (posicionObjetivo - transform.position).normalized;
+        float anguloAlWaypoint = Vector3.Angle(transform.forward, direccionHaciaPunto);
 
-        if (distanciaAlPunto <= distanciaCambio)
+        if (distanciaAlPunto <= distanciaCambio || (anguloAlWaypoint > 90f && distanciaAlPunto <= distanciaCambio * 1.5f))
         {
             indiceWaypoint = (indiceWaypoint + 1) % waypoints.Length;
             objetivoActual = waypoints[indiceWaypoint];
@@ -107,7 +118,7 @@ public class KartObstaculosIA : MonoBehaviour
 
         if (Physics.Raycast(origenRayo, dirFrente, out RaycastHit hitCaza, distanciaRebufo))
         {
-            if (hitCaza.collider.CompareTag("Racer IA") || hitCaza.collider.CompareTag("Player"))
+            if (hitCaza.collider.CompareTag("Bot") || hitCaza.collider.CompareTag("Player"))
             {
                 cazandoRival = true;
                 multiVelocidadDinamica = boostRebufo;
@@ -122,7 +133,7 @@ public class KartObstaculosIA : MonoBehaviour
 
         if (Physics.Raycast(origenRayo, dirFrente, out RaycastHit hitFrente, longitudSensor, capaObstaculos))
         {
-            if (!hitFrente.collider.CompareTag("Racer IA") && !hitFrente.collider.CompareTag("Player"))
+            if (!hitFrente.collider.CompareTag("Bot") && !hitFrente.collider.CompareTag("Player"))
             {
                 if (hitFrente.distance <= distanciaChoqueFrontal)
                 {
@@ -138,7 +149,7 @@ public class KartObstaculosIA : MonoBehaviour
 
         if (Physics.Raycast(origenRayo, dirDer, out RaycastHit hitDer, longitudSensor, capaObstaculos))
         {
-            if (!hitDer.collider.CompareTag("Racer IA") && !hitDer.collider.CompareTag("Player"))
+            if (!hitDer.collider.CompareTag("Bot") && !hitDer.collider.CompareTag("Player"))
             {
                 float intensidad = 1f - (hitDer.distance / longitudSensor);
                 multiplicadorGiroEvasion -= (fuerzaEvasionMuro * intensidad);
@@ -148,7 +159,7 @@ public class KartObstaculosIA : MonoBehaviour
 
         if (Physics.Raycast(origenRayo, dirIzq, out RaycastHit hitIzq, longitudSensor, capaObstaculos))
         {
-            if (!hitIzq.collider.CompareTag("Racer IA") && !hitIzq.collider.CompareTag("Player"))
+            if (!hitIzq.collider.CompareTag("Bot") && !hitIzq.collider.CompareTag("Player"))
             {
                 float intensidad = 1f - (hitIzq.distance / longitudSensor);
                 multiplicadorGiroEvasion += (fuerzaEvasionMuro * intensidad);
@@ -192,6 +203,11 @@ public class KartObstaculosIA : MonoBehaviour
         else
         {
             impulsoDeseado.y = rb.linearVelocity.y;
+        }
+
+        if (impulsoDeseado.y > 2f)
+        {
+            impulsoDeseado.y = 2f;
         }
 
         rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, impulsoDeseado, factorDerrape * Time.fixedDeltaTime);
@@ -240,10 +256,9 @@ public class KartObstaculosIA : MonoBehaviour
         if (direccionVisual != Vector3.zero)
         {
             Quaternion rotacionNormal = Quaternion.LookRotation(direccionVisual, normalSuelo);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, rotacionNormal, 10f * Time.fixedDeltaTime));
+            Quaternion giroAtras = Quaternion.Euler(0f, -velocidadGiro * 20f * Time.fixedDeltaTime, 0f);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, rotacionNormal * giroAtras, 10f * Time.fixedDeltaTime));
         }
-
-        transform.Rotate(Vector3.up, -velocidadGiro * 10f * Time.fixedDeltaTime);
 
         if (temporizadorReversa <= 0)
         {
