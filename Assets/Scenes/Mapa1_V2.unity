@@ -17759,6 +17759,7 @@ GameObject:
   - component: {fileID: 878637125}
   - component: {fileID: 878637127}
   - component: {fileID: 878637126}
+  - component: {fileID: 878637128}
   m_Layer: 7
   m_Name: building-skyscraper-c
   m_TagString: Untagged
@@ -17837,6 +17838,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878637124}
+  m_Mesh: {fileID: 3873243663718610209, guid: 858d73c588442184eaba6a99ee695d6d, type: 3}
+--- !u!64 &878637128
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878637124}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3873243663718610209, guid: 858d73c588442184eaba6a99ee695d6d, type: 3}
 --- !u!1 &882971006
 GameObject:
@@ -22799,6 +22822,7 @@ GameObject:
   - component: {fileID: 1149488176}
   - component: {fileID: 1149488178}
   - component: {fileID: 1149488177}
+  - component: {fileID: 1149488179}
   m_Layer: 7
   m_Name: building-skyscraper-a
   m_TagString: Untagged
@@ -22877,6 +22901,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149488175}
+  m_Mesh: {fileID: -2843237350243111150, guid: 0dbdcd755314b3a4aae1a7d6100b5872, type: 3}
+--- !u!64 &1149488179
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149488175}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -2843237350243111150, guid: 0dbdcd755314b3a4aae1a7d6100b5872, type: 3}
 --- !u!1 &1152532748
 GameObject:
@@ -24745,6 +24791,7 @@ GameObject:
   - component: {fileID: 1227195598}
   - component: {fileID: 1227195600}
   - component: {fileID: 1227195599}
+  - component: {fileID: 1227195601}
   m_Layer: 7
   m_Name: building-skyscraper-d
   m_TagString: Untagged
@@ -24823,6 +24870,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227195597}
+  m_Mesh: {fileID: 2864774077581168330, guid: 6b7af2566a377324eaf415ec2f83f23c, type: 3}
+--- !u!64 &1227195601
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227195597}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 2864774077581168330, guid: 6b7af2566a377324eaf415ec2f83f23c, type: 3}
 --- !u!1 &1228965187
 GameObject:
@@ -38163,6 +38232,7 @@ GameObject:
   - component: {fileID: 2046893766}
   - component: {fileID: 2046893768}
   - component: {fileID: 2046893767}
+  - component: {fileID: 2046893769}
   m_Layer: 7
   m_Name: building-j
   m_TagString: Untagged
@@ -38241,6 +38311,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046893765}
+  m_Mesh: {fileID: -4977559526909546488, guid: 2e75e6332855f914e865c7a8d2b738cb, type: 3}
+--- !u!64 &2046893769
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046893765}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -4977559526909546488, guid: 2e75e6332855f914e865c7a8d2b738cb, type: 3}
 --- !u!1 &2047539701
 GameObject:
