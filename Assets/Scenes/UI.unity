@@ -2168,6 +2168,7 @@ MonoBehaviour:
   _loadingScreenPanel: {fileID: 71290901}
   _progressBar: {fileID: 1926056281}
   _progressText: {fileID: 734784401}
+  _smoothSpeed: 0.8
 --- !u!1 &1316856434
 GameObject:
   m_ObjectHideFlags: 0

@@ -76,7 +76,7 @@ namespace UI
         public void ReloadButton()
         {
             Debug.Log(" Reload button clicked!");
-            //TODO: Call the load from last savepoint function here.
+            SceneLoader.Instance.LoadScene(1);
         }
 
         public void FromLoseToMainMenu()
