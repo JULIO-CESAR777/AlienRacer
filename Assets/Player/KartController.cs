@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.Cinemachine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class KartController : MonoBehaviour
@@ -404,8 +403,10 @@ public class KartController : MonoBehaviour
     {
         if (!isGrounded)
         {
-            if (rb.linearVelocity.y > 0) rb.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
-            else rb.AddForce(Physics.gravity * 4f, ForceMode.Acceleration);
+            if (rb.linearVelocity.y > 0)
+                rb.AddForce(Physics.gravity * 1.5f, ForceMode.Acceleration);
+            else
+                rb.AddForce(Physics.gravity * 5f, ForceMode.Acceleration);
         }
     }
 
@@ -438,11 +439,7 @@ public class KartController : MonoBehaviour
 
             groundNormal = hit.normal;
             smoothedGroundNormal = Vector3.Slerp(smoothedGroundNormal, groundNormal, 12f * Time.deltaTime);
-
-            if (rb.linearVelocity.y < -2f)
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            }
+            
         }
         else
         {
@@ -496,6 +493,8 @@ public class KartController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Wall")) return;
+        
+        print("choco");
         
         // Forward a PowerUps (Star stun, etc.)
         if (powerUps != null)

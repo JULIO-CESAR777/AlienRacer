@@ -4486,6 +4486,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
+      propertyPath: jumpPower
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: speedPerCoin
       value: 0.4
       objectReference: {fileID: 0}
@@ -4517,6 +4521,10 @@ PrefabInstance:
       propertyPath: synergyManager
       value: 
       objectReference: {fileID: 845179664}
+    - target: {fileID: 2815801586186022754, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8168197358945046238, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -16798,6 +16806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Racer 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5185618828332409631, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6671215431751331360, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: velocidadMaxima
       value: 20
@@ -18432,6 +18444,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2551969030501678844, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6152437354333044740, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: m_Name
       value: Racer 1
