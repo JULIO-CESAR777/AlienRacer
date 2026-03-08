@@ -24,6 +24,7 @@ namespace UI
         [SerializeField] private GameObject _mainMenuPanel = default;
         [SerializeField] private GameObject _winMenuPanel = default;
         [SerializeField] private GameObject _loseMenuPanel = default;
+        [SerializeField] private GameObject _settingsPanel = default;
 
         private void Awake()
         {
@@ -51,6 +52,8 @@ namespace UI
         public void ToSettingsPanel()
         {
             Debug.Log("To settings panel clicked!");
+            _mainMenuPanel.SetActive(false);
+            _settingsPanel.SetActive(true);
         }
         
         public void ExitGameUIButton()
