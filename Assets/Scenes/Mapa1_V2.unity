@@ -4487,7 +4487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: jumpPower
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: speedPerCoin
