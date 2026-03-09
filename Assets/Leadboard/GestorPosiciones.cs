@@ -155,6 +155,6 @@ public class GestorPosiciones : MonoBehaviour
     private IEnumerator CargarEscenaResultados(float delay)
     {
         yield return new WaitForSeconds(delay);
-        UIController.GetInstance()?.FromGameplayToUIEndRace();
+        UIController.GetInstance()?.ToUIScene();
     }
 }

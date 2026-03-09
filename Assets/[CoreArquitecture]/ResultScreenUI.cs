@@ -4,6 +4,7 @@ public class ResultScreenUI : MonoBehaviour
 {
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject _settingsPanel;
 
     private void Start()
     {
@@ -13,5 +14,10 @@ public class ResultScreenUI : MonoBehaviour
         losePanel.SetActive(result == GameResultManager.RaceResult.Lose);
 
         GameResultManager.GetInstance()?.ClearResult(); // Clean up for next race
+        
+        // Navigation - Settings - from PauseUI to UI Scene - Settings Panel.
+        var destination = UINavigationController.GetInstance()?.CurrentDestination;
+        _settingsPanel.SetActive(destination == UINavigationController.UIDestination.Settings);
+        UINavigationController.Instance.ClearDestination();
     }
 }
