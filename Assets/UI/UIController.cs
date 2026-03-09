@@ -24,6 +24,8 @@ namespace UI
         [SerializeField] private GameObject _mainMenuPanel = default;
         [SerializeField] private GameObject _winMenuPanel = default;
         [SerializeField] private GameObject _loseMenuPanel = default;
+        [SerializeField] private GameObject _settingsPanel = default;
+        [SerializeField] private GameObject _pausePanel = default;
 
         private void Awake()
         {
@@ -51,6 +53,8 @@ namespace UI
         public void ToSettingsPanel()
         {
             Debug.Log("To settings panel clicked!");
+            _mainMenuPanel.SetActive(false);
+            _settingsPanel.SetActive(true);
         }
         
         public void ExitGameUIButton()
@@ -59,13 +63,6 @@ namespace UI
             Application.Quit();
         }
 
-        public void ShowWinMenuPanel()
-        {
-            Debug.Log("Shows WIn");
-            _winMenuPanel.SetActive(true);
-            _mainMenuPanel.SetActive(false);
-        }
-        
         public void FromWinToMainMenu()
         {
             Debug.Log("Changing from Win Menu to Main Menu Panel");
@@ -85,8 +82,24 @@ namespace UI
             _loseMenuPanel.SetActive(false);
             _mainMenuPanel.SetActive(true);
         }
-        public void FromGameplayToUIEndRace()
+        public void ToUIScene()
         {
+            SceneLoader.GetInstance()?.LoadScene(0);
+        }
+
+        public void UIPause()
+        {
+            _pausePanel.SetActive(true);
+        }
+
+        public void FromUIPauseToPlay()
+        {
+            _pausePanel.SetActive(false);
+        }
+
+        public void FromPauseToSettings()
+        {
+            UINavigationController.GetInstance()?.SetDestination(UINavigationController.UIDestination.Settings);
             SceneLoader.GetInstance()?.LoadScene(0);
         }
     }
