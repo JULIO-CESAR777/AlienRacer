@@ -14,22 +14,23 @@ public class ItemRouletteUI : MonoBehaviour
     [Header("Spin")]
     [SerializeField] private float spinSpeed = 900f;
     [SerializeField] private float spinSeconds = 1.2f;
-    [SerializeField] private float slowSeconds = 0.6f;
-    [SerializeField] private int ribbonCount = 30;
+    [SerializeField] private float slowSeconds = 0.8f;
+    [SerializeField] private int ribbonCount = 15;
 
-    
- 
-    
-    
-    private List<ItemBase> ribbon = new();
+    [Header("Result")]
+    [Tooltip("2 = penúltimo, 3 = antepenúltimo")]
+    [SerializeField] private int resultFromEnd = 2;
+
+    private readonly List<ItemBase> ribbon = new();
     private bool spinning;
+    private int forcedResultIndex;
 
     public bool IsSpinning => spinning;
 
     private void Awake()
     {
-        if (panel != null) panel.SetActive(false);
-     
+        if (panel != null)
+            panel.SetActive(false);
     }
 
     public void Spin(ItemBase finalResult, List<ItemBase> visualPool, System.Action<ItemBase> onDone)
@@ -43,12 +44,24 @@ public class ItemRouletteUI : MonoBehaviour
     private IEnumerator SpinCR(ItemBase finalResult, List<ItemBase> visualPool, System.Action<ItemBase> onDone)
     {
         spinning = true;
-        if (panel != null) panel.SetActive(true);
+
+        if (panel != null)
+            panel.SetActive(true);
+
+        // Limpiar hijos viejos y esperar 1 frame
+        yield return StartCoroutine(ClearContentCR());
 
         BuildRibbon(finalResult, visualPool);
+
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+        yield return null;
+
         content.anchoredPosition = Vector2.zero;
 
         float t = 0f;
+
         while (t < spinSeconds)
         {
             MoveRibbon(spinSpeed);
@@ -56,19 +69,23 @@ public class ItemRouletteUI : MonoBehaviour
             yield return null;
         }
 
-       
-        int targetIndex = FindLastIndexOf(finalResult);
-        float targetX = GetContentXToCenterIndex(targetIndex);
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+        yield return null;
 
         float startX = content.anchoredPosition.x;
+        float targetX = GetContentXToCenterIndex(forcedResultIndex);
+
         t = 0f;
         while (t < slowSeconds)
         {
             t += Time.deltaTime;
             float a = Mathf.Clamp01(t / slowSeconds);
             float eased = 1f - Mathf.Pow(1f - a, 3f);
+
             float x = Mathf.Lerp(startX, targetX, eased);
             content.anchoredPosition = new Vector2(x, content.anchoredPosition.y);
+
             yield return null;
         }
 
@@ -77,42 +94,74 @@ public class ItemRouletteUI : MonoBehaviour
         onDone?.Invoke(finalResult);
 
         yield return new WaitForSeconds(0.2f);
-        if (panel != null) panel.SetActive(false);
+
+        if (panel != null)
+            panel.SetActive(false);
 
         spinning = false;
     }
 
-    private void BuildRibbon(ItemBase finalResult, List<ItemBase> visualPool)
+    private IEnumerator ClearContentCR()
     {
-      
         for (int i = content.childCount - 1; i >= 0; i--)
+        {
             Destroy(content.GetChild(i).gameObject);
+        }
+
+        // Espera a que Unity sí los elimine de verdad
+        yield return null;
 
         ribbon.Clear();
+        content.anchoredPosition = Vector2.zero;
+    }
 
-        
+    private void BuildRibbon(ItemBase finalResult, List<ItemBase> visualPool)
+    {
+        ribbon.Clear();
+
         if (visualPool == null || visualPool.Count == 0)
-        {
-            visualPool = new List<ItemBase>() { finalResult };
-        }
+            visualPool = new List<ItemBase> { finalResult };
 
         for (int i = 0; i < ribbonCount; i++)
         {
-            ItemBase it = visualPool[Random.Range(0, visualPool.Count)];
+            ItemBase it = GetRandomItemExcluding(finalResult, visualPool);
             ribbon.Add(it);
 
-            var img = Instantiate(iconPrefab, content);
-            img.sprite = it.icon;
-            img.enabled = it.icon != null;
+            Image img = Instantiate(iconPrefab, content);
+            img.sprite = it != null ? it.icon : null;
+            img.enabled = it != null && it.icon != null;
         }
 
-        // fuerza que el finalResult aparezca al final para poder “snappear”
-        int insertIndex = ribbonCount - 3;
-        insertIndex = Mathf.Clamp(insertIndex, 0, ribbon.Count - 1);
-        ribbon[insertIndex] = finalResult;
-        (content.GetChild(insertIndex) as RectTransform).GetComponent<Image>().sprite = finalResult.icon;
+        forcedResultIndex = Mathf.Clamp(ribbonCount - resultFromEnd, 0, ribbon.Count - 1);
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+        ribbon[forcedResultIndex] = finalResult;
+
+        Image forcedImg = content.GetChild(forcedResultIndex).GetComponent<Image>();
+        forcedImg.sprite = finalResult.icon;
+        forcedImg.enabled = finalResult.icon != null;
+
+        Debug.Log($"FORCED RESULT = {finalResult.name} en índice {forcedResultIndex}");
+    }
+
+    private ItemBase GetRandomItemExcluding(ItemBase excluded, List<ItemBase> pool)
+    {
+        if (pool == null || pool.Count == 0)
+            return excluded;
+
+        if (pool.Count == 1)
+            return pool[0];
+
+        ItemBase selected = null;
+        int safety = 0;
+
+        do
+        {
+            selected = pool[Random.Range(0, pool.Count)];
+            safety++;
+        }
+        while (selected == excluded && safety < 50);
+
+        return selected;
     }
 
     private void MoveRibbon(float pxPerSec)
@@ -122,18 +171,18 @@ public class ItemRouletteUI : MonoBehaviour
         content.anchoredPosition = p;
     }
 
-    private int FindLastIndexOf(ItemBase item)
-    {
-        for (int i = ribbon.Count - 1; i >= 0; i--)
-            if (ribbon[i] == item) return i;
-        return ribbon.Count / 2;
-    }
-
     private float GetContentXToCenterIndex(int index)
     {
+        if (index < 0 || index >= content.childCount)
+            return content.anchoredPosition.x;
+
         RectTransform itemRect = content.GetChild(index) as RectTransform;
-        float viewportCenterX = viewport.rect.width * 0.5f;
-        float itemCenterInContent = itemRect.anchoredPosition.x + itemRect.rect.width * 0.5f;
-        return viewportCenterX - itemCenterInContent;
+
+        Vector3 itemWorldCenter = itemRect.TransformPoint(itemRect.rect.center);
+        Vector3 viewportWorldCenter = viewport.TransformPoint(viewport.rect.center);
+
+        float deltaX = viewportWorldCenter.x - itemWorldCenter.x;
+
+        return content.anchoredPosition.x + deltaX;
     }
 }
