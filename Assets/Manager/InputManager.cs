@@ -17,13 +17,13 @@ public class InputManager : MonoBehaviour
             }
 
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     
         #endregion
     
         // Action para revisar el input type
-        INPUT_TYPE currentInputType = INPUT_TYPE.KEYBOARD;
+        public INPUT_TYPE currentInputType = INPUT_TYPE.KEYBOARD;
         public Action<INPUT_TYPE> OnChangeInputType;
     
         KeyCode[] KeyboardController =
@@ -42,16 +42,16 @@ public class InputManager : MonoBehaviour
     
         KeyCode[] XboxController =
         {
-            KeyCode.Joystick1Button0, // A
-            KeyCode.Joystick1Button1, // B
-            KeyCode.Joystick1Button2, // X
+            KeyCode.Joystick1Button2, // A
+            KeyCode.Joystick1Button0, // B
+            KeyCode.Joystick1Button1, // X
             KeyCode.Joystick1Button3, // Y
             KeyCode.Joystick1Button4, // L1
             KeyCode.Joystick1Button5, // R1
-            KeyCode.Joystick1Button6, // L2
-            KeyCode.Joystick1Button7, // R2
-            KeyCode.Joystick1Button9, // Start
-            KeyCode.Joystick1Button10, // Select
+            KeyCode.Joystick1Button6, // L2 ---- Falta que funcionen estos
+            KeyCode.Joystick1Button7, // R2 ---- Falta que funcionen estos
+            KeyCode.Joystick1Button7, // Start
+            KeyCode.Joystick1Button6, // Select
         };
     
         private KeyCode[] PlaystationController =
@@ -84,8 +84,8 @@ public class InputManager : MonoBehaviour
         {
             "Horizontal", // Left stick horizontal
             "Vertical", // Left stick vertical
-            "Axis5", // Right stick horizontal
-            "Axis4", // Right stick vertical
+            "Axis9", // Left trigger
+            "Axis10", // Right trigger
         };
     
         private string[] playstationAxis =
@@ -286,6 +286,6 @@ public enum AXIS
 {
     LEFT_STICK_HORIZONTAL,
     LEFT_STICK_VERTICAL,
-    RIGHT_STICK_HORIZONTAL,
-    RIGHT_STICK_VERTICAL,
+    LEFT_TRIGGER,
+    RIGHT_TRIGGER
 }

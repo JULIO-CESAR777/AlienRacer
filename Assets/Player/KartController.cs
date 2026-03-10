@@ -141,13 +141,14 @@ public class KartController : MonoBehaviour
     }
 
 
-    public Transform shootPoint;
-    public GameObject bulletPrefab;
+   
+   
 
     private float accelerate;
     private float brake;
     void Update()
     {
+
         
         if (input.IsButtonDown(BUTTONS.START))
         {
@@ -165,14 +166,27 @@ public class KartController : MonoBehaviour
         
         moveInput = 0f; 
         turnInput = 0f;
-       
-        //moveInput = Input.GetAxis("Vertical");
-        //moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
-        accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f;
-        brake = input.IsButton(BUTTONS.L2) ? 1f : 0f;
+        
+        if(input.currentInputType == INPUT_TYPE.XBOX)
+        {
+            accelerate = input.GetAXis(AXIS.RIGHT_TRIGGER); // XBOX controller
+        }
+        else
+        {
+            accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f; // Keyboard and playstation controller
+        }
+
+        if (input.currentInputType == INPUT_TYPE.XBOX)
+        {
+            brake = input.GetAXis(AXIS.LEFT_TRIGGER); // XBOX controller
+        }
+        else
+        {
+            brake = input.IsButton(BUTTONS.L2) ? 1f : 0f; // Keyboard and playstation controller
+        }
+
         moveInput = accelerate - brake;
         
-        //turnInput = Input.GetAxis("Horizontal");
         turnInput = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
         
 

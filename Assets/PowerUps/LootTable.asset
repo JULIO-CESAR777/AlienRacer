@@ -15,7 +15,7 @@ MonoBehaviour:
   entries:
   - item: {fileID: 11400000, guid: 0fee5f6838ad65043b2a3c368b883f2a, type: 2}
     rarity: 0
-    weight: 1
+    weight: 0.7
   - item: {fileID: 11400000, guid: 196ea9b7eefbe944a92334a02e490d60, type: 2}
     rarity: 1
     weight: 0.7
@@ -25,3 +25,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: a4ec9578a26a50c4d856ff92eb3421f3, type: 2}
     rarity: 3
     weight: 0.3
+  - item: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
+    rarity: 0
+    weight: 1
