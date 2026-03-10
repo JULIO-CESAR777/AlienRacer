@@ -67,7 +67,7 @@ public class GestorPosiciones : MonoBehaviour
         {
             datos.vueltasDadas++;
             // Log opcional para vueltas
-            Debug.Log($"<color=yellow>¡{corredor.name} completó la vuelta {datos.vueltasDadas}!</color>");
+            //Debug.Log($"<color=yellow>¡{corredor.name} completó la vuelta {datos.vueltasDadas}!</color>");
 
             if (datos.vueltasDadas >= totalVueltas)
             {
@@ -79,7 +79,7 @@ public class GestorPosiciones : MonoBehaviour
         if (indice == (datos.ultimoHito + 1) % hitosDePista.Length)
         {
             datos.ultimoHito = indice;
-            Debug.Log($"Corredor: <b>{corredor.name}</b> paso por el <b>Hito {indice}</b>");
+            //Debug.Log($"Corredor: <b>{corredor.name}</b> paso por el <b>Hito {indice}</b>");
         }
     }
 

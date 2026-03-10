@@ -148,6 +148,7 @@ public class KartController : MonoBehaviour
     private float brake;
     void Update()
     {
+
         
         if (input.IsButtonDown(BUTTONS.START))
         {
@@ -165,14 +166,14 @@ public class KartController : MonoBehaviour
         
         moveInput = 0f; 
         turnInput = 0f;
-       
-        //moveInput = Input.GetAxis("Vertical");
-        //moveInput = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
-        accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f;
-        brake = input.IsButton(BUTTONS.L2) ? 1f : 0f;
+        
+        accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f; // Keyboard and playstation controller
+        accelerate = input.GetAXis(AXIS.RIGHT_TRIGGER); // XBOX controller
+        
+        brake = input.IsButton(BUTTONS.L2) ? 1f : 0f; // Keyboard and playstation controller
+        brake = input.GetAXis(AXIS.LEFT_TRIGGER); // XBOX controller
         moveInput = accelerate - brake;
         
-        //turnInput = Input.GetAxis("Horizontal");
         turnInput = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
         
 

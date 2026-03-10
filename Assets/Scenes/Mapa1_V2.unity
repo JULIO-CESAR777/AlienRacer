@@ -4483,7 +4483,7 @@ PrefabInstance:
       objectReference: {fileID: 847799676}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: coins
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: jumpPower
