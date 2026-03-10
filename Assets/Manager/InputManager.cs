@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
             }
 
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     
         #endregion

@@ -20,7 +20,7 @@ public class UiManagerPlayer : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     
     private void OnDestroy()
