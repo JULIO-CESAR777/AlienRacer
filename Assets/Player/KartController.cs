@@ -167,11 +167,24 @@ public class KartController : MonoBehaviour
         moveInput = 0f; 
         turnInput = 0f;
         
-        accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f; // Keyboard and playstation controller
-        accelerate = input.GetAXis(AXIS.RIGHT_TRIGGER); // XBOX controller
-        
-        brake = input.IsButton(BUTTONS.L2) ? 1f : 0f; // Keyboard and playstation controller
-        brake = input.GetAXis(AXIS.LEFT_TRIGGER); // XBOX controller
+        if(input.currentInputType == INPUT_TYPE.XBOX)
+        {
+            accelerate = input.GetAXis(AXIS.RIGHT_TRIGGER); // XBOX controller
+        }
+        else
+        {
+            accelerate = input.IsButton(BUTTONS.R2) ? 1f : 0f; // Keyboard and playstation controller
+        }
+
+        if (input.currentInputType == INPUT_TYPE.XBOX)
+        {
+            brake = input.GetAXis(AXIS.LEFT_TRIGGER); // XBOX controller
+        }
+        else
+        {
+            brake = input.IsButton(BUTTONS.L2) ? 1f : 0f; // Keyboard and playstation controller
+        }
+
         moveInput = accelerate - brake;
         
         turnInput = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);

@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
         #endregion
     
         // Action para revisar el input type
-        INPUT_TYPE currentInputType = INPUT_TYPE.KEYBOARD;
+        public INPUT_TYPE currentInputType = INPUT_TYPE.KEYBOARD;
         public Action<INPUT_TYPE> OnChangeInputType;
     
         KeyCode[] KeyboardController =
