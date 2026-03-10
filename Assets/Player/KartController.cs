@@ -141,8 +141,8 @@ public class KartController : MonoBehaviour
     }
 
 
-    public Transform shootPoint;
-    public GameObject bulletPrefab;
+   
+   
 
     private float accelerate;
     private float brake;

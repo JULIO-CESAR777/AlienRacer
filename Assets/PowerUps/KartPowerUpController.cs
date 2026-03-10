@@ -28,8 +28,8 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private float boostMultiplier = 1f;
 
     [Header("Spawn Points")]
-    [SerializeField] public Transform behindSpawnPoint;
-
+    public Transform behindSpawnPoint;
+    public Transform shootPoint;
     public bool IgnoreBumpThisFrame { get; private set; }
 
     void Awake()

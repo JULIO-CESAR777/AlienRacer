@@ -41,6 +41,7 @@ public class Bullet : MonoBehaviour
         if (gm.gameState == GameState.Pause)
             isPaused = true;
 
+       
         Destroy(gameObject, lifeTime);
     }
 

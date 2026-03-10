@@ -4793,7 +4793,7 @@ PrefabInstance:
       objectReference: {fileID: 847799676}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: coins
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: jumpPower
@@ -4806,6 +4806,10 @@ PrefabInstance:
     - target: {fileID: 1057732570215050160, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057732570215050160, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.55
       objectReference: {fileID: 0}
     - target: {fileID: 1093152471057848910, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: coinCost
@@ -4831,6 +4835,10 @@ PrefabInstance:
       propertyPath: synergyManager
       value: 
       objectReference: {fileID: 845179664}
+    - target: {fileID: 2292019321656940660, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
+      propertyPath: shootPoint
+      value: 
+      objectReference: {fileID: 745309105}
     - target: {fileID: 2815801586186022754, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9370,7 +9378,7 @@ MonoBehaviour:
   spinSpeed: 900
   spinSeconds: 1.2
   slowSeconds: 0.6
-  ribbonCount: 30
+  ribbonCount: 15
   resultFromEnd: 2
 --- !u!114 &388693591
 MonoBehaviour:
@@ -16529,6 +16537,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!4 &745309105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3497554283401451617, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
+  m_PrefabInstance: {fileID: 168296586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &751332978
 GameObject:
   m_ObjectHideFlags: 0
