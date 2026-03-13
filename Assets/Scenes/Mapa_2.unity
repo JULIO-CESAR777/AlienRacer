@@ -235,6 +235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: roof-gable
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a351e0a99e6eb746a40b76586deb546, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -591,6 +595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-window-wide
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 648fcc038cc872247ad51838cce8eb71, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -753,7 +761,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2115248196}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalScale.x
@@ -769,7 +777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.6
+      value: -59.846733
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -777,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 63.404247
+      value: -0.0007133484
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -785,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
       propertyPath: m_LocalRotation.y
@@ -815,11 +823,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-sample-house-c
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
+--- !u!4 &732788616 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb696a61c4e9dcc48b068aa05889b0f3, type: 3}
+  m_PrefabInstance: {fileID: 732788615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &859357239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,6 +904,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 855b87226f4a326488c66562ec4f6585, type: 3}
       propertyPath: m_Name
       value: building-sample-tower-d
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 855b87226f4a326488c66562ec4f6585, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1246,6 +1267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-sample-house-b
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11a6e15099336c543958b4f8244a90d8, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1323,6 +1348,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e96ad5ca703d2774ba78d0bb0e3ae649, type: 3}
       propertyPath: m_Name
       value: building-sample-tower-b
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e96ad5ca703d2774ba78d0bb0e3ae649, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1402,6 +1431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-windows-sills
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f685732c8a4460143a1145de2b5883ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1479,6 +1512,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7b0f5c1db29d5c9448ab4b4ec4a7225e, type: 3}
       propertyPath: m_Name
       value: building-steps-narrow-windows-round
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7b0f5c1db29d5c9448ab4b4ec4a7225e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1558,6 +1595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-window-door-window
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66b0ee4792e3a6a43a634b772c623f1b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1577,7 +1618,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2115248196}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1593,7 +1634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.3
+      value: -44.54673
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1601,7 +1642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 65.6
+      value: 2.1950378
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1609,7 +1650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1639,11 +1680,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-sample-tower-a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
+--- !u!4 &1759412636 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
+  m_PrefabInstance: {fileID: 1759412635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783293155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1762,7 +1812,7 @@ GameObject:
   - component: {fileID: 1824436857}
   - component: {fileID: 1824436856}
   - component: {fileID: 1824436855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1909,6 +1959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-sample-house-a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32cecd6adbb41064faccd753c6799b7c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1928,7 +1982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2115248196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Edificios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1956,6 +2010,8 @@ Transform:
   - {fileID: 1704759654}
   - {fileID: 547922097}
   - {fileID: 1634915371}
+  - {fileID: 1759412636}
+  - {fileID: 732788616}
   m_Father: {fileID: 1788982288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -1970,5 +2026,3 @@ SceneRoots:
   - {fileID: 706455394}
   - {fileID: 1783293155}
   - {fileID: 609611575}
-  - {fileID: 1759412635}
-  - {fileID: 732788615}
