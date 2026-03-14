@@ -4787,54 +4787,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 847799676}
-    - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: coins
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: jumpPower
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 887351821920984341, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: speedPerCoin
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057732570215050160, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1093152471057848910, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: coinCost
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1093152471057848910, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: rouletteUI
       value: 
       objectReference: {fileID: 388693590}
-    - target: {fileID: 1093152471057848910, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: usePositionWeights
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589708136272893680, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: slot1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589708136272893680, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: slot2
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1589708136272893680, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: synergyManager
       value: 
       objectReference: {fileID: 845179664}
-    - target: {fileID: 2815801586186022754, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8168197358945046238, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -18887,11 +18847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16397a993e9b804c9105a1d278da092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KartInventory
---- !u!54 &847799676 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 8607432953477340260, guid: b539ffb49f5f9fc4891627807ec173d0, type: 3}
-  m_PrefabInstance: {fileID: 168296586}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849100436
 GameObject:
   m_ObjectHideFlags: 0

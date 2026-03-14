@@ -390,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 3506678901041338252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.29, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -886,17 +886,15 @@ MonoBehaviour:
   driftYawAngle: 22
   driftRollAngle: 18
   driftVisualSpeed: 6
-  coins: 10
+  coins: 6
   speedPerCoin: 0.4
   maxCoins: 10
-  jumpPower: 10
+  jumpPower: 12
   isGrounded: 0
   bumpDuration: 0.2
-  rb: {fileID: 0}
+  rb: {fileID: 8607432953477340260}
   currentSpeed: 0
   isDrifting: 0
-  shootPoint: {fileID: 3497554283401451617}
-  bulletPrefab: {fileID: 598341308779072587, guid: 0deb6f84f23da3647ac16c7df46b969e, type: 3}
   groundCheckDistance: 1.2
   groundSphereRadius: 0.4
 --- !u!114 &1589708136272893680
@@ -938,6 +936,7 @@ MonoBehaviour:
   boostTimer: 0
   boostMultiplier: 1
   behindSpawnPoint: {fileID: 1057732570215050160}
+  shootPoint: {fileID: 0}
 --- !u!114 &1093152471057848910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,13 +949,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29380a7d78d157e43a78b6345c24027f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinGachaBuyer
-  coinCost: 5
+  coinCost: 4
   lootTable: {fileID: 11400000, guid: 9bc66b499c2dc4c489d17fc80c3da38d, type: 2}
   positionConfig: {fileID: 11400000, guid: a9aa09594944e154f9afb689805e8d6b, type: 2}
   usePositionWeights: 1
   rouletteUI: {fileID: 0}
   ribbonVisualPool: []
-  buyButton: 2
 --- !u!1001 &1493479316766073447
 PrefabInstance:
   m_ObjectHideFlags: 0
