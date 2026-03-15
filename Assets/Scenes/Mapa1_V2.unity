@@ -9352,6 +9352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiManagerPlayer
   coinText: {fileID: 59178343}
+  pausePanel: {fileID: 703146587774620069}
 --- !u!114 &388693590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28649,15 +28650,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4590323111653905838, guid: 028948cd20c133b48a511d393db59d52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -64.05434
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590323111653905838, guid: 028948cd20c133b48a511d393db59d52, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25399
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590323111653905838, guid: 028948cd20c133b48a511d393db59d52, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 54.44378
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590323111653905838, guid: 028948cd20c133b48a511d393db59d52, type: 3}
       propertyPath: m_LocalRotation.w
@@ -35308,6 +35309,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706629401}
   m_Mesh: {fileID: -7513297493162946847, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
+--- !u!114 &1709011693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 598368982763232902, guid: 028948cd20c133b48a511d393db59d52, type: 3}
+  m_PrefabInstance: {fileID: 1335615190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef43f80a60f129544b367041f0daf9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainManager
 --- !u!1001 &1709889137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43416,7 +43428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1388320099406653171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43905,9 +43917,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 713761123}
-        m_TargetAssemblyTypeName: UI.UIController, Assembly-CSharp
-        m_MethodName: FromUIPauseToPlay
+      - m_Target: {fileID: 1709011693}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 388693589}
+        m_TargetAssemblyTypeName: UiManagerPlayer, Assembly-CSharp
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

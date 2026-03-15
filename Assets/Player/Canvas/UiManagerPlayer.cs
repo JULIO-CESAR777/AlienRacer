@@ -36,6 +36,25 @@ public class UiManagerPlayer : MonoBehaviour
     [Header("Coins")]
     [SerializeField] public TextMeshProUGUI coinText;
 
+    [Header("Pause")]
+    [SerializeField] public GameObject pausePanel;
+
+
+    private void Start()
+    {
+        pausePanel.SetActive(false);
+    }
+
+    public void PauseGame()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+    }
+    
     public void UpdateCoinText(string coins)
     {
         coinText.text = "Coins: " + coins;

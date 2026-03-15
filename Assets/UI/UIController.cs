@@ -84,7 +84,7 @@ namespace UI
         }
         public void ToUIScene()
         {
-            SceneLoader.GetInstance()?.LoadScene(0);
+            SceneLoader.GetInstance()?.LoadScene("Mapa1_V2");
         }
 
         public void UIPause()

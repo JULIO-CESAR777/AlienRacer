@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/IA/IA.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IA/IA.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Manager/MainManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Manager/MainManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Canvas/UiManagerPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Canvas/UiManagerPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/KartController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/KartController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/UIController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,20 +44,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "GustavoGalindo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;GustavoGalindo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Downloads/AlienRacer\My project (1).exe" />
@@ -132,6 +138,7 @@
       <workItem from="1773043967021" duration="407000" />
       <workItem from="1773082393989" duration="2638000" />
       <workItem from="1773249406070" duration="2165000" />
+      <workItem from="1773604660348" duration="2326000" />
     </task>
     <servers />
   </component>

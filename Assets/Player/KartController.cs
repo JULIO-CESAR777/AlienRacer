@@ -140,25 +140,22 @@ public class KartController : MonoBehaviour
 
     }
 
-
-   
-   
-
     private float accelerate;
     private float brake;
     void Update()
     {
-
         
-        if (input.IsButtonDown(BUTTONS.START))
+        if (input.IsButtonDown(BUTTONS.START) && !gm.countDownActive)
         {
             if (isPaused)
             {
                 gm.ChangeGameState(GameState.Play);
+                uiManager.ResumeGame();
             }
             else
             {
                 gm.ChangeGameState(GameState.Pause);
+                uiManager.PauseGame();
             }
         }
 

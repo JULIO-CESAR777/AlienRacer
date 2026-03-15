@@ -50,6 +50,7 @@ public class KartObstaculosIA : MonoBehaviour
     private float tiempoEscudo = 0f;
 
     private Rigidbody rb;
+    private MainManager manager;
 
     void Start()
     {
@@ -58,10 +59,19 @@ public class KartObstaculosIA : MonoBehaviour
         adnVelocidad = Random.Range(0.98f, 1.05f);
         adnAceleracion = Random.Range(0.95f, 1.08f);
         direccionRebase = Random.value > 0.5f ? 1f : -1f;
+        
+        manager = MainManager.GetInstance();
     }
 
     void FixedUpdate()
     {
+        
+        // Pausa
+        if (manager.gameState == GameState.Pause)
+        {
+            return;
+        }
+        
         if (waypoints.Length == 0) return;
 
         if (tiempoEsperaSalida > 0)
