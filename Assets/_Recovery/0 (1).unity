@@ -8257,7 +8257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Idioma
+  m_text: Language
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -8284,7 +8284,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.65
+  m_fontSize: 22.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9633,7 +9633,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ESPANOL
+  m_text: English
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -13928,7 +13928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661707171}
   m_Layer: 5
-  m_Name: PantallaSettingGroup
+  m_Name: ResolutionSettingGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13968,7 +13968,7 @@ GameObject:
   - component: {fileID: 668646866}
   - component: {fileID: 668646865}
   m_Layer: 5
-  m_Name: PantallaDropDown
+  m_Name: ResolutionDropDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14047,10 +14047,10 @@ MonoBehaviour:
   m_MultiSelect: 0
   m_Options:
     m_Options:
-    - m_Text: COMPLETA
+    - m_Text: Fullscreen
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: VENTANA
+    - m_Text: Windowed
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
@@ -18750,10 +18750,10 @@ MonoBehaviour:
   m_MultiSelect: 0
   m_Options:
     m_Options:
-    - m_Text: ESPANOL
+    - m_Text: English
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: INGLES
+    - m_Text: Spanish
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
@@ -24707,7 +24707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: COMPLETA
+  m_text: Fullscreen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -24734,7 +24734,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.5
+  m_fontSize: 16.35
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -28792,7 +28792,7 @@ GameObject:
   - component: {fileID: 1255077050}
   - component: {fileID: 1255077049}
   m_Layer: 5
-  m_Name: PantallaTxt
+  m_Name: ResolutionTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28837,7 +28837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pantalla
+  m_text: Resolution
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -28864,7 +28864,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.6
+  m_fontSize: 21.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -45985,7 +45985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2006859177}
   m_Layer: 0
-  m_Name: MenuSettingsPantallaIdioma
+  m_Name: MenuSettingsResIdioma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45999,15 +45999,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006859176}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.0010449309, z: -0, w: 0.99999946}
-  m_LocalPosition: {x: 76.86, y: 0.09399998, z: -6.68}
+  m_LocalRotation: {x: -0, y: -0.7189922, z: -0, w: 0.69501823}
+  m_LocalPosition: {x: 88.62, y: 0.09399998, z: -20.466427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 630772952}
   - {fileID: 2059703641}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -0.12, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -91.943, z: 0}
 --- !u!1 &2007570663
 GameObject:
   m_ObjectHideFlags: 0
@@ -46406,7 +46406,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2010828779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1787410699}
+        m_TargetAssemblyTypeName: MenuCameraController, Assembly-CSharp
+        m_MethodName: GoToMenuFromSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2010828779
 MonoBehaviour:
   m_ObjectHideFlags: 0
