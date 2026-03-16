@@ -39,6 +39,7 @@ public class MainManager : MonoBehaviour
 
     // Begin Race
     [SerializeField] public TextMeshProUGUI countDownText; 
+    public bool countDownActive;
     
     
     private void Start()
@@ -79,6 +80,7 @@ public class MainManager : MonoBehaviour
 
     IEnumerator RaceInit()
     {
+        countDownActive = true;
         ChangeGameState(GameState.Pause);
         
         for (int i = 3; i > 0; i--)
@@ -93,6 +95,7 @@ public class MainManager : MonoBehaviour
 
         countDownText.gameObject.SetActive(false);
         ChangeGameState(GameState.Play);
+        countDownActive = false;
         
     }
 }
