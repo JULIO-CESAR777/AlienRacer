@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f5bddeafce61e488815961c9e45bd7, type: 3}
-  m_Name: PlayerStats
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  hp: 4
-  str: 4
+  m_Script: {fileID: 11500000, guid: 9f22e3d36bc08614bb4f7ec50cdf2554, type: 3}
+  m_Name: WavesStats
+  m_EditorClassIdentifier: Assembly-CSharp::WaveStats
+  waves: 30
+  enemiesKilled: 50

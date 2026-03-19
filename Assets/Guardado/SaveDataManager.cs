@@ -1,15 +1,18 @@
+using System.Text;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SaveDataManager : MonoBehaviour
 {
 
 
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] ChestsOpened chestManager;
+    [SerializeField] WaveStats waveStats;
+    StringBuilder sb = new StringBuilder();
+  
 
-    private void Start()
-    {
-        
-    }
+
 
     void Update()
     {
@@ -17,14 +20,32 @@ public class SaveDataManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            playerStats.SaveData();
+           sb.Clear();
+
+           sb.Append( playerStats.SaveData());
+           sb.Append(".");
+           sb.Append(waveStats.SaveData());
+           sb.Append(".");
+           sb.Append(chestManager.SaveData());
+
+          Debug.Log(sb.ToString());
+
 
         }
         else if (Input.GetKeyDown(KeyCode.D))
-        { 
-            playerStats.LoadData(); 
+        {
+
+            string[] dataDivide = sb.ToString().Split('.');
+
+
+            playerStats.LoadData(dataDivide[0]);
+            waveStats.LoadData(dataDivide[1]);
+            waveStats.LoadData(dataDivide[2]);
         }
     }
+
+
+
 
 
 }

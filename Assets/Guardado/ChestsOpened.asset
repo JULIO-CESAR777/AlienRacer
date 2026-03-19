@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f5bddeafce61e488815961c9e45bd7, type: 3}
-  m_Name: PlayerStats
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  hp: 4
-  str: 4
+  m_Script: {fileID: 11500000, guid: 673f7427dd547514993239636f02150a, type: 3}
+  m_Name: ChestsOpened
+  m_EditorClassIdentifier: Assembly-CSharp::ChestsOpened
+  openedChests:
+  - 111
+  - 222

@@ -276,6 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveDataManager
   playerStats: {fileID: 11400000, guid: a38d4ffa7f7c3504e9b14ef7b92a3c95, type: 2}
+  chestManager: {fileID: 11400000, guid: 87e40f66954acea46b395c6ec539311e, type: 2}
+  waveStats: {fileID: 11400000, guid: 324f3e3034edf7242b629d5af2e397b2, type: 2}
 --- !u!4 &1315504521
 Transform:
   m_ObjectHideFlags: 0
