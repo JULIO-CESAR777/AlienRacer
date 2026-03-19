@@ -30,6 +30,10 @@ public class GestorPosiciones : MonoBehaviour
     public GameObject panelFinCarrera;
     public TMPro.TextMeshProUGUI textoResultado;
 
+    
+    [Header("Nivel actual")]
+    public int currentLevel = 1;
+    
     // CAMBIO RECIENTE: Contador para asignar el puesto exacto al cruzar la meta
     private int corredoresFinalizados = 0;
 
@@ -99,6 +103,12 @@ public class GestorPosiciones : MonoBehaviour
             if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
             if (textoResultado != null)
                 textoResultado.text = gano ? "¡VICTORIA!" : "Posición: " + corredor.posicion + "°";
+
+            
+            if (gano)
+            {
+                LevelProgressSave.CompleteLevel(currentLevel);
+            }
 
             // Store result and load after delay
             GameResultManager.Instance.SetResult(

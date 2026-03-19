@@ -20305,6 +20305,7 @@ MonoBehaviour:
   totalVueltas: 3
   panelFinCarrera: {fileID: 1736194109}
   textoResultado: {fileID: 2047539703}
+  currentLevel: 1
 --- !u!1 &780154818
 GameObject:
   m_ObjectHideFlags: 0
@@ -53135,7 +53136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1388320099406653171
 RectTransform:
   m_ObjectHideFlags: 0

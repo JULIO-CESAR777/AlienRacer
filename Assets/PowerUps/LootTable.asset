@@ -26,5 +26,5 @@ MonoBehaviour:
     rarity: 3
     weight: 0.3
   - item: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
-    rarity: 0
-    weight: 1
+    rarity: 3
+    weight: 0.2
