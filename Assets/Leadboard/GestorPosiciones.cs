@@ -90,7 +90,7 @@ public class GestorPosiciones : MonoBehaviour
     // --- LÓGICA DE FINALIZACIÓN ---
     private void FinalizarCarreraCorredor(DatosCorredor corredor)
     {
-        // CAMBIO RECIENTE: Asignamos el puesto por orden de llegada física
+        //
         corredor.haTerminado = true;
         corredoresFinalizados++;
         corredor.posicion = corredoresFinalizados;
