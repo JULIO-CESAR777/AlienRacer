@@ -12105,7 +12105,7 @@ MonoBehaviour:
   totalVueltas: 3
   panelFinCarrera: {fileID: 250826161}
   textoResultado: {fileID: 1691132828}
-  currentLevel: 1
+  currentLevel: 2
 --- !u!1001 &596859245
 PrefabInstance:
   m_ObjectHideFlags: 0
