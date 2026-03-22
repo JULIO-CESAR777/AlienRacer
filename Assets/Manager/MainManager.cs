@@ -89,7 +89,7 @@ public class MainManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        countDownText.text = "GO!";
+        countDownText.text = "YA!";
 
         yield return new WaitForSecondsRealtime(1f);
 
