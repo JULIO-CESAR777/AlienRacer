@@ -5089,6 +5089,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1ef0e19977f02e4ea421bec1409ebe1, type: 3}
   m_PrefabInstance: {fileID: 113130825}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &113195754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+  m_PrefabInstance: {fileID: 202725658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16397a993e9b804c9105a1d278da092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KartInventory
+--- !u!4 &113195758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+  m_PrefabInstance: {fileID: 202725658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &116616178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12455,7 +12471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c155d57bc6c617b4aa47bc9952e7f1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KartInventoryUI
-  inventory: {fileID: 0}
+  inventory: {fileID: 113195754}
   slot1Icon: {fileID: 1113577336}
   slot2Icon: {fileID: 89508524}
   synergyIcon: {fileID: 732217907}
@@ -12471,7 +12487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd718d292e87b284782cad95aeb3fbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualizadorPosicionUI
-  cocheJugador: {fileID: 0}
+  cocheJugador: {fileID: 113195758}
   textoPosicion: {fileID: 2019604779}
 --- !u!114 &278534988
 MonoBehaviour:

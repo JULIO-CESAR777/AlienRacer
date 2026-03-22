@@ -39,7 +39,7 @@ public class CameraSpringArm : MonoBehaviour
         if (Physics.SphereCast(origin, sphereRadius, direction, out RaycastHit hit, maxDistance, collisionMask))
         {
             targetDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
-            Debug.Log("Hit: " + hit.collider.name);
+            //Debug.Log("Hit: " + hit.collider.name);
         }
 
         currentDistance = Mathf.Lerp(currentDistance, targetDistance, Time.deltaTime * smoothSpeed);
@@ -49,6 +49,6 @@ public class CameraSpringArm : MonoBehaviour
         transform.position = finalPosition;
         transform.LookAt(origin);
 
-        Debug.DrawLine(origin, origin + direction * maxDistance, Color.red);
+        //Debug.DrawLine(origin, origin + direction * maxDistance, Color.red);
     }
 }
