@@ -27649,6 +27649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1263575398}
+  - component: {fileID: 1263575399}
   m_Layer: 0
   m_Name: MenuSettings
   m_TagString: Untagged
@@ -27677,6 +27678,22 @@ RectTransform:
   m_AnchoredPosition: {x: 86.9606, y: 0.094}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1263575399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263575397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c976c0b26e17224781257a847437da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplaySettings
+  screenModeDropdown: {fileID: 1881079205}
+  targetWidth: 1920
+  targetHeight: 1080
+  refreshRate: 60
 --- !u!1 &1267823027
 GameObject:
   m_ObjectHideFlags: 0
