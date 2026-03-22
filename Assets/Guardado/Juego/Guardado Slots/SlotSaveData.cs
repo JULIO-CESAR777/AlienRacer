@@ -50,7 +50,7 @@ public class SlotSaveData
         int.TryParse(parts[1], out lastCompletedLevel);
         int.TryParse(parts[2], out nextLevelToPlay);
 
-        if (nextLevelToPlay <= 0)
+        if (nextLevelToPlay < 1)
             nextLevelToPlay = 1;
     }
 }
