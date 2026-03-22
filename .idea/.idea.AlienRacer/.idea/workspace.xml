@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Manager/MainManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Manager/MainManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Canvas/UiManagerPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Canvas/UiManagerPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/[CoreArquitecture]/LoadingScreenUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/[CoreArquitecture]/LoadingScreenUI.cs" afterDir="false" />
-    </list>
+    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +141,7 @@
       <workItem from="1773604660348" duration="2326000" />
       <workItem from="1773625134393" duration="2623000" />
       <workItem from="1773711114060" duration="1545000" />
-      <workItem from="1774200210458" duration="1517000" />
+      <workItem from="1774200210458" duration="2120000" />
     </task>
     <servers />
   </component>
