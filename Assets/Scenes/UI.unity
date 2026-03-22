@@ -6039,7 +6039,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.35
+  m_fontSize: 27.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9102,8 +9102,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413658511}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.39301872}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.8199997}
   m_LocalScale: {x: 0.010000006, y: 0.01, z: 0.010000006}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9112,11 +9112,11 @@ RectTransform:
   - {fileID: 1306609157}
   - {fileID: 1436408695}
   - {fileID: 26051826}
-  m_Father: {fileID: 4431342938117159268}
+  m_Father: {fileID: 1263575398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.3409, y: 1.3672}
+  m_AnchoredPosition: {x: 47.199097, y: 51.3672}
   m_SizeDelta: {x: 459.8236, y: 327.0375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413658513
@@ -26290,7 +26290,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.95
+  m_fontSize: 31
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -27668,6 +27668,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 413658512}
   - {fileID: 4431342938117159268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32092,7 +32093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Musica
+  m_text: "M\xFAsica"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -47238,7 +47239,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.65
+  m_fontSize: 20.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -50069,7 +50070,6 @@ Transform:
   - {fileID: 5482544223940578525}
   - {fileID: 3276290564925224132}
   - {fileID: 5734996005027899417}
-  - {fileID: 413658512}
   m_Father: {fileID: 1263575398}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4685244755119930780
