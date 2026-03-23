@@ -11,6 +11,11 @@ public class SaveSlotUI : MonoBehaviour
         Refresh();
     }
 
+    void OnEnable()
+    {
+        Refresh();
+    }
+
     public void Refresh()
     {
         SlotSaveData data = SlotSaveSystem.LoadSlot(slotIndex);
@@ -18,10 +23,15 @@ public class SaveSlotUI : MonoBehaviour
         if (!data.used)
         {
             label.text = $"Slot {slotIndex + 1} - Vacío";
+            return;
         }
-        else
+
+        if (data.lastCompletedLevel >= 2)
         {
-            label.text = $"Slot {slotIndex + 1} - Carrera {data.nextLevelToPlay}";
+            label.text = $"Slot {slotIndex + 1} - Última carrera";
+            return;
         }
+
+        label.text = $"Slot {slotIndex + 1} - Carrera {data.nextLevelToPlay}";
     }
 }

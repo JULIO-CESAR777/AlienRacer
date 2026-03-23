@@ -61744,6 +61744,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 5121570838653753222, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: shootPoint
+      value: 
+      objectReference: {fileID: 6367368024217836355}
     - target: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: synergyManager
       value: 
@@ -61753,6 +61757,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+--- !u!4 &6367368024217836355 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6959553228770475570, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+  m_PrefabInstance: {fileID: 6367368024217836354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6503611579903161516
 MonoBehaviour:
   m_ObjectHideFlags: 0

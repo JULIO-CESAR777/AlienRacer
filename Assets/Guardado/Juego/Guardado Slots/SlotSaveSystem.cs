@@ -5,6 +5,8 @@ public static class SlotSaveSystem
     private const int TOTAL_SLOTS = 3;
     private const string ACTIVE_SLOT_KEY = "ACTIVE_SLOT";
 
+    private const int MAX_LEVEL = 2;
+
     private static string GetSlotKey(int slotIndex)
     {
         return "SAVE_SLOT_" + slotIndex;
@@ -113,8 +115,13 @@ public static class SlotSaveSystem
         if (completedLevel > data.lastCompletedLevel)
             data.lastCompletedLevel = completedLevel;
 
+        int nextLevel = completedLevel + 1;
+
+        if (nextLevel > MAX_LEVEL)
+            nextLevel = MAX_LEVEL;
+
         if (data.nextLevelToPlay <= completedLevel)
-            data.nextLevelToPlay = completedLevel + 1;
+            data.nextLevelToPlay = nextLevel;
 
         SaveSlot(activeSlot, data);
 
