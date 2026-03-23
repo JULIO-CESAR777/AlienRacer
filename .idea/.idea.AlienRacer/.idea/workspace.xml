@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotButtonHandler.cs" afterDir="false" />
-    </list>
+    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +153,7 @@
       <workItem from="1774200210458" duration="2120000" />
       <workItem from="1774206990519" duration="497000" />
       <workItem from="1774207511592" duration="624000" />
-      <workItem from="1774290738311" duration="461000" />
+      <workItem from="1774290738311" duration="1131000" />
     </task>
     <servers />
   </component>
