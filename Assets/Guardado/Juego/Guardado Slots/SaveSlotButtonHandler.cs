@@ -3,9 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class SaveSlotButtonHandler : MonoBehaviour
 {
-    [SerializeField] private string level1SceneName;
-    [SerializeField] private string level2SceneName;
-
     public void SelectSlot(int slotIndex)
     {
         SlotSaveSystem.SetActiveSlot(slotIndex);
@@ -20,15 +17,15 @@ public class SaveSlotButtonHandler : MonoBehaviour
         switch (levelToLoad)
         {
             case 1:
-                SceneManager.LoadScene(level1SceneName);
+                SceneLoader.GetInstance()?.LoadScene(1);
                 break;
 
             case 2:
-                SceneManager.LoadScene(level2SceneName);
+                SceneLoader.GetInstance()?.LoadScene(2);
                 break;
 
             default:
-                SceneManager.LoadScene(level1SceneName);
+                SceneLoader.GetInstance()?.LoadScene(1);
                 break;
         }
     }
