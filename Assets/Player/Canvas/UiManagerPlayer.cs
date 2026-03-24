@@ -57,7 +57,7 @@ public class UiManagerPlayer : MonoBehaviour
     
     public void UpdateCoinText(string coins)
     {
-        coinText.text = "Coins: " + coins;
+        coinText.text = "Monedas: " + coins;
     }
     
     
