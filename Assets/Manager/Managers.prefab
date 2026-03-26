@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4590323111653905838}
   - component: {fileID: 598368982763232902}
-  - component: {fileID: 8775766035057343172}
   - component: {fileID: 1803584803939135898}
   m_Layer: 0
   m_Name: Managers
@@ -48,18 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainManager
   gameState: 0
   canPause: 1
---- !u!114 &8775766035057343172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2445577013762377723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b597153f248d4940adfdeddceefeb3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputManager
+  countDownText: {fileID: 0}
+  countDownActive: 0
 --- !u!114 &1803584803939135898
 MonoBehaviour:
   m_ObjectHideFlags: 0

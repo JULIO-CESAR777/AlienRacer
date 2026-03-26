@@ -107,7 +107,7 @@ public class GestorPosiciones : MonoBehaviour
             
             if (gano)
             {
-                LevelProgressSave.CompleteLevel(currentLevel);
+                SlotSaveSystem.CompleteLevelInActiveSlot(currentLevel);
             }
 
             // Store result and load after delay

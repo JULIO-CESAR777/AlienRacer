@@ -3,21 +3,44 @@ using UnityEngine;
 
 public static class LevelProgressSave
 {
-    private const string SAVE_KEY = "LEVEL_PROGRESS";
+    private const string ACTIVE_SLOT_KEY = "ACTIVE_SLOT";
 
     public static bool level1Completed;
     public static bool level2Completed;
 
+    private static string GetSaveKey()
+    {
+        int activeSlot = PlayerPrefs.GetInt(ACTIVE_SLOT_KEY, -1);
+
+        if (activeSlot < 0)
+            activeSlot = 0;
+
+        return "LEVEL_PROGRESS_SLOT_" + activeSlot;
+    }
+
+    public static void SetActiveSlot(int slotIndex)
+    {
+        PlayerPrefs.SetInt(ACTIVE_SLOT_KEY, slotIndex);
+        PlayerPrefs.Save();
+    }
+
+    public static int GetActiveSlot()
+    {
+        return PlayerPrefs.GetInt(ACTIVE_SLOT_KEY, -1);
+    }
+
     public static void Load()
     {
-        if (!PlayerPrefs.HasKey(SAVE_KEY))
+        string saveKey = GetSaveKey();
+
+        if (!PlayerPrefs.HasKey(saveKey))
         {
             level1Completed = false;
             level2Completed = false;
             return;
         }
 
-        string data = PlayerPrefs.GetString(SAVE_KEY);
+        string data = PlayerPrefs.GetString(saveKey);
         string[] splitData = data.Split('/');
 
         if (splitData.Length < 2)
@@ -33,13 +56,14 @@ public static class LevelProgressSave
 
     public static void Save()
     {
-        StringBuilder sb = new StringBuilder();
+        string saveKey = GetSaveKey();
 
+        StringBuilder sb = new StringBuilder();
         sb.Append(level1Completed ? 1 : 0);
         sb.Append("/");
         sb.Append(level2Completed ? 1 : 0);
 
-        PlayerPrefs.SetString(SAVE_KEY, sb.ToString());
+        PlayerPrefs.SetString(saveKey, sb.ToString());
         PlayerPrefs.Save();
     }
 
@@ -52,7 +76,6 @@ public static class LevelProgressSave
             case 1:
                 level1Completed = true;
                 break;
-
             case 2:
                 level2Completed = true;
                 break;
@@ -69,7 +92,6 @@ public static class LevelProgressSave
         {
             case 1:
                 return true;
-
             case 2:
                 return level1Completed;
         }
@@ -77,10 +99,30 @@ public static class LevelProgressSave
         return false;
     }
 
+    public static int GetNextLevelToPlay()
+    {
+        Load();
+
+        if (!level1Completed)
+            return 1;
+
+        if (!level2Completed)
+            return 2;
+
+        return 2;
+    }
+
     public static void ResetProgress()
     {
         level1Completed = false;
         level2Completed = false;
         Save();
+    }
+
+    public static void ResetSlot(int slotIndex)
+    {
+        string key = "LEVEL_PROGRESS_SLOT_" + slotIndex;
+        PlayerPrefs.DeleteKey(key);
+        PlayerPrefs.Save();
     }
 }

@@ -14,6 +14,18 @@ public class KartController : MonoBehaviour
     [SerializeField] private float speedTurnReduction = 0.5f;
     [SerializeField] private float rotationSmoothness = 10f;
     [SerializeField] private float reverseTurnMultiplier = 1.6f;
+    
+    [Header("Wheels Visual")]
+    [SerializeField] private Transform frontLeftWheel;
+    [SerializeField] private Transform frontRightWheel;
+
+    [SerializeField] private float maxSteeringAngle = 20f;
+    [SerializeField] private float wheelSteerSmooth = 10f;
+    
+    private Quaternion initialRotFL;
+    private Quaternion initialRotFR;
+
+    private float currentWheelSteer;
 
     [Header("Particles")]
     public GameObject[] particlesDrift;
@@ -137,6 +149,12 @@ public class KartController : MonoBehaviour
         uiManager = UiManagerPlayer.GetInstance();
         
         uiManager.UpdateCoinText(coins.ToString());
+        
+        if (frontLeftWheel != null)
+            initialRotFL = frontLeftWheel.localRotation;
+
+        if (frontRightWheel != null)
+            initialRotFR = frontRightWheel.localRotation;
 
     }
 
@@ -276,6 +294,9 @@ public class KartController : MonoBehaviour
         // eliminar torque no deseado
         rb.angularVelocity = Vector3.zero;
         
+        // Rotacion de las ruedas
+        HandleWheelSteering();
+        
     }
 
     void HandleMovement()
@@ -404,13 +425,13 @@ public class KartController : MonoBehaviour
             visualModel.localRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
     }
 
-    public void HandleJump()
+    void HandleJump()
     {
         if (!isGrounded) return;
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
 
-    public void HandleBetterGravity()
+    void HandleBetterGravity()
     {
         if (!isGrounded)
         {
@@ -421,6 +442,25 @@ public class KartController : MonoBehaviour
         }
     }
 
+    void HandleWheelSteering()
+    {
+        if (frontLeftWheel == null || frontRightWheel == null) return;
+
+        float targetAngle = turnInput * maxSteeringAngle;
+
+        // Si está en drift, usa la dirección fija
+        if (isDrifting)
+            targetAngle = driftDirection * maxSteeringAngle;
+
+        // suavizado visual
+        currentWheelSteer = Mathf.Lerp(currentWheelSteer, targetAngle, Time.deltaTime * wheelSteerSmooth);
+
+        Quaternion steerRot = Quaternion.Euler(0f, currentWheelSteer, 0f);
+
+        frontLeftWheel.localRotation = initialRotFL * steerRot;
+        frontRightWheel.localRotation = initialRotFR * steerRot;
+    }
+    
     public float groundCheckDistance = 1.2f;
     public float groundSphereRadius = 0.4f;
 
