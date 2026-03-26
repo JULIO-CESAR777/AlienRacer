@@ -10,6 +10,17 @@ public class MenuCameraController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void DontAllowInput()
+    {
+        MenuNavigation.GetInstance().DoingAnAnimation();
+    }
+
+    public void AllowInput()
+    {
+        MenuNavigation.GetInstance().NotDoingAnAnimation();
+    }
+
+
     public void GoToPlay()
     {
         anim.SetTrigger("Play");
