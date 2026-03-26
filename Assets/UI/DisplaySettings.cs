@@ -1,88 +1,77 @@
-using System;
 using UnityEngine;
-using TMPro;
+using System;
 
 public class DisplaySettings : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private TMP_Dropdown screenModeDropdown;
-    
+    public static DisplaySettings instance;
+
+    public Action<int> OnScreenModeChanged;
+
     [Header("Resolution Settings")]
     [SerializeField] private int targetWidth = 1920;
     [SerializeField] private int targetHeight = 1080;
     [SerializeField] private int refreshRate = 60;
 
-    private void Start()
+    private int currentMode; // 0 = Fullscreen, 1 = Windowed
+
+    private void Awake()
     {
-        InitializeDropdown();
-        LoadCurrentSetting();
+        instance = this;
     }
 
-    private void InitializeDropdown()
+    private void Start()
     {
-        screenModeDropdown.ClearOptions();
-        
-        var options = new System.Collections.Generic.List<string>
-        {
-            "FullScreen",
-            "Window"
-        };
-        
-        screenModeDropdown.AddOptions(options);
-        screenModeDropdown.onValueChanged.AddListener(OnScreenModeChanged);
+        LoadCurrentSetting();
     }
 
     private void LoadCurrentSetting()
     {
-        // Check if we have a saved preference
         if (PlayerPrefs.HasKey("ScreenMode"))
         {
-            // Use saved preference
-            int savedMode = PlayerPrefs.GetInt("ScreenMode");
-            screenModeDropdown.value = savedMode;
-            screenModeDropdown.RefreshShownValue();
-            OnScreenModeChanged(savedMode);
+            currentMode = PlayerPrefs.GetInt("ScreenMode");
         }
         else
         {
-            // No saved preference - default to FullScreen (0)
-            screenModeDropdown.value = 0;
-            screenModeDropdown.RefreshShownValue();
-            SetFullScreen(); // Apply fullscreen without triggering save yet
+            currentMode = 0;
         }
+
+        ApplyMode();
     }
 
-    private void OnScreenModeChanged(int index)
+    public void ChangeMode(bool right)
     {
-        PlayerPrefs.SetInt("ScreenMode", index);
+        if (right)
+            currentMode++;
+        else
+            currentMode--;
+
+        if (currentMode > 1) currentMode = 0;
+        if (currentMode < 0) currentMode = 1;
+
+        PlayerPrefs.SetInt("ScreenMode", currentMode);
         PlayerPrefs.Save();
-        
-        switch (index)
+
+        ApplyMode();
+    }
+
+    private void ApplyMode()
+    {
+        switch (currentMode)
         {
             case 0:
-                SetFullScreen();
+                Screen.SetResolution(targetWidth, targetHeight, FullScreenMode.FullScreenWindow, refreshRate);
                 break;
+
             case 1:
-                SetWindowed();
+                Screen.SetResolution(targetWidth, targetHeight, FullScreenMode.Windowed, refreshRate);
                 break;
         }
+
+        OnScreenModeChanged?.Invoke(currentMode);
     }
 
-    public void SetFullScreen()
+    public int GetCurrentMode()
     {
-        Screen.SetResolution(targetWidth, targetHeight, FullScreenMode.FullScreenWindow, refreshRate);
-        Debug.Log("Switched to FullScreen");
-    }
-
-    public void SetWindowed()
-    {
-        Screen.SetResolution(targetWidth, targetHeight, FullScreenMode.Windowed, refreshRate);
-        Debug.Log("Switched to Windowed");
-    }
-
-    private void OnDestroy()
-    {
-        if (screenModeDropdown != null)
-            screenModeDropdown.onValueChanged.RemoveListener(OnScreenModeChanged);
+        return currentMode;
     }
 }
