@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class ScreenModeLocalizedText : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private TextMeshProUGUI textUI;
-    [SerializeField] private DisplaySettings displaySettings;
-    [SerializeField] private LanguageManager languageManager;
+    private TextMeshProUGUI textUI;
+    private DisplaySettings displaySettings;
+    private LanguageManager languageManager;
 
     [Header("Texts by Language [ES, EN]")]
     [Tooltip("Textos para el modo FullScreen. El índice debe coincidir con el enum LANGUAGES.")]
@@ -19,6 +18,10 @@ public class ScreenModeLocalizedText : MonoBehaviour
 
     private void Start()
     {
+        
+        displaySettings = DisplaySettings.GetInstance();
+        languageManager = LanguageManager.GetInstance();
+        
         if (textUI == null)
             textUI = GetComponent<TextMeshProUGUI>();
 

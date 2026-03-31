@@ -1,27 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuController : MonoBehaviour
+public class PauseMenuController : MonoBehaviour
 {
-    
-    [Header("Camera Controller")]
-    [SerializeField] private MenuCameraController cameraController;
-    [SerializeField] private MenuAnimatorController playAnims;
-
-    [Header("Sistema de guardado")]
-    [SerializeField] private SaveSlotButtonHandler saveSlot;
-    
-    [Header("Sistema de idioma")]
-    [SerializeField] private LanguageManager languageManager;
-    
-    private DisplaySettings displaySettings;
-    
     [Header("Menu actual")]
-    public Selectable[] mainMenu;
-    public Selectable[] playMenu;
-    public Selectable[] slotsMenu;
+    public Selectable[] pauseMenu;
     public Selectable[] settingsMenu;
-
+    
+    
     private Selectable[] currentMenu;
     public int currentMenuIndex;
     public int currentHorizontal;
@@ -32,20 +19,29 @@ public class MainMenuController : MonoBehaviour
     
     
     private InputManager input;
+    private LanguageManager languageManager;
+    private DisplaySettings displaySettings;
+    private UiManagerPlayer uiManager;
+    private MainManager gm;
     private float goUp;
     private float goDown;
     private float moveInput;
     
-
     private void Start()
     {
-        displaySettings = DisplaySettings.GetInstance();
         input = InputManager.GetInstance();
-        canMove = true;
+        languageManager = LanguageManager.GetInstance();
+        displaySettings = DisplaySettings.GetInstance();
+        uiManager = UiManagerPlayer.GetInstance();
+        gm = MainManager.GetInstance();
+    }
 
-        currentMenu = mainMenu;
+    private void OnEnable()
+    {
+        currentMenu = pauseMenu;
         menusIndex = 0;
         currentMenuIndex = 0;
+        canMove = true;
 
         SelectCurrentOption();
     }
@@ -59,7 +55,7 @@ public class MainMenuController : MonoBehaviour
         HandleSubmit();
         
     }
-
+    
     private void HandleVerticalNavigation()
     {
         // Sube
@@ -96,9 +92,9 @@ public class MainMenuController : MonoBehaviour
 
         Selectable current = currentMenu[currentMenuIndex];
         
-        MenusActions(menusIndex);
+        MenusActions();
     }
-
+    
     private void HandleHorizontalNavigation()
     {
         float horizontal = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
@@ -121,7 +117,7 @@ public class MainMenuController : MonoBehaviour
     
     private void OnHorizontalInput(bool right)
     {
-        if (menusIndex != 2) return;
+        if (menusIndex != 1) return;
         
         switch (currentMenuIndex)
         {
@@ -159,154 +155,69 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    private void SelectCurrentOption()
+    private void MenusActions()
     {
-        if (currentMenu[currentMenuIndex] == null) return;
-        currentMenu[currentMenuIndex].Select();
-    }
-
-    public void MenusActions(int index)
-    {
-        MenuInteractable(false);
-        switch (index)
+        switch (menusIndex)
         {
             case 0:
             {
-                MainMenuActions();
+                PauseMenuActions();
                 break;
             }
             case 1:
             {
-                PlayMenuActions();
-                break;
-            }
-            case 2:
-            {
-                PlaySettinsActions();
-                break;
-            }
-            case 3:
-            {
-                break;
-            }
-            case 4:
-            {
-                PlaySlotsActions();
+                SettingsMenuActions();
                 break;
             }
         }
-        MenuInteractable(true);
         currentMenuIndex = 0;
         SelectCurrentOption();
     }
 
-    public void MenuInteractable(bool flag)
-    {
-        for (int i = 0; i < currentMenu.Length; i++)
-        {
-            currentMenu[i].interactable = flag;
-        }
-    }
-
-    private void MainMenuActions()
+    private void PauseMenuActions()
     {
         switch (currentMenuIndex)
         {
             case 0:
             {
-                cameraController.GoToPlay();
-                currentMenu = playMenu;
-                menusIndex = 1;
+                gm.ChangeGameState(GameState.Play);
+                uiManager.ResumeGame();
                 break;
             }
             case 1:
             {
-                cameraController.GoToSettings();
+                uiManager.GoToSettings();
                 currentMenu = settingsMenu;
-                menusIndex = 2;
-                break;
-            }
-            case 2:
-            {
-                // Que te lleve a los controles
-                break;
-            }
-            case 3:
-            {
-                Application.Quit();
-                break;
-            }
-        }
-    }
-
-    private void PlayMenuActions()
-    {
-        switch (currentMenuIndex)
-        {
-            case 0:
-            {
-                // Se pone lo que pasaria con el tutorial
-                break;
-            }
-            case 1:
-            {
-                playAnims.AbrirMenu();
-                currentMenu = slotsMenu;
-                menusIndex = 4;
-                break;
-            }
-            case 2:
-            {
-                cameraController.GoToMenuFromPlay();
-                currentMenu = mainMenu;
-                menusIndex = 0;
-                break;
-            }
-        }
-            
-    }
-
-    private void PlaySlotsActions()
-    {
-        switch (currentMenuIndex)
-        {
-            case 0:
-            {
-                saveSlot.SelectSlot(0);
-                break;
-            }
-            case 1:
-            {
-                saveSlot.SelectSlot(1);
-                break;
-            }
-            case 2:
-            {
-                saveSlot.SelectSlot(2);
-                break;
-            }
-            case 3:
-            {
-                playAnims.CerrarMenu();
-                currentMenu = playMenu;
                 menusIndex = 1;
                 break;
             }
+            case 2:
+            {
+                //TODO: Cambiar de escena al menu principal
+                break;
+            }
         }
     }
 
-    private void PlaySettinsActions()
+    private void SettingsMenuActions()
     {
         switch (currentMenuIndex)
         {
             case 4:
             {
-                cameraController.GoToMenuFromSettings();
-                currentMenu = mainMenu;
+                uiManager.PauseGame();
                 menusIndex = 0;
+                currentMenu = pauseMenu;
                 break;
             }
         }
     }
     
+
+
+    private void SelectCurrentOption()
+    {
+        if (currentMenu[currentMenuIndex] == null) return;
+        currentMenu[currentMenuIndex].Select();
+    }
 }
