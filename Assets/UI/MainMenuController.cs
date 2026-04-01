@@ -250,6 +250,7 @@ public class MainMenuController : MonoBehaviour
             }
             case 1:
             {
+                Debug.Log("xd");    
                 playAnims.AbrirMenu();
                 currentMenu = slotsMenu;
                 menusIndex = 4;
