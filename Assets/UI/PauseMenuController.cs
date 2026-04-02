@@ -193,7 +193,7 @@ public class PauseMenuController : MonoBehaviour
             }
             case 2:
             {
-                //TODO: Cambiar de escena al menu principal
+                SceneLoader.GetInstance()?.LoadScene(0);
                 break;
             }
         }
