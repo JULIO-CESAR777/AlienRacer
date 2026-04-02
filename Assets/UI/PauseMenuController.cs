@@ -17,7 +17,6 @@ public class PauseMenuController : MonoBehaviour
     private bool canMove;
     private bool canMoveHorizontally;
     
-    
     private InputManager input;
     private LanguageManager languageManager;
     private DisplaySettings displaySettings;
@@ -38,22 +37,38 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnEnable()
     {
+        InitState();
+        SelectCurrentOption();
+    }
+
+    private void InitState()
+    {
         currentMenu = pauseMenu;
         menusIndex = 0;
         currentMenuIndex = 0;
         canMove = true;
-
-        SelectCurrentOption();
     }
 
+    private bool flag;
+    
     private void Update()
     {
-        if (input == null || currentMenu == null || currentMenu.Length == 0) return;
+        if (input == null || currentMenu == null || currentMenu.Length == 0 || gm.countDownActive) return;
+        if (gm.gameState == GameState.Play)
+        {
+            flag = true;
+            return;
+        }
+
+        if (flag)
+        {
+            InitState();
+            flag = false;
+        }
         
         HandleVerticalNavigation();
         HandleHorizontalNavigation();
         HandleSubmit();
-        
     }
     
     private void HandleVerticalNavigation()

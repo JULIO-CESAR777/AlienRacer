@@ -89,7 +89,14 @@ public class MainManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        countDownText.text = "YA!";
+        if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.SPANISH)
+        {
+            countDownText.text = "YA!";
+        }
+        else if(LanguageManager.GetInstance().currentLanguage == LANGUAGES.ENGLISH)
+        {
+            countDownText.text = "GO!";
+        }
 
         yield return new WaitForSecondsRealtime(1f);
 

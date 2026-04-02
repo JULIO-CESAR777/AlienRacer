@@ -125,6 +125,8 @@ public class KartController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        
         powerUps = GetComponent<KartPowerUpController>();
 
         gm = MainManager.GetInstance();
@@ -297,6 +299,9 @@ public class KartController : MonoBehaviour
         // Rotacion de las ruedas
         HandleWheelSteering();
         
+        Vector3 euler = rb.rotation.eulerAngles;
+        rb.MoveRotation(Quaternion.Euler(0f, euler.y, 0f));
+        
     }
 
     void HandleMovement()
@@ -360,32 +365,23 @@ public class KartController : MonoBehaviour
             speedPercent * speedTurnReduction
         );
 
-       
         dynamicTurnSpeed *= steeringMultiplier;
 
-      
         if (isDrifting)
             dynamicTurnSpeed *= driftTurnMultiplier;
 
-       
         if (currentSpeed < 0)
             dynamicTurnSpeed *= reverseTurnMultiplier;
 
         float rotationAmount = steeringInput * dynamicTurnSpeed * Time.fixedDeltaTime;
 
-        // Construir rotación limpia desde cero
-        Vector3 forwardProjected = Vector3.ProjectOnPlane(transform.forward, smoothedGroundNormal).normalized;
-
-        Quaternion baseRotation = Quaternion.LookRotation(forwardProjected, smoothedGroundNormal);
-
-        Quaternion steerRotation = Quaternion.AngleAxis(rotationAmount, smoothedGroundNormal);
-
-        Quaternion finalRotation = steerRotation * baseRotation;
+        float targetY = rb.rotation.eulerAngles.y + rotationAmount;
+        Quaternion targetRotation = Quaternion.Euler(0f, targetY, 0f);
 
         rb.MoveRotation(
             Quaternion.Slerp(
                 rb.rotation,
-                finalRotation,
+                targetRotation,
                 rotationSmoothness * Time.fixedDeltaTime
             )
         );
@@ -396,7 +392,8 @@ public class KartController : MonoBehaviour
             rb.linearVelocity -= sidewaysVelocity * driftGrip;
         }
     }
-
+    
+    
     void HandleDriftVisual()
     {
         float coinBoost = coins * speedPerCoin;
