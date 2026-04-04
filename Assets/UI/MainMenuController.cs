@@ -20,6 +20,7 @@ public class MainMenuController : MonoBehaviour
     public Selectable[] mainMenu;
     public Selectable[] playMenu;
     public Selectable[] slotsMenu;
+    public Selectable[] slotsBorrarMenu;
     public Selectable[] settingsMenu;
 
     private Selectable[] currentMenu;
@@ -187,6 +188,7 @@ public class MainMenuController : MonoBehaviour
             }
             case 3:
             {
+
                 break;
             }
             case 4:
@@ -293,6 +295,35 @@ public class MainMenuController : MonoBehaviour
                 menusIndex = 1;
                 break;
             }
+        }
+    }
+
+    private void EraseSlotsActions()
+    {
+        switch (currentMenuIndex)
+        {
+            case 0:
+                {
+                    saveSlot.DeleteSlot(0);
+                    break;
+                }
+            case 1:
+                {
+                    saveSlot.DeleteSlot(1);
+                    break;
+                }
+            case 2:
+                {
+                    saveSlot.DeleteSlot(2);
+                    break;
+                }
+            case 3:
+                {
+                    playAnims.CerrarMenu();
+                    currentMenu = playMenu;
+                    menusIndex = 1;
+                    break;
+                }
         }
     }
 
