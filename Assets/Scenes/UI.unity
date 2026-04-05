@@ -17505,6 +17505,7 @@ GameObject:
   - component: {fileID: 1211663805}
   - component: {fileID: 1211663807}
   - component: {fileID: 1211663806}
+  - component: {fileID: 1211663808}
   m_Layer: 0
   m_Name: Borrar
   m_TagString: Untagged
@@ -17634,6 +17635,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211663804}
   m_CullTransparentMesh: 1
+--- !u!114 &1211663808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211663804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1509c76861bc3a4bb59603b78b22d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MultiLanguageText
+  texts:
+  - Borrar
+  - Erase
 --- !u!1 &1213742321
 GameObject:
   m_ObjectHideFlags: 0
