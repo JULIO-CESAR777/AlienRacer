@@ -196,6 +196,11 @@ public class MainMenuController : MonoBehaviour
                 PlaySlotsActions();
                 break;
             }
+            case 5:
+            {
+                EraseSlotsActions();
+                break;
+            }
         }
         MenuInteractable(true);
         currentMenuIndex = 0;
@@ -295,6 +300,13 @@ public class MainMenuController : MonoBehaviour
                 menusIndex = 1;
                 break;
             }
+            case 4:
+            {
+                    playAnims.AbrirMenuBorrado();
+                    currentMenu = slotsBorrarMenu;
+                    menusIndex = 5;
+                    break;
+            }
         }
     }
 
@@ -319,9 +331,9 @@ public class MainMenuController : MonoBehaviour
                 }
             case 3:
                 {
-                    playAnims.CerrarMenu();
-                    currentMenu = playMenu;
-                    menusIndex = 1;
+                    playAnims.CerrarMenuBorrado();
+                    currentMenu = slotsMenu;
+                    menusIndex = 4;
                     break;
                 }
         }
