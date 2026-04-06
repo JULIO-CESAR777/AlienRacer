@@ -52,6 +52,11 @@ public class KartObstaculosIA : MonoBehaviour
     private Rigidbody rb;
     private MainManager manager;
 
+    [Header("Efectos de Sonido")]
+    public AudioClip sonidoChoqueMuro;
+    public AudioClip sonidoReversa;
+    public AudioClip sonidoDerrape;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
