@@ -1,16 +1,3 @@
-// HOW TO CALL FUNCTIONS FROM THIS CONTROLLER:
-// Instead of using Instance directly, always use GetInstance() for safety.
-//
-// Example:
-//      UIController.GetInstance()?.NameOfTheFunction();
-//
-// The ?. (null-conditional operator) ensures that if the controller is missing
-// from the scene, the call is simply skipped instead of crashing the game.
-// You will also see a descriptive error in the Console telling you what's missing.
-//
-// NEVER do this:
-//      UIController.Instance.NameOfTheFunction(); // can throw a NullReferenceException
-
 using UnityEngine;
 
 namespace UI
@@ -29,8 +16,7 @@ namespace UI
 
         private void Awake()
         {
-            // TODO: If the UI is a persistent HUD across scenes, add back the duplicate 
-            //  check (if Instance != null && Instance != this) and DontDestroyOnLoad(gameObject)
+            // Asignación de instancia para el Singleton
             Instance = this;
         }
 
@@ -38,11 +24,13 @@ namespace UI
         {
             if (Instance == null)
             {
-                Debug.LogWarning("UIController instance is null! Make sure it exists in the scene.");
+                Debug.LogWarning("UIController instance is null! Asegúrate de que esté en la escena.");
             }
             return Instance;
         }
-        
+
+        // --- MÉTODOS DE NAVEGACIÓN Y MENÚ ---
+
         public void Play()
         {
             Debug.Log("Play button clicked!");
@@ -56,7 +44,7 @@ namespace UI
             _mainMenuPanel.SetActive(false);
             _settingsPanel.SetActive(true);
         }
-        
+
         public void ExitGameUIButton()
         {
             Debug.Log("Exit game button clicked!");
@@ -65,36 +53,40 @@ namespace UI
 
         public void FromWinToMainMenu()
         {
-            Debug.Log("Changing from Win Menu to Main Menu Panel");
             _winMenuPanel.SetActive(false);
             _mainMenuPanel.SetActive(true);
         }
 
         public void ReloadButton()
         {
-            Debug.Log(" Reload button clicked!");
             SceneLoader.GetInstance()?.LoadScene(1);
         }
 
         public void FromLoseToMainMenu()
         {
-            Debug.Log("Changing from Lose Menu to Main Menu Panel");
             _loseMenuPanel.SetActive(false);
             _mainMenuPanel.SetActive(true);
         }
+
+        /// <summary>
+        /// Este método es vital para GestorPosiciones. 
+        /// Carga la escena principal o de interfaz (Scene 0).
+        /// </summary>
         public void ToUIScene()
         {
-            SceneLoader.GetInstance()?.LoadScene("Mapa1_V2");
+            SceneLoader.GetInstance()?.LoadScene(0);
         }
+
+        // --- MÉTODOS DE PAUSA ---
 
         public void UIPause()
         {
-            _pausePanel.SetActive(true);
+            if (_pausePanel != null) _pausePanel.SetActive(true);
         }
 
         public void FromUIPauseToPlay()
         {
-            _pausePanel.SetActive(false);
+            if (_pausePanel != null) _pausePanel.SetActive(false);
         }
 
         public void FromPauseToSettings()

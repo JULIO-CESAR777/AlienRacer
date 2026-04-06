@@ -38,6 +38,7 @@ public class UiManagerPlayer : MonoBehaviour
 
     [Header("Pause")]
     [SerializeField] public GameObject pausePanel;
+    [SerializeField] public GameObject settingsPanel;
 
 
     private void Start()
@@ -47,17 +48,25 @@ public class UiManagerPlayer : MonoBehaviour
 
     public void PauseGame()
     {
+        settingsPanel.SetActive(false);
         pausePanel.SetActive(true);
+    }
+
+    public void GoToSettings()
+    {
+        pausePanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
     
     public void UpdateCoinText(string coins)
     {
-        coinText.text = "Coins: " + coins;
+        coinText.text = coins;
     }
     
     

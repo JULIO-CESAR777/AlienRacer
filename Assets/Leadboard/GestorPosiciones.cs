@@ -1,8 +1,8 @@
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UI;
+using UnityEngine;
 
 public class DatosCorredor
 {
@@ -11,8 +11,6 @@ public class DatosCorredor
     public float distanciaAlSiguiente;
     public float progresoTotal;
     public int posicion;
-
-    // --- CONDICIÓN DE VICTORIA ---
     public int vueltasDadas;
     public bool haTerminado;
 }
@@ -24,28 +22,23 @@ public class GestorPosiciones : MonoBehaviour
     public Transform[] hitosDePista;
     public List<DatosCorredor> listaCorredores = new List<DatosCorredor>();
 
-    // --- VARIABLES DE CONFIGURACIÓN ---
     [Header("Configuración de Carrera")]
     public int totalVueltas = 3;
     public GameObject panelFinCarrera;
     public TMPro.TextMeshProUGUI textoResultado;
 
-    
     [Header("Nivel actual")]
     public int currentLevel = 1;
-    
-    // CAMBIO RECIENTE: Contador para asignar el puesto exacto al cruzar la meta
     private int corredoresFinalizados = 0;
 
     void Awake()
     {
         if (Instancia == null) Instancia = this;
-        else Destroy(gameObject); // Seguridad para que no haya dos gestores
+        else Destroy(gameObject);
     }
 
     void Start()
     {
-        // Buscamos por Tag 
         ConfigurarCorredoresConTag("Player");
         ConfigurarCorredoresConTag("Bot");
     }
@@ -59,112 +52,98 @@ public class GestorPosiciones : MonoBehaviour
         }
     }
 
-    // El hito llama a esta función
     public void RegistrarPasoPorHito(Transform corredor, int indice)
     {
         var datos = listaCorredores.Find(c => c.transform == corredor);
-
         if (datos == null || datos.haTerminado) return;
 
-        // Lógica de vueltas...
         if (datos.ultimoHito == hitosDePista.Length - 1 && indice == 0)
         {
             datos.vueltasDadas++;
-            // Log opcional para vueltas
-            //Debug.Log($"<color=yellow>¡{corredor.name} completó la vuelta {datos.vueltasDadas}!</color>");
-
             if (datos.vueltasDadas >= totalVueltas)
             {
                 FinalizarCarreraCorredor(datos);
-                return; // CAMBIO RECIENTE: Salimos para que no procese el hito 0 como hito normal
+                return;
             }
         }
 
         if (indice == (datos.ultimoHito + 1) % hitosDePista.Length)
         {
             datos.ultimoHito = indice;
-            //Debug.Log($"Corredor: <b>{corredor.name}</b> paso por el <b>Hito {indice}</b>");
         }
     }
 
-    // --- LÓGICA DE FINALIZACIÓN ---
     private void FinalizarCarreraCorredor(DatosCorredor corredor)
     {
-        // CAMBIO RECIENTE: Asignamos el puesto por orden de llegada física
         corredor.haTerminado = true;
         corredoresFinalizados++;
         corredor.posicion = corredoresFinalizados;
         corredor.progresoTotal = float.MaxValue - corredoresFinalizados;
+
         if (corredor.transform.CompareTag("Player"))
         {
             bool gano = corredor.posicion == 1;
 
-            // Show the result panel immediately
             if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
-            if (textoResultado != null)
-                textoResultado.text = gano ? "¡VICTORIA!" : "Posición: " + corredor.posicion + "°";
 
-            
-            if (gano)
+            if (textoResultado != null && LanguageManager.GetInstance() != null)
             {
-                LevelProgressSave.CompleteLevel(currentLevel);
+                if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.SPANISH)
+                    textoResultado.text = gano ? "Victoria" : "Posición: " + corredor.posicion + "°";
+                else if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.ENGLISH)
+                    textoResultado.text = gano ? "Victory" : "Position: " + corredor.posicion + "°";
             }
 
-            // Store result and load after delay
-            GameResultManager.Instance.SetResult(
-                gano ? GameResultManager.RaceResult.Win
-                    : GameResultManager.RaceResult.Lose
-            );
+            if (gano) SlotSaveSystem.CompleteLevelInActiveSlot(currentLevel);
 
-            StartCoroutine(CargarEscenaResultados(3f));
+            // Inicia la carga automática tras 3 segundos
+            StartCoroutine(EsperarYCambiarEscena(3f, gano));
         }
+    }
+
+    private IEnumerator EsperarYCambiarEscena(float delay, bool gano)
+    {
+        yield return new WaitForSeconds(delay);
+        if (RaceResultSystem.Instance != null)
+            RaceResultSystem.Instance.CargarResultado(gano);
     }
 
     void Update()
     {
         if (hitosDePista.Length == 0) return;
 
-        // progreso de todos
         foreach (var c in listaCorredores)
         {
-            // Si ya terminó, no seguimos recalculando su progreso para que mantenga su posición final
             if (c.haTerminado) continue;
-
             int siguienteHito = (c.ultimoHito + 1) % hitosDePista.Length;
             c.distanciaAlSiguiente = Vector3.Distance(c.transform.position, hitosDePista[siguienteHito].position);
-            // vueltas para que tengan prioridad absoluta
             c.progresoTotal = (c.vueltasDadas * 100000) + (c.ultimoHito * 1000) - c.distanciaAlSiguiente;
         }
 
-        // Ordenamos por progreso
         var ordenados = listaCorredores.OrderByDescending(c => c.progresoTotal).ToList();
-
-        // Asignamos el número de posición
         for (int i = 0; i < ordenados.Count; i++)
         {
-            if (!ordenados[i].haTerminado)
-            {
-                ordenados[i].posicion = i + 1;
-            }
+            if (!ordenados[i].haTerminado) ordenados[i].posicion = i + 1;
         }
     }
 
-    // --- FUNCIONES PARA OTROS SCRIPTS ---
+    // FUNCIONES PARA OTROS SCRIPTS 
     public int ObtenerPosicionDe(Transform coche)
     {
         var datos = listaCorredores.Find(c => c.transform == coche);
         return datos != null ? datos.posicion : 0;
     }
 
-    //función Gacha para calcular
     public int ObtenerTotalCorredores()
     {
         return listaCorredores.Count;
     }
 
+    /* 
     private IEnumerator CargarEscenaResultados(float delay)
     {
         yield return new WaitForSeconds(delay);
         UIController.GetInstance()?.ToUIScene();
     }
+    */
 }

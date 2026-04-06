@@ -13,4 +13,14 @@ public class MenuAnimatorController : MonoBehaviour
     {
         animator.SetTrigger("Cerrar");
     }
+
+    public void AbrirMenuBorrado()
+    {
+        animator.SetTrigger("AbrirBorrado");
+    }
+
+    public void CerrarMenuBorrado()
+    {
+        animator.SetTrigger("CerrarBorrado");
+    }
 }
