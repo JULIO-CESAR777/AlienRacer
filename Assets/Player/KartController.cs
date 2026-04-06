@@ -78,19 +78,15 @@ public class KartController : MonoBehaviour
 
     private Vector3 groundNormal = Vector3.up;
 
-    // Manager 
     MainManager gm;
     InputManager input;
     UiManagerPlayer uiManager;
 
-    // ---- Control & Multipliers (PowerUps los modifican) ----
     private bool controlEnabled = true;
     private float speedMultiplier = 1f;
 
-    // Opcional: si quieres que PowerUps “bloqueen” drift
     private bool driftAllowed = true;
 
-    // Referencia al PowerUpController (para forward de colisiones, etc.)
     private KartPowerUpController powerUps;
     public bool IsBoosting => speedMultiplier > 1.05f;
 
@@ -100,7 +96,6 @@ public class KartController : MonoBehaviour
     private float timerSalto = 0f;
     private float recuperacionAgarre = 15f;
 
-    // NUEVO: Bandera para la lógica de "Empujar auto con batería muerta"
     private bool empujandoKartMuerto = false;
 
     //Esta es la funcion que quiero que se haga cada vez que pauso o despauso el juego
@@ -375,7 +370,6 @@ public class KartController : MonoBehaviour
         // maxSpeed final
         float finalMaxSpeed = (maxSpeed + coinBoost) * speedMultiplier;
 
-        // LA MAGIA: Lógica de "Empujar auto apagado" propuesta por ti
         if (empujandoKartMuerto)
         {
             finalMaxSpeed = 4f; // Limitamos la velocidad máxima drásticamente como si empujaras algo pesado
