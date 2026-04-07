@@ -3,13 +3,18 @@ using System.Collections;
 
 public class CoinObject : MonoBehaviour
 {
+    [Header("Efectos Visuales")]
+    [SerializeField] private ParticleSystem sistemaParticulas;
+
     [Header("Configuración de Reaparición")]
     [Tooltip("Segundos que tarda en volver a aparecer")]
     [SerializeField] private float tiempoReaparicion = 5f;
+
     private MeshRenderer _renderer;
     private Collider _collider;
     private WaitForSeconds _espera;
     private bool _estaRecogida;
+
     private void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
@@ -27,11 +32,18 @@ public class CoinObject : MonoBehaviour
 
     private void Recoger(Collider player)
     {
+        Debug.Log("¡Colisión detectada con: " + player.name + "!"); 
         _estaRecogida = true;
 
         if (player.transform.root.TryGetComponent(out KartController kart))
         {
-            kart.AddCoin(); 
+            kart.AddCoin();
+        }
+
+        // ACTIVAR EL BURST DE PARTÍCULAS
+        if (sistemaParticulas != null)
+        {
+            sistemaParticulas.Play();
         }
         _renderer.enabled = false;
         _collider.enabled = false;
@@ -42,6 +54,8 @@ public class CoinObject : MonoBehaviour
     private IEnumerator RutinaReaparicion()
     {
         yield return _espera;
+
+        // Volver a mostrar la moneda
         _renderer.enabled = true;
         _collider.enabled = true;
         _estaRecogida = false;
