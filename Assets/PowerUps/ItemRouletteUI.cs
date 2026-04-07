@@ -25,12 +25,40 @@ public class ItemRouletteUI : MonoBehaviour
     private bool spinning;
     private int forcedResultIndex;
 
+    private MainManager gm;
+    private bool isPaused = false;
+
     public bool IsSpinning => spinning;
 
     private void Awake()
     {
         if (panel != null)
             panel.SetActive(false);
+    }
+
+    private void Start()
+    {
+        gm = MainManager.GetInstance();
+        if (gm != null)
+        {
+            gm.onChangeGameState += OnChangeGameStateCallback;
+            isPaused = gm.gameState != GameState.Play;
+        }
+        else
+        {
+            Debug.LogError("MainManager is NULL in ItemRouletteUI");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (gm != null)
+            gm.onChangeGameState -= OnChangeGameStateCallback;
+    }
+
+    public void OnChangeGameStateCallback(GameState newState)
+    {
+        isPaused = newState != GameState.Play;
     }
 
     public void Spin(ItemBase finalResult, List<ItemBase> visualPool, System.Action<ItemBase> onDone)
@@ -64,6 +92,12 @@ public class ItemRouletteUI : MonoBehaviour
 
         while (t < spinSeconds)
         {
+            if (isPaused)
+            {
+                yield return null;
+                continue;
+            }
+
             MoveRibbon(spinSpeed);
             t += Time.deltaTime;
             yield return null;
@@ -79,6 +113,12 @@ public class ItemRouletteUI : MonoBehaviour
         t = 0f;
         while (t < slowSeconds)
         {
+            if (isPaused)
+            {
+                yield return null;
+                continue;
+            }
+
             t += Time.deltaTime;
             float a = Mathf.Clamp01(t / slowSeconds);
             float eased = 1f - Mathf.Pow(1f - a, 3f);
@@ -93,7 +133,18 @@ public class ItemRouletteUI : MonoBehaviour
 
         onDone?.Invoke(finalResult);
 
-        yield return new WaitForSeconds(0.2f);
+        float wait = 0f;
+        while (wait < 0.2f)
+        {
+            if (isPaused)
+            {
+                yield return null;
+                continue;
+            }
+
+            wait += Time.deltaTime;
+            yield return null;
+        }
 
         if (panel != null)
             panel.SetActive(false);
