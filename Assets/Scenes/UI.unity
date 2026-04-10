@@ -5372,19 +5372,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 384048385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962240103}
-        m_TargetAssemblyTypeName: SaveSlotButtonHandler, Assembly-CSharp
-        m_MethodName: SelectSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &384048385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7342,19 +7330,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 569724653}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1153447012}
-        m_TargetAssemblyTypeName: SaveSlotButtonHandler, Assembly-CSharp
-        m_MethodName: SelectSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &569724653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9381,7 +9357,6 @@ MonoBehaviour:
   cameraController: {fileID: 1787410699}
   playAnims: {fileID: 1844291818}
   saveSlot: {fileID: 1153447012}
-  languageManager: {fileID: 1020589172}
   mainMenu:
   - {fileID: 1094955738}
   - {fileID: 1683052899}
@@ -12559,19 +12534,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 948796890}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962240103}
-        m_TargetAssemblyTypeName: SaveSlotButtonHandler, Assembly-CSharp
-        m_MethodName: SelectSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &948796890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13783,17 +13746,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &1020589172 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2741652036248305408, guid: d1b8a4d07179a2b49bcbf2d3a1d9b923, type: 3}
-  m_PrefabInstance: {fileID: 7145402726469566843}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b2cbd3c0cca5b4c986c817e9e1446e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LanguageManager
 --- !u!1 &1023332400
 GameObject:
   m_ObjectHideFlags: 0
@@ -16054,19 +16006,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1148895245}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1153447012}
-        m_TargetAssemblyTypeName: SaveSlotButtonHandler, Assembly-CSharp
-        m_MethodName: SelectSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1148895245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16954,19 +16894,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1176327495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1153447012}
-        m_TargetAssemblyTypeName: SaveSlotButtonHandler, Assembly-CSharp
-        m_MethodName: SelectSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1176327495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20304,19 +20232,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357020451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962240103}
-        m_TargetAssemblyTypeName: SaveSlotButtonHandler, Assembly-CSharp
-        m_MethodName: SelectSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1357020451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21608,19 +21524,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1420651545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1844291818}
-        m_TargetAssemblyTypeName: MenuAnimatorController, Assembly-CSharp
-        m_MethodName: CerrarMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1420651545
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,8 +11,8 @@ public class MainMenuController : MonoBehaviour
     [Header("Sistema de guardado")]
     [SerializeField] private SaveSlotButtonHandler saveSlot;
     
-    [Header("Sistema de idioma")]
-    [SerializeField] private LanguageManager languageManager;
+   
+    private LanguageManager languageManager;
     
     private DisplaySettings displaySettings;
     
@@ -42,6 +42,7 @@ public class MainMenuController : MonoBehaviour
     {
         displaySettings = DisplaySettings.GetInstance();
         input = InputManager.GetInstance();
+        languageManager = LanguageManager.GetInstance();
         canMove = true;
 
         currentMenu = mainMenu;
@@ -94,7 +95,6 @@ public class MainMenuController : MonoBehaviour
     private void HandleSubmit()
     {
         if (!input.IsButtonDown(BUTTONS.B)) return;
-
         Selectable current = currentMenu[currentMenuIndex];
         
         MenusActions(menusIndex);
@@ -166,8 +166,11 @@ public class MainMenuController : MonoBehaviour
         currentMenu[currentMenuIndex].Select();
     }
 
+    public int pastMenu;
     public void MenusActions(int index)
     {
+
+        pastMenu = menusIndex;
         MenuInteractable(false);
         switch (index)
         {
@@ -203,7 +206,12 @@ public class MainMenuController : MonoBehaviour
             }
         }
         MenuInteractable(true);
-        currentMenuIndex = 0;
+        print("dude?");
+        if (pastMenu != menusIndex) {
+            print("se cambio");
+            currentMenuIndex = 0;
+        }
+
         SelectCurrentOption();
     }
 
@@ -256,8 +264,7 @@ public class MainMenuController : MonoBehaviour
                 break;
             }
             case 1:
-            {
-                Debug.Log("xd");    
+            {   
                 playAnims.AbrirMenu();
                 currentMenu = slotsMenu;
                 menusIndex = 4;
@@ -281,17 +288,20 @@ public class MainMenuController : MonoBehaviour
             case 0:
             {
                 saveSlot.SelectSlot(0);
+                print("entra al juego 1");
                 break;
             }
             case 1:
             {
                 saveSlot.SelectSlot(1);
-                break;
+                    print("entra al juego 2");
+                    break;
             }
             case 2:
             {
                 saveSlot.SelectSlot(2);
-                break;
+                    print("entra al juego 3");
+                    break;
             }
             case 3:
             {
