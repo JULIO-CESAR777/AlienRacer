@@ -14,6 +14,28 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-652994633302368314
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: df6782d10f156a64197526e53f29199e
+  m_EffectName: Compressor
+  m_MixLevel: 2468f3722a5abfd4ebe4261b39395f3a
+  m_Parameters:
+  - m_ParameterName: Threshold
+    m_GUID: 86f66cfdd162e4e40af2d0f2366fd261
+  - m_ParameterName: Attack
+    m_GUID: 16c2d230a17fb194db5197b9f8b34bc7
+  - m_ParameterName: Release
+    m_GUID: 502217e754ff28b439e74e190473ae71
+  - m_ParameterName: Make up gain
+    m_GUID: 2ea9e0dba4a700e41a5bb52bb1134d3d
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-279565563336058335
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -46,10 +68,10 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 8a6017a8273c6c44e8d72af928007adf
     name: MusicVol
-  - guid: fe00de2067582634dab73f6625391f83
-    name: MyExposedParam 2
   - guid: 3fee6fdc347a0804d92816598c24bad5
     name: SFXVol
+  - guid: ff0756a0799304947a9b7f91f34ca2e7
+    name: UIVol
   m_AudioMixerGroupViews:
   - guids:
     - c46762609013d664dbb84da25003d65b
@@ -72,6 +94,8 @@ AudioMixerGroupController:
   m_GroupID: c46762609013d664dbb84da25003d65b
   m_Children:
   - {fileID: 2617712864999440243}
+  - {fileID: 8867838931336459995}
+  - {fileID: 7758748096474039857}
   m_Volume: 2be9bd478a954f546876c0520c1ad007
   m_Pitch: 8a7b5e03b787c4e4caef0edd8aa55211
   m_Send: 00000000000000000000000000000000
@@ -108,7 +132,8 @@ AudioMixerSnapshotController:
     d7fe54e2f6fa042488daaf25db6867f0: 0.5
     60690f34cdfe5df4ca620503b6f11850: 0.2
     b8047aa663c5ae443a1f4168df510bb7: 0.01
-    8a6017a8273c6c44e8d72af928007adf: 0.04171297
+    8a6017a8273c6c44e8d72af928007adf: -8
+    86f66cfdd162e4e40af2d0f2366fd261: -15
   m_TransitionOverrides: {}
 --- !u!243 &825035924308436892
 AudioMixerGroupController:
@@ -138,15 +163,14 @@ AudioMixerGroupController:
   m_Name: BGM
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 7ff7ab5cda898194ea08f53bb0ef4727
-  m_Children:
-  - {fileID: 8867838931336459995}
-  - {fileID: 7758748096474039857}
+  m_Children: []
   m_Volume: 8a6017a8273c6c44e8d72af928007adf
   m_Pitch: 41541945d3f722b4c938675720be54e3
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 4709959822168032869}
   - {fileID: 5014507146072685324}
+  - {fileID: -652994633302368314}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [Header("Mixer Principal")]
-    public AudioMixer mainMixer; 
+    public AudioMixer mainMixer;
 
     [Header("Audio Sources")]
     public AudioSource bgmSource;
@@ -19,6 +19,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonClickSound;
     public AudioClip buttonHoverSound;
     public AudioClip pauseMenuSound;
+
+    private const string MUSIC_PREF_KEY = "MusicVolume";
+    private const string SFX_PREF_KEY = "SFXVolume";
 
     private void Awake()
     {
@@ -37,19 +40,50 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         PlayBGM();
+        LoadVolumePreferences();
     }
 
+    // --- MÉTODOS DE VOLUMEN (Globales) ---
 
     public void SetMusicVolume(float sliderValue)
     {
-        mainMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20f);
+        PlayerPrefs.SetFloat(MUSIC_PREF_KEY, sliderValue);
+        mainMixer.SetFloat("MusicVol", Mathf.Log10(Mathf.Clamp(sliderValue, 0.0001f, 1f)) * 20f);
+        PlayerPrefs.Save();
     }
 
     public void SetSFXVolume(float sliderValue)
     {
-        mainMixer.SetFloat("SFXVol", Mathf.Log10(sliderValue) * 20f);
+        PlayerPrefs.SetFloat(SFX_PREF_KEY, sliderValue);
+
+        float dbVolume = Mathf.Log10(Mathf.Clamp(sliderValue, 0.0001f, 1f)) * 20f;
+
+        mainMixer.SetFloat("SFXVol", dbVolume);
+        mainMixer.SetFloat("UIVol", dbVolume);
+
+        PlayerPrefs.Save();
     }
 
+    private void LoadVolumePreferences()
+    {
+        float savedMusicVol = PlayerPrefs.GetFloat(MUSIC_PREF_KEY, 1f);
+        SetMusicVolume(savedMusicVol);
+
+        float savedSFXVol = PlayerPrefs.GetFloat(SFX_PREF_KEY, 1f);
+        SetSFXVolume(savedSFXVol);
+    }
+
+    public float GetMusicVolume()
+    {
+        return PlayerPrefs.GetFloat(MUSIC_PREF_KEY, 1f);
+    }
+
+    public float GetSFXVolume()
+    {
+        return PlayerPrefs.GetFloat(SFX_PREF_KEY, 1f);
+    }
+
+    // --- MÉTODOS PARA LA MÚSICA Y UI ---
 
     public void PlayBGM()
     {
@@ -77,5 +111,21 @@ public class AudioManager : MonoBehaviour
     {
         if (pauseMenuSound != null && uiSource != null)
             uiSource.PlayOneShot(pauseMenuSound);
+    }
+
+    public void PauseBGM()
+    {
+        if (bgmSource != null && bgmSource.isPlaying)
+        {
+            bgmSource.Pause();
+        }
+    }
+
+    public void ResumeBGM()
+    {
+        if (bgmSource != null)
+        {
+            bgmSource.UnPause();
+        }
     }
 }

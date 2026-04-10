@@ -42976,6 +42976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 982292009}
   - component: {fileID: 982292010}
+  - component: {fileID: 982292011}
   m_Layer: 5
   m_Name: MusicVolSlider
   m_TagString: Untagged
@@ -43056,6 +43057,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &982292011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982292008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42464b00c3f44274eb76b519f8092f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSliderSync
+  targetAudio: 0
 --- !u!1001 &982749222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64647,6 +64661,7 @@ GameObject:
   - component: {fileID: 1493903967}
   - component: {fileID: 1493903969}
   - component: {fileID: 1493903968}
+  - component: {fileID: 1493903970}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -64716,6 +64731,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493903966}
   m_CullTransparentMesh: 1
+--- !u!114 &1493903970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493903966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e49cd5e8b6be049abbcb8ed9d69f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIAudioInyectora
 --- !u!4 &1494028493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8851127695800482227, guid: e60258f3f1e19c34589f509616d0b2d0, type: 3}
@@ -85097,6 +85124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999773595}
   - component: {fileID: 1999773596}
+  - component: {fileID: 1999773597}
   m_Layer: 5
   m_Name: SFXVolSlider
   m_TagString: Untagged
@@ -85177,6 +85205,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1999773597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999773594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42464b00c3f44274eb76b519f8092f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSliderSync
+  targetAudio: 1
 --- !u!1 &2000278449 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7291b71e9b2ccf6438206b7108740696, type: 3}
@@ -89475,6 +89516,7 @@ GameObject:
   - component: {fileID: 2111660677}
   - component: {fileID: 2111660679}
   - component: {fileID: 2111660678}
+  - component: {fileID: 2111660680}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -89543,6 +89585,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111660676}
   m_CullTransparentMesh: 1
+--- !u!114 &2111660680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111660676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e49cd5e8b6be049abbcb8ed9d69f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIAudioInyectora
 --- !u!1001 &2113031990
 PrefabInstance:
   m_ObjectHideFlags: 0

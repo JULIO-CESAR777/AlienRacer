@@ -17,7 +17,7 @@ public class KartObstaculosIA : MonoBehaviour
     public float fuerzaGravedadExtra = 20f;
 
     [Header("Competitividad (Overtake & Boost)")]
-    public float tiempoEsperaSalida = 3f;
+    // Se eliminó tiempoEsperaSalida porque ahora se rige por el GameState
     public float boostRecta = 1.2f;
     public float boostRebufo = 1.35f;
     public float distanciaRebufo = 20f;
@@ -52,6 +52,11 @@ public class KartObstaculosIA : MonoBehaviour
     private Rigidbody rb;
     private MainManager manager;
 
+    // Variables nuevas para congelar el kart en la Pausa/Cuenta regresiva
+    private bool isFrozen = false;
+    private Vector3 savedVelocity;
+    private Vector3 savedAngularVelocity;
+
     [Header("Efectos de Sonido")]
     public AudioClip sonidoChoqueMuro;
     public AudioClip sonidoReversa;
@@ -64,27 +69,40 @@ public class KartObstaculosIA : MonoBehaviour
         adnVelocidad = Random.Range(0.98f, 1.05f);
         adnAceleracion = Random.Range(0.95f, 1.08f);
         direccionRebase = Random.value > 0.5f ? 1f : -1f;
-        
+
         manager = MainManager.GetInstance();
     }
 
     void FixedUpdate()
     {
-        
-        // Pausa
-        if (manager.gameState == GameState.Pause)
+        // SISTEMA DE PAUSA Y CONTEO MEJORADO
+        // Si el juego NO está en estado Play (es decir, está en Pausa, Conteo inicial, etc.)
+        if (manager.gameState != GameState.Play)
         {
-            return;
+            if (!isFrozen)
+            {
+                // Guardamos la velocidad y congelamos las físicas
+                savedVelocity = rb.linearVelocity;
+                savedAngularVelocity = rb.angularVelocity;
+                rb.isKinematic = true;
+                isFrozen = true;
+            }
+            return; // Detiene la ejecución para que la IA no piense ni se mueva
         }
-        
-        if (waypoints.Length == 0) return;
+        else
+        {
+            // Cuando volvemos a Play (termina pausa o arranca la carrera)
+            if (isFrozen)
+            {
+                // Descongelamos y devolvemos la inercia que tenía
+                rb.isKinematic = false;
+                rb.linearVelocity = savedVelocity;
+                rb.angularVelocity = savedAngularVelocity;
+                isFrozen = false;
+            }
+        }
 
-        if (tiempoEsperaSalida > 0)
-        {
-            tiempoEsperaSalida -= Time.fixedDeltaTime;
-            rb.linearVelocity = Vector3.zero;
-            return;
-        }
+        if (waypoints.Length == 0) return;
 
         ActualizarTimersPowerUps();
 
