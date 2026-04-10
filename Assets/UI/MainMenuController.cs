@@ -206,9 +206,7 @@ public class MainMenuController : MonoBehaviour
             }
         }
         MenuInteractable(true);
-        print("dude?");
         if (pastMenu != menusIndex) {
-            print("se cambio");
             currentMenuIndex = 0;
         }
 
