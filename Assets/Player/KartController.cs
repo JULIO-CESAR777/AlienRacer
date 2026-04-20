@@ -776,4 +776,14 @@ public class KartController : MonoBehaviour
     {
         steeringMultiplier = Mathf.Clamp(multiplier, 0.1f, 2f);
     }
+    
+    public void SetJumpForce(float newJumpForce)
+    {
+        jumpPower = newJumpForce;
+    }
+
+    public float GetJumpForce()
+    {
+        return jumpPower;
+    }
 }

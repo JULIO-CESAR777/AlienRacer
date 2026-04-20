@@ -27,6 +27,13 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private float boostTimer = 0f;
     [SerializeField] private float boostMultiplier = 1f;
 
+    [Header("Jump")]
+    [SerializeField] private bool hasJump = false;
+    [SerializeField] private float boostedJumpForce = 15f; // la fuerza temporal que quieres
+    [SerializeField] private float jumpTimer = 0f;
+
+    private float originalJumpForce;
+
     [Header("Spawn Points")]
     public Transform behindSpawnPoint;
     public Transform shootPoint;
@@ -35,6 +42,9 @@ public class KartPowerUpController : MonoBehaviour
     void Awake()
     {
         kart = GetComponent<KartController>();
+
+        // Guardamos la fuerza original del salto del kart
+        originalJumpForce = kart.GetJumpForce();
     }
 
     void Update()
@@ -45,6 +55,7 @@ public class KartPowerUpController : MonoBehaviour
         TickStar();
         TickBoost();
         TickStun();
+        TickJump();
     }
 
     public void ActivateShield(float duration)
@@ -72,6 +83,16 @@ public class KartPowerUpController : MonoBehaviour
         kart.SetSpeedMultiplier(boostMultiplier);
     }
 
+    // Aquí aplicas la nueva fuerza de salto por X segundos
+    public void ApplyJump(float newJumpForce, float duration)
+    {
+        hasJump = true;
+        boostedJumpForce = newJumpForce;
+        jumpTimer = Mathf.Max(jumpTimer, duration);
+
+        kart.SetJumpForce(boostedJumpForce);
+    }
+
     public void Stun(float seconds, bool refresh = true)
     {
         if (seconds <= 0f) return;
@@ -96,6 +117,7 @@ public class KartPowerUpController : MonoBehaviour
     public bool HasShield() => hasShield;
     public bool HasStar() => hasStar;
     public bool HasBoost() => hasBoost;
+    public bool HasJump() => hasJump;
 
     public void OnKartCollision(Collision collision)
     {
@@ -178,6 +200,21 @@ public class KartPowerUpController : MonoBehaviour
 
             kart.SetControlEnabled(true);
             kart.SetDriftAllowed(true);
+        }
+    }
+
+    private void TickJump()
+    {
+        if (!hasJump) return;
+
+        jumpTimer -= Time.deltaTime;
+        if (jumpTimer <= 0f)
+        {
+            hasJump = false;
+            jumpTimer = 0f;
+
+            // Regresa la fuerza normal al terminar los 6 segundos
+            kart.SetJumpForce(originalJumpForce);
         }
     }
 }

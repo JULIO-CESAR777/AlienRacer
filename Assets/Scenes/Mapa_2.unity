@@ -9222,6 +9222,10 @@ PrefabInstance:
       propertyPath: rouletteUI
       value: 
       objectReference: {fileID: 278534988}
+    - target: {fileID: 1245772660634406264, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: usePositionWeights
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2791431396340173202, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_Name
       value: Player_v2
@@ -9233,7 +9237,7 @@ PrefabInstance:
     - target: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: synergyManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 187086603}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8157231086071131134, guid: bd89c28110890134e83c51f2915baffb, type: 3}
