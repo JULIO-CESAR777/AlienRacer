@@ -63,6 +63,13 @@ public class KartController : MonoBehaviour
 
     [Header("Bump Settings")]
     public float bumpDuration = 0.2f;
+    
+    [Header("Collision Bounce")]
+    [SerializeField] private float wallBounceForce = 6f;
+    [SerializeField] private float wallBounceUpForce = 0.5f;
+    [SerializeField] private float minImpactSpeedForBounce = 2f;
+    [SerializeField] private float wallStickPreventionForce = 8f;
+    [SerializeField] private float botBounceForce = 3f;
 
     private float bumpTimer = 0f;
     private float bumpSpeed = 0f;
@@ -121,6 +128,7 @@ public class KartController : MonoBehaviour
         {
             rb.isKinematic = false;
             currentSpeed = savedSpeed;
+            jumpBlockTimer = jumpBlockAfterResume;
         }
     }
 
@@ -165,8 +173,22 @@ public class KartController : MonoBehaviour
 
     private float accelerate;
     private float brake;
+
+    [Header("To Ground")]
+    public float timerToGround;
+    private float timer;
+    
+    [Header("Pause Input Buffer")]
+    [SerializeField] private float jumpBlockAfterResume = 0.2f;
+    private float jumpBlockTimer = 0f;
+    
     void Update()
     {
+        
+        if (jumpBlockTimer > 0f)
+        {
+            jumpBlockTimer -= Time.deltaTime;
+        }
 
         if (input.IsButtonDown(BUTTONS.START) && !gm.countDownActive)
         {
@@ -183,6 +205,20 @@ public class KartController : MonoBehaviour
         }
 
         if (isPaused) return;
+
+        if (isGrounded)
+        {
+            timer = 0;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer >= timerToGround)
+            {
+                print("volando");
+                return;
+            }
+        }
 
         moveInput = 0f;
         turnInput = 0f;
@@ -239,7 +275,7 @@ public class KartController : MonoBehaviour
             driftDirection = 0;
         }
 
-        if (controlEnabled && input.IsButtonDown(BUTTONS.B) && !isDrifting)
+        if (controlEnabled && jumpBlockTimer <= 0f && input.IsButtonDown(BUTTONS.B) && !isDrifting)
         {
             HandleJump();
         }
@@ -395,6 +431,7 @@ public class KartController : MonoBehaviour
 
         float steeringInput = turnInput;
 
+        // Si está drifteando, usa la dirección bloqueada del drift
         if (isDrifting)
             steeringInput = driftDirection;
 
@@ -412,8 +449,12 @@ public class KartController : MonoBehaviour
         if (isDrifting)
             dynamicTurnSpeed *= driftTurnMultiplier;
 
-        if (currentSpeed < 0)
+        // En reversa, invertir la dirección del giro
+        if (currentSpeed < 0f && !isDrifting)
+        {
+            steeringInput *= -1f;
             dynamicTurnSpeed *= reverseTurnMultiplier;
+        }
 
         float rotationAmount = steeringInput * dynamicTurnSpeed * Time.fixedDeltaTime;
 
@@ -434,7 +475,6 @@ public class KartController : MonoBehaviour
             rb.linearVelocity -= sidewaysVelocity * driftGrip;
         }
     }
-
 
     void HandleDriftVisual()
     {
@@ -580,7 +620,8 @@ public class KartController : MonoBehaviour
         uiManager.UpdateCoinText(coins.ToString());
 
     }
-
+    
+    
     void OnCollisionEnter(Collision collision)
     {
         bool isWall = collision.gameObject.layer == LayerMask.NameToLayer("Wall");
@@ -588,93 +629,124 @@ public class KartController : MonoBehaviour
 
         if (!isWall && !isBot) return;
 
-        print("choco");
-
-        // Forward a PowerUps (Star stun, etc.)
         if (powerUps != null)
             powerUps.OnKartCollision(collision);
 
-        // Bump base (PowerUps puede pedir que se ignore)
         if (powerUps != null && powerUps.IgnoreBumpThisFrame)
             return;
 
-        if (collision.contacts.Length == 0) return;
+        if (collision.contactCount == 0) return;
 
-        ContactPoint contact = collision.contacts[0];
+        ContactPoint contact = collision.GetContact(0);
         Vector3 normal = contact.normal;
 
+        // Ignorar suelo/techo
         if (Mathf.Abs(normal.y) > 0.7f) return;
 
-        normal.y = 0f;
-        normal.Normalize();
+        // Solo normal horizontal
+        Vector3 flatNormal = normal;
+        flatNormal.y = 0f;
+
+        if (flatNormal.sqrMagnitude < 0.001f) return;
+        flatNormal.Normalize();
 
         Vector3 forward = transform.forward;
         forward.y = 0f;
         forward.Normalize();
 
-        float impactDot = Vector3.Dot(forward, -normal);
+        // Qué tan frontal fue el choque
+        float impactDot = Vector3.Dot(forward, -flatNormal);
 
-        if (impactDot > 0.2f)
+        // Solo reaccionar a choques medio frontales
+        if (impactDot <= 0.15f) return;
+
+        // Guardar velocidad previa
+        float impactSpeed = Mathf.Abs(currentSpeed);
+
+        // 1. Quitar componente de velocidad hacia la pared
+        Vector3 velocity = rb.linearVelocity;
+        Vector3 velocityIntoWall = Vector3.Project(velocity, -flatNormal);
+        velocity -= velocityIntoWall;
+
+        // 2. Evitar que trepe la pared
+        if (velocity.y > 0f)
+            velocity.y = 0f;
+
+        rb.linearVelocity = velocity;
+        rb.angularVelocity = Vector3.zero;
+
+        // 3. Dirección de rebote: alejarse de la pared
+        Vector3 bounceDirection = flatNormal;
+
+        // 4. Si fue pared
+        if (isWall)
         {
-            Vector3 velocity = rb.linearVelocity;
-            Vector3 pushDir = Vector3.Project(velocity, -normal);
-            velocity -= pushDir;
-            velocity.y = 0f; // Magia anti-rampa inicial
-            rb.linearVelocity = velocity;
-            rb.angularVelocity = Vector3.zero;
-
-            float impactoVelocidad = currentSpeed;
-
-            if (isWall)
+            if (impactSpeed >= minImpactSpeedForBounce)
             {
-                currentSpeed = 0f;
-                isBumping = true;
-                bumpTimer = bumpDuration * 0.5f;
-                bumpSpeed = -Mathf.Abs(impactoVelocidad) * 0.1f;
+                // Empujón instantáneo lejos de la pared
+                rb.AddForce(
+                    bounceDirection * wallBounceForce + Vector3.up * wallBounceUpForce,
+                    ForceMode.VelocityChange
+                );
             }
-            else if (isBot)
-            {
-                // Solo perdemos un poco de velocidad al impactar inicialmente
-                currentSpeed *= 0.5f;
-            }
+
+            // Retroceso controlado estilo kart
+            currentSpeed = 0f;
+            isBumping = true;
+            bumpTimer = bumpDuration;
+            bumpSpeed = -Mathf.Clamp(impactSpeed * 0.35f, 1.5f, maxReverseSpeed * 0.5f);
+        }
+        // 5. Si fue bot
+        else if (isBot)
+        {
+            currentSpeed *= 0.6f;
+
+            rb.AddForce(
+                bounceDirection * botBounceForce,
+                ForceMode.VelocityChange
+            );
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (isBumping) return;
+        bool isWall = collision.gameObject.layer == LayerMask.NameToLayer("Wall");
+        if (!isWall) return;
 
-        if (collision.gameObject.CompareTag("Bot"))
+        if (collision.contactCount == 0) return;
+
+        ContactPoint contact = collision.GetContact(0);
+        Vector3 normal = contact.normal;
+
+        if (Mathf.Abs(normal.y) > 0.7f) return;
+
+        Vector3 flatNormal = normal;
+        flatNormal.y = 0f;
+
+        if (flatNormal.sqrMagnitude < 0.001f) return;
+        flatNormal.Normalize();
+
+        Vector3 forward = transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        float pushingIntoWall = Vector3.Dot(forward, -flatNormal);
+
+        // Si el jugador sigue acelerando hacia la pared
+        if (moveInput > 0.1f && pushingIntoWall > 0.2f)
         {
-            if (collision.contacts.Length == 0) return;
+            // Empuje continuo para despegarlo un poco
+            rb.AddForce(flatNormal * wallStickPreventionForce, ForceMode.Acceleration);
 
-            Vector3 normal = collision.contacts[0].normal;
-            if (Mathf.Abs(normal.y) > 0.7f) return; // Ignorar si ya estamos de alguna forma arriba
+            // Cancelar componente de velocidad contra la pared
+            Vector3 velocity = rb.linearVelocity;
+            Vector3 intoWall = Vector3.Project(velocity, -flatNormal);
+            rb.linearVelocity = velocity - intoWall;
 
-            Vector3 forward = transform.forward;
-            forward.y = 0f;
-            forward.Normalize();
-
-            float impactDot = Vector3.Dot(forward, -normal);
-
-            // Si estamos empujando hacia adelante contra el bot
-            if (impactDot > 0.2f)
+            // Evitar subir la pared
+            if (rb.linearVelocity.y > 0f)
             {
-                Rigidbody colRb = collision.gameObject.GetComponent<Rigidbody>();
-
-                // Si el bot va muy lento (apagado o esperando la salida)
-                if (colRb != null && colRb.linearVelocity.magnitude < 2f)
-                {
-                    empujandoKartMuerto = true;
-
-                    // Matamos el eje Y agresivamente para que las llantas no intenten trepar
-                    Vector3 velSegura = rb.linearVelocity;
-                    if (velSegura.y > 0.1f)
-                    {
-                        velSegura.y = 0f;
-                        rb.linearVelocity = velSegura;
-                    }
-                }
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             }
         }
     }

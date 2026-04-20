@@ -241,7 +241,11 @@ public class MainMenuController : MonoBehaviour
             }
             case 2:
             {
+                
                 // Que te lleve a los controles
+                // De momento se volvio el boton de QUIT
+                print("Se quita el juego");
+                Application.Quit();
                 break;
             }
             case 3:

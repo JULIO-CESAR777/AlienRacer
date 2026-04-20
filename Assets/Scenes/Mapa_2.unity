@@ -9174,6 +9174,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 584868141310263193, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: timerToGround
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -78.8576
