@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -26,6 +27,38 @@ public class KartController : MonoBehaviour
     private Quaternion initialRotFR;
 
     private float currentWheelSteer;
+    
+    
+    [Header("Visual Suspension")]
+    [SerializeField] private Transform suspensionFrontLeft;
+    [SerializeField] private Transform suspensionFrontRight;
+    [SerializeField] private Transform suspensionBackLeft;
+    [SerializeField] private Transform suspensionBackRight;
+
+    [SerializeField] private Transform wheelVisualFrontLeft;
+    [SerializeField] private Transform wheelVisualFrontRight;
+    [SerializeField] private Transform wheelVisualBackLeft;
+    [SerializeField] private Transform wheelVisualBackRight;
+
+    [SerializeField] private float suspensionRayStartHeight = 0.8f;
+    [SerializeField] private float suspensionRayLength = 1.6f;
+    [SerializeField] private float wheelRadius = 0.28f;
+    [SerializeField] private float wheelFollowSmooth = 12f;
+    [SerializeField] private float bodyTiltSmooth = 5f;
+    [SerializeField] private float maxBodyTilt = 12f;
+    [SerializeField] private LayerMask suspensionGroundMask;
+    
+    private Quaternion modelBaseRotation;
+
+    private Vector3 flGround;
+    private Vector3 frGround;
+    private Vector3 blGround;
+    private Vector3 brGround;
+
+    private bool flGrounded;
+    private bool frGrounded;
+    private bool blGrounded;
+    private bool brGrounded;
 
     [Header("Particles")]
     public GameObject[] particlesDrift;
@@ -168,6 +201,9 @@ public class KartController : MonoBehaviour
 
         if (frontRightWheel != null)
             initialRotFR = frontRightWheel.localRotation;
+        
+        if (visualModel != null)
+            modelBaseRotation = visualModel.localRotation;
 
     }
 
@@ -373,6 +409,11 @@ public class KartController : MonoBehaviour
         empujandoKartMuerto = false;
     }
 
+    private void LateUpdate()
+    {
+        HandleVisualSuspension();
+    }
+
     void HandleMovement()
     {
         // acelera / frena
@@ -499,11 +540,129 @@ public class KartController : MonoBehaviour
             currentYaw = Mathf.Lerp(currentYaw, 0f, Time.deltaTime * driftVisualSpeed);
             currentRoll = Mathf.Lerp(currentRoll, 0f, Time.deltaTime * driftVisualSpeed);
         }
-
-        if (visualModel != null)
-            visualModel.localRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
     }
 
+    void HandleVisualSuspension()
+    {
+        flGrounded = GetSuspensionGround(suspensionFrontLeft, ref flGround);
+        frGrounded = GetSuspensionGround(suspensionFrontRight, ref frGround);
+        blGrounded = GetSuspensionGround(suspensionBackLeft, ref blGround);
+        brGrounded = GetSuspensionGround(suspensionBackRight, ref brGround);
+
+        MoveWheelToGround(wheelVisualFrontLeft, suspensionFrontLeft, flGround, flGrounded);
+        MoveWheelToGround(wheelVisualFrontRight, suspensionFrontRight, frGround, frGrounded);
+        MoveWheelToGround(wheelVisualBackLeft, suspensionBackLeft, blGround, blGrounded);
+        MoveWheelToGround(wheelVisualBackRight, suspensionBackRight, brGround, brGrounded);
+
+        HandleBodyVisualTilt();
+    }
+    
+    bool GetSuspensionGround(Transform suspensionPoint, ref Vector3 smoothedPoint)
+    {
+        if (suspensionPoint == null) return false;
+
+        Vector3 origin = suspensionPoint.position + Vector3.up * suspensionRayStartHeight;
+
+        if (Physics.Raycast(
+                origin,
+                Vector3.down,
+                out RaycastHit hit,
+                suspensionRayLength,
+                suspensionGroundMask,
+                QueryTriggerInteraction.Ignore))
+        {
+            smoothedPoint = Vector3.Lerp(
+                smoothedPoint == Vector3.zero ? hit.point : smoothedPoint,
+                hit.point,
+                1f - Mathf.Exp(-wheelFollowSmooth * Time.deltaTime)
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+    
+    void HandleBodyVisualTilt()
+    {
+        if (visualModel == null) return;
+
+        Quaternion groundTiltRotation = modelBaseRotation;
+
+        if (flGrounded && frGrounded && blGrounded && brGrounded)
+        {
+            Vector3 leftMid = (flGround + blGround) * 0.5f;
+            Vector3 rightMid = (frGround + brGround) * 0.5f;
+            Vector3 frontMid = (flGround + frGround) * 0.5f;
+            Vector3 backMid = (blGround + brGround) * 0.5f;
+
+            Vector3 rightDir = (rightMid - leftMid).normalized;
+            Vector3 forwardDir = (frontMid - backMid).normalized;
+
+            Vector3 normal = Vector3.Cross(forwardDir, rightDir).normalized;
+
+            if (normal.y < 0f)
+                normal = -normal;
+
+            Quaternion targetWorldRotation = Quaternion.LookRotation(
+                Vector3.ProjectOnPlane(transform.forward, normal).normalized,
+                normal
+            );
+
+            Quaternion targetLocalRotation = Quaternion.Inverse(transform.rotation) * targetWorldRotation;
+
+            Vector3 euler = targetLocalRotation.eulerAngles;
+
+            float x = NormalizeAngle(euler.x);
+            float z = NormalizeAngle(euler.z);
+
+            x = Mathf.Clamp(x, -maxBodyTilt, maxBodyTilt);
+            z = Mathf.Clamp(z, -maxBodyTilt, maxBodyTilt);
+
+            groundTiltRotation = Quaternion.Euler(x, 0f, z) * modelBaseRotation;
+        }
+
+        Quaternion driftRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
+
+        Quaternion finalRotation = groundTiltRotation * driftRotation;
+
+        visualModel.localRotation = Quaternion.Slerp(
+            visualModel.localRotation,
+            finalRotation,
+            1f - Mathf.Exp(-bodyTiltSmooth * Time.deltaTime)
+        );
+    }
+    
+    void MoveWheelToGround(Transform wheel, Transform suspensionPoint, Vector3 groundPoint, bool grounded)
+    {
+        if (wheel == null || suspensionPoint == null) return;
+
+        Vector3 targetWorldPos;
+
+        if (grounded)
+        {
+            targetWorldPos = groundPoint + Vector3.up * wheelRadius;
+        }
+        else
+        {
+            targetWorldPos = suspensionPoint.position;
+        }
+
+        wheel.position = Vector3.Lerp(
+            wheel.position,
+            targetWorldPos,
+            1f - Mathf.Exp(-wheelFollowSmooth * Time.deltaTime)
+        );
+    }
+
+    float NormalizeAngle(float angle)
+    {
+        if (angle > 180f)
+            angle -= 360f;
+
+        return angle;
+    }
+    
     void HandleJump()
     {
         if (!isGrounded) return;
