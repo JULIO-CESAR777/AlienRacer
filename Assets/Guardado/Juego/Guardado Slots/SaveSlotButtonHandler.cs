@@ -32,6 +32,12 @@ public class SaveSlotButtonHandler : MonoBehaviour
 
     public void DeleteSlot(int slotIndex)
     {
+        if (!SlotSaveSystem.SlotHasData(slotIndex))
+        {
+            Debug.Log("Este slot está vacío, no se puede borrar.");
+            return;
+        }
+
         SlotSaveSystem.DeleteSlot(slotIndex);
     }
 }

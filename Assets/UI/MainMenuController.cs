@@ -64,39 +64,37 @@ public class MainMenuController : MonoBehaviour
 
     private void HandleVerticalNavigation()
     {
-        // Sube
-        if (input.GetAXis(AXIS.LEFT_STICK_VERTICAL) > 0 && canMove)
+        float vertical = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+
+        if (vertical > 0 && canMove)
         {
             canMove = false;
-            currentMenuIndex--;
-            if (currentMenuIndex < 0)
-            {
-                currentMenuIndex = currentMenu.Length - 1;
-            }
+            MoveSelection(-1);
         }
-        // Baja
-        else if (input.GetAXis(AXIS.LEFT_STICK_VERTICAL) < 0 && canMove)
+        else if (vertical < 0 && canMove)
         {
             canMove = false;
-            currentMenuIndex++;
-            if (currentMenuIndex > currentMenu.Length - 1)
-            {
-                currentMenuIndex = 0;
-            }
-            
-        }else if (input.GetAXis(AXIS.LEFT_STICK_VERTICAL) == 0)
+            MoveSelection(1);
+        }
+        else if (vertical == 0)
         {
             canMove = true;
         }
-        
+
         SelectCurrentOption();
     }
     
     private void HandleSubmit()
     {
         if (!input.IsButtonDown(BUTTONS.B)) return;
+
         Selectable current = currentMenu[currentMenuIndex];
-        
+
+        if (current == null || !current.interactable)
+        {
+            return;
+        }
+
         MenusActions(menusIndex);
     }
 
@@ -162,16 +160,27 @@ public class MainMenuController : MonoBehaviour
 
     private void SelectCurrentOption()
     {
-        if (currentMenu[currentMenuIndex] == null) return;
+        if (currentMenu == null || currentMenu.Length == 0) return;
+
+        if (!IsValidSelectableIndex(currentMenuIndex))
+        {
+            currentMenuIndex = GetFirstValidSelectableIndex();
+        }
+
+        if (currentMenuIndex == -1) return;
+
         currentMenu[currentMenuIndex].Select();
     }
 
+  
     public int pastMenu;
+
     public void MenusActions(int index)
     {
-
         pastMenu = menusIndex;
+
         MenuInteractable(false);
+
         switch (index)
         {
             case 0:
@@ -191,7 +200,6 @@ public class MainMenuController : MonoBehaviour
             }
             case 3:
             {
-
                 break;
             }
             case 4:
@@ -205,9 +213,24 @@ public class MainMenuController : MonoBehaviour
                 break;
             }
         }
+
         MenuInteractable(true);
-        if (pastMenu != menusIndex) {
+
+        if (pastMenu != menusIndex)
+        {
             currentMenuIndex = 0;
+        }
+
+        //ESTO COMPRUEBA EL MENU DE LOS BOTONES DE BORRAR, SI CAMBIAMOS SU INDEX SE CAMBIA ESTO
+        
+        if (menusIndex == 5)
+        {
+            RefreshDeleteSlotsMenu();
+
+            if (!IsValidSelectableIndex(currentMenuIndex))
+            {
+                currentMenuIndex = GetFirstValidSelectableIndex();
+            }
         }
 
         SelectCurrentOption();
@@ -327,27 +350,30 @@ public class MainMenuController : MonoBehaviour
         switch (currentMenuIndex)
         {
             case 0:
-                {
-                    saveSlot.DeleteSlot(0);
-                    break;
-                }
+            {
+                saveSlot.DeleteSlot(0);
+                RefreshDeleteSlotsMenu();
+                break;
+            }
             case 1:
-                {
-                    saveSlot.DeleteSlot(1);
-                    break;
-                }
+            {
+                saveSlot.DeleteSlot(1);
+                RefreshDeleteSlotsMenu();
+                break;
+            }
             case 2:
-                {
-                    saveSlot.DeleteSlot(2);
-                    break;
-                }
+            {
+                saveSlot.DeleteSlot(2);
+                RefreshDeleteSlotsMenu();
+                break;
+            }
             case 3:
-                {
-                    playAnims.CerrarMenuBorrado();
-                    currentMenu = slotsMenu;
-                    menusIndex = 4;
-                    break;
-                }
+            {
+                playAnims.CerrarMenuBorrado();
+                currentMenu = slotsMenu;
+                menusIndex = 4;
+                break;
+            }
         }
     }
 
@@ -365,4 +391,78 @@ public class MainMenuController : MonoBehaviour
         }
     }
     
+    //JULIO
+    
+    
+    private void MoveSelection(int direction)
+    {
+        if (currentMenu == null || currentMenu.Length == 0) return;
+
+        int attempts = 0;
+
+        do
+        {
+            currentMenuIndex += direction;
+
+            if (currentMenuIndex < 0)
+            {
+                currentMenuIndex = currentMenu.Length - 1;
+            }
+            else if (currentMenuIndex >= currentMenu.Length)
+            {
+                currentMenuIndex = 0;
+            }
+
+            attempts++;
+
+            if (IsValidSelectableIndex(currentMenuIndex))
+            {
+                return;
+            }
+
+        } while (attempts < currentMenu.Length);
+    }
+
+    private bool IsValidSelectableIndex(int index)
+    {
+        if (currentMenu == null) return false;
+        if (index < 0 || index >= currentMenu.Length) return false;
+        if (currentMenu[index] == null) return false;
+
+        return currentMenu[index].interactable;
+    }
+
+    private int GetFirstValidSelectableIndex()
+    {
+        if (currentMenu == null) return -1;
+
+        for (int i = 0; i < currentMenu.Length; i++)
+        {
+            if (IsValidSelectableIndex(i))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private void RefreshDeleteSlotsMenu()
+    {
+        if (slotsBorrarMenu == null) return;
+
+        for (int i = 0; i < slotsBorrarMenu.Length; i++)
+        {
+            if (slotsBorrarMenu[i] == null) continue;
+
+            if (i >= 0 && i <= 2)
+            {
+                slotsBorrarMenu[i].interactable = SlotSaveSystem.SlotHasData(i);
+            }
+            else
+            {
+                slotsBorrarMenu[i].interactable = true;
+            }
+        }
+    }
 }
