@@ -61,6 +61,11 @@ public class KartObstaculosIA : MonoBehaviour
     public AudioClip sonidoChoqueMuro;
     public AudioClip sonidoReversa;
     public AudioClip sonidoDerrape;
+    
+    //COSAS JULIO PARA RALENTIZADO
+    
+    private float tiempoRalentizado = 0f;
+    private float multiplicadorRalentizacion = 1f;
 
     void Start()
     {
@@ -126,6 +131,18 @@ public class KartObstaculosIA : MonoBehaviour
         if (tiempoStun > 0) tiempoStun -= Time.fixedDeltaTime;
         if (tiempoBoost > 0) tiempoBoost -= Time.fixedDeltaTime;
         if (tiempoEscudo > 0) tiempoEscudo -= Time.fixedDeltaTime;
+
+        
+        //cosas julio
+        if (tiempoRalentizado > 0)
+        {
+            tiempoRalentizado -= Time.fixedDeltaTime;
+
+            if (tiempoRalentizado <= 0)
+            {
+                multiplicadorRalentizacion = 1f;
+            }
+        }
     }
 
     void ProcesarStun()
@@ -256,6 +273,11 @@ public class KartObstaculosIA : MonoBehaviour
             velocidadObjetivo *= multiplicadorBoostActual;
         }
 
+        if (tiempoRalentizado > 0)
+        {
+            velocidadObjetivo *= multiplicadorRalentizacion;
+        }
+
         float aceleracionFinal = tiempoBoost > 0 ? aceleracion * 1.5f : aceleracion;
         velocidadActual = Mathf.Lerp(velocidadActual, velocidadObjetivo, (aceleracionFinal * adnAceleracion) * Time.fixedDeltaTime);
 
@@ -361,5 +383,20 @@ public class KartObstaculosIA : MonoBehaviour
     public void AplicarEscudo(float duracion)
     {
         tiempoEscudo = duracion;
+    }
+    
+    public void AplicarRalentizacion(float duracion, float multiplicador)
+    {
+        if (tiempoEscudo > 0)
+        {
+            tiempoEscudo = 0f;
+            return;
+        }
+
+        tiempoRalentizado = duracion;
+        multiplicadorRalentizacion = multiplicador;
+
+        // Opcional: corta un poco la velocidad actual para que se sienta inmediato
+        velocidadActual *= multiplicador;
     }
 }

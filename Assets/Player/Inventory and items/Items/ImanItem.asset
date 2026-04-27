@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c9e3f120acf4b48b9dce0c6862bf6a, type: 3}
+  m_Name: ImanItem
+  m_EditorClassIdentifier: Assembly-CSharp::ImanTiem
+  itemName: ImanPro
+  icon: {fileID: 21300006, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  distanciaRayo: 35
+  duracionRalentizacion: 3
+  multiplicadorRalentizacion: 0.45
+  colorRayo: {r: 0, g: 1, b: 1, a: 1}
+  anchoRayo: 0.18
+  tiempoVisible: 0.18

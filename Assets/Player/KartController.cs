@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -26,6 +27,38 @@ public class KartController : MonoBehaviour
     private Quaternion initialRotFR;
 
     private float currentWheelSteer;
+    
+    
+    [Header("Visual Suspension")]
+    [SerializeField] private Transform suspensionFrontLeft;
+    [SerializeField] private Transform suspensionFrontRight;
+    [SerializeField] private Transform suspensionBackLeft;
+    [SerializeField] private Transform suspensionBackRight;
+
+    [SerializeField] private Transform wheelVisualFrontLeft;
+    [SerializeField] private Transform wheelVisualFrontRight;
+    [SerializeField] private Transform wheelVisualBackLeft;
+    [SerializeField] private Transform wheelVisualBackRight;
+
+    [SerializeField] private float suspensionRayStartHeight = 0.8f;
+    [SerializeField] private float suspensionRayLength = 1.6f;
+    [SerializeField] private float wheelRadius = 0.28f;
+    [SerializeField] private float wheelFollowSmooth = 12f;
+    [SerializeField] private float bodyTiltSmooth = 5f;
+    [SerializeField] private float maxBodyTilt = 12f;
+    [SerializeField] private LayerMask suspensionGroundMask;
+    
+    private Quaternion modelBaseRotation;
+
+    private Vector3 flGround;
+    private Vector3 frGround;
+    private Vector3 blGround;
+    private Vector3 brGround;
+
+    private bool flGrounded;
+    private bool frGrounded;
+    private bool blGrounded;
+    private bool brGrounded;
 
     [Header("Particles")]
     public GameObject[] particlesDrift;
@@ -63,6 +96,13 @@ public class KartController : MonoBehaviour
 
     [Header("Bump Settings")]
     public float bumpDuration = 0.2f;
+    
+    [Header("Collision Bounce")]
+    [SerializeField] private float wallBounceForce = 6f;
+    [SerializeField] private float wallBounceUpForce = 0.5f;
+    [SerializeField] private float minImpactSpeedForBounce = 2f;
+    [SerializeField] private float wallStickPreventionForce = 8f;
+    [SerializeField] private float botBounceForce = 3f;
 
     private float bumpTimer = 0f;
     private float bumpSpeed = 0f;
@@ -121,6 +161,7 @@ public class KartController : MonoBehaviour
         {
             rb.isKinematic = false;
             currentSpeed = savedSpeed;
+            jumpBlockTimer = jumpBlockAfterResume;
         }
     }
 
@@ -160,13 +201,30 @@ public class KartController : MonoBehaviour
 
         if (frontRightWheel != null)
             initialRotFR = frontRightWheel.localRotation;
+        
+        if (visualModel != null)
+            modelBaseRotation = visualModel.localRotation;
 
     }
 
     private float accelerate;
     private float brake;
+
+    [Header("To Ground")]
+    public float timerToGround;
+    private float timer;
+    
+    [Header("Pause Input Buffer")]
+    [SerializeField] private float jumpBlockAfterResume = 0.2f;
+    private float jumpBlockTimer = 0f;
+    
     void Update()
     {
+        
+        if (jumpBlockTimer > 0f)
+        {
+            jumpBlockTimer -= Time.deltaTime;
+        }
 
         if (input.IsButtonDown(BUTTONS.START) && !gm.countDownActive)
         {
@@ -183,6 +241,20 @@ public class KartController : MonoBehaviour
         }
 
         if (isPaused) return;
+
+        if (isGrounded)
+        {
+            timer = 0;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer >= timerToGround)
+            {
+                print("volando");
+                return;
+            }
+        }
 
         moveInput = 0f;
         turnInput = 0f;
@@ -239,7 +311,7 @@ public class KartController : MonoBehaviour
             driftDirection = 0;
         }
 
-        if (controlEnabled && input.IsButtonDown(BUTTONS.B) && !isDrifting)
+        if (controlEnabled && jumpBlockTimer <= 0f && input.IsButtonDown(BUTTONS.B) && !isDrifting)
         {
             HandleJump();
         }
@@ -337,6 +409,11 @@ public class KartController : MonoBehaviour
         empujandoKartMuerto = false;
     }
 
+    private void LateUpdate()
+    {
+        HandleVisualSuspension();
+    }
+
     void HandleMovement()
     {
         // acelera / frena
@@ -395,6 +472,7 @@ public class KartController : MonoBehaviour
 
         float steeringInput = turnInput;
 
+        // Si está drifteando, usa la dirección bloqueada del drift
         if (isDrifting)
             steeringInput = driftDirection;
 
@@ -412,8 +490,12 @@ public class KartController : MonoBehaviour
         if (isDrifting)
             dynamicTurnSpeed *= driftTurnMultiplier;
 
-        if (currentSpeed < 0)
+        // En reversa, invertir la dirección del giro
+        if (currentSpeed < 0f && !isDrifting)
+        {
+            steeringInput *= -1f;
             dynamicTurnSpeed *= reverseTurnMultiplier;
+        }
 
         float rotationAmount = steeringInput * dynamicTurnSpeed * Time.fixedDeltaTime;
 
@@ -434,7 +516,6 @@ public class KartController : MonoBehaviour
             rb.linearVelocity -= sidewaysVelocity * driftGrip;
         }
     }
-
 
     void HandleDriftVisual()
     {
@@ -459,11 +540,129 @@ public class KartController : MonoBehaviour
             currentYaw = Mathf.Lerp(currentYaw, 0f, Time.deltaTime * driftVisualSpeed);
             currentRoll = Mathf.Lerp(currentRoll, 0f, Time.deltaTime * driftVisualSpeed);
         }
-
-        if (visualModel != null)
-            visualModel.localRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
     }
 
+    void HandleVisualSuspension()
+    {
+        flGrounded = GetSuspensionGround(suspensionFrontLeft, ref flGround);
+        frGrounded = GetSuspensionGround(suspensionFrontRight, ref frGround);
+        blGrounded = GetSuspensionGround(suspensionBackLeft, ref blGround);
+        brGrounded = GetSuspensionGround(suspensionBackRight, ref brGround);
+
+        MoveWheelToGround(wheelVisualFrontLeft, suspensionFrontLeft, flGround, flGrounded);
+        MoveWheelToGround(wheelVisualFrontRight, suspensionFrontRight, frGround, frGrounded);
+        MoveWheelToGround(wheelVisualBackLeft, suspensionBackLeft, blGround, blGrounded);
+        MoveWheelToGround(wheelVisualBackRight, suspensionBackRight, brGround, brGrounded);
+
+        HandleBodyVisualTilt();
+    }
+    
+    bool GetSuspensionGround(Transform suspensionPoint, ref Vector3 smoothedPoint)
+    {
+        if (suspensionPoint == null) return false;
+
+        Vector3 origin = suspensionPoint.position + Vector3.up * suspensionRayStartHeight;
+
+        if (Physics.Raycast(
+                origin,
+                Vector3.down,
+                out RaycastHit hit,
+                suspensionRayLength,
+                suspensionGroundMask,
+                QueryTriggerInteraction.Ignore))
+        {
+            smoothedPoint = Vector3.Lerp(
+                smoothedPoint == Vector3.zero ? hit.point : smoothedPoint,
+                hit.point,
+                1f - Mathf.Exp(-wheelFollowSmooth * Time.deltaTime)
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+    
+    void HandleBodyVisualTilt()
+    {
+        if (visualModel == null) return;
+
+        Quaternion groundTiltRotation = modelBaseRotation;
+
+        if (flGrounded && frGrounded && blGrounded && brGrounded)
+        {
+            Vector3 leftMid = (flGround + blGround) * 0.5f;
+            Vector3 rightMid = (frGround + brGround) * 0.5f;
+            Vector3 frontMid = (flGround + frGround) * 0.5f;
+            Vector3 backMid = (blGround + brGround) * 0.5f;
+
+            Vector3 rightDir = (rightMid - leftMid).normalized;
+            Vector3 forwardDir = (frontMid - backMid).normalized;
+
+            Vector3 normal = Vector3.Cross(forwardDir, rightDir).normalized;
+
+            if (normal.y < 0f)
+                normal = -normal;
+
+            Quaternion targetWorldRotation = Quaternion.LookRotation(
+                Vector3.ProjectOnPlane(transform.forward, normal).normalized,
+                normal
+            );
+
+            Quaternion targetLocalRotation = Quaternion.Inverse(transform.rotation) * targetWorldRotation;
+
+            Vector3 euler = targetLocalRotation.eulerAngles;
+
+            float x = NormalizeAngle(euler.x);
+            float z = NormalizeAngle(euler.z);
+
+            x = Mathf.Clamp(x, -maxBodyTilt, maxBodyTilt);
+            z = Mathf.Clamp(z, -maxBodyTilt, maxBodyTilt);
+
+            groundTiltRotation = Quaternion.Euler(x, 0f, z) * modelBaseRotation;
+        }
+
+        Quaternion driftRotation = Quaternion.Euler(0f, currentYaw, currentRoll);
+
+        Quaternion finalRotation = groundTiltRotation * driftRotation;
+
+        visualModel.localRotation = Quaternion.Slerp(
+            visualModel.localRotation,
+            finalRotation,
+            1f - Mathf.Exp(-bodyTiltSmooth * Time.deltaTime)
+        );
+    }
+    
+    void MoveWheelToGround(Transform wheel, Transform suspensionPoint, Vector3 groundPoint, bool grounded)
+    {
+        if (wheel == null || suspensionPoint == null) return;
+
+        Vector3 targetWorldPos;
+
+        if (grounded)
+        {
+            targetWorldPos = groundPoint + Vector3.up * wheelRadius;
+        }
+        else
+        {
+            targetWorldPos = suspensionPoint.position;
+        }
+
+        wheel.position = Vector3.Lerp(
+            wheel.position,
+            targetWorldPos,
+            1f - Mathf.Exp(-wheelFollowSmooth * Time.deltaTime)
+        );
+    }
+
+    float NormalizeAngle(float angle)
+    {
+        if (angle > 180f)
+            angle -= 360f;
+
+        return angle;
+    }
+    
     void HandleJump()
     {
         if (!isGrounded) return;
@@ -580,101 +779,135 @@ public class KartController : MonoBehaviour
         uiManager.UpdateCoinText(coins.ToString());
 
     }
-
+    
+    
     void OnCollisionEnter(Collision collision)
     {
+        
+        Debug.Log("CHOCASTE CON: " + collision.gameObject.name);
         bool isWall = collision.gameObject.layer == LayerMask.NameToLayer("Wall");
         bool isBot = collision.gameObject.CompareTag("Bot");
 
         if (!isWall && !isBot) return;
 
-        print("choco");
-
-        // Forward a PowerUps (Star stun, etc.)
         if (powerUps != null)
             powerUps.OnKartCollision(collision);
 
-        // Bump base (PowerUps puede pedir que se ignore)
         if (powerUps != null && powerUps.IgnoreBumpThisFrame)
             return;
 
-        if (collision.contacts.Length == 0) return;
+        if (collision.contactCount == 0) return;
 
-        ContactPoint contact = collision.contacts[0];
+        ContactPoint contact = collision.GetContact(0);
         Vector3 normal = contact.normal;
 
+        // Ignorar suelo/techo
         if (Mathf.Abs(normal.y) > 0.7f) return;
 
-        normal.y = 0f;
-        normal.Normalize();
+        // Solo normal horizontal
+        Vector3 flatNormal = normal;
+        flatNormal.y = 0f;
+
+        if (flatNormal.sqrMagnitude < 0.001f) return;
+        flatNormal.Normalize();
 
         Vector3 forward = transform.forward;
         forward.y = 0f;
         forward.Normalize();
 
-        float impactDot = Vector3.Dot(forward, -normal);
+        // Qué tan frontal fue el choque
+        float impactDot = Vector3.Dot(forward, -flatNormal);
 
-        if (impactDot > 0.2f)
+        // Solo reaccionar a choques medio frontales
+        if (impactDot <= 0.15f) return;
+
+        // Guardar velocidad previa
+        float impactSpeed = Mathf.Abs(currentSpeed);
+
+        // 1. Quitar componente de velocidad hacia la pared
+        Vector3 velocity = rb.linearVelocity;
+        Vector3 velocityIntoWall = Vector3.Project(velocity, -flatNormal);
+        velocity -= velocityIntoWall;
+
+        // 2. Evitar que trepe la pared
+        if (velocity.y > 0f)
+            velocity.y = 0f;
+
+        rb.linearVelocity = velocity;
+        rb.angularVelocity = Vector3.zero;
+
+        // 3. Dirección de rebote: alejarse de la pared
+        Vector3 bounceDirection = flatNormal;
+
+        // 4. Si fue pared
+        if (isWall)
         {
-            Vector3 velocity = rb.linearVelocity;
-            Vector3 pushDir = Vector3.Project(velocity, -normal);
-            velocity -= pushDir;
-            velocity.y = 0f; // Magia anti-rampa inicial
-            rb.linearVelocity = velocity;
-            rb.angularVelocity = Vector3.zero;
-
-            float impactoVelocidad = currentSpeed;
-
-            if (isWall)
+            if (impactSpeed >= minImpactSpeedForBounce)
             {
-                currentSpeed = 0f;
-                isBumping = true;
-                bumpTimer = bumpDuration * 0.5f;
-                bumpSpeed = -Mathf.Abs(impactoVelocidad) * 0.1f;
+                // Empujón instantáneo lejos de la pared
+                rb.AddForce(
+                    bounceDirection * wallBounceForce + Vector3.up * wallBounceUpForce,
+                    ForceMode.VelocityChange
+                );
             }
-            else if (isBot)
-            {
-                // Solo perdemos un poco de velocidad al impactar inicialmente
-                currentSpeed *= 0.5f;
-            }
+
+            // Retroceso controlado estilo kart
+            currentSpeed = 0f;
+            isBumping = true;
+            bumpTimer = bumpDuration;
+            bumpSpeed = -Mathf.Clamp(impactSpeed * 0.35f, 1.5f, maxReverseSpeed * 0.5f);
+        }
+        // 5. Si fue bot
+        else if (isBot)
+        {
+            currentSpeed *= 0.6f;
+
+            rb.AddForce(
+                bounceDirection * botBounceForce,
+                ForceMode.VelocityChange
+            );
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (isBumping) return;
+        bool isWall = collision.gameObject.layer == LayerMask.NameToLayer("Wall");
+        if (!isWall) return;
 
-        if (collision.gameObject.CompareTag("Bot"))
+        if (collision.contactCount == 0) return;
+
+        ContactPoint contact = collision.GetContact(0);
+        Vector3 normal = contact.normal;
+
+        if (Mathf.Abs(normal.y) > 0.7f) return;
+
+        Vector3 flatNormal = normal;
+        flatNormal.y = 0f;
+
+        if (flatNormal.sqrMagnitude < 0.001f) return;
+        flatNormal.Normalize();
+
+        Vector3 forward = transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        float pushingIntoWall = Vector3.Dot(forward, -flatNormal);
+
+        // Si el jugador sigue acelerando hacia la pared
+        if (moveInput > 0.1f && pushingIntoWall > 0.2f)
         {
-            if (collision.contacts.Length == 0) return;
+            // Empuje continuo para despegarlo un poco
+            rb.AddForce(flatNormal * wallStickPreventionForce, ForceMode.Acceleration);
 
-            Vector3 normal = collision.contacts[0].normal;
-            if (Mathf.Abs(normal.y) > 0.7f) return; // Ignorar si ya estamos de alguna forma arriba
+            // Cancelar componente de velocidad contra la pared
+            Vector3 velocity = rb.linearVelocity;
+            Vector3 intoWall = Vector3.Project(velocity, -flatNormal);
+            rb.linearVelocity = velocity - intoWall;
 
-            Vector3 forward = transform.forward;
-            forward.y = 0f;
-            forward.Normalize();
-
-            float impactDot = Vector3.Dot(forward, -normal);
-
-            // Si estamos empujando hacia adelante contra el bot
-            if (impactDot > 0.2f)
+            // Evitar subir la pared
+            if (rb.linearVelocity.y > 0f)
             {
-                Rigidbody colRb = collision.gameObject.GetComponent<Rigidbody>();
-
-                // Si el bot va muy lento (apagado o esperando la salida)
-                if (colRb != null && colRb.linearVelocity.magnitude < 2f)
-                {
-                    empujandoKartMuerto = true;
-
-                    // Matamos el eje Y agresivamente para que las llantas no intenten trepar
-                    Vector3 velSegura = rb.linearVelocity;
-                    if (velSegura.y > 0.1f)
-                    {
-                        velSegura.y = 0f;
-                        rb.linearVelocity = velSegura;
-                    }
-                }
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             }
         }
     }
@@ -703,5 +936,15 @@ public class KartController : MonoBehaviour
     public void SetSteeringMultiplier(float multiplier)
     {
         steeringMultiplier = Mathf.Clamp(multiplier, 0.1f, 2f);
+    }
+    
+    public void SetJumpForce(float newJumpForce)
+    {
+        jumpPower = newJumpForce;
+    }
+
+    public float GetJumpForce()
+    {
+        return jumpPower;
     }
 }

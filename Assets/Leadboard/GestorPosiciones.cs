@@ -1,8 +1,7 @@
 using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UI;
-using UnityEngine;
 
 public class DatosCorredor
 {
@@ -26,10 +25,17 @@ public class GestorPosiciones : MonoBehaviour
     public int totalVueltas = 3;
     public GameObject panelFinCarrera;
     public TMPro.TextMeshProUGUI textoResultado;
+    
+    // --- NUEVA VARIABLE PARA VUELTAS ---
+    [Tooltip("Arrastra aquí el texto del Canvas que mostrará las vueltas (ej: 1/3)")]
+    public TMPro.TextMeshProUGUI textoVueltas;
 
     [Header("Nivel actual")]
     public int currentLevel = 1;
     private int corredoresFinalizados = 0;
+    
+    // Referencia interna para no buscar al jugador en cada frame
+    private DatosCorredor datosJugador;
 
     void Awake()
     {
@@ -41,6 +47,12 @@ public class GestorPosiciones : MonoBehaviour
     {
         ConfigurarCorredoresConTag("Player");
         ConfigurarCorredoresConTag("Bot");
+
+        // Guardamos la referencia del jugador para el HUD de vueltas
+        datosJugador = listaCorredores.Find(c => c.transform.CompareTag("Player"));
+        
+        // Inicializamos el texto de vueltas
+        ActualizarHUDVueltas();
     }
 
     void ConfigurarCorredoresConTag(string tag)
@@ -60,6 +72,13 @@ public class GestorPosiciones : MonoBehaviour
         if (datos.ultimoHito == hitosDePista.Length - 1 && indice == 0)
         {
             datos.vueltasDadas++;
+            
+            // Si es el jugador, actualizamos su contador visual en el HUD
+            if (datos.transform.CompareTag("Player"))
+            {
+                ActualizarHUDVueltas();
+            }
+
             if (datos.vueltasDadas >= totalVueltas)
             {
                 FinalizarCarreraCorredor(datos);
@@ -90,14 +109,24 @@ public class GestorPosiciones : MonoBehaviour
             {
                 if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.SPANISH)
                     textoResultado.text = gano ? "Victoria" : "Posición: " + corredor.posicion + "°";
-                else if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.ENGLISH)
+                else
                     textoResultado.text = gano ? "Victory" : "Position: " + corredor.posicion + "°";
             }
 
             if (gano) SlotSaveSystem.CompleteLevelInActiveSlot(currentLevel);
 
-            // Inicia la carga automática tras 3 segundos
             StartCoroutine(EsperarYCambiarEscena(3f, gano));
+        }
+    }
+
+    // --- FUNCIÓN PARA ACTUALIZAR EL TEXTO DE VUELTAS ---
+    private void ActualizarHUDVueltas()
+    {
+        if (textoVueltas != null && datosJugador != null)
+        {
+            // Usamos Mathf.Min para que no muestre "4/3" si cruza la meta final
+            int vueltaActual = Mathf.Min(datosJugador.vueltasDadas + 1, totalVueltas);
+            textoVueltas.text = vueltaActual + " / " + totalVueltas;
         }
     }
 
@@ -127,7 +156,7 @@ public class GestorPosiciones : MonoBehaviour
         }
     }
 
-    // FUNCIONES PARA OTROS SCRIPTS 
+    // --- FUNCIONES PARA OTROS SCRIPTS (MANTENIDAS VIVAS) ---
     public int ObtenerPosicionDe(Transform coche)
     {
         var datos = listaCorredores.Find(c => c.transform == coche);
@@ -138,6 +167,7 @@ public class GestorPosiciones : MonoBehaviour
     {
         return listaCorredores.Count;
     }
+}
 
     /* 
     private IEnumerator CargarEscenaResultados(float delay)
@@ -146,4 +176,3 @@ public class GestorPosiciones : MonoBehaviour
         UIController.GetInstance()?.ToUIScene();
     }
     */
-}
