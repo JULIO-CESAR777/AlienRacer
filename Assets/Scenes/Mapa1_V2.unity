@@ -354,7 +354,6 @@ GameObject:
   - component: {fileID: 8556956}
   - component: {fileID: 8556959}
   - component: {fileID: 8556958}
-  - component: {fileID: 8556960}
   m_Layer: 6
   m_Name: road-curve (4)
   m_TagString: Untagged
@@ -433,28 +432,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8556955}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &8556960
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8556955}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &10584633
 GameObject:
@@ -1319,7 +1296,6 @@ GameObject:
   - component: {fileID: 28712431}
   - component: {fileID: 28712435}
   - component: {fileID: 28712434}
-  - component: {fileID: 28712436}
   m_Layer: 6
   m_Name: road-crossing (13)
   m_TagString: Untagged
@@ -1398,28 +1374,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28712430}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &28712436
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28712430}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &28883094
 GameObject:
@@ -1544,8 +1498,6 @@ GameObject:
   - component: {fileID: 30103629}
   - component: {fileID: 30103632}
   - component: {fileID: 30103631}
-  - component: {fileID: 30103634}
-  - component: {fileID: 30103635}
   m_Layer: 6
   m_Name: road-crossing (39)
   m_TagString: Untagged
@@ -1624,50 +1576,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30103628}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &30103634
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30103628}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &30103635
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30103628}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &30790898
 GameObject:
@@ -2627,6 +2535,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 129}
   m_SizeDelta: {x: 565, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &82547643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+  m_PrefabInstance: {fileID: 1441687295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &82547644
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82547643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6037210920653049673, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
 --- !u!1 &83223730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,7 +3430,6 @@ GameObject:
   - component: {fileID: 113645019}
   - component: {fileID: 113645023}
   - component: {fileID: 113645022}
-  - component: {fileID: 113645024}
   m_Layer: 6
   m_Name: road-crossing (33)
   m_TagString: Untagged
@@ -3574,28 +3508,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113645018}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &113645024
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113645018}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &114096642
 GameObject:
@@ -3752,7 +3664,6 @@ GameObject:
   - component: {fileID: 114776238}
   - component: {fileID: 114776241}
   - component: {fileID: 114776240}
-  - component: {fileID: 114776242}
   m_Layer: 6
   m_Name: road-crossing (36)
   m_TagString: Untagged
@@ -3832,28 +3743,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114776237}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &114776242
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114776237}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &116259483
 GameObject:
   m_ObjectHideFlags: 0
@@ -3865,8 +3754,6 @@ GameObject:
   - component: {fileID: 116259484}
   - component: {fileID: 116259488}
   - component: {fileID: 116259487}
-  - component: {fileID: 116259486}
-  - component: {fileID: 116259489}
   m_Layer: 6
   m_Name: road-crossing (50)
   m_TagString: Untagged
@@ -3889,28 +3776,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &116259486
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116259483}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &116259487
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3967,28 +3832,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116259483}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &116259489
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116259483}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &116817837
 PrefabInstance:
@@ -4148,7 +3991,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 895854651}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1048448719}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!4 &116817838 stripped
 Transform:
@@ -4230,7 +4076,6 @@ GameObject:
   - component: {fileID: 129652600}
   - component: {fileID: 129652604}
   - component: {fileID: 129652603}
-  - component: {fileID: 129652605}
   m_Layer: 6
   m_Name: road-crossing (53)
   m_TagString: Untagged
@@ -4310,28 +4155,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129652599}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &129652605
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129652599}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &131601593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4405,7 +4228,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4798,7 +4621,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4868,8 +4691,6 @@ GameObject:
   - component: {fileID: 143144624}
   - component: {fileID: 143144627}
   - component: {fileID: 143144626}
-  - component: {fileID: 143144625}
-  - component: {fileID: 143144628}
   m_Layer: 6
   m_Name: road-crossing (59)
   m_TagString: Untagged
@@ -4892,28 +4713,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &143144625
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143144623}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &143144626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4970,28 +4769,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143144623}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &143144628
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143144623}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &144365970
 GameObject:
@@ -5823,7 +5600,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6698,7 +6475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216489732}
   m_Layer: 0
-  m_Name: Carreteras
+  m_Name: Carretera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6717,9 +6494,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 514450624}
   - {fileID: 310714469}
   - {fileID: 1504388615}
   - {fileID: 1586873983}
+  - {fileID: 1695256436}
   - {fileID: 751332979}
   - {fileID: 816244773}
   - {fileID: 8556956}
@@ -7006,7 +6785,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1436323463}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 426696841}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!4 &220827000 stripped
 Transform:
@@ -7173,7 +6955,6 @@ GameObject:
   - component: {fileID: 223870568}
   - component: {fileID: 223870572}
   - component: {fileID: 223870571}
-  - component: {fileID: 223870573}
   m_Layer: 6
   m_Name: road-crossing (15)
   m_TagString: Untagged
@@ -7252,28 +7033,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223870567}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &223870573
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223870567}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &229419225
 GameObject:
@@ -8125,7 +7884,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8515,7 +8274,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8580,9 +8339,6 @@ GameObject:
   - component: {fileID: 274603755}
   - component: {fileID: 274603759}
   - component: {fileID: 274603758}
-  - component: {fileID: 274603757}
-  - component: {fileID: 274603756}
-  - component: {fileID: 274603760}
   m_Layer: 6
   m_Name: road-crossing (32)
   m_TagString: Untagged
@@ -8605,49 +8361,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &274603756
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274603754}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 0.020000001, z: 1.0000001}
-  m_Center: {x: 0, y: 0.010000001, z: -0.0000019073486}
---- !u!64 &274603757
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274603754}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &274603758
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8704,28 +8417,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274603754}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &274603760
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274603754}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &276398164
 GameObject:
@@ -8800,7 +8491,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8932,7 +8623,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9452,7 +9143,6 @@ GameObject:
   - component: {fileID: 298811895}
   - component: {fileID: 298811899}
   - component: {fileID: 298811898}
-  - component: {fileID: 298811900}
   m_Layer: 6
   m_Name: road-crossing (16)
   m_TagString: Untagged
@@ -9532,28 +9222,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298811894}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &298811900
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298811894}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &304541216
 GameObject:
   m_ObjectHideFlags: 0
@@ -9620,7 +9288,6 @@ GameObject:
   - component: {fileID: 305340642}
   - component: {fileID: 305340645}
   - component: {fileID: 305340644}
-  - component: {fileID: 305340646}
   m_Layer: 6
   m_Name: road-curve (14)
   m_TagString: Untagged
@@ -9699,28 +9366,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305340641}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &305340646
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305340641}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1001 &305821297
 PrefabInstance:
@@ -9942,7 +9587,6 @@ GameObject:
   - component: {fileID: 310714469}
   - component: {fileID: 310714472}
   - component: {fileID: 310714471}
-  - component: {fileID: 310714473}
   m_Layer: 6
   m_Name: road-bend (2)
   m_TagString: Untagged
@@ -9959,7 +9603,7 @@ Transform:
   m_GameObject: {fileID: 310714468}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710754, z: -0, w: -0.7071061}
-  m_LocalPosition: {x: -18.340416, y: -0.01, z: 106.068756}
+  m_LocalPosition: {x: -18.340416, y: 0, z: 106.068756}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -10021,28 +9665,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310714468}
-  m_Mesh: {fileID: 114778512065557776, guid: b1eb851a574858b40bcb19739da650bd, type: 3}
---- !u!64 &310714473
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310714468}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 114778512065557776, guid: b1eb851a574858b40bcb19739da650bd, type: 3}
 --- !u!1 &311579003
 GameObject:
@@ -10406,8 +10028,6 @@ GameObject:
   - component: {fileID: 323782501}
   - component: {fileID: 323782505}
   - component: {fileID: 323782504}
-  - component: {fileID: 323782506}
-  - component: {fileID: 323782507}
   m_Layer: 6
   m_Name: road-crossing (5)
   m_TagString: Untagged
@@ -10486,50 +10106,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323782500}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &323782506
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323782500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &323782507
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323782500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &324352837
 GameObject:
@@ -11424,7 +11000,6 @@ GameObject:
   - component: {fileID: 347922843}
   - component: {fileID: 347922847}
   - component: {fileID: 347922846}
-  - component: {fileID: 347922848}
   m_Layer: 6
   m_Name: road-crossing (9)
   m_TagString: Untagged
@@ -11503,28 +11078,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347922842}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &347922848
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347922842}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!4 &349599682 stripped
 Transform:
@@ -12542,7 +12095,6 @@ GameObject:
   - component: {fileID: 393376575}
   - component: {fileID: 393376577}
   - component: {fileID: 393376576}
-  - component: {fileID: 393376578}
   m_Layer: 6
   m_Name: road-crossing (19)
   m_TagString: Untagged
@@ -12558,13 +12110,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393376574}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -18.310413, y: 0, z: 35.47346}
-  m_LocalScale: {x: 9.1305, y: 9, z: 9}
+  m_LocalRotation: {x: -0, y: 0.70496124, z: -0, w: 0.7092459}
+  m_LocalPosition: {x: -18.3103, y: 0, z: 35.4951}
+  m_LocalScale: {x: 9.087324, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 216489732}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 89.653, z: 0}
 --- !u!23 &393376576
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12621,28 +12173,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393376574}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &393376578
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393376574}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &397454291
 GameObject:
@@ -12767,7 +12297,6 @@ GameObject:
   - component: {fileID: 397957982}
   - component: {fileID: 397957986}
   - component: {fileID: 397957985}
-  - component: {fileID: 397957987}
   m_Layer: 6
   m_Name: road-crossing (28)
   m_TagString: Untagged
@@ -12847,28 +12376,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397957981}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &397957987
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397957981}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &399347173
 GameObject:
   m_ObjectHideFlags: 0
@@ -12942,7 +12449,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -13066,7 +12573,6 @@ GameObject:
   - component: {fileID: 416115215}
   - component: {fileID: 416115218}
   - component: {fileID: 416115217}
-  - component: {fileID: 416115219}
   m_Layer: 6
   m_Name: road-crossing (38)
   m_TagString: Untagged
@@ -13145,28 +12651,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416115214}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &416115219
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416115214}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &417494792
 GameObject:
@@ -13312,6 +12796,32 @@ Transform:
   - {fileID: 791212840}
   m_Father: {fileID: 20442908}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!1 &426696837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 220826999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &426696841
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426696837}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000007, y: 2.0000002, z: 2.0000007}
+  m_Center: {x: 0.00024414062, y: 0, z: 0.00012207031}
 --- !u!4 &426913744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7616138613558415840, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
@@ -14322,7 +13832,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -14506,9 +14016,6 @@ GameObject:
   - component: {fileID: 468201657}
   - component: {fileID: 468201661}
   - component: {fileID: 468201660}
-  - component: {fileID: 468201662}
-  - component: {fileID: 468201663}
-  - component: {fileID: 468201664}
   m_Layer: 6
   m_Name: road-crossing (40)
   m_TagString: Untagged
@@ -14587,72 +14094,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468201656}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &468201662
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468201656}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &468201663
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468201656}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &468201664
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468201656}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &468560287
 GameObject:
@@ -16003,7 +15444,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -16063,7 +15504,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 991303898}
+    m_TransformParent: {fileID: 216489732}
     m_Modifications:
     - target: {fileID: 1077474038604931288, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_Layer
@@ -16091,15 +15532,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.94999
+      value: 4.0695877
       objectReference: {fileID: 0}
     - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07
+      value: -0.0040000007
       objectReference: {fileID: 0}
     - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.27
+      value: -31.561241
       objectReference: {fileID: 0}
     - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16132,10 +15573,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3469364248940323944, guid: f313f90f0eea265449cb7328663ac291, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1249782006}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f313f90f0eea265449cb7328663ac291, type: 3}
 --- !u!4 &514450624 stripped
 Transform:
@@ -17390,7 +16828,6 @@ GameObject:
   - component: {fileID: 574819715}
   - component: {fileID: 574819718}
   - component: {fileID: 574819717}
-  - component: {fileID: 574819719}
   m_Layer: 6
   m_Name: road-curve (5)
   m_TagString: Untagged
@@ -17469,28 +16906,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574819714}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &574819719
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574819714}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &575543410
 GameObject:
@@ -18667,7 +18082,6 @@ GameObject:
   - component: {fileID: 596731649}
   - component: {fileID: 596731653}
   - component: {fileID: 596731652}
-  - component: {fileID: 596731654}
   m_Layer: 6
   m_Name: road-crossing (46)
   m_TagString: Untagged
@@ -18746,28 +18160,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596731648}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &596731654
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 596731648}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &602728289
 PrefabInstance:
@@ -18903,7 +18295,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -19522,7 +18914,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -20506,7 +19898,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -21668,7 +21060,6 @@ GameObject:
   - component: {fileID: 686300120}
   - component: {fileID: 686300124}
   - component: {fileID: 686300123}
-  - component: {fileID: 686300125}
   m_Layer: 6
   m_Name: road-crossing (34)
   m_TagString: Untagged
@@ -21747,28 +21138,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686300119}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &686300125
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686300119}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &689597751
 GameObject:
@@ -21952,7 +21321,6 @@ GameObject:
   - component: {fileID: 704386165}
   - component: {fileID: 704386168}
   - component: {fileID: 704386167}
-  - component: {fileID: 704386169}
   m_Layer: 6
   m_Name: road-curve (6)
   m_TagString: Untagged
@@ -22031,28 +21399,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704386164}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &704386169
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704386164}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &706090673
 GameObject:
@@ -22256,8 +21602,6 @@ GameObject:
   - component: {fileID: 710821411}
   - component: {fileID: 710821414}
   - component: {fileID: 710821413}
-  - component: {fileID: 710821412}
-  - component: {fileID: 710821415}
   m_Layer: 6
   m_Name: road-crossing (55)
   m_TagString: Untagged
@@ -22280,28 +21624,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &710821412
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710821410}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &710821413
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22358,28 +21680,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710821410}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &710821415
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710821410}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &713697632
 PrefabInstance:
@@ -22710,7 +22010,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -22769,6 +22069,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8960042584604895160, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
   m_PrefabInstance: {fileID: 520504217}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &717366455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 1122394982}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &717366459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717366455}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000007, y: 2.0000002, z: 2.0000007}
+  m_Center: {x: 0.000045776367, y: 0, z: -0.00012207031}
 --- !u!1001 &727215047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23354,7 +22680,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -23419,7 +22745,6 @@ GameObject:
   - component: {fileID: 751332979}
   - component: {fileID: 751332982}
   - component: {fileID: 751332981}
-  - component: {fileID: 751332983}
   m_Layer: 6
   m_Name: floor (2)
   m_TagString: Untagged
@@ -23436,7 +22761,7 @@ Transform:
   m_GameObject: {fileID: 751332978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.7312, y: 0.094, z: -106.96}
+  m_LocalPosition: {x: 23.7312, y: 0.09, z: -106.96}
   m_LocalScale: {x: 3.8087223, y: 9, z: 7.238851}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -23498,28 +22823,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751332978}
-  m_Mesh: {fileID: -7513297493162946847, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
---- !u!64 &751332983
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751332978}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -7513297493162946847, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
 --- !u!1001 &753892436
 PrefabInstance:
@@ -23713,7 +23016,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1633936463}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1999739057}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!4 &754390271 stripped
 Transform:
@@ -23731,7 +23037,6 @@ GameObject:
   - component: {fileID: 761010474}
   - component: {fileID: 761010477}
   - component: {fileID: 761010476}
-  - component: {fileID: 761010478}
   m_Layer: 6
   m_Name: road-crossing (44)
   m_TagString: Untagged
@@ -23810,28 +23115,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761010473}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &761010478
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761010473}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &762887558
 GameObject:
@@ -24027,7 +23310,6 @@ GameObject:
   - component: {fileID: 770744961}
   - component: {fileID: 770744965}
   - component: {fileID: 770744964}
-  - component: {fileID: 770744966}
   m_Layer: 6
   m_Name: road-crossing (25)
   m_TagString: Untagged
@@ -24106,28 +23388,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770744960}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &770744966
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770744960}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &772562670
 PrefabInstance:
@@ -24727,8 +23987,6 @@ GameObject:
   - component: {fileID: 787219408}
   - component: {fileID: 787219411}
   - component: {fileID: 787219410}
-  - component: {fileID: 787219409}
-  - component: {fileID: 787219412}
   m_Layer: 6
   m_Name: road-curve (13)
   m_TagString: Untagged
@@ -24751,28 +24009,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!64 &787219409
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787219407}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!23 &787219410
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24829,28 +24065,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787219407}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &787219412
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787219407}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1001 &788505782
 PrefabInstance:
@@ -25091,6 +24305,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 559806619258191027, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989580340476668683, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2380289153421420322, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.71294
@@ -25135,9 +24357,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Racer 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3045467933629644184, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977358200676697712, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5185618828332409631, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: m_Interpolate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554763256482677858, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6671215431751331360, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: velocidadMaxima
@@ -25259,6 +24493,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[26]'
       value: 
       objectReference: {fileID: 1092561182}
+    - target: {fileID: 7755546043146785082, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25598,8 +24836,6 @@ GameObject:
   - component: {fileID: 797858216}
   - component: {fileID: 797858219}
   - component: {fileID: 797858218}
-  - component: {fileID: 797858220}
-  - component: {fileID: 797858221}
   m_Layer: 6
   m_Name: road-crossing (57)
   m_TagString: Untagged
@@ -25678,50 +24914,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797858215}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &797858220
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797858215}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &797858221
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797858215}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &798944669
 PrefabInstance:
@@ -26349,8 +25541,6 @@ GameObject:
   - component: {fileID: 816244773}
   - component: {fileID: 816244776}
   - component: {fileID: 816244775}
-  - component: {fileID: 816244777}
-  - component: {fileID: 816244778}
   m_Layer: 6
   m_Name: road-curve (3)
   m_TagString: Untagged
@@ -26429,50 +25619,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816244772}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &816244777
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816244772}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &816244778
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816244772}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &820712490
 GameObject:
@@ -26626,7 +25772,6 @@ GameObject:
   - component: {fileID: 838666635}
   - component: {fileID: 838666639}
   - component: {fileID: 838666638}
-  - component: {fileID: 838666640}
   m_Layer: 6
   m_Name: road-crossing (26)
   m_TagString: Untagged
@@ -26705,28 +25850,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838666634}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &838666640
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838666634}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &841908686 stripped
 GameObject:
@@ -27195,7 +26318,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -27257,13 +26380,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1478106290843069606, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2551969030501678844, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3617531924089747966, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192685468543204332, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6152437354333044740, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: m_Name
       value: Racer 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152437354333044740, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6785246241017944766, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27304,6 +26443,14 @@ PrefabInstance:
     - target: {fileID: 6785246241017944766, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259271643908642455, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711827522427289903, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9200048392086637587, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: velocidadMaxima
@@ -28665,7 +27812,6 @@ GameObject:
   - component: {fileID: 928666065}
   - component: {fileID: 928666067}
   - component: {fileID: 928666066}
-  - component: {fileID: 928666068}
   m_Layer: 6
   m_Name: road-crossing (14)
   m_TagString: Untagged
@@ -28744,28 +27890,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928666064}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &928666068
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928666064}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &930434464
 GameObject:
@@ -28952,7 +28076,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -29629,7 +28753,6 @@ GameObject:
   - component: {fileID: 961437097}
   - component: {fileID: 961437101}
   - component: {fileID: 961437100}
-  - component: {fileID: 961437102}
   m_Layer: 6
   m_Name: road-crossing (10)
   m_TagString: Untagged
@@ -29708,28 +28831,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961437096}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &961437102
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961437096}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &961746453
 PrefabInstance:
@@ -30004,7 +29105,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -30617,7 +29718,6 @@ GameObject:
   - component: {fileID: 989910567}
   - component: {fileID: 989910571}
   - component: {fileID: 989910570}
-  - component: {fileID: 989910572}
   m_Layer: 6
   m_Name: road-crossing (6)
   m_TagString: Untagged
@@ -30634,8 +29734,8 @@ Transform:
   m_GameObject: {fileID: 989910566}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -18.270416, y: 0, z: -0.3622589}
-  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_LocalPosition: {x: -18.270416, y: -0, z: -0.2501}
+  m_LocalScale: {x: 8.7759, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 216489732}
@@ -30697,28 +29797,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989910566}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &989910572
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989910566}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &991303897
 GameObject:
   m_ObjectHideFlags: 0
@@ -30748,9 +29826,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 514450624}
   - {fileID: 216489732}
-  - {fileID: 1111326895}
   - {fileID: 20442908}
   - {fileID: 2003407930}
   - {fileID: 1268124443}
@@ -31500,7 +30576,6 @@ GameObject:
   - component: {fileID: 1010813775}
   - component: {fileID: 1010813778}
   - component: {fileID: 1010813777}
-  - component: {fileID: 1010813779}
   m_Layer: 6
   m_Name: road-crossing (45)
   m_TagString: Untagged
@@ -31580,28 +30655,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010813774}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1010813779
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010813774}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &1011322314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31674,7 +30727,6 @@ GameObject:
   - component: {fileID: 1014333912}
   - component: {fileID: 1014333916}
   - component: {fileID: 1014333915}
-  - component: {fileID: 1014333917}
   m_Layer: 6
   m_Name: road-crossing (7)
   m_TagString: Untagged
@@ -31754,28 +30806,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014333911}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1014333917
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014333911}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1026341316
 GameObject:
   m_ObjectHideFlags: 0
@@ -31849,7 +30879,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -31914,8 +30944,6 @@ GameObject:
   - component: {fileID: 1030061438}
   - component: {fileID: 1030061441}
   - component: {fileID: 1030061440}
-  - component: {fileID: 1030061442}
-  - component: {fileID: 1030061443}
   m_Layer: 6
   m_Name: road-crossing (41)
   m_TagString: Untagged
@@ -31994,50 +31022,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030061437}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1030061442
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030061437}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1030061443
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030061437}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1032689245
 GameObject:
@@ -32546,7 +31530,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -32764,6 +31748,32 @@ Transform:
   - {fileID: 1457118826}
   m_Father: {fileID: 20442908}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1048448715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 116817837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1048448719
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048448715}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000002, y: 2.0000002, z: 2.0000002}
+  m_Center: {x: -0.00012207031, y: 0, z: 0}
 --- !u!1 &1048758059
 GameObject:
   m_ObjectHideFlags: 0
@@ -33199,7 +32209,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -33739,7 +32749,6 @@ GameObject:
   - component: {fileID: 1090146404}
   - component: {fileID: 1090146407}
   - component: {fileID: 1090146406}
-  - component: {fileID: 1090146408}
   m_Layer: 6
   m_Name: road-crossing (37)
   m_TagString: Untagged
@@ -33819,13 +32828,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090146403}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1090146408
-MeshCollider:
+--- !u!1 &1091029675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 1180713916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1091029679
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090146403}
+  m_GameObject: {fileID: 1091029675}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -33837,10 +32851,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.0000002, y: 2.0000002, z: 2.0000002}
+  m_Center: {x: 0.00012207031, y: 0, z: 0}
 --- !u!1 &1091661330
 GameObject:
   m_ObjectHideFlags: 0
@@ -33914,7 +32927,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -34158,7 +33171,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -34658,7 +33671,6 @@ GameObject:
   - component: {fileID: 1102576003}
   - component: {fileID: 1102576006}
   - component: {fileID: 1102576005}
-  - component: {fileID: 1102576007}
   m_Layer: 6
   m_Name: road-crossing (30)
   m_TagString: Untagged
@@ -34737,28 +33749,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102576002}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1102576007
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102576002}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1104906731
 GameObject:
@@ -34856,37 +33846,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7146952539455394416, guid: a318ba228bf673e4281c61f9193a1cb8, type: 3}
---- !u!1 &1111326894
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1111326895}
-  m_Layer: 0
-  m_Name: Carretera 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1111326895
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111326894}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.8804, y: 0.074, z: 47.83124}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 991303898}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1111596569 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3664811705211809293, guid: 01b01a06a7463c144a20aba2974c4b4f, type: 3}
@@ -34987,7 +33946,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -35711,7 +34670,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 933400795}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 717366459}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!1 &1123347223
 GameObject:
@@ -36252,7 +35214,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -36602,8 +35564,6 @@ GameObject:
   - component: {fileID: 1145715944}
   - component: {fileID: 1145715948}
   - component: {fileID: 1145715947}
-  - component: {fileID: 1145715946}
-  - component: {fileID: 1145715949}
   m_Layer: 6
   m_Name: road-crossing (51)
   m_TagString: Untagged
@@ -36626,28 +35586,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &1145715946
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145715943}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &1145715947
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36704,28 +35642,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145715943}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1145715949
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145715943}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1148235130
 GameObject:
@@ -38228,7 +37144,6 @@ GameObject:
   - component: {fileID: 1172559641}
   - component: {fileID: 1172559645}
   - component: {fileID: 1172559644}
-  - component: {fileID: 1172559646}
   m_Layer: 6
   m_Name: road-crossing (11)
   m_TagString: Untagged
@@ -38307,28 +37222,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172559640}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1172559646
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172559640}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &1176081329
 PrefabInstance:
@@ -38615,7 +37508,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 39318683}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1091029679}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!4 &1180713917 stripped
 Transform:
@@ -39144,7 +38040,6 @@ GameObject:
   - component: {fileID: 1196153067}
   - component: {fileID: 1196153071}
   - component: {fileID: 1196153070}
-  - component: {fileID: 1196153072}
   m_Layer: 6
   m_Name: road-crossing (29)
   m_TagString: Untagged
@@ -39223,28 +38118,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196153066}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1196153072
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196153066}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1202504702
 GameObject:
@@ -39590,7 +38463,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -40453,7 +39326,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -40619,33 +39492,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.75, z: 0.5}
   m_Center: {x: 0.00000047683716, y: 0.875, z: 0}
---- !u!1 &1249782005 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3469364248940323944, guid: f313f90f0eea265449cb7328663ac291, type: 3}
-  m_PrefabInstance: {fileID: 514450623}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1249782006
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249782005}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &1254188513
 GameObject:
   m_ObjectHideFlags: 0
@@ -40657,7 +39503,6 @@ GameObject:
   - component: {fileID: 1254188514}
   - component: {fileID: 1254188518}
   - component: {fileID: 1254188517}
-  - component: {fileID: 1254188519}
   m_Layer: 6
   m_Name: road-crossing (47)
   m_TagString: Untagged
@@ -40736,28 +39581,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254188513}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1254188519
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254188513}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1259990942
 GameObject:
@@ -40994,7 +39817,6 @@ GameObject:
   - component: {fileID: 1267482006}
   - component: {fileID: 1267482010}
   - component: {fileID: 1267482009}
-  - component: {fileID: 1267482011}
   m_Layer: 6
   m_Name: road-crossing (43)
   m_TagString: Untagged
@@ -41073,28 +39895,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267482005}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1267482011
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267482005}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &1267950754
 PrefabInstance:
@@ -41357,8 +40157,6 @@ GameObject:
   - component: {fileID: 1270169151}
   - component: {fileID: 1270169155}
   - component: {fileID: 1270169154}
-  - component: {fileID: 1270169153}
-  - component: {fileID: 1270169156}
   m_Layer: 6
   m_Name: road-crossing (49)
   m_TagString: Untagged
@@ -41381,28 +40179,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &1270169153
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1270169150}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &1270169154
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41459,28 +40235,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270169150}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1270169156
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1270169150}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1275305530
 GameObject:
@@ -42219,7 +40973,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1337334253}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1553917887}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!4 &1293443966 stripped
 Transform:
@@ -42622,8 +41379,6 @@ GameObject:
   - component: {fileID: 1312686569}
   - component: {fileID: 1312686572}
   - component: {fileID: 1312686571}
-  - component: {fileID: 1312686570}
-  - component: {fileID: 1312686573}
   m_Layer: 6
   m_Name: road-curve (9)
   m_TagString: Untagged
@@ -42646,28 +41401,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1312686570
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312686568}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!23 &1312686571
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42724,28 +41457,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312686568}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &1312686573
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312686568}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &1318975986
 GameObject:
@@ -43564,8 +42275,7 @@ GameObject:
   - component: {fileID: 1349827426}
   - component: {fileID: 1349827430}
   - component: {fileID: 1349827429}
-  - component: {fileID: 1349827428}
-  - component: {fileID: 1349827427}
+  - component: {fileID: 1349827431}
   m_Layer: 7
   m_Name: building-skyscraper-d (3)
   m_TagString: Untagged
@@ -43588,50 +42298,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 20442908}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!64 &1349827427
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349827425}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2864774077581168330, guid: 6b7af2566a377324eaf415ec2f83f23c, type: 3}
---- !u!64 &1349827428
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349827425}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2864774077581168330, guid: 6b7af2566a377324eaf415ec2f83f23c, type: 3}
 --- !u!23 &1349827429
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43689,6 +42355,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349827425}
   m_Mesh: {fileID: 2864774077581168330, guid: 6b7af2566a377324eaf415ec2f83f23c, type: 3}
+--- !u!65 &1349827431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349827425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2799996, y: 5.469999, z: 1.3878912}
+  m_Center: {x: 0.00000017881392, y: 2.7349994, z: 0.0000005364418}
 --- !u!1 &1350024734
 GameObject:
   m_ObjectHideFlags: 0
@@ -43843,7 +42530,6 @@ GameObject:
   - component: {fileID: 1356859495}
   - component: {fileID: 1356859498}
   - component: {fileID: 1356859497}
-  - component: {fileID: 1356859499}
   m_Layer: 6
   m_Name: road-crossing (18)
   m_TagString: Untagged
@@ -43922,28 +42608,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356859494}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1356859499
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356859494}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!4 &1360332601 stripped
 Transform:
@@ -44183,7 +42847,6 @@ GameObject:
   - component: {fileID: 1368702102}
   - component: {fileID: 1368702106}
   - component: {fileID: 1368702105}
-  - component: {fileID: 1368702107}
   m_Layer: 6
   m_Name: road-crossing (61)
   m_TagString: Untagged
@@ -44263,28 +42926,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368702101}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1368702107
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368702101}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1369687776
 GameObject:
   m_ObjectHideFlags: 0
@@ -44328,9 +42969,6 @@ GameObject:
   - component: {fileID: 1370295064}
   - component: {fileID: 1370295068}
   - component: {fileID: 1370295067}
-  - component: {fileID: 1370295066}
-  - component: {fileID: 1370295065}
-  - component: {fileID: 1370295069}
   m_Layer: 6
   m_Name: road-crossing (31)
   m_TagString: Untagged
@@ -44353,49 +42991,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &1370295065
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370295063}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 0.020000001, z: 1.0000001}
-  m_Center: {x: 0, y: 0.010000001, z: -0.0000019073486}
---- !u!64 &1370295066
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370295063}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &1370295067
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44452,28 +43047,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370295063}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1370295069
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370295063}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1374714935
 GameObject:
@@ -45060,7 +43633,6 @@ GameObject:
   - component: {fileID: 1397251165}
   - component: {fileID: 1397251167}
   - component: {fileID: 1397251166}
-  - component: {fileID: 1397251168}
   m_Layer: 6
   m_Name: road-crossing (17)
   m_TagString: Untagged
@@ -45139,28 +43711,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397251164}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1397251168
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397251164}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!4 &1401797424 stripped
 Transform:
@@ -45722,7 +44272,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -46176,7 +44726,6 @@ GameObject:
   - component: {fileID: 1435017032}
   - component: {fileID: 1435017036}
   - component: {fileID: 1435017035}
-  - component: {fileID: 1435017037}
   m_Layer: 6
   m_Name: road-crossing (12)
   m_TagString: Untagged
@@ -46255,28 +44804,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435017031}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1435017037
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435017031}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1436323462
 GameObject:
@@ -46685,6 +45212,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8042144ab1ad4a4699e5776d32d9c5f, type: 3}
+--- !u!1001 &1441687295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 45.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5754084199372789682, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_Name
+      value: Pista1 Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 82547644}
+  m_SourcePrefab: {fileID: 100100000, guid: 3f6a3c012055b4448a18a02f3a227cef, type: 3}
 --- !u!1 &1457118825
 GameObject:
   m_ObjectHideFlags: 0
@@ -47093,7 +45688,6 @@ GameObject:
   - component: {fileID: 1478060925}
   - component: {fileID: 1478060928}
   - component: {fileID: 1478060927}
-  - component: {fileID: 1478060929}
   m_Layer: 6
   m_Name: road-curve (10)
   m_TagString: Untagged
@@ -47172,28 +45766,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478060924}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &1478060929
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478060924}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &1479449989
 GameObject:
@@ -47521,7 +46093,6 @@ GameObject:
   - component: {fileID: 1504388615}
   - component: {fileID: 1504388618}
   - component: {fileID: 1504388617}
-  - component: {fileID: 1504388619}
   m_Layer: 6
   m_Name: road-bend (5)
   m_TagString: Untagged
@@ -47600,28 +46171,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504388614}
-  m_Mesh: {fileID: 114778512065557776, guid: b1eb851a574858b40bcb19739da650bd, type: 3}
---- !u!64 &1504388619
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504388614}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 114778512065557776, guid: b1eb851a574858b40bcb19739da650bd, type: 3}
 --- !u!1 &1505109643
 GameObject:
@@ -47781,7 +46330,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1167218828156932993, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1096299192}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1662574930}
   m_SourcePrefab: {fileID: 100100000, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
 --- !u!4 &1510071157 stripped
 Transform:
@@ -48297,8 +46849,6 @@ GameObject:
   - component: {fileID: 1532509304}
   - component: {fileID: 1532509307}
   - component: {fileID: 1532509306}
-  - component: {fileID: 1532509305}
-  - component: {fileID: 1532509308}
   m_Layer: 6
   m_Name: road-crossing (35)
   m_TagString: Untagged
@@ -48321,28 +46871,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!64 &1532509305
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532509303}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &1532509306
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48399,28 +46927,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532509303}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1532509308
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532509303}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1532593042
 GameObject:
@@ -49233,7 +47739,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -49298,7 +47804,6 @@ GameObject:
   - component: {fileID: 1549845824}
   - component: {fileID: 1549845827}
   - component: {fileID: 1549845826}
-  - component: {fileID: 1549845828}
   m_Layer: 6
   m_Name: road-crossing (58)
   m_TagString: Untagged
@@ -49377,28 +47882,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549845823}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1549845828
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549845823}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1552258101
 GameObject:
@@ -49624,6 +48107,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3600003, y: 2.88, z: 1.3600006}
   m_Center: {x: 0.000000029802436, y: 1.44, z: -0.0000038146973}
+--- !u!1 &1553917883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 1293443965}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1553917887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553917883}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000002, y: 2.0000002, z: 2.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1555417431
 GameObject:
   m_ObjectHideFlags: 0
@@ -50239,7 +48748,6 @@ GameObject:
   - component: {fileID: 1575994275}
   - component: {fileID: 1575994278}
   - component: {fileID: 1575994277}
-  - component: {fileID: 1575994279}
   m_Layer: 6
   m_Name: road-curve (11)
   m_TagString: Untagged
@@ -50318,28 +48826,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575994274}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &1575994279
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575994274}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &1576224795
 GameObject:
@@ -50519,7 +49005,6 @@ GameObject:
   - component: {fileID: 1586873983}
   - component: {fileID: 1586873986}
   - component: {fileID: 1586873985}
-  - component: {fileID: 1586873987}
   m_Layer: 6
   m_Name: floor
   m_TagString: Untagged
@@ -50536,8 +49021,8 @@ Transform:
   m_GameObject: {fileID: 1586873982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 95.347, y: 0, z: -44.86}
-  m_LocalScale: {x: 14.499, y: 9, z: 8.5986}
+  m_LocalPosition: {x: 98.4492, y: 0.1, z: -44.9249}
+  m_LocalScale: {x: 8.294877, y: 9, z: 9.405431}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 216489732}
@@ -50598,28 +49083,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586873982}
-  m_Mesh: {fileID: -7513297493162946847, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
---- !u!64 &1586873987
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586873982}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -7513297493162946847, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
 --- !u!1 &1587674133
 GameObject:
@@ -50694,7 +49157,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -50821,7 +49284,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -51060,7 +49523,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -51216,7 +49679,6 @@ GameObject:
   - component: {fileID: 1610205182}
   - component: {fileID: 1610205186}
   - component: {fileID: 1610205185}
-  - component: {fileID: 1610205187}
   m_Layer: 6
   m_Name: road-crossing (48)
   m_TagString: Untagged
@@ -51295,28 +49757,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610205181}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1610205187
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610205181}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1619985574
 GameObject:
@@ -51938,7 +50378,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -52570,6 +51010,32 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 380059661}
   m_SourcePrefab: {fileID: 100100000, guid: a318ba228bf673e4281c61f9193a1cb8, type: 3}
+--- !u!1 &1662574926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 1510071156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1662574930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662574926}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000002, y: 2.0000002, z: 2.0000002}
+  m_Center: {x: 0, y: 0, z: -0.000015258789}
 --- !u!1001 &1663951995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53135,6 +51601,96 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7146952539455394416, guid: a318ba228bf673e4281c61f9193a1cb8, type: 3}
+--- !u!1 &1695256435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1695256436}
+  - component: {fileID: 1695256438}
+  - component: {fileID: 1695256437}
+  m_Layer: 6
+  m_Name: floor (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 18
+  m_IsActive: 1
+--- !u!4 &1695256436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695256435}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 91.5732, y: 0.1, z: -44.9249}
+  m_LocalScale: {x: 7.0473275, y: 9, z: 9.405431}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 216489732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1695256437
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695256435}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -6538903991835684241, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1695256438
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695256435}
+  m_Mesh: {fileID: -7513297493162946847, guid: 7fd0192a30ed1014e87aac0623fa7944, type: 3}
 --- !u!1 &1697821922
 GameObject:
   m_ObjectHideFlags: 0
@@ -53178,7 +51734,6 @@ GameObject:
   - component: {fileID: 1697903205}
   - component: {fileID: 1697903208}
   - component: {fileID: 1697903207}
-  - component: {fileID: 1697903209}
   m_Layer: 6
   m_Name: road-curve (8)
   m_TagString: Untagged
@@ -53257,28 +51812,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697903204}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &1697903209
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697903204}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!4 &1700057398 stripped
 Transform:
@@ -53719,7 +52252,7 @@ GameObject:
   - component: {fileID: 1719845066}
   - component: {fileID: 1719845065}
   - component: {fileID: 1719845064}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Collider Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53735,7 +52268,7 @@ Transform:
   m_GameObject: {fileID: 1719845062}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 69.9, y: -3.5, z: 60.5719}
+  m_LocalPosition: {x: 69.9, y: -3.47, z: 60.5719}
   m_LocalScale: {x: 389.33, y: 179.7, z: 387.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54192,7 +52725,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -54284,7 +52817,6 @@ GameObject:
   - component: {fileID: 1735638078}
   - component: {fileID: 1735638082}
   - component: {fileID: 1735638081}
-  - component: {fileID: 1735638083}
   m_Layer: 6
   m_Name: road-crossing (54)
   m_TagString: Untagged
@@ -54364,28 +52896,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735638077}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1735638083
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735638077}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1736109522
 GameObject:
   m_ObjectHideFlags: 0
@@ -54397,8 +52907,6 @@ GameObject:
   - component: {fileID: 1736109523}
   - component: {fileID: 1736109526}
   - component: {fileID: 1736109525}
-  - component: {fileID: 1736109524}
-  - component: {fileID: 1736109527}
   m_Layer: 6
   m_Name: road-curve (12)
   m_TagString: Untagged
@@ -54421,28 +52929,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!64 &1736109524
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736109522}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!23 &1736109525
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54499,28 +52985,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736109522}
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &1736109527
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736109522}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &1736194109
 GameObject:
@@ -55892,7 +54356,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -57001,7 +55465,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -57066,8 +55530,6 @@ GameObject:
   - component: {fileID: 1840852506}
   - component: {fileID: 1840852509}
   - component: {fileID: 1840852508}
-  - component: {fileID: 1840852507}
-  - component: {fileID: 1840852510}
   m_Layer: 6
   m_Name: road-crossing (60)
   m_TagString: Untagged
@@ -57090,28 +55552,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1840852507
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840852505}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &1840852508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57168,28 +55608,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840852505}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1840852510
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840852505}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &1842269614
 PrefabInstance:
@@ -57898,7 +56316,6 @@ GameObject:
   - component: {fileID: 1859401061}
   - component: {fileID: 1859401065}
   - component: {fileID: 1859401064}
-  - component: {fileID: 1859401066}
   m_Layer: 6
   m_Name: road-crossing (8)
   m_TagString: Untagged
@@ -57977,28 +56394,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859401060}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1859401066
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859401060}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &1860005126
 PrefabInstance:
@@ -58448,7 +56843,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -58760,7 +57155,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -59518,8 +57913,6 @@ GameObject:
   - component: {fileID: 1941355451}
   - component: {fileID: 1941355455}
   - component: {fileID: 1941355454}
-  - component: {fileID: 1941355456}
-  - component: {fileID: 1941355457}
   m_Layer: 6
   m_Name: road-crossing (42)
   m_TagString: Untagged
@@ -59598,50 +57991,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941355450}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1941355456
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941355450}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1941355457
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941355450}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &1941872119
 GameObject:
@@ -60585,8 +58934,6 @@ GameObject:
   - component: {fileID: 1985761422}
   - component: {fileID: 1985761426}
   - component: {fileID: 1985761425}
-  - component: {fileID: 1985761424}
-  - component: {fileID: 1985761427}
   m_Layer: 6
   m_Name: road-crossing (52)
   m_TagString: Untagged
@@ -60609,28 +58956,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!64 &1985761424
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985761421}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &1985761425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60687,28 +59012,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985761421}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &1985761427
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985761421}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1001 &1989739986
 PrefabInstance:
@@ -60906,6 +59209,32 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &1999739053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166415703112573960, guid: 03a5520a2d5c5e24d93fc436676c95fd, type: 3}
+  m_PrefabInstance: {fileID: 754390270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1999739057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999739053}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000002, y: 2.0000002, z: 2.0000002}
+  m_Center: {x: -0.000030517578, y: 0, z: -0.00012207031}
 --- !u!1 &2003407929
 GameObject:
   m_ObjectHideFlags: 0
@@ -62512,7 +60841,6 @@ GameObject:
   - component: {fileID: 2056632430}
   - component: {fileID: 2056632434}
   - component: {fileID: 2056632433}
-  - component: {fileID: 2056632435}
   m_Layer: 6
   m_Name: road-crossing (27)
   m_TagString: Untagged
@@ -62591,28 +60919,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056632429}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &2056632435
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056632429}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &2060769413
 GameObject:
@@ -63667,7 +61973,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 40
   m_Range: 11.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -63986,8 +62292,6 @@ GameObject:
   - component: {fileID: 2105630801}
   - component: {fileID: 2105630804}
   - component: {fileID: 2105630803}
-  - component: {fileID: 2105630802}
-  - component: {fileID: 2105630805}
   m_Layer: 6
   m_Name: road-curve (7)
   m_TagString: Untagged
@@ -64010,28 +62314,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!64 &2105630802
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105630800}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!23 &2105630803
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64089,28 +62371,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105630800}
   m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
---- !u!64 &2105630805
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105630800}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 103405191620377775, guid: 4738d149dcdfd0a4b996b0361c3d3bf8, type: 3}
 --- !u!1 &2111819556
 GameObject:
   m_ObjectHideFlags: 0
@@ -64122,8 +62382,6 @@ GameObject:
   - component: {fileID: 2111819557}
   - component: {fileID: 2111819560}
   - component: {fileID: 2111819559}
-  - component: {fileID: 2111819558}
-  - component: {fileID: 2111819561}
   m_Layer: 6
   m_Name: road-crossing (56)
   m_TagString: Untagged
@@ -64146,28 +62404,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 216489732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2111819558
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111819556}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!23 &2111819559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64224,28 +62460,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111819556}
-  m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!64 &2111819561
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111819556}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
 --- !u!1 &2114903013
 GameObject:
@@ -65766,6 +63980,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 220137528757807944, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 52.57002
@@ -65810,14 +64028,82 @@ PrefabInstance:
       propertyPath: rouletteUI
       value: 
       objectReference: {fileID: 388693590}
+    - target: {fileID: 2229247899253780565, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256006925981356725, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603161717023533869, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733283256159178381, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2791431396340173202, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_Name
       value: Player_v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791431396340173202, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020758785734314121, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495416027268620074, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3603886705347662929, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501071401636582694, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527335178022886319, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628909310663423173, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088318586504094804, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: synergyManager
       value: 
       objectReference: {fileID: 845179664}
+    - target: {fileID: 5499276733218423145, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871759155700102833, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839761117139630688, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253340558720927588, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714289880379785899, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -66253,3 +64539,4 @@ SceneRoots:
   - {fileID: 520504217}
   - {fileID: 713761124}
   - {fileID: 6621833307609258126}
+  - {fileID: 1441687295}

@@ -17,9 +17,9 @@ TagManager:
   - UI
   - Ground
   - Wall
-  - 
-  - 
-  - 
+  - Player
+  - Bots
+  - Collider Main
   - 
   - 
   - 
