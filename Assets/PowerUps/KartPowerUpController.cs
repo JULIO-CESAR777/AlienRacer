@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(KartController))]
@@ -31,6 +32,15 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private bool hasJump = false;
     [SerializeField] private float boostedJumpForce = 15f; // la fuerza temporal que quieres
     [SerializeField] private float jumpTimer = 0f;
+    
+    [Header("Iman")]
+    [SerializeField] private Transform puntoDisparoRayo;
+    [SerializeField] private LayerMask capasDetectablesRayo;
+    [SerializeField] private LineRenderer lineRendererRayo;
+
+    private Coroutine rutinaRayo;
+    
+    
 
     private float originalJumpForce;
 
@@ -112,6 +122,101 @@ public class KartPowerUpController : MonoBehaviour
         kart.SetDriftAllowed(false);
         kart.ForceStopHorizontal();
     }
+
+    #region rayoralentizador
+
+     public void DispararRayoRalentizador(
+    float distanciaRayo,
+    float duracionRalentizacion,
+    float multiplicadorRalentizacion,
+    Color colorRayo,
+    float anchoRayo,
+    float tiempoVisible
+)
+{
+    PrepararLineRendererRayo(colorRayo, anchoRayo);
+
+    Transform origen = puntoDisparoRayo != null ? puntoDisparoRayo : transform;
+
+    Vector3 posicionInicio = origen.position;
+    Vector3 direccion = origen.forward;
+    Vector3 posicionFinal = posicionInicio + direccion * distanciaRayo;
+
+    if (Physics.Raycast(
+        posicionInicio,
+        direccion,
+        out RaycastHit hit,
+        distanciaRayo,
+        capasDetectablesRayo,
+        QueryTriggerInteraction.Ignore))
+    {
+        posicionFinal = hit.point;
+
+        KartObstaculosIA rival = hit.collider.GetComponentInParent<KartObstaculosIA>();
+
+        if (rival != null)
+        {
+            rival.AplicarRalentizacion(duracionRalentizacion, multiplicadorRalentizacion);
+            Debug.Log("Rayo ralentizó a: " + rival.name);
+        }
+        else
+        {
+            Debug.Log("El rayo golpeó algo, pero no era un rival.");
+        }
+    }
+
+    MostrarRayo(posicionInicio, posicionFinal, tiempoVisible);
+}
+
+private void PrepararLineRendererRayo(Color colorRayo, float anchoRayo)
+{
+    if (lineRendererRayo == null)
+    {
+        lineRendererRayo = gameObject.AddComponent<LineRenderer>();
+    }
+
+    lineRendererRayo.positionCount = 2;
+    lineRendererRayo.useWorldSpace = true;
+
+    lineRendererRayo.startWidth = anchoRayo;
+    lineRendererRayo.endWidth = anchoRayo * 0.35f;
+
+    lineRendererRayo.startColor = colorRayo;
+    lineRendererRayo.endColor = new Color(colorRayo.r, colorRayo.g, colorRayo.b, 0f);
+
+    if (lineRendererRayo.material == null)
+    {
+        Shader shader = Shader.Find("Sprites/Default");
+        lineRendererRayo.material = new Material(shader);
+    }
+
+    lineRendererRayo.enabled = false;
+}
+
+private void MostrarRayo(Vector3 inicio, Vector3 fin, float tiempoVisible)
+{
+    if (rutinaRayo != null)
+    {
+        StopCoroutine(rutinaRayo);
+    }
+
+    rutinaRayo = StartCoroutine(RutinaMostrarRayo(inicio, fin, tiempoVisible));
+}
+
+private IEnumerator RutinaMostrarRayo(Vector3 inicio, Vector3 fin, float tiempoVisible)
+{
+    lineRendererRayo.SetPosition(0, inicio);
+    lineRendererRayo.SetPosition(1, fin);
+
+    lineRendererRayo.enabled = true;
+
+    yield return new WaitForSeconds(tiempoVisible);
+
+    lineRendererRayo.enabled = false;
+}
+
+    #endregion
+   
 
     public bool IsStunned() => isStunned;
     public bool HasShield() => hasShield;
