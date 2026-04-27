@@ -783,6 +783,8 @@ public class KartController : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        
+        Debug.Log("CHOCASTE CON: " + collision.gameObject.name);
         bool isWall = collision.gameObject.layer == LayerMask.NameToLayer("Wall");
         bool isBot = collision.gameObject.CompareTag("Bot");
 
