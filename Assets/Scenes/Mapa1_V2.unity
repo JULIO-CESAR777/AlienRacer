@@ -26889,6 +26889,7 @@ MonoBehaviour:
   synergies:
   - {fileID: 11400000, guid: f02fac26cb48a294d9ebfaf3a8f3b6ec, type: 2}
   - {fileID: 11400000, guid: d3f3419777d98664ba6cccb545c5bcb1, type: 2}
+  - {fileID: 11400000, guid: 491978a9430ec9e4eba490ff065f20c5, type: 2}
 --- !u!1 &848800775
 GameObject:
   m_ObjectHideFlags: 0
@@ -55739,6 +55740,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4193206338342403132, guid: 9e235b26b47c0ea4384fe12b16be55e1, type: 3}
   m_PrefabInstance: {fileID: 1775503286}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1778772765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778772766}
+  m_Layer: 0
+  m_Name: Rayopoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1778772766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778772765}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.12, z: 1.339}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 809798954629356312}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796939192
 GameObject:
   m_ObjectHideFlags: 0
@@ -65937,9 +65969,21 @@ PrefabInstance:
       propertyPath: rouletteUI
       value: 
       objectReference: {fileID: 388693590}
+    - target: {fileID: 1245772660634406264, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: usePositionWeights
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2791431396340173202, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_Name
       value: Player_v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121570838653753222, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: puntoDisparoRayo
+      value: 
+      objectReference: {fileID: 1778772766}
+    - target: {fileID: 5121570838653753222, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: capasDetectablesRayo.m_Bits
+      value: 129
       objectReference: {fileID: 0}
     - target: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: synergyManager
@@ -65947,7 +65991,10 @@ PrefabInstance:
       objectReference: {fileID: 845179664}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1778772766}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd89c28110890134e83c51f2915baffb, type: 3}
 --- !u!114 &6503611579903161516
