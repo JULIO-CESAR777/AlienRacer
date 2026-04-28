@@ -8,6 +8,8 @@ TagManager:
   - Bot
   - Waypoint
   - Bullet
+  - FxTemporaire
+  - Oil
   layers:
   - Default
   - TransparentFX

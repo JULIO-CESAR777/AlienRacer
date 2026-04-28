@@ -17,7 +17,6 @@ public class KartObstaculosIA : MonoBehaviour
     public float fuerzaGravedadExtra = 20f;
 
     [Header("Competitividad (Overtake & Boost)")]
-    // Se eliminó tiempoEsperaSalida porque ahora se rige por el GameState
     public float boostRecta = 1.2f;
     public float boostRebufo = 1.35f;
     public float distanciaRebufo = 20f;
@@ -33,6 +32,13 @@ public class KartObstaculosIA : MonoBehaviour
     public float distanciaChoqueFrontal = 1.5f;
     public float tiempoReversa = 1.2f;
     public float velocidadReversa = 6f;
+
+    [Header("Asistente Todoterreno (Bordes)")]
+    public float alturaRayoBajo = 0.15f;
+    public float distanciaRayoBajo = 0.8f; // Corto para que brinque justo en el borde
+    public float fuerzaSaltoBorde = 4f;
+    public float inclinacionSubida = -15f; // Grados para levantar la nariz
+    private float pitchVisualActual = 0f;
 
     private int indiceWaypoint = 0;
     private float velocidadActual = 0f;
@@ -52,7 +58,6 @@ public class KartObstaculosIA : MonoBehaviour
     private Rigidbody rb;
     private MainManager manager;
 
-    // Variables nuevas para congelar el kart en la Pausa/Cuenta regresiva
     private bool isFrozen = false;
     private Vector3 savedVelocity;
     private Vector3 savedAngularVelocity;
@@ -61,9 +66,12 @@ public class KartObstaculosIA : MonoBehaviour
     public AudioClip sonidoChoqueMuro;
     public AudioClip sonidoReversa;
     public AudioClip sonidoDerrape;
-    
-    //COSAS JULIO PARA RALENTIZADO
-    
+
+    [Header("Efectos Procedurales (Charco de Aceite)")]
+    public float intensidadVaiven = 120f;
+    public float velocidadVaiven = 15f;
+    private float tiempoResbalando = 0f;
+
     private float tiempoRalentizado = 0f;
     private float multiplicadorRalentizacion = 1f;
 
@@ -80,26 +88,21 @@ public class KartObstaculosIA : MonoBehaviour
 
     void FixedUpdate()
     {
-        // SISTEMA DE PAUSA Y CONTEO MEJORADO
-        // Si el juego NO está en estado Play (es decir, está en Pausa, Conteo inicial, etc.)
         if (manager.gameState != GameState.Play)
         {
             if (!isFrozen)
             {
-                // Guardamos la velocidad y congelamos las físicas
                 savedVelocity = rb.linearVelocity;
                 savedAngularVelocity = rb.angularVelocity;
                 rb.isKinematic = true;
                 isFrozen = true;
             }
-            return; // Detiene la ejecución para que la IA no piense ni se mueva
+            return;
         }
         else
         {
-            // Cuando volvemos a Play (termina pausa o arranca la carrera)
             if (isFrozen)
             {
-                // Descongelamos y devolvemos la inercia que tenía
                 rb.isKinematic = false;
                 rb.linearVelocity = savedVelocity;
                 rb.angularVelocity = savedAngularVelocity;
@@ -117,6 +120,12 @@ public class KartObstaculosIA : MonoBehaviour
             return;
         }
 
+        if (tiempoResbalando > 0)
+        {
+            ProcesarResbalonProcedural();
+            return;
+        }
+
         if (enReversa)
         {
             EjecutarReversa();
@@ -131,13 +140,11 @@ public class KartObstaculosIA : MonoBehaviour
         if (tiempoStun > 0) tiempoStun -= Time.fixedDeltaTime;
         if (tiempoBoost > 0) tiempoBoost -= Time.fixedDeltaTime;
         if (tiempoEscudo > 0) tiempoEscudo -= Time.fixedDeltaTime;
+        if (tiempoResbalando > 0) tiempoResbalando -= Time.fixedDeltaTime;
 
-        
-        //cosas julio
         if (tiempoRalentizado > 0)
         {
             tiempoRalentizado -= Time.fixedDeltaTime;
-
             if (tiempoRalentizado <= 0)
             {
                 multiplicadorRalentizacion = 1f;
@@ -290,6 +297,21 @@ public class KartObstaculosIA : MonoBehaviour
             tocandoSuelo = true;
         }
 
+        // === NUEVO: ASISTENTE TODOTERRENO (CÓDIGO PURO) ===
+        bool saltandoBorde = false;
+        Vector3 origenRayoBajo = transform.position + (Vector3.up * alturaRayoBajo);
+
+        if (Physics.Raycast(origenRayoBajo, transform.forward, out RaycastHit hitBorde, distanciaRayoBajo, capaObstaculos))
+        {
+            if (!frenarPorMuroFrontal && !hitBorde.collider.CompareTag("Bot") && !hitBorde.collider.CompareTag("Player"))
+            {
+                saltandoBorde = true;
+
+                // TRUCO INFALIBLE: Micro-elevación física para evitar que la esquina de la caja se enganche en la costura
+                rb.MovePosition(rb.position + (Vector3.up * 0.08f));
+            }
+        }
+
         Vector3 direccionMovimientoReal = Vector3.ProjectOnPlane(transform.forward, normalSuelo).normalized;
         Vector3 impulsoDeseado = direccionMovimientoReal * velocidadActual;
 
@@ -302,12 +324,23 @@ public class KartObstaculosIA : MonoBehaviour
             impulsoDeseado.y = rb.linearVelocity.y;
         }
 
-        if (impulsoDeseado.y > 2f)
+        float limiteY = saltandoBorde ? fuerzaSaltoBorde * 1.5f : 2f;
+
+        if (saltandoBorde)
         {
-            impulsoDeseado.y = 2f;
+            impulsoDeseado.y = fuerzaSaltoBorde;
+        }
+
+        if (impulsoDeseado.y > limiteY)
+        {
+            impulsoDeseado.y = limiteY;
         }
 
         rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, impulsoDeseado, factorDerrape * Time.fixedDeltaTime);
+
+        // === INCLINACIÓN VISUAL (PITCH) ===
+        float pitchObjetivo = saltandoBorde ? inclinacionSubida : 0f;
+        pitchVisualActual = Mathf.Lerp(pitchVisualActual, pitchObjetivo, Time.fixedDeltaTime * 12f); // Interpolación suave
 
         if (direccionFinal != Vector3.zero)
         {
@@ -317,8 +350,11 @@ public class KartObstaculosIA : MonoBehaviour
             Vector3 direccionVisual = Vector3.ProjectOnPlane(direccionFinal, normalSuelo);
             if (direccionVisual == Vector3.zero) direccionVisual = direccionFinal;
 
-            Quaternion rotacionObjetivo = Quaternion.LookRotation(direccionVisual, normalSuelo);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, rotacionObjetivo, velocidadGiroDinamica * Time.fixedDeltaTime));
+            // Calculamos la rotación hacia donde vamos y le sumamos el "caballito" del borde
+            Quaternion rotacionBase = Quaternion.LookRotation(direccionVisual, normalSuelo);
+            Quaternion rotacionConPitch = rotacionBase * Quaternion.Euler(pitchVisualActual, 0f, 0f);
+
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, rotacionConPitch, velocidadGiroDinamica * Time.fixedDeltaTime));
         }
     }
 
@@ -384,19 +420,37 @@ public class KartObstaculosIA : MonoBehaviour
     {
         tiempoEscudo = duracion;
     }
-    
+
     public void AplicarRalentizacion(float duracion, float multiplicador)
     {
-        if (tiempoEscudo > 0)
-        {
-            tiempoEscudo = 0f;
-            return;
-        }
-
+        if (tiempoEscudo > 0 || tiempoStun > 0) return;
         tiempoRalentizado = duracion;
         multiplicadorRalentizacion = multiplicador;
+    }
 
-        // Opcional: corta un poco la velocidad actual para que se sienta inmediato
-        velocidadActual *= multiplicador;
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Oil"))
+        {
+            AplicarResbalon(1.5f);
+        }
+    }
+
+    public void AplicarResbalon(float duracion)
+    {
+        if (tiempoEscudo > 0 || tiempoStun > 0) return;
+
+        tiempoResbalando = duracion;
+        enReversa = false;
+    }
+
+    void ProcesarResbalonProcedural()
+    {
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity * 0.95f, Time.fixedDeltaTime * 2f);
+
+        float velocidadGiroResbalon = Mathf.Sin(Time.time * velocidadVaiven) * intensidadVaiven;
+
+        Quaternion giroWobble = Quaternion.AngleAxis(velocidadGiroResbalon * Time.fixedDeltaTime, Vector3.up);
+        rb.MoveRotation(rb.rotation * giroWobble);
     }
 }
