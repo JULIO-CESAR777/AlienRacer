@@ -8,32 +8,36 @@ public class ImanTiem : ItemBase
 
     [Header("Ralentización")]
     public float duracionRalentizacion = 3f;
-
-    [Range(0.1f, 1f)]
-    public float multiplicadorRalentizacion = 0.45f;
+    [Range(0.1f, 1f)] public float multiplicadorRalentizacion = 0.45f;
 
     [Header("Visual")]
     public Color colorRayo = Color.cyan;
-    public float anchoRayo = 0.18f;
-    public float tiempoVisible = 0.18f;
+    public float anchoRayoFinal = 0.18f;
+    public float tiempoVisibleRayoFinal = 0.18f;
+
+    [Header("Carga")]
+    public float tiempoCarga = 0.6f;
+    public float anchoInicialCarga = 2.2f;
 
     public override void Use(KartController user)
     {
-        KartPowerUpController powerUpController = user.GetComponent<KartPowerUpController>();
+        KartPowerUpController powerUp = user.GetComponent<KartPowerUpController>();
 
-        if (powerUpController == null)
+        if (powerUp == null)
         {
-            Debug.LogWarning("El kart no tiene KartPowerUpController.");
+            Debug.LogWarning("No se encontró KartPowerUpController.");
             return;
         }
 
-        powerUpController.DispararRayoRalentizador(
+        powerUp.DispararRayoRalentizadorConCarga(
             distanciaRayo,
             duracionRalentizacion,
             multiplicadorRalentizacion,
             colorRayo,
-            anchoRayo,
-            tiempoVisible
+            anchoInicialCarga,
+            anchoRayoFinal,
+            tiempoCarga,
+            tiempoVisibleRayoFinal
         );
     }
 }
