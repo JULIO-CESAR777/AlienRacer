@@ -34,4 +34,10 @@ public class MenuCameraController : MonoBehaviour
     {
         anim.SetTrigger("Controls");
     }
+
+    public void ChangeIsOnAnimFromMenu()
+    {
+        MainMenuController.GetInstance().ChangeIsOnAnim();
+    }
+
 }

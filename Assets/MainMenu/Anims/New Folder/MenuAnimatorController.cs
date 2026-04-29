@@ -23,4 +23,9 @@ public class MenuAnimatorController : MonoBehaviour
     {
         animator.SetTrigger("CerrarBorrado");
     }
+    
+    public void ChangeIsOnAnimFromMenu()
+    {
+        MainMenuController.GetInstance().ChangeIsOnAnim();
+    }
 }

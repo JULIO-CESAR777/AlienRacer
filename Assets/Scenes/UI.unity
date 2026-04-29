@@ -9511,9 +9511,8 @@ MonoBehaviour:
   - {fileID: 9012471}
   - {fileID: 26051827}
   currentMenuIndex: 0
-  currentHorizontal: 0
   menusIndex: 0
-  pastMenu: 0
+  isOnAnim: 0
 --- !u!4 &727992401
 Transform:
   m_ObjectHideFlags: 0

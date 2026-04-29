@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/ImanItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/ImanItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/GoToPlay.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/GoToPlay.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/Idle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/MenuAnimatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/MenuAnimatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/MoverAja.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/MoverAja.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/MoverBorrado.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/MoverBorrado.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/Regrsar Aja.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/New Folder/Regrsar Aja.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Anims/ToSettings.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Anims/ToSettings.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainMenu/Camera/MenuCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMenu/Camera/MenuCameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Camera/PhysicalKartCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Camera/PhysicalKartCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/KartController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/KartController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/MainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/MainMenuController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/[CoreArquitecture]/SceneLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[CoreArquitecture]/UI/UINavigationController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -62,7 +70,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Unity Attach To.Attach to.executor": "Debug",
-    "git-widget-placeholder": "JulioMedellinGGEZ",
+    "git-widget-placeholder": "GustavoGalindo",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,42 +82,36 @@
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Downloads/AlienRacer\My project (1).exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Racing with an alien/Builds/Entrega_Parcial2\My project (1).exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\JULIO EL LIDER\Downloads\AlienRacer" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\6000.3.9f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\6000.3.9f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -120,10 +122,9 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -134,7 +135,6 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
@@ -187,12 +187,14 @@
       <workItem from="1777166809971" duration="2788000" />
       <workItem from="1777226358954" duration="3927000" />
       <workItem from="1777255189850" duration="2913000" />
+      <workItem from="1777483953742" duration="4493000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
