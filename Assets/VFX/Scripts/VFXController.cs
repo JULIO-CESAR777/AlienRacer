@@ -38,4 +38,19 @@ public class VFXController : MonoBehaviour
     {
         Instantiate(_collisionVFXPrefab, position, Quaternion.identity, _collisionVFXTransform);
     }
+
+    public void SpawnBoostVFX(Vector3 position)
+    {
+        Instantiate(_boostVFXPrefab, position, Quaternion.identity, _boostVFXTransform);
+    }
+
+    public void SpawnDeadVFX(Vector3 position)
+    {
+        Instantiate(_deadVFXPrefab, position, Quaternion.identity, _deadVFXTransform);
+    }
+
+    public void SpawnVictoryVFX(Vector3 position)
+    {
+        Instantiate(_victoryVFXPrefab, position, Quaternion.identity, _victoryVFXTransform);
+    }
 }
