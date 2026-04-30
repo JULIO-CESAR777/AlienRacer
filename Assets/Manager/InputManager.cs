@@ -86,6 +86,10 @@ public class InputManager : MonoBehaviour
             "Vertical", // Left stick vertical
             "Axis9", // Left trigger
             "Axis10", // Right trigger
+            "Axis7", // Dpad horizontal
+            "Axis6", // Dpad vertical
+            
+            
         };
     
         private string[] playstationAxis =
@@ -287,5 +291,7 @@ public enum AXIS
     LEFT_STICK_HORIZONTAL,
     LEFT_STICK_VERTICAL,
     LEFT_TRIGGER,
-    RIGHT_TRIGGER
+    RIGHT_TRIGGER,
+    VERTICAL_DPAD,
+    HORIZONTAL_DPAD,
 }

@@ -68,6 +68,7 @@ public class MainMenuController : MonoBehaviour
 
         HandleVerticalNavigation();
         HandleHorizontalNavigation();
+        
         HandleSubmit();
     }
     
@@ -104,7 +105,13 @@ public class MainMenuController : MonoBehaviour
 
     private void HandleVerticalNavigation()
     {
-        float vertical = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        float verticalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        float verticalDpad = input.GetAXis(AXIS.VERTICAL_DPAD);
+
+        // Tomamos el input más fuerte (stick o dpad)
+        float vertical = Mathf.Abs(verticalDpad) > Mathf.Abs(verticalStick)
+            ? verticalDpad
+            : verticalStick;
 
         if (vertical > 0 && canMove)
         {
@@ -126,7 +133,13 @@ public class MainMenuController : MonoBehaviour
 
     private void HandleHorizontalNavigation()
     {
-        float horizontal = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
+        float horizontalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        float horizontalDpad = input.GetAXis(AXIS.HORIZONTAL_DPAD);
+
+        // Tomamos el input más fuerte (stick o dpad)
+        float horizontal = Mathf.Abs(horizontalDpad) > Mathf.Abs(horizontalStick)
+            ? horizontalDpad
+            : horizontalStick;
 
         if (horizontal > 0 && canMoveHorizontally)
         {
