@@ -24,7 +24,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Image tutorialDisplayImage;
     [SerializeField] private TextMeshProUGUI tutorialDisplayText;
     [SerializeField] private GameObject panelTutorial;
-    [SerializeField] private CanvasGroup canvasGroup; // Arrastra el CanvasGroup aquí
+    [SerializeField] private CanvasGroup canvasGroup; // CanvasGroup aquí
     [SerializeField] private float fadeSpeed = 2f;    // Velocidad del fade
 
     [Header("Base de Datos de Imagenes")]

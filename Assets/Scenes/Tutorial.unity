@@ -12948,7 +12948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 0.09803922}
+  m_Color: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15576,9 +15576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CambioEscenaAutomatico
   panelInteractuar: {fileID: 840323819}
   textoPrompt: {fileID: 385615568}
-  mensajeCorta: Menu en 3 segundos...
+  mensajeCorta: Menu en 2 segundos...
   nombreEscenaCargar: UI
-  tiempoEspera: 3
+  tiempoEspera: 2
 --- !u!64 &883919907
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31630,7 +31630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.937153
+      value: -23.94
       objectReference: {fileID: 0}
     - target: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31638,7 +31638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.562946
+      value: -25.64
       objectReference: {fileID: 0}
     - target: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_LocalRotation.w
