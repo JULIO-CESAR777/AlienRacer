@@ -9277,7 +9277,7 @@ Transform:
   m_GameObject: {fileID: 305340641}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.000000104308114, z: -0, w: -1}
-  m_LocalPosition: {x: 12.859596, y: 0, z: -102.651245}
+  m_LocalPosition: {x: 12.819595, y: 0, z: -102.651245}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -21591,8 +21591,8 @@ Transform:
   m_GameObject: {fileID: 710821410}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000004768371, z: -0, w: 1}
-  m_LocalPosition: {x: 56.819588, y: 0, z: -45.211243}
-  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_LocalPosition: {x: 56.71959, y: 0.000000014901161, z: -45.231243}
+  m_LocalScale: {x: 9.1998, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 216489732}
@@ -23616,18 +23616,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestorPosiciones
   hitosDePista:
-  - {fileID: 379345956}
-  - {fileID: 1374714936}
-  - {fileID: 1171141634}
-  - {fileID: 640748549}
-  - {fileID: 1365428540}
-  - {fileID: 1522123366}
-  - {fileID: 509589604}
-  - {fileID: 485641586}
-  - {fileID: 1856775951}
-  - {fileID: 946025433}
-  - {fileID: 1150511756}
-  totalVueltas: 3
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 379345956}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 1374714936}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 1171141634}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 640748549}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 1365428540}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 1522123366}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 509589604}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 485641586}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 1856775951}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 946025433}
+  - nombreHito: 
+    variantesFisicas:
+    - {fileID: 1150511756}
+  totalVueltas: 1
   panelFinCarrera: {fileID: 1736194109}
   textoResultado: {fileID: 2047539703}
   textoVueltas: {fileID: 499134496}
@@ -51570,7 +51592,7 @@ Transform:
   m_GameObject: {fileID: 1697903204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.70710677}
-  m_LocalPosition: {x: 34.579597, y: 0, z: -102.44124}
+  m_LocalPosition: {x: 34.539597, y: 0, z: -102.44124}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -58021,15 +58043,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d3ae3981d9916f249a5eb19bf939d946, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46
+      value: 45.7604
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3ae3981d9916f249a5eb19bf939d946, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12398836
+      value: 0.06000022
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3ae3981d9916f249a5eb19bf939d946, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.27124
+      value: 49.59124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3ae3981d9916f249a5eb19bf939d946, type: 3}
       propertyPath: m_LocalRotation.w

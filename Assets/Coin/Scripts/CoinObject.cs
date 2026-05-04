@@ -40,14 +40,6 @@ public class CoinObject : MonoBehaviour
             kart.AddCoin();
         }
 
-        // ACTIVAR EL BURST DE PARTÍCULAS
-        if (sistemaParticulas != null)
-        {
-            sistemaParticulas.Play();
-        }
-        _renderer.enabled = false;
-        _collider.enabled = false;
-
         StartCoroutine(RutinaReaparicion());
     }
 
