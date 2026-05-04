@@ -77,7 +77,7 @@ public class InputManager : MonoBehaviour
             "Horizontal", // Left stick horizontal
             "Vertical", // Left stick vertical
             "Mouse X", // Right stick horizontal
-            "Mouse Y" // Right stick vertical
+            "Mouse Y", // Right stick vertical
         };
         
         private string[] xboxControllerAxis =
@@ -234,15 +234,20 @@ public class InputManager : MonoBehaviour
         private float valueAbs;
         public float GetAXis(AXIS _axis)
         { 
-            value = Input.GetAxis(controllersAxis[(byte)currentInputType][(byte)_axis]);
+            int inputTypeIndex = (byte)currentInputType;
+            int axisIndex = (byte)_axis;
+
+            if (controllersAxis == null) return 0f;
+            if (inputTypeIndex < 0 || inputTypeIndex >= controllersAxis.Length) return 0f;
+            if (controllersAxis[inputTypeIndex] == null) return 0f;
+            if (axisIndex < 0 || axisIndex >= controllersAxis[inputTypeIndex].Length) return 0f;
+
+            value = Input.GetAxis(controllersAxis[inputTypeIndex][axisIndex]);
             valueAbs = Mathf.Abs(value);
-    
+
             if (valueAbs >= 0.3f)
-            {
-                //Debug.Log("Axis Used: " + _axis + " | Value: " + value + " | Device: " + currentInputType);
                 return value;
-            }
-    
+
             return 0f;
             
         }
