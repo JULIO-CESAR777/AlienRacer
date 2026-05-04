@@ -12,6 +12,11 @@ public class CoinGachaBuyer : MonoBehaviour
     [SerializeField] private PositionBasedLootConfig positionConfig;
     [SerializeField] private bool usePositionWeights = true;
 
+    [Header("Tutorial")]
+    [SerializeField] private bool useTutorialOrder = false;
+    [SerializeField] private List<ItemBase> tutorialOrder;
+    private int tutorialIndex = 0;
+
     [Header("UI Roulette")]
     [SerializeField] private ItemRouletteUI rouletteUI;
     [SerializeField] private List<ItemBase> ribbonVisualPool;
@@ -81,18 +86,24 @@ public class CoinGachaBuyer : MonoBehaviour
         if (!kart.TrySpendCoins(coinCost))
             return;
 
-        float c = 60f, u = 25f, r = 10f, e = 4f, l = 1f;
+        ItemBase result = GetTutorialItem();
 
-        if (usePositionWeights && positionConfig != null && GestorPosiciones.Instancia != null)
+        if (result == null)
         {
-            int total = Mathf.Max(1, GestorPosiciones.Instancia.ObtenerTotalCorredores());
-            int posActual = GestorPosiciones.Instancia.ObtenerPosicionDe(transform);
-            int pos = Mathf.Clamp(posActual == 0 ? 1 : posActual, 1, total);
+            float c = 60f, u = 25f, r = 10f, e = 4f, l = 1f;
 
-            positionConfig.GetWeights(pos, total, out c, out u, out r, out e, out l);
+            if (usePositionWeights && positionConfig != null && GestorPosiciones.Instancia != null)
+            {
+                int total = Mathf.Max(1, GestorPosiciones.Instancia.ObtenerTotalCorredores());
+                int posActual = GestorPosiciones.Instancia.ObtenerPosicionDe(transform);
+                int pos = Mathf.Clamp(posActual == 0 ? 1 : posActual, 1, total);
+
+                positionConfig.GetWeights(pos, total, out c, out u, out r, out e, out l);
+            }
+
+            result = lootTable.RollWithRarityWeights(c, u, r, e, l);
         }
 
-        ItemBase result = lootTable.RollWithRarityWeights(c, u, r, e, l);
         if (result == null) return;
 
         List<ItemBase> visualPool = (ribbonVisualPool != null && ribbonVisualPool.Count > 0)
@@ -101,10 +112,20 @@ public class CoinGachaBuyer : MonoBehaviour
 
         rouletteUI.Spin(result, visualPool, (finalItem) =>
         {
-            
-
             inv.TryAddItem(finalItem);
         });
+    }
+
+    private ItemBase GetTutorialItem()
+    {
+        if (!useTutorialOrder) return null;
+        if (tutorialOrder == null || tutorialOrder.Count == 0) return null;
+        if (tutorialIndex >= tutorialOrder.Count) return null;
+
+        ItemBase item = tutorialOrder[tutorialIndex];
+        tutorialIndex++;
+
+        return item;
     }
 
     private List<ItemBase> LootTableToItemList(LootTable table)

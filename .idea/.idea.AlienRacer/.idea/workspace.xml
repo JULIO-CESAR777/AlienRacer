@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Manager/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Manager/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/DisplaySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/DisplaySettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/MainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/MainMenuController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/PauseMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/PauseMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/CoinGachaBuyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/CoinGachaBuyer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/Oil.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/Oil.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/OilSlick.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/OilSlick.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +42,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Leadboard/GestorPosiciones.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Manager/MainManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Player/Canvas/UiManagerPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PowerUps/Oil/OilSpillAppear.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PauseMenuController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/UIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[CoreArquitecture]/GameResultManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -62,7 +68,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;Unity Attach To.Attach to.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;GustavoGalindo&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;JulioMedellinGGEZ&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -189,6 +195,7 @@
       <workItem from="1777255189850" duration="2913000" />
       <workItem from="1777483953742" duration="4493000" />
       <workItem from="1777504173182" duration="2698000" />
+      <workItem from="1777926163341" duration="4781000" />
     </task>
     <servers />
   </component>

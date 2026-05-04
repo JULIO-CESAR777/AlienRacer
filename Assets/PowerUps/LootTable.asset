@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LootTable
   entries:
   - item: {fileID: 11400000, guid: 982cf5a7a1761eb48ac7598c62d92110, type: 2}
-    rarity: 0
-    weight: 0.9
+    rarity: 2
+    weight: 0.3
   - item: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
     rarity: 0
     weight: 0.9

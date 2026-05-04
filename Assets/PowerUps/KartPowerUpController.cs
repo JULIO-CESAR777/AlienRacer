@@ -46,6 +46,19 @@ public class KartPowerUpController : MonoBehaviour
     private Coroutine rutinaRayo;
 
     private float originalJumpForce;
+    
+    
+   
+        
+   //GAMEEEEEEEEE FEEEEEEEEEEEEEEEEEEEEL     
+        
+    [Header("Shield Feel")]
+    [SerializeField] private GameObject shieldVisual;
+    [SerializeField] private ParticleSystem shieldParticles;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shieldActivateSfx;
+    [SerializeField] private AudioClip shieldBreakSfx;
+    [SerializeField] private AudioClip shieldBlockSfx;
 
     [Header("Spawn Points")]
     public Transform behindSpawnPoint;
@@ -76,6 +89,15 @@ public class KartPowerUpController : MonoBehaviour
     {
         hasShield = true;
         shieldTimer = Mathf.Max(shieldTimer, duration);
+
+        if (shieldVisual != null)
+            shieldVisual.SetActive(true);
+
+        if (shieldParticles != null)
+            shieldParticles.Play();
+
+        if (audioSource != null && shieldActivateSfx != null)
+            audioSource.PlayOneShot(shieldActivateSfx);
     }
 
     public void ActivateStar(float duration, float stunSeconds = 1.5f)
@@ -110,7 +132,11 @@ public class KartPowerUpController : MonoBehaviour
     {
         if (seconds <= 0f) return;
 
-        if (hasShield) return;
+        if (hasShield)
+        {
+            PlayShieldBlockFeedback();
+            return;
+        }
 
         if (isStunned)
         {
@@ -785,6 +811,15 @@ private void MoverKartParaIntercambio(
         {
             hasShield = false;
             shieldTimer = 0f;
+
+            if (shieldVisual != null)
+                shieldVisual.SetActive(false);
+
+            if (shieldParticles != null)
+                shieldParticles.Stop();
+
+            if (audioSource != null && shieldBreakSfx != null)
+                audioSource.PlayOneShot(shieldBreakSfx);
         }
     }
 
@@ -847,5 +882,13 @@ private void MoverKartParaIntercambio(
 
             kart.SetJumpForce(originalJumpForce);
         }
+    }
+    
+    private void PlayShieldBlockFeedback()
+    {
+       
+
+        if (audioSource != null && shieldBlockSfx != null)
+            audioSource.PlayOneShot(shieldBlockSfx);
     }
 }
