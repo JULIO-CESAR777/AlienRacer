@@ -3,6 +3,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+[System.Serializable]
+public class GrupoHito
+{
+    public string nombreHito; 
+    public List<Transform> variantesFisicas; //  arrastrar 1 o más transforms para el mismo hito
+}
+
 public class DatosCorredor
 {
     public Transform transform;
@@ -18,23 +25,20 @@ public class GestorPosiciones : MonoBehaviour
 {
     public static GestorPosiciones Instancia;
 
-    public Transform[] hitosDePista;
+    //Es un array de Grupos en lugar de solo Transforms
+    public GrupoHito[] hitosDePista;
+
     public List<DatosCorredor> listaCorredores = new List<DatosCorredor>();
 
     [Header("Configuración de Carrera")]
     public int totalVueltas = 3;
     public GameObject panelFinCarrera;
     public TMPro.TextMeshProUGUI textoResultado;
-    
-    // --- NUEVA VARIABLE PARA VUELTAS ---
-    [Tooltip("Arrastra aquí el texto del Canvas que mostrará las vueltas (ej: 1/3)")]
     public TMPro.TextMeshProUGUI textoVueltas;
 
     [Header("Nivel actual")]
     public int currentLevel = 1;
     private int corredoresFinalizados = 0;
-    
-    // Referencia interna para no buscar al jugador en cada frame
     private DatosCorredor datosJugador;
 
     void Awake()
@@ -47,11 +51,7 @@ public class GestorPosiciones : MonoBehaviour
     {
         ConfigurarCorredoresConTag("Player");
         ConfigurarCorredoresConTag("Bot");
-
-        // Guardamos la referencia del jugador para el HUD de vueltas
         datosJugador = listaCorredores.Find(c => c.transform.CompareTag("Player"));
-        
-        // Inicializamos el texto de vueltas
         ActualizarHUDVueltas();
     }
 
@@ -69,15 +69,11 @@ public class GestorPosiciones : MonoBehaviour
         var datos = listaCorredores.Find(c => c.transform == corredor);
         if (datos == null || datos.haTerminado) return;
 
+        // Lógica de vuelta (Hito 0)
         if (datos.ultimoHito == hitosDePista.Length - 1 && indice == 0)
         {
             datos.vueltasDadas++;
-            
-            // Si es el jugador, actualizamos su contador visual en el HUD
-            if (datos.transform.CompareTag("Player"))
-            {
-                ActualizarHUDVueltas();
-            }
+            if (datos.transform.CompareTag("Player")) ActualizarHUDVueltas();
 
             if (datos.vueltasDadas >= totalVueltas)
             {
@@ -86,10 +82,46 @@ public class GestorPosiciones : MonoBehaviour
             }
         }
 
+        // Validación secuencial: solo acepta el siguiente hito
         if (indice == (datos.ultimoHito + 1) % hitosDePista.Length)
         {
             datos.ultimoHito = indice;
         }
+    }
+
+    void Update()
+    {
+        if (hitosDePista.Length == 0) return;
+
+        foreach (var c in listaCorredores)
+        {
+            if (c.haTerminado) continue;
+
+            int siguienteHitoIdx = (c.ultimoHito + 1) % hitosDePista.Length;
+
+            // Calculamos la distancia al punto más cercano de las variantes del siguiente hito
+            c.distanciaAlSiguiente = ObtenerDistanciaMasCercana(c.transform.position, siguienteHitoIdx);
+
+            c.progresoTotal = (c.vueltasDadas * 100000) + (c.ultimoHito * 1000) - c.distanciaAlSiguiente;
+        }
+
+        var ordenados = listaCorredores.OrderByDescending(c => c.progresoTotal).ToList();
+        for (int i = 0; i < ordenados.Count; i++)
+        {
+            if (!ordenados[i].haTerminado) ordenados[i].posicion = i + 1;
+        }
+    }
+
+    // función para manejar atajos
+    private float ObtenerDistanciaMasCercana(Vector3 posCorredor, int idxHito)
+    {
+        float minDist = float.MaxValue;
+        foreach (Transform t in hitosDePista[idxHito].variantesFisicas)
+        {
+            float d = Vector3.Distance(posCorredor, t.position);
+            if (d < minDist) minDist = d;
+        }
+        return minDist;
     }
 
     private void FinalizarCarreraCorredor(DatosCorredor corredor)
@@ -102,9 +134,7 @@ public class GestorPosiciones : MonoBehaviour
         if (corredor.transform.CompareTag("Player"))
         {
             bool gano = corredor.posicion == 1;
-
             if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
-
             if (textoResultado != null && LanguageManager.GetInstance() != null)
             {
                 if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.SPANISH)
@@ -112,19 +142,15 @@ public class GestorPosiciones : MonoBehaviour
                 else
                     textoResultado.text = gano ? "Victory" : "Position: " + corredor.posicion + "°";
             }
-
             if (gano) SlotSaveSystem.CompleteLevelInActiveSlot(currentLevel);
-
             StartCoroutine(EsperarYCambiarEscena(3f, gano));
         }
     }
 
-    // --- FUNCIÓN PARA ACTUALIZAR EL TEXTO DE VUELTAS ---
     private void ActualizarHUDVueltas()
     {
         if (textoVueltas != null && datosJugador != null)
         {
-            // Usamos Mathf.Min para que no muestre "4/3" si cruza la meta final
             int vueltaActual = Mathf.Min(datosJugador.vueltasDadas + 1, totalVueltas);
             textoVueltas.text = vueltaActual + " / " + totalVueltas;
         }
@@ -137,26 +163,7 @@ public class GestorPosiciones : MonoBehaviour
             RaceResultSystem.Instance.CargarResultado(gano);
     }
 
-    void Update()
-    {
-        if (hitosDePista.Length == 0) return;
-
-        foreach (var c in listaCorredores)
-        {
-            if (c.haTerminado) continue;
-            int siguienteHito = (c.ultimoHito + 1) % hitosDePista.Length;
-            c.distanciaAlSiguiente = Vector3.Distance(c.transform.position, hitosDePista[siguienteHito].position);
-            c.progresoTotal = (c.vueltasDadas * 100000) + (c.ultimoHito * 1000) - c.distanciaAlSiguiente;
-        }
-
-        var ordenados = listaCorredores.OrderByDescending(c => c.progresoTotal).ToList();
-        for (int i = 0; i < ordenados.Count; i++)
-        {
-            if (!ordenados[i].haTerminado) ordenados[i].posicion = i + 1;
-        }
-    }
-
-    // --- FUNCIONES PARA OTROS SCRIPTS (MANTENIDAS VIVAS) ---
+    // --- FUNCIONES PUBLICAS ---
     public int ObtenerPosicionDe(Transform coche)
     {
         var datos = listaCorredores.Find(c => c.transform == coche);
@@ -169,10 +176,10 @@ public class GestorPosiciones : MonoBehaviour
     }
 }
 
-    /* 
-    private IEnumerator CargarEscenaResultados(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        UIController.GetInstance()?.ToUIScene();
-    }
-    */
+/* 
+private IEnumerator CargarEscenaResultados(float delay)
+{
+    yield return new WaitForSeconds(delay);
+    UIController.GetInstance()?.ToUIScene();
+}
+*/

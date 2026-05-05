@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/ImanItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/ImanItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/CoinGachaBuyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/CoinGachaBuyer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/Oil.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/Oil.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/OilSlick.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/OilSlick.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +42,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Leadboard/GestorPosiciones.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Manager/MainManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Player/Canvas/UiManagerPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PowerUps/Oil/OilSpillAppear.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/PauseMenuController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/UIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[CoreArquitecture]/GameResultManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -46,6 +51,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/[CoreArquitecture]/SceneLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[CoreArquitecture]/UI/UINavigationController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -54,27 +60,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to": "Unity Editor",
-    "DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider": "Unity Editor",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Unity Attach To.Attach to.executor": "Debug",
-    "git-widget-placeholder": "JulioMedellinGGEZ",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to&quot;: &quot;Unity Editor&quot;,
+    &quot;DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider&quot;: &quot;Unity Editor&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Unity Attach To.Attach to.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;JulioMedellinGGEZ&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Downloads/AlienRacer\My project (1).exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Racing with an alien/Builds/Entrega_Parcial2\My project (1).exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\JULIO EL LIDER\Downloads\AlienRacer" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -187,12 +193,16 @@
       <workItem from="1777166809971" duration="2788000" />
       <workItem from="1777226358954" duration="3927000" />
       <workItem from="1777255189850" duration="2913000" />
+      <workItem from="1777483953742" duration="4493000" />
+      <workItem from="1777504173182" duration="2698000" />
+      <workItem from="1777926163341" duration="4781000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />

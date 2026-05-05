@@ -43,6 +43,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void InitState()
     {
+        canMoveHorizontally = true;
         currentMenu = pauseMenu;
         menusIndex = 0;
         currentMenuIndex = 0;
@@ -73,32 +74,37 @@ public class PauseMenuController : MonoBehaviour
     
     private void HandleVerticalNavigation()
     {
-        // Sube
-        if (input.GetAXis(AXIS.LEFT_STICK_VERTICAL) > 0 && canMove)
+        float verticalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        float verticalDpad = input.GetAXis(AXIS.VERTICAL_DPAD);
+
+        float vertical = Mathf.Abs(verticalDpad) > Mathf.Abs(verticalStick)
+            ? verticalDpad
+            : verticalStick;
+
+        if (vertical > 0 && canMove)
         {
             canMove = false;
             currentMenuIndex--;
+
             if (currentMenuIndex < 0)
-            {
                 currentMenuIndex = currentMenu.Length - 1;
-            }
+
+            SelectCurrentOption();
         }
-        // Baja
-        else if (input.GetAXis(AXIS.LEFT_STICK_VERTICAL) < 0 && canMove)
+        else if (vertical < 0 && canMove)
         {
             canMove = false;
             currentMenuIndex++;
+
             if (currentMenuIndex > currentMenu.Length - 1)
-            {
                 currentMenuIndex = 0;
-            }
-            
-        }else if (input.GetAXis(AXIS.LEFT_STICK_VERTICAL) == 0)
+
+            SelectCurrentOption();
+        }
+        else if (vertical == 0)
         {
             canMove = true;
         }
-        
-        SelectCurrentOption();
     }
     
     private void HandleSubmit()
@@ -112,7 +118,12 @@ public class PauseMenuController : MonoBehaviour
     
     private void HandleHorizontalNavigation()
     {
-        float horizontal = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
+        float horizontalStick = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
+        float horizontalDpad = input.GetAXis(AXIS.HORIZONTAL_DPAD);
+
+        float horizontal = Mathf.Abs(horizontalDpad) > Mathf.Abs(horizontalStick)
+            ? horizontalDpad
+            : horizontalStick;
 
         if (horizontal > 0 && canMoveHorizontally)
         {
