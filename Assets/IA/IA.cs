@@ -35,9 +35,9 @@ public class KartObstaculosIA : MonoBehaviour
 
     [Header("Asistente Todoterreno (Bordes)")]
     public float alturaRayoBajo = 0.15f;
-    public float distanciaRayoBajo = 0.8f; // Corto para que brinque justo en el borde
+    public float distanciaRayoBajo = 0.8f;
     public float fuerzaSaltoBorde = 4f;
-    public float inclinacionSubida = -15f; // Grados para levantar la nariz
+    public float inclinacionSubida = -15f;
     private float pitchVisualActual = 0f;
 
     private int indiceWaypoint = 0;
@@ -63,9 +63,11 @@ public class KartObstaculosIA : MonoBehaviour
     private Vector3 savedAngularVelocity;
 
     [Header("Efectos de Sonido")]
+    public AudioSource sfxAudioSource;
     public AudioClip sonidoChoqueMuro;
     public AudioClip sonidoReversa;
     public AudioClip sonidoDerrape;
+    public AudioClip sonidoImpactoBala;
 
     [Header("Efectos Procedurales (Charco de Aceite)")]
     public float intensidadVaiven = 120f;
@@ -154,7 +156,11 @@ public class KartObstaculosIA : MonoBehaviour
 
     void ProcesarStun()
     {
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, Time.fixedDeltaTime * 3f);
+        Vector3 velocidadStun = rb.linearVelocity;
+        velocidadStun.x = Mathf.Lerp(velocidadStun.x, 0f, Time.fixedDeltaTime * 4f);
+        velocidadStun.z = Mathf.Lerp(velocidadStun.z, 0f, Time.fixedDeltaTime * 4f);
+        velocidadStun.y -= fuerzaGravedadExtra * 1.5f * Time.fixedDeltaTime;
+        rb.linearVelocity = velocidadStun;
 
         Vector3 normalSuelo = Vector3.up;
         if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos))
@@ -162,7 +168,7 @@ public class KartObstaculosIA : MonoBehaviour
             normalSuelo = hitSuelo.normal;
         }
 
-        Quaternion rotacionGiro = Quaternion.AngleAxis(720f * Time.fixedDeltaTime, normalSuelo);
+        Quaternion rotacionGiro = Quaternion.AngleAxis(1080f * Time.fixedDeltaTime, normalSuelo);
         rb.MoveRotation(rb.rotation * rotacionGiro);
     }
 
@@ -297,7 +303,6 @@ public class KartObstaculosIA : MonoBehaviour
             tocandoSuelo = true;
         }
 
-        // === NUEVO: ASISTENTE TODOTERRENO (CÓDIGO PURO) ===
         bool saltandoBorde = false;
         Vector3 origenRayoBajo = transform.position + (Vector3.up * alturaRayoBajo);
 
@@ -306,8 +311,6 @@ public class KartObstaculosIA : MonoBehaviour
             if (!frenarPorMuroFrontal && !hitBorde.collider.CompareTag("Bot") && !hitBorde.collider.CompareTag("Player"))
             {
                 saltandoBorde = true;
-
-                // TRUCO INFALIBLE: Micro-elevación física para evitar que la esquina de la caja se enganche en la costura
                 rb.MovePosition(rb.position + (Vector3.up * 0.08f));
             }
         }
@@ -338,9 +341,8 @@ public class KartObstaculosIA : MonoBehaviour
 
         rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, impulsoDeseado, factorDerrape * Time.fixedDeltaTime);
 
-        // === INCLINACIÓN VISUAL (PITCH) ===
         float pitchObjetivo = saltandoBorde ? inclinacionSubida : 0f;
-        pitchVisualActual = Mathf.Lerp(pitchVisualActual, pitchObjetivo, Time.fixedDeltaTime * 12f); // Interpolación suave
+        pitchVisualActual = Mathf.Lerp(pitchVisualActual, pitchObjetivo, Time.fixedDeltaTime * 12f);
 
         if (direccionFinal != Vector3.zero)
         {
@@ -350,7 +352,6 @@ public class KartObstaculosIA : MonoBehaviour
             Vector3 direccionVisual = Vector3.ProjectOnPlane(direccionFinal, normalSuelo);
             if (direccionVisual == Vector3.zero) direccionVisual = direccionFinal;
 
-            // Calculamos la rotación hacia donde vamos y le sumamos el "caballito" del borde
             Quaternion rotacionBase = Quaternion.LookRotation(direccionVisual, normalSuelo);
             Quaternion rotacionConPitch = rotacionBase * Quaternion.Euler(pitchVisualActual, 0f, 0f);
 
@@ -434,6 +435,11 @@ public class KartObstaculosIA : MonoBehaviour
         {
             AplicarResbalon(1.5f);
         }
+        else if (other.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            AplicarImpactoBala(1.3f);
+        }
     }
 
     public void AplicarResbalon(float duracion)
@@ -441,6 +447,25 @@ public class KartObstaculosIA : MonoBehaviour
         if (tiempoEscudo > 0 || tiempoStun > 0) return;
 
         tiempoResbalando = duracion;
+        enReversa = false;
+    }
+
+    public void AplicarImpactoBala(float duracion)
+    {
+        if (tiempoEscudo > 0) return;
+
+        if (tiempoStun <= 0)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.3f, 6.5f, rb.linearVelocity.z * 0.3f);
+
+            if (sfxAudioSource != null && sonidoImpactoBala != null)
+            {
+                sfxAudioSource.PlayOneShot(sonidoImpactoBala);
+            }
+        }
+
+        tiempoStun = duracion;
+        tiempoResbalando = 0f;
         enReversa = false;
     }
 
