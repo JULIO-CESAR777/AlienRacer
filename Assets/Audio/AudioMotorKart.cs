@@ -12,7 +12,7 @@ public class AudioMotorKart : MonoBehaviour
 
     [Header("Rangos de Tono")]
     public float pitchMinimo = 0.8f;
-    public float pitchMaximo = 2.4f; // Reducido un poco para evitar el exceso
+    public float pitchMaximo = 2.4f; 
     public float suavizadoPitch = 15f;
 
     private int marchaActual = 0;
@@ -20,14 +20,36 @@ public class AudioMotorKart : MonoBehaviour
     private float pitchObjetivo;
     private bool estaAcelerando;
 
+    private MainManager manager;
+
+    void Start()
+    {
+        manager = MainManager.GetInstance();
+    }
+
     void Update()
     {
-        if (motorAudioSource == null || kartRb == null) return;
+        if (motorAudioSource == null || kartRb == null || manager == null) return;
+
+        if (manager.gameState != GameState.Play)
+        {
+            if (motorAudioSource.isPlaying)
+            {
+                motorAudioSource.Pause();
+            }
+            return; 
+        }
+        else
+        {
+            if (!motorAudioSource.isPlaying)
+            {
+                motorAudioSource.UnPause();
+            }
+        }
 
         float velocidadActual = kartRb.linearVelocity.magnitude;
         estaAcelerando = Input.GetAxis("Vertical") > 0.1f;
 
-        // CORRECCIÓN: Sincronizar marcha con velocidad cuando se frena
         float marchaSegunVelocidad = (velocidadActual / 22f) * numeroMarchas;
 
         if (estaAcelerando)
@@ -42,14 +64,13 @@ public class AudioMotorKart : MonoBehaviour
                     {
                         marchaActual++;
                         temporizadorMarcha = 0f;
-                        motorAudioSource.pitch *= 0.85f; // Golpe de embrague
+                        motorAudioSource.pitch *= 0.85f; 
                     }
                 }
             }
         }
         else
         {
-            // Regreso rápido de marchas basado en la velocidad real
             temporizadorMarcha = Mathf.Lerp(temporizadorMarcha, 0f, Time.deltaTime * 5f);
 
             if (marchaActual > (int)marchaSegunVelocidad)
@@ -65,15 +86,12 @@ public class AudioMotorKart : MonoBehaviour
     {
         float progreso = temporizadorMarcha / tiempoPorMarcha;
 
-        // Base de pitch que sube por marcha
         float basePitch = pitchMinimo + (marchaActual * 0.1f);
 
-        // CORRECCIÓN: Si es la última marcha, el pitch sube más lento (techo)
         float factorSubida = (marchaActual == numeroMarchas - 1) ? caidaPitchCambio * 0.4f : caidaPitchCambio;
 
         pitchObjetivo = basePitch + (progreso * factorSubida);
 
-        // Cap absoluto para evitar el sonido "roto"
         pitchObjetivo = Mathf.Min(pitchObjetivo, pitchMaximo);
 
         motorAudioSource.pitch = Mathf.Lerp(motorAudioSource.pitch, pitchObjetivo, Time.deltaTime * suavizadoPitch);

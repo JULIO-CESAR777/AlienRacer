@@ -133,7 +133,7 @@ public class MainMenuController : MonoBehaviour
 
     private void HandleHorizontalNavigation()
     {
-        float horizontalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
+        float horizontalStick = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
         float horizontalDpad = input.GetAXis(AXIS.HORIZONTAL_DPAD);
 
         // Tomamos el input más fuerte (stick o dpad)

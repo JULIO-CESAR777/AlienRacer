@@ -23,9 +23,38 @@ public class AudioMotorKartAI : MonoBehaviour
     private float temporizadorMarcha = 0f;
     private float pitchObjetivo;
 
+    // --- NUEVO: Referencia al cerebro de tu juego ---
+    private MainManager manager;
+
+    void Start()
+    {
+        // Conectamos con tu mánager al iniciar
+        manager = MainManager.GetInstance();
+    }
+
     void Update()
     {
-        if (motorAudioSource == null || kartRb == null) return;
+        if (motorAudioSource == null || kartRb == null || manager == null) return;
+
+        // --- LÓGICA DE PAUSA BASADA EN TU MAIN MANAGER ---
+        // Si el estado NO es Play (ej. Pausa, Menú, Fin de carrera)
+        if (manager.gameState != GameState.Play)
+        {
+            if (motorAudioSource.isPlaying)
+            {
+                motorAudioSource.Pause();
+            }
+            return; // Cortamos el código aquí para no seguir calculando marchas
+        }
+        else
+        {
+            // Si volvemos a Play y estaba pausado, reanudamos
+            if (!motorAudioSource.isPlaying)
+            {
+                motorAudioSource.UnPause();
+            }
+        }
+        // -------------------------------------------------
 
         float velocidadActual = kartRb.linearVelocity.magnitude;
 

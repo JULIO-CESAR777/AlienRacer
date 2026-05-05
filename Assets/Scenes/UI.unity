@@ -19535,6 +19535,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2338164150268751758, guid: cdad7f5b22d7a854da120660cd4af65b, type: 3}
+      propertyPath: bgmMenu
+      value: 
+      objectReference: {fileID: 8300000, guid: 009cbc7c48f06474a9dfdc2698d5b6a7, type: 3}
+    - target: {fileID: 2338164150268751758, guid: cdad7f5b22d7a854da120660cd4af65b, type: 3}
       propertyPath: uiSource
       value: 
       objectReference: {fileID: 755998650}
@@ -19542,6 +19546,10 @@ PrefabInstance:
       propertyPath: mainMixer
       value: 
       objectReference: {fileID: 24100000, guid: 21636478205081b4cbff92962be0e963, type: 2}
+    - target: {fileID: 2338164150268751758, guid: cdad7f5b22d7a854da120660cd4af65b, type: 3}
+      propertyPath: bgmGameplayMexicano
+      value: 
+      objectReference: {fileID: 8300000, guid: f1846f9c8f143754686463d902fb7bc7, type: 3}
     - target: {fileID: 4974681305658536899, guid: cdad7f5b22d7a854da120660cd4af65b, type: 3}
       propertyPath: Loop
       value: 1
