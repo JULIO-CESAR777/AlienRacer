@@ -6,21 +6,21 @@ public class KartObstaculosIA : MonoBehaviour
     [Header("Ruta y Navegación")]
     public Transform[] waypoints;
     public float distanciaCambio = 6f;
-    public float anticipacionCurva = 12f;
+    public float anticipacionCurva = 15f; // Aumentado para tomar curvas antes
 
     [Header("Motor y Físicas")]
     public float velocidadMaxima = 16f;
     public float velocidadMinima = 7f;
     public float aceleracion = 8f;
-    public float velocidadGiro = 7f;
-    public float factorDerrape = 6f;
+    public float velocidadGiro = 8.5f; // Aumentado para mayor respuesta en curvas
+    public float factorDerrape = 5f; // Reducido para mayor agarre
     public float fuerzaGravedadExtra = 20f;
 
     [Header("Competitividad (Overtake & Boost)")]
     public float boostRecta = 1.2f;
     public float boostRebufo = 1.35f;
-    public float distanciaRebufo = 20f;
-    public float fuerzaAdelantamiento = 4.5f;
+    public float distanciaRebufo = 30f; // Aumentado para aprovechar más el rebufo
+    public float fuerzaAdelantamiento = 6f; // Aumentado para rebases más agresivos
 
     [Header("Sensores y Evasión")]
     public float longitudSensor = 8f;
@@ -81,8 +81,11 @@ public class KartObstaculosIA : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = new Vector3(0, -0.5f, 0);
-        adnVelocidad = Random.Range(0.98f, 1.05f);
-        adnAceleracion = Random.Range(0.95f, 1.08f);
+
+        // Genética mejorada: el peor bot corre a la velocidad base, el mejor la supera por 10%-12%
+        adnVelocidad = Random.Range(1.0f, 1.10f);
+        adnAceleracion = Random.Range(1.0f, 1.12f);
+
         direccionRebase = Random.value > 0.5f ? 1f : -1f;
 
         manager = MainManager.GetInstance();
@@ -163,7 +166,7 @@ public class KartObstaculosIA : MonoBehaviour
         rb.linearVelocity = velocidadStun;
 
         Vector3 normalSuelo = Vector3.up;
-        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             normalSuelo = hitSuelo.normal;
         }
@@ -213,7 +216,7 @@ public class KartObstaculosIA : MonoBehaviour
 
         float anguloCurvaReal = Vector3.Angle(transform.forward, direccionBase);
 
-        if (Physics.Raycast(origenRayo, dirFrente, out RaycastHit hitCaza, distanciaRebufo))
+        if (Physics.Raycast(origenRayo, dirFrente, out RaycastHit hitCaza, distanciaRebufo, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
             if (hitCaza.collider.CompareTag("Bot") || hitCaza.collider.CompareTag("Player"))
             {
@@ -228,7 +231,7 @@ public class KartObstaculosIA : MonoBehaviour
             offsetCompetitivo = Mathf.Lerp(offsetCompetitivo, 0f, Time.fixedDeltaTime * 2f);
         }
 
-        if (Physics.Raycast(origenRayo, dirFrente, out RaycastHit hitFrente, longitudSensor, capaObstaculos))
+        if (Physics.Raycast(origenRayo, dirFrente, out RaycastHit hitFrente, longitudSensor, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             if (!hitFrente.collider.CompareTag("Bot") && !hitFrente.collider.CompareTag("Player"))
             {
@@ -245,7 +248,7 @@ public class KartObstaculosIA : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(origenRayo, dirDer, out RaycastHit hitDer, longitudSensor, capaObstaculos))
+        if (Physics.Raycast(origenRayo, dirDer, out RaycastHit hitDer, longitudSensor, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             if (!hitDer.collider.CompareTag("Bot") && !hitDer.collider.CompareTag("Player"))
             {
@@ -255,7 +258,7 @@ public class KartObstaculosIA : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(origenRayo, dirIzq, out RaycastHit hitIzq, longitudSensor, capaObstaculos))
+        if (Physics.Raycast(origenRayo, dirIzq, out RaycastHit hitIzq, longitudSensor, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             if (!hitIzq.collider.CompareTag("Bot") && !hitIzq.collider.CompareTag("Player"))
             {
@@ -297,7 +300,7 @@ public class KartObstaculosIA : MonoBehaviour
         Vector3 normalSuelo = Vector3.up;
         bool tocandoSuelo = false;
 
-        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             normalSuelo = hitSuelo.normal;
             tocandoSuelo = true;
@@ -306,7 +309,7 @@ public class KartObstaculosIA : MonoBehaviour
         bool saltandoBorde = false;
         Vector3 origenRayoBajo = transform.position + (Vector3.up * alturaRayoBajo);
 
-        if (Physics.Raycast(origenRayoBajo, transform.forward, out RaycastHit hitBorde, distanciaRayoBajo, capaObstaculos))
+        if (Physics.Raycast(origenRayoBajo, transform.forward, out RaycastHit hitBorde, distanciaRayoBajo, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             if (!frenarPorMuroFrontal && !hitBorde.collider.CompareTag("Bot") && !hitBorde.collider.CompareTag("Player"))
             {
@@ -366,7 +369,7 @@ public class KartObstaculosIA : MonoBehaviour
         Vector3 normalSuelo = Vector3.up;
         bool tocandoSuelo = false;
 
-        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hitSuelo, 1.5f, capaObstaculos, QueryTriggerInteraction.Ignore))
         {
             normalSuelo = hitSuelo.normal;
             tocandoSuelo = true;
