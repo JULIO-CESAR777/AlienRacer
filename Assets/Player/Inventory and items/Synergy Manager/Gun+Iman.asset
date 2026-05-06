@@ -19,5 +19,5 @@ MonoBehaviour:
   colorRayo: {r: 0, g: 0.040804863, b: 1, a: 1}
   anchoInicialCarga: 1.5
   anchoFinalRayo: 0.18
-  tiempoCarga: 0.55
+  tiempoCarga: 1
   tiempoVisibleRayoFinal: 0.18

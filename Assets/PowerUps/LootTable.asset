@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: LootTable
   m_EditorClassIdentifier: Assembly-CSharp::LootTable
   entries:
+  - item: {fileID: 11400000, guid: 0fee5f6838ad65043b2a3c368b883f2a, type: 2}
+    rarity: 0
+    weight: 0.7
+  - item: {fileID: 11400000, guid: ccc8589053147814c80fa8c102a9db0a, type: 2}
+    rarity: 0
+    weight: 0.7
   - item: {fileID: 11400000, guid: 982cf5a7a1761eb48ac7598c62d92110, type: 2}
     rarity: 2
     weight: 0.3
-  - item: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
-    rarity: 0
-    weight: 0.9
-  - item: {fileID: 11400000, guid: 0fee5f6838ad65043b2a3c368b883f2a, type: 2}
-    rarity: 2
-    weight: 0.7
-  - item: {fileID: 11400000, guid: ccc8589053147814c80fa8c102a9db0a, type: 2}
-    rarity: 2
-    weight: 0.7
   - item: {fileID: 11400000, guid: 196ea9b7eefbe944a92334a02e490d60, type: 2}
     rarity: 2
     weight: 0.7
   - item: {fileID: 11400000, guid: e1814d86e251a414cb48df89f077cf5a, type: 2}
     rarity: 2
     weight: 0.5
+  - item: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
+    rarity: 3
+    weight: 0.9
   - item: {fileID: 11400000, guid: a4ec9578a26a50c4d856ff92eb3421f3, type: 2}
     rarity: 3
     weight: 0.3
