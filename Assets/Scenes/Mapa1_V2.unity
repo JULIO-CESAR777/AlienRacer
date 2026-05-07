@@ -51992,7 +51992,7 @@ MonoBehaviour:
   _victoryVFXPrefab: {fileID: 3227156351960616820, guid: a735aea564458a448b9492872129b39f, type: 3}
   _victoryPoolSize: 4
   _boostVFXTransform: {fileID: 6367368024217836356}
-  _boostVFXPrefab: {fileID: 264109654488165867, guid: 0d280bd1f1c460c44aba36bf1177a4d6, type: 3}
+  _boostVFXPrefab: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
 --- !u!4 &1694792805
 Transform:
   m_ObjectHideFlags: 0
