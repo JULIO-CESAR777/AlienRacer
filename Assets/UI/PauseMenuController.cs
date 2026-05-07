@@ -1,31 +1,28 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
-    [Header("Menu actual")]
+    [Header("Menus")]
     public Selectable[] pauseMenu;
     public Selectable[] settingsMenu;
-    
-    
+
     private Selectable[] currentMenu;
+
     public int currentMenuIndex;
-    public int currentHorizontal;
     public int menusIndex;
 
     private bool canMove;
     private bool canMoveHorizontally;
-    
+
     private InputManager input;
     private LanguageManager languageManager;
     private DisplaySettings displaySettings;
     private UiManagerPlayer uiManager;
     private MainManager gm;
-    private float goUp;
-    private float goDown;
-    private float moveInput;
-    
+
+    private bool flag;
+
     private void Start()
     {
         input = InputManager.GetInstance();
@@ -37,24 +34,14 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnEnable()
     {
-        InitState();
-        SelectCurrentOption();
+        ChangeMenu(pauseMenu, 0, 0);
     }
 
-    private void InitState()
-    {
-        canMoveHorizontally = true;
-        currentMenu = pauseMenu;
-        menusIndex = 0;
-        currentMenuIndex = 0;
-        canMove = true;
-    }
-
-    private bool flag;
-    
     private void Update()
     {
-        if (input == null || currentMenu == null || currentMenu.Length == 0 || gm.countDownActive) return;
+        if (input == null || currentMenu == null || currentMenu.Length == 0) return;
+        if (gm == null || gm.countDownActive) return;
+
         if (gm.gameState == GameState.Play)
         {
             flag = true;
@@ -63,15 +50,36 @@ public class PauseMenuController : MonoBehaviour
 
         if (flag)
         {
-            InitState();
+            ChangeMenu(pauseMenu, 0, 0);
             flag = false;
         }
-        
+
+        if (HandleBackSubmit()) return;
+
         HandleVerticalNavigation();
         HandleHorizontalNavigation();
         HandleSubmit();
     }
-    
+
+    private bool HandleBackSubmit()
+    {
+        if (!input.IsButtonDown(BUTTONS.X)) return false;
+
+        switch (menusIndex)
+        {
+            case 0:
+                gm.ChangeGameState(GameState.Play);
+                uiManager.ResumeGame();
+                return true;
+            case 1: // Settings -> Pause menu
+                uiManager.PauseGame();
+                ChangeMenu(pauseMenu, 0, 0);
+                return true;
+        }
+
+        return false;
+    }
+
     private void HandleVerticalNavigation()
     {
         float verticalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
@@ -84,21 +92,13 @@ public class PauseMenuController : MonoBehaviour
         if (vertical > 0 && canMove)
         {
             canMove = false;
-            currentMenuIndex--;
-
-            if (currentMenuIndex < 0)
-                currentMenuIndex = currentMenu.Length - 1;
-
+            MoveSelection(-1);
             SelectCurrentOption();
         }
         else if (vertical < 0 && canMove)
         {
             canMove = false;
-            currentMenuIndex++;
-
-            if (currentMenuIndex > currentMenu.Length - 1)
-                currentMenuIndex = 0;
-
+            MoveSelection(1);
             SelectCurrentOption();
         }
         else if (vertical == 0)
@@ -106,16 +106,7 @@ public class PauseMenuController : MonoBehaviour
             canMove = true;
         }
     }
-    
-    private void HandleSubmit()
-    {
-        if (!input.IsButtonDown(BUTTONS.B)) return;
 
-        Selectable current = currentMenu[currentMenuIndex];
-        
-        MenusActions();
-    }
-    
     private void HandleHorizontalNavigation()
     {
         float horizontalStick = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
@@ -140,44 +131,37 @@ public class PauseMenuController : MonoBehaviour
             canMoveHorizontally = true;
         }
     }
-    
+
+    private void HandleSubmit()
+    {
+        if (!input.IsButtonDown(BUTTONS.B)) return;
+        if (!IsValidSelectableIndex(currentMenuIndex)) return;
+
+        MenusActions();
+    }
+
     private void OnHorizontalInput(bool right)
     {
         if (menusIndex != 1) return;
-        
+
         switch (currentMenuIndex)
         {
             case 0:
-            {
                 languageManager.ChangeLanguage(right);
                 break;
-            }
 
             case 1:
-            {
                 displaySettings.ChangeMode(right);
                 break;
-            }
 
             case 2:
-            {
-                Slider slider = currentMenu[currentMenuIndex].GetComponent<Slider>();
-                if (slider != null)
-                {
-                    slider.value += right ? 0.1f : -0.1f;
-                }
-                break;
-            }
-
             case 3:
-            {
                 Slider slider = currentMenu[currentMenuIndex].GetComponent<Slider>();
                 if (slider != null)
                 {
                     slider.value += right ? 0.1f : -0.1f;
                 }
                 break;
-            }
         }
     }
 
@@ -186,17 +170,14 @@ public class PauseMenuController : MonoBehaviour
         switch (menusIndex)
         {
             case 0:
-            {
                 PauseMenuActions();
                 break;
-            }
+
             case 1:
-            {
                 SettingsMenuActions();
                 break;
-            }
         }
-        currentMenuIndex = 0;
+
         SelectCurrentOption();
     }
 
@@ -205,23 +186,18 @@ public class PauseMenuController : MonoBehaviour
         switch (currentMenuIndex)
         {
             case 0:
-            {
                 gm.ChangeGameState(GameState.Play);
                 uiManager.ResumeGame();
                 break;
-            }
+
             case 1:
-            {
                 uiManager.GoToSettings();
-                currentMenu = settingsMenu;
-                menusIndex = 1;
+                ChangeMenu(settingsMenu, 1, 0);
                 break;
-            }
+
             case 2:
-            {
                 SceneLoader.GetInstance()?.LoadScene(0);
                 break;
-            }
         }
     }
 
@@ -230,20 +206,85 @@ public class PauseMenuController : MonoBehaviour
         switch (currentMenuIndex)
         {
             case 4:
-            {
                 uiManager.PauseGame();
-                menusIndex = 0;
-                currentMenu = pauseMenu;
+                ChangeMenu(pauseMenu, 0, 0);
                 break;
-            }
         }
     }
-    
 
+    private void ChangeMenu(Selectable[] newMenu, int newMenuIndex, int startIndex)
+    {
+        currentMenu = newMenu;
+        menusIndex = newMenuIndex;
+        currentMenuIndex = startIndex;
+
+        canMove = false;
+        canMoveHorizontally = false;
+
+        FixCurrentIndexAfterRefresh();
+        SelectCurrentOption();
+    }
+
+    private void MoveSelection(int direction)
+    {
+        if (currentMenu == null || currentMenu.Length == 0) return;
+
+        int attempts = 0;
+
+        do
+        {
+            currentMenuIndex += direction;
+
+            if (currentMenuIndex < 0)
+                currentMenuIndex = currentMenu.Length - 1;
+            else if (currentMenuIndex >= currentMenu.Length)
+                currentMenuIndex = 0;
+
+            attempts++;
+
+            if (IsValidSelectableIndex(currentMenuIndex))
+                return;
+
+        } while (attempts < currentMenu.Length);
+    }
 
     private void SelectCurrentOption()
     {
-        if (currentMenu[currentMenuIndex] == null) return;
+        if (!IsValidSelectableIndex(currentMenuIndex))
+        {
+            currentMenuIndex = GetFirstValidSelectableIndex();
+        }
+
+        if (currentMenuIndex == -1) return;
+
         currentMenu[currentMenuIndex].Select();
+    }
+
+    private bool IsValidSelectableIndex(int index)
+    {
+        if (currentMenu == null) return false;
+        if (index < 0 || index >= currentMenu.Length) return false;
+        if (currentMenu[index] == null) return false;
+
+        return currentMenu[index].interactable;
+    }
+
+    private int GetFirstValidSelectableIndex()
+    {
+        if (currentMenu == null) return -1;
+
+        for (int i = 0; i < currentMenu.Length; i++)
+        {
+            if (IsValidSelectableIndex(i))
+                return i;
+        }
+
+        return -1;
+    }
+
+    private void FixCurrentIndexAfterRefresh()
+    {
+        if (!IsValidSelectableIndex(currentMenuIndex))
+            currentMenuIndex = GetFirstValidSelectableIndex();
     }
 }
