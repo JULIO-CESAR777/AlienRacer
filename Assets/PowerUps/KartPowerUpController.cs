@@ -123,6 +123,8 @@ public class KartPowerUpController : MonoBehaviour
         boostTimer = Mathf.Max(boostTimer, duration);
 
         kart.SetSpeedMultiplier(boostMultiplier);
+        //Boost VFX Function call
+        VFXController.GetInstance()?.StartBoostVFX();
     }
 
     public void ApplyJump(float newJumpForce, float duration)
@@ -1006,6 +1008,9 @@ private void MoverKartParaIntercambio(
             boostMultiplier = 1f;
 
             kart.SetSpeedMultiplier(1f);
+            
+            //Stop VFX Boost Function call
+            VFXController.GetInstance()?.StopBoostVFX();
         }
     }
 
