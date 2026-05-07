@@ -98,13 +98,11 @@ public class DisplaySettings : MonoBehaviour
     public void SetFullScreen()
     {
         Screen.SetResolution(targetWidth, targetHeight, FullScreenMode.FullScreenWindow, refreshRate);
-        Debug.Log("Switched to FullScreen");
     }
 
     public void SetWindowed()
     {
         Screen.SetResolution(targetWidth, targetHeight, FullScreenMode.Windowed, refreshRate);
-        Debug.Log("Switched to Windowed");
     }
 
     public int GetCurrentMode()

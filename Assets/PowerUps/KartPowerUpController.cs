@@ -42,10 +42,29 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private bool usarVibracionCarga = true;
     [SerializeField] private float intensidadVibracionCarga = 0.12f;
     [SerializeField] private bool mostrarDebugRayo = true;
+    
+    [Header("Glow / Emisivo del Rayo")]
+    [SerializeField] private LineRenderer lineRendererGlowRayo;
+    [SerializeField] private float intensidadEmisionRayo = 4f;
+    [SerializeField] private float multiplicadorAnchoGlow = 3.5f;
+    [SerializeField] private float alphaGlow = 0.45f;
 
     private Coroutine rutinaRayo;
 
     private float originalJumpForce;
+    
+    
+   
+        
+   //GAMEEEEEEEEE FEEEEEEEEEEEEEEEEEEEEL     
+        
+    [Header("Shield Feel")]
+    [SerializeField] private GameObject shieldVisual;
+    [SerializeField] private ParticleSystem shieldParticles;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shieldActivateSfx;
+    [SerializeField] private AudioClip shieldBreakSfx;
+    [SerializeField] private AudioClip shieldBlockSfx;
 
     [Header("Spawn Points")]
     public Transform behindSpawnPoint;
@@ -76,6 +95,15 @@ public class KartPowerUpController : MonoBehaviour
     {
         hasShield = true;
         shieldTimer = Mathf.Max(shieldTimer, duration);
+
+        if (shieldVisual != null)
+            shieldVisual.SetActive(true);
+
+        if (shieldParticles != null)
+            shieldParticles.Play();
+
+        if (audioSource != null && shieldActivateSfx != null)
+            audioSource.PlayOneShot(shieldActivateSfx);
     }
 
     public void ActivateStar(float duration, float stunSeconds = 1.5f)
@@ -110,7 +138,11 @@ public class KartPowerUpController : MonoBehaviour
     {
         if (seconds <= 0f) return;
 
-        if (hasShield) return;
+        if (hasShield)
+        {
+            PlayShieldBlockFeedback();
+            return;
+        }
 
         if (isStunned)
         {
@@ -172,9 +204,11 @@ public class KartPowerUpController : MonoBehaviour
         {
             StopCoroutine(rutinaRayo);
 
-            if (lineRendererRayo != null)
+            lineRendererRayo.enabled = false;
+
+            if (lineRendererGlowRayo != null)
             {
-                lineRendererRayo.enabled = false;
+                lineRendererGlowRayo.enabled = false;
             }
         }
 
@@ -205,6 +239,10 @@ public class KartPowerUpController : MonoBehaviour
 
         lineRendererRayo.enabled = true;
 
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.enabled = true;
+        }
         // ============================
         // FASE 1: CARGA VISUAL
         // ============================
@@ -264,6 +302,11 @@ public class KartPowerUpController : MonoBehaviour
 
             lineRendererRayo.SetPosition(0, inicioCarga);
             lineRendererRayo.SetPosition(1, finCarga);
+            if (lineRendererGlowRayo != null)
+            {
+                lineRendererGlowRayo.SetPosition(0, inicioCarga);
+                lineRendererGlowRayo.SetPosition(1, finCarga);
+            }
 
             yield return null;
         }
@@ -304,6 +347,11 @@ public class KartPowerUpController : MonoBehaviour
 
         lineRendererRayo.SetPosition(0, inicioFinal);
         lineRendererRayo.SetPosition(1, finFinal);
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.SetPosition(0, inicioFinal);
+            lineRendererGlowRayo.SetPosition(1, finFinal);
+        }
 
         if (mostrarDebugRayo)
         {
@@ -313,6 +361,11 @@ public class KartPowerUpController : MonoBehaviour
         yield return new WaitForSeconds(tiempoVisibleRayoFinal);
 
         lineRendererRayo.enabled = false;
+
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.enabled = false;
+        }
         rutinaRayo = null;
     }
 
@@ -323,32 +376,139 @@ public class KartPowerUpController : MonoBehaviour
             lineRendererRayo = gameObject.AddComponent<LineRenderer>();
         }
 
-        lineRendererRayo.positionCount = 2;
-        lineRendererRayo.useWorldSpace = true;
-        lineRendererRayo.enabled = false;
-
-        lineRendererRayo.startWidth = anchoRayo;
-        lineRendererRayo.endWidth = anchoRayo * 0.35f;
-
-        lineRendererRayo.startColor = colorRayo;
-        lineRendererRayo.endColor = new Color(colorRayo.r, colorRayo.g, colorRayo.b, 0f);
-
-        if (lineRendererRayo.material == null)
+        if (lineRendererGlowRayo == null)
         {
-            Shader shader = Shader.Find("Sprites/Default");
+            GameObject glowObj = new GameObject("Glow Rayo");
+            glowObj.transform.SetParent(transform);
+            glowObj.transform.localPosition = Vector3.zero;
+            glowObj.transform.localRotation = Quaternion.identity;
 
-            if (shader == null)
-            {
-                shader = Shader.Find("Unlit/Color");
-            }
-
-            if (shader != null)
-            {
-                lineRendererRayo.material = new Material(shader);
-            }
+            lineRendererGlowRayo = glowObj.AddComponent<LineRenderer>();
         }
+
+        Material materialRayo = CrearMaterialEmisivo(colorRayo);
+        Material materialGlow = CrearMaterialEmisivo(colorRayo);
+
+        // Rayo principal
+        ConfigurarLineRendererBase(
+            lineRendererRayo,
+            materialRayo,
+            colorRayo,
+            anchoRayo,
+            anchoRayo * 0.35f
+        );
+
+        // Glow externo
+        Color colorGlowInicio = new Color(
+            colorRayo.r * intensidadEmisionRayo,
+            colorRayo.g * intensidadEmisionRayo,
+            colorRayo.b * intensidadEmisionRayo,
+            alphaGlow
+        );
+
+        Color colorGlowFinal = new Color(
+            colorRayo.r * intensidadEmisionRayo,
+            colorRayo.g * intensidadEmisionRayo,
+            colorRayo.b * intensidadEmisionRayo,
+            0f
+        );
+
+        lineRendererGlowRayo.positionCount = 2;
+        lineRendererGlowRayo.useWorldSpace = true;
+        lineRendererGlowRayo.enabled = false;
+
+        lineRendererGlowRayo.material = materialGlow;
+
+        lineRendererGlowRayo.startWidth = anchoRayo * multiplicadorAnchoGlow;
+        lineRendererGlowRayo.endWidth = anchoRayo * multiplicadorAnchoGlow * 0.35f;
+
+        lineRendererGlowRayo.startColor = colorGlowInicio;
+        lineRendererGlowRayo.endColor = colorGlowFinal;
+
+        lineRendererGlowRayo.numCapVertices = 8;
+        lineRendererGlowRayo.numCornerVertices = 8;
     }
 
+    
+    private Material CrearMaterialEmisivo(Color colorRayo)
+    {
+        Shader shader = Shader.Find("Universal Render Pipeline/Particles/Unlit");
+
+        if (shader == null)
+        {
+            shader = Shader.Find("Universal Render Pipeline/Unlit");
+        }
+
+        if (shader == null)
+        {
+            shader = Shader.Find("Sprites/Default");
+        }
+
+        Material mat = new Material(shader);
+
+        Color colorHDR = new Color(
+            colorRayo.r * intensidadEmisionRayo,
+            colorRayo.g * intensidadEmisionRayo,
+            colorRayo.b * intensidadEmisionRayo,
+            colorRayo.a
+        );
+
+        if (mat.HasProperty("_BaseColor"))
+        {
+            mat.SetColor("_BaseColor", colorHDR);
+        }
+
+        if (mat.HasProperty("_Color"))
+        {
+            mat.SetColor("_Color", colorHDR);
+        }
+
+        if (mat.HasProperty("_EmissionColor"))
+        {
+            mat.EnableKeyword("_EMISSION");
+            mat.SetColor("_EmissionColor", colorHDR);
+        }
+
+        return mat;
+    }
+
+    private void ConfigurarLineRendererBase(
+        LineRenderer lr,
+        Material material,
+        Color colorRayo,
+        float anchoInicio,
+        float anchoFinal
+    )
+    {
+        lr.positionCount = 2;
+        lr.useWorldSpace = true;
+        lr.enabled = false;
+
+        lr.material = material;
+
+        lr.startWidth = anchoInicio;
+        lr.endWidth = anchoFinal;
+
+        Color colorHDRInicio = new Color(
+            colorRayo.r * intensidadEmisionRayo,
+            colorRayo.g * intensidadEmisionRayo,
+            colorRayo.b * intensidadEmisionRayo,
+            colorRayo.a
+        );
+
+        Color colorHDRFinal = new Color(
+            colorRayo.r * intensidadEmisionRayo,
+            colorRayo.g * intensidadEmisionRayo,
+            colorRayo.b * intensidadEmisionRayo,
+            0f
+        );
+
+        lr.startColor = colorHDRInicio;
+        lr.endColor = colorHDRFinal;
+
+        lr.numCapVertices = 8;
+        lr.numCornerVertices = 8;
+    }
     private void ObtenerDatosRayo(
         float distanciaRayo,
         out Vector3 inicio,
@@ -423,9 +583,11 @@ public void DispararRayoIntercambioConCarga(
     {
         StopCoroutine(rutinaRayo);
 
-        if (lineRendererRayo != null)
+        lineRendererRayo.enabled = true;
+
+        if (lineRendererGlowRayo != null)
         {
-            lineRendererRayo.enabled = false;
+            lineRendererGlowRayo.enabled = true;
         }
     }
 
@@ -451,6 +613,11 @@ private IEnumerator RutinaRayoIntercambioConCarga(
     PrepararLineRendererRayo(colorRayo, anchoFinalRayo);
 
     lineRendererRayo.enabled = true;
+
+    if (lineRendererGlowRayo != null)
+    {
+        lineRendererGlowRayo.enabled = true;
+    }
 
     // ============================
     // FASE 1: CARGA VISUAL
@@ -503,6 +670,11 @@ private IEnumerator RutinaRayoIntercambioConCarga(
 
         lineRendererRayo.SetPosition(0, inicioCarga);
         lineRendererRayo.SetPosition(1, finCarga);
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.SetPosition(0, inicioCarga);
+            lineRendererGlowRayo.SetPosition(1, finCarga);
+        }
 
         yield return null;
     }
@@ -531,12 +703,22 @@ private IEnumerator RutinaRayoIntercambioConCarga(
 
     lineRendererRayo.SetPosition(0, inicioFinal);
     lineRendererRayo.SetPosition(1, finFinal);
+    if (lineRendererGlowRayo != null)
+    {
+        lineRendererGlowRayo.SetPosition(0, inicioFinal);
+        lineRendererGlowRayo.SetPosition(1, finFinal);
+    }
 
     Debug.DrawLine(inicioFinal, finFinal, colorRayo, 1f);
 
     yield return new WaitForSeconds(tiempoVisibleRayoFinal);
 
     lineRendererRayo.enabled = false;
+
+    if (lineRendererGlowRayo != null)
+    {
+        lineRendererGlowRayo.enabled = false;
+    }
     rutinaRayo = null;
 }
 
@@ -785,6 +967,15 @@ private void MoverKartParaIntercambio(
         {
             hasShield = false;
             shieldTimer = 0f;
+
+            if (shieldVisual != null)
+                shieldVisual.SetActive(false);
+
+            if (shieldParticles != null)
+                shieldParticles.Stop();
+
+            if (audioSource != null && shieldBreakSfx != null)
+                audioSource.PlayOneShot(shieldBreakSfx);
         }
     }
 
@@ -847,5 +1038,13 @@ private void MoverKartParaIntercambio(
 
             kart.SetJumpForce(originalJumpForce);
         }
+    }
+    
+    private void PlayShieldBlockFeedback()
+    {
+       
+
+        if (audioSource != null && shieldBlockSfx != null)
+            audioSource.PlayOneShot(shieldBlockSfx);
     }
 }

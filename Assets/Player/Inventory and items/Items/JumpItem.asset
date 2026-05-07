@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JumpItem
   m_EditorClassIdentifier: Assembly-CSharp::JumpItem
   itemName: Jump
-  icon: {fileID: 21300002, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  icon: {fileID: 21300000, guid: 1a1f953f1b64b864b9a9d286ce2ddb39, type: 3}
   boostForce: 25
   duration: 6

@@ -13,19 +13,27 @@ public class PhysicalKartCamera : MonoBehaviour
     [SerializeField] private float lookAtHeight = 1.4f;
 
     [Header("Top View")]
-    [SerializeField] private float topHeight = 12f;
-    [SerializeField] private float topBackOffset = 1.5f;
-    [SerializeField] private float topViewAngle = 80f;
+    [SerializeField] private float topHeight = 8f;
+    [SerializeField] private float topBackOffset = 1.3f;
+    [SerializeField] private float topViewAngle = 75f;
+    [Range(0f, 1f)]
+    [SerializeField] private float maxTopBlend = 0.55f;
 
-    [Header("Collision Detection")]
+    [Header("Collision")]
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private float sphereRadius = 0.45f;
+    [SerializeField] private float wallPadding = 0.25f;
+    [SerializeField] private float minDistance = 1.4f;
     [SerializeField] private string[] ignoredTags;
 
+    [Header("Blend Control")]
+    [SerializeField] private float topBlendStartDistance = 3.5f;
+    [SerializeField] private float topBlendFullDistance = 1.2f;
+
     [Header("Smooth")]
-    [SerializeField] private float positionSharpness = 8f;
-    [SerializeField] private float rotationSharpness = 10f;
-    [SerializeField] private float topBlendSharpness = 6f;
+    [SerializeField] private float positionSharpness = 10f;
+    [SerializeField] private float rotationSharpness = 12f;
+    [SerializeField] private float topBlendSharpness = 4f;
 
     [Header("FOV")]
     [SerializeField] private float normalFOV = 60f;
@@ -50,35 +58,40 @@ public class PhysicalKartCamera : MonoBehaviour
 
         Vector3 lookTarget = target.position + Vector3.up * lookAtHeight;
 
-        Vector3 normalPosition =
+        Vector3 normalDesiredPosition =
             target.position
             - target.forward * normalDistance
             + Vector3.up * normalHeight;
 
-        Vector3 topPosition =
+        CameraCollisionResult normalCollision =
+            ResolveCameraCollision(lookTarget, normalDesiredPosition);
+
+        float wantedTopBlend = CalculateTopBlend(normalCollision.finalDistance);
+
+        topBlend = Mathf.Lerp(
+            topBlend,
+            wantedTopBlend,
+            1f - Mathf.Exp(-topBlendSharpness * Time.deltaTime)
+        );
+
+        Vector3 topDesiredPosition =
             target.position
             - target.forward * topBackOffset
             + Vector3.up * topHeight;
 
-        bool obstacleDetected = HasObstacleBetween(normalPosition, lookTarget);
+        Vector3 desiredBlendedPosition =
+            Vector3.Lerp(normalCollision.safePosition, topDesiredPosition, topBlend);
 
-        float targetBlend = obstacleDetected ? 1f : 0f;
-
-        topBlend = Mathf.Lerp(
-            topBlend,
-            targetBlend,
-            1f - Mathf.Exp(-topBlendSharpness * Time.deltaTime)
-        );
-
-        Vector3 finalPosition = Vector3.Lerp(normalPosition, topPosition, topBlend);
+        CameraCollisionResult finalCollision =
+            ResolveCameraCollision(lookTarget, desiredBlendedPosition);
 
         transform.position = Vector3.Lerp(
             transform.position,
-            finalPosition,
+            finalCollision.safePosition,
             1f - Mathf.Exp(-positionSharpness * Time.deltaTime)
         );
 
-        Quaternion normalRotation = Quaternion.LookRotation(lookTarget - normalPosition, Vector3.up);
+        Quaternion normalRotation = Quaternion.LookRotation(lookTarget - normalCollision.safePosition, Vector3.up);
 
         Quaternion topRotation = Quaternion.Euler(
             topViewAngle,
@@ -86,23 +99,31 @@ public class PhysicalKartCamera : MonoBehaviour
             0f
         );
 
-        Quaternion finalRotation = Quaternion.Slerp(normalRotation, topRotation, topBlend);
+        Quaternion desiredRotation = Quaternion.Slerp(normalRotation, topRotation, topBlend);
 
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
-            finalRotation,
+            desiredRotation,
             1f - Mathf.Exp(-rotationSharpness * Time.deltaTime)
         );
 
         HandleFOV();
     }
 
-    private bool HasObstacleBetween(Vector3 cameraPosition, Vector3 lookTarget)
+    private CameraCollisionResult ResolveCameraCollision(Vector3 lookTarget, Vector3 desiredPosition)
     {
-        Vector3 direction = cameraPosition - lookTarget;
-        float distance = direction.magnitude;
+        Vector3 direction = desiredPosition - lookTarget;
+        float desiredDistance = direction.magnitude;
 
-        if (distance <= 0.01f) return false;
+        if (desiredDistance <= 0.01f)
+        {
+            return new CameraCollisionResult
+            {
+                safePosition = desiredPosition,
+                finalDistance = 0f,
+                hitSomething = false
+            };
+        }
 
         direction.Normalize();
 
@@ -110,18 +131,55 @@ public class PhysicalKartCamera : MonoBehaviour
             lookTarget,
             sphereRadius,
             direction,
-            distance,
+            desiredDistance,
             obstacleMask,
             QueryTriggerInteraction.Ignore
         );
 
+        float closestDistance = Mathf.Infinity;
+
         for (int i = 0; i < hits.Length; i++)
         {
-            if (IsValidObstacle(hits[i].collider))
-                return true;
+            if (!IsValidObstacle(hits[i].collider)) continue;
+
+            if (hits[i].distance < closestDistance)
+                closestDistance = hits[i].distance;
         }
 
-        return false;
+        if (closestDistance == Mathf.Infinity)
+        {
+            return new CameraCollisionResult
+            {
+                safePosition = desiredPosition,
+                finalDistance = desiredDistance,
+                hitSomething = false
+            };
+        }
+
+        float safeDistance = Mathf.Clamp(
+            closestDistance - wallPadding,
+            minDistance,
+            desiredDistance
+        );
+
+        return new CameraCollisionResult
+        {
+            safePosition = lookTarget + direction * safeDistance,
+            finalDistance = safeDistance,
+            hitSomething = true
+        };
+    }
+
+    private float CalculateTopBlend(float safeDistance)
+    {
+        float blend = Mathf.InverseLerp(
+            topBlendStartDistance,
+            topBlendFullDistance,
+            safeDistance
+        );
+
+        blend = Mathf.Clamp01(blend);
+        return blend * maxTopBlend;
     }
 
     private bool IsValidObstacle(Collider col)
@@ -133,7 +191,7 @@ public class PhysicalKartCamera : MonoBehaviour
 
         for (int i = 0; i < ignoredTags.Length; i++)
         {
-            if (col.CompareTag(ignoredTags[i]))
+            if (!string.IsNullOrEmpty(ignoredTags[i]) && col.CompareTag(ignoredTags[i]))
                 return false;
         }
 
@@ -155,5 +213,12 @@ public class PhysicalKartCamera : MonoBehaviour
             targetFOV,
             1f - Mathf.Exp(-fovSharpness * Time.deltaTime)
         );
+    }
+
+    private struct CameraCollisionResult
+    {
+        public Vector3 safePosition;
+        public float finalDistance;
+        public bool hitSomething;
     }
 }
