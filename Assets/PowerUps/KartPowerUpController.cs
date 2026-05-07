@@ -42,7 +42,7 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private bool usarVibracionCarga = true;
     [SerializeField] private float intensidadVibracionCarga = 0.12f;
     [SerializeField] private bool mostrarDebugRayo = true;
-    
+
     [Header("Glow / Emisivo del Rayo")]
     [SerializeField] private LineRenderer lineRendererGlowRayo;
     [SerializeField] private float intensidadEmisionRayo = 4f;
@@ -52,19 +52,18 @@ public class KartPowerUpController : MonoBehaviour
     private Coroutine rutinaRayo;
 
     private float originalJumpForce;
-    
-    
-   
-        
-   //GAMEEEEEEEEE FEEEEEEEEEEEEEEEEEEEEL     
-        
+
+
     [Header("Shield Feel")]
     [SerializeField] private GameObject shieldVisual;
     [SerializeField] private ParticleSystem shieldParticles;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource; 
     [SerializeField] private AudioClip shieldActivateSfx;
     [SerializeField] private AudioClip shieldBreakSfx;
     [SerializeField] private AudioClip shieldBlockSfx;
+
+    [Header("Controlador de Audio Externo")]
+    public PowerUpAudioController powerUpAudio;
 
     [Header("Spawn Points")]
     public Transform behindSpawnPoint;
@@ -102,7 +101,9 @@ public class KartPowerUpController : MonoBehaviour
         if (shieldParticles != null)
             shieldParticles.Play();
 
-        if (audioSource != null && shieldActivateSfx != null)
+        if (powerUpAudio != null)
+            powerUpAudio.PlayEscudo();
+        else if (audioSource != null && shieldActivateSfx != null) 
             audioSource.PlayOneShot(shieldActivateSfx);
     }
 
@@ -114,6 +115,9 @@ public class KartPowerUpController : MonoBehaviour
 
         hasShield = true;
         shieldTimer = Mathf.Max(shieldTimer, duration);
+
+        if (powerUpAudio != null)
+            powerUpAudio.PlayEstrella();
     }
 
     public void ApplyBoost(float multiplier, float duration)
@@ -123,8 +127,10 @@ public class KartPowerUpController : MonoBehaviour
         boostTimer = Mathf.Max(boostTimer, duration);
 
         kart.SetSpeedMultiplier(boostMultiplier);
-        //Boost VFX Function call
         VFXController.GetInstance()?.StartBoostVFX();
+
+        if (powerUpAudio != null)
+            powerUpAudio.PlayBoost();
     }
 
     public void ApplyJump(float newJumpForce, float duration)
@@ -162,9 +168,6 @@ public class KartPowerUpController : MonoBehaviour
 
     #region Rayo Ralentizador
 
-    // Método compatible con tu versión anterior.
-    // Si tu item ya llama a DispararRayoRalentizador(...), seguirá funcionando,
-    // pero ahora tendrá carga visual automáticamente.
     public void DispararRayoRalentizador(
         float distanciaRayo,
         float duracionRalentizacion,
@@ -189,8 +192,7 @@ public class KartPowerUpController : MonoBehaviour
         );
     }
 
-    // Método nuevo por si quieres controlar desde el item:
-    // ancho inicial, ancho final y tiempo de carga.
+
     public void DispararRayoRalentizadorConCarga(
         float distanciaRayo,
         float duracionRalentizacion,
@@ -431,7 +433,7 @@ public class KartPowerUpController : MonoBehaviour
         lineRendererGlowRayo.numCornerVertices = 8;
     }
 
-    
+
     private Material CrearMaterialEmisivo(Color colorRayo)
     {
         Shader shader = Shader.Find("Universal Render Pipeline/Particles/Unlit");
@@ -546,44 +548,73 @@ public class KartPowerUpController : MonoBehaviour
     }
 
     #endregion
-    
-    
+
+
     // =========================================================
-// RAYO DE INTERCAMBIO DE LUGAR
-// =========================================================
+    // RAYO DE INTERCAMBIO DE LUGAR
+    // =========================================================
 
-public void DispararRayoIntercambio(
-    float distanciaRayo,
-    Color colorRayo,
-    float anchoRayo,
-    float tiempoVisible
-)
-{
-    float anchoInicialCarga = anchoRayo * 8f;
-    float tiempoCarga = 0.55f;
-
-    DispararRayoIntercambioConCarga(
-        distanciaRayo,
-        colorRayo,
-        anchoInicialCarga,
-        anchoRayo,
-        tiempoCarga,
-        tiempoVisible
-    );
-}
-
-public void DispararRayoIntercambioConCarga(
-    float distanciaRayo,
-    Color colorRayo,
-    float anchoInicialCarga,
-    float anchoFinalRayo,
-    float tiempoCarga,
-    float tiempoVisibleRayoFinal
-)
-{
-    if (rutinaRayo != null)
+    public void DispararRayoIntercambio(
+        float distanciaRayo,
+        Color colorRayo,
+        float anchoRayo,
+        float tiempoVisible
+    )
     {
-        StopCoroutine(rutinaRayo);
+        float anchoInicialCarga = anchoRayo * 8f;
+        float tiempoCarga = 0.55f;
+
+        DispararRayoIntercambioConCarga(
+            distanciaRayo,
+            colorRayo,
+            anchoInicialCarga,
+            anchoRayo,
+            tiempoCarga,
+            tiempoVisible
+        );
+    }
+
+    public void DispararRayoIntercambioConCarga(
+        float distanciaRayo,
+        Color colorRayo,
+        float anchoInicialCarga,
+        float anchoFinalRayo,
+        float tiempoCarga,
+        float tiempoVisibleRayoFinal
+    )
+    {
+        if (rutinaRayo != null)
+        {
+            StopCoroutine(rutinaRayo);
+
+            lineRendererRayo.enabled = true;
+
+            if (lineRendererGlowRayo != null)
+            {
+                lineRendererGlowRayo.enabled = true;
+            }
+        }
+
+        rutinaRayo = StartCoroutine(RutinaRayoIntercambioConCarga(
+            distanciaRayo,
+            colorRayo,
+            anchoInicialCarga,
+            anchoFinalRayo,
+            tiempoCarga,
+            tiempoVisibleRayoFinal
+        ));
+    }
+
+    private IEnumerator RutinaRayoIntercambioConCarga(
+        float distanciaRayo,
+        Color colorRayo,
+        float anchoInicialCarga,
+        float anchoFinalRayo,
+        float tiempoCarga,
+        float tiempoVisibleRayoFinal
+    )
+    {
+        PrepararLineRendererRayo(colorRayo, anchoFinalRayo);
 
         lineRendererRayo.enabled = true;
 
@@ -591,338 +622,309 @@ public void DispararRayoIntercambioConCarga(
         {
             lineRendererGlowRayo.enabled = true;
         }
-    }
 
-    rutinaRayo = StartCoroutine(RutinaRayoIntercambioConCarga(
-        distanciaRayo,
-        colorRayo,
-        anchoInicialCarga,
-        anchoFinalRayo,
-        tiempoCarga,
-        tiempoVisibleRayoFinal
-    ));
-}
+        // ============================
+        // FASE 1: CARGA VISUAL
+        // ============================
+        float tiempo = 0f;
+        float tiempoCargaSeguro = Mathf.Max(0.01f, tiempoCarga);
 
-private IEnumerator RutinaRayoIntercambioConCarga(
-    float distanciaRayo,
-    Color colorRayo,
-    float anchoInicialCarga,
-    float anchoFinalRayo,
-    float tiempoCarga,
-    float tiempoVisibleRayoFinal
-)
-{
-    PrepararLineRendererRayo(colorRayo, anchoFinalRayo);
+        while (tiempo < tiempoCargaSeguro)
+        {
+            tiempo += Time.deltaTime;
 
-    lineRendererRayo.enabled = true;
+            float t = Mathf.Clamp01(tiempo / tiempoCargaSeguro);
 
-    if (lineRendererGlowRayo != null)
-    {
-        lineRendererGlowRayo.enabled = true;
-    }
+            ObtenerLineaRayoIntercambio(
+                distanciaRayo,
+                out Vector3 inicioCarga,
+                out Vector3 finCarga
+            );
 
-    // ============================
-    // FASE 1: CARGA VISUAL
-    // ============================
-    float tiempo = 0f;
-    float tiempoCargaSeguro = Mathf.Max(0.01f, tiempoCarga);
+            float anchoActual = Mathf.Lerp(anchoInicialCarga, anchoFinalRayo, t);
 
-    while (tiempo < tiempoCargaSeguro)
-    {
-        tiempo += Time.deltaTime;
+            Transform origen = puntoDisparoRayo != null ? puntoDisparoRayo : transform;
 
-        float t = Mathf.Clamp01(tiempo / tiempoCargaSeguro);
+            float fuerzaVibracion = 0.12f * (1f - t);
+            float vibracion = Mathf.Sin(Time.time * 45f) * fuerzaVibracion;
 
-        ObtenerLineaRayoIntercambio(
+            finCarga += origen.right * vibracion;
+
+            float alphaInicio = Mathf.Lerp(0.35f, 1f, t);
+
+            Color colorInicio = new Color(
+                colorRayo.r,
+                colorRayo.g,
+                colorRayo.b,
+                alphaInicio
+            );
+
+            Color colorFinal = new Color(
+                colorRayo.r,
+                colorRayo.g,
+                colorRayo.b,
+                0f
+            );
+
+            lineRendererRayo.startColor = colorInicio;
+            lineRendererRayo.endColor = colorFinal;
+
+            lineRendererRayo.startWidth = anchoActual;
+            lineRendererRayo.endWidth = anchoActual * 0.35f;
+
+            lineRendererRayo.SetPosition(0, inicioCarga);
+            lineRendererRayo.SetPosition(1, finCarga);
+            if (lineRendererGlowRayo != null)
+            {
+                lineRendererGlowRayo.SetPosition(0, inicioCarga);
+                lineRendererGlowRayo.SetPosition(1, finCarga);
+            }
+
+            yield return null;
+        }
+
+        // ============================
+        // FASE 2: DISPARO REAL
+        // ============================
+
+        bool encontroObjetivo = BuscarPrimerObjetivoIntercambio(
             distanciaRayo,
-            out Vector3 inicioCarga,
-            out Vector3 finCarga
+            out Collider objetivo,
+            out Vector3 inicioFinal,
+            out Vector3 finFinal
         );
 
-        float anchoActual = Mathf.Lerp(anchoInicialCarga, anchoFinalRayo, t);
+        if (encontroObjetivo && objetivo != null)
+        {
+            IntercambiarLugarCon(objetivo);
+        }
+
+        lineRendererRayo.startColor = colorRayo;
+        lineRendererRayo.endColor = new Color(colorRayo.r, colorRayo.g, colorRayo.b, 0f);
+
+        lineRendererRayo.startWidth = anchoFinalRayo;
+        lineRendererRayo.endWidth = anchoFinalRayo * 0.35f;
+
+        lineRendererRayo.SetPosition(0, inicioFinal);
+        lineRendererRayo.SetPosition(1, finFinal);
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.SetPosition(0, inicioFinal);
+            lineRendererGlowRayo.SetPosition(1, finFinal);
+        }
+
+        Debug.DrawLine(inicioFinal, finFinal, colorRayo, 1f);
+
+        yield return new WaitForSeconds(tiempoVisibleRayoFinal);
+
+        lineRendererRayo.enabled = false;
+
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.enabled = false;
+        }
+        rutinaRayo = null;
+    }
+
+    private void ObtenerLineaRayoIntercambio(
+        float distanciaRayo,
+        out Vector3 inicio,
+        out Vector3 fin
+    )
+    {
+        Transform origen = puntoDisparoRayo != null ? puntoDisparoRayo : transform;
+
+        inicio = origen.position;
+        Vector3 direccion = origen.forward;
+
+        fin = inicio + direccion * distanciaRayo;
+
+        int mascara = capasDetectablesRayo.value == 0
+            ? Physics.DefaultRaycastLayers
+            : capasDetectablesRayo.value;
+
+        RaycastHit[] hits = Physics.RaycastAll(
+            inicio,
+            direccion,
+            distanciaRayo,
+            mascara,
+            QueryTriggerInteraction.Ignore
+        );
+
+        if (hits.Length == 0) return;
+
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        foreach (RaycastHit hit in hits)
+        {
+            // Evita que el rayo se pegue a sí mismo
+            if (hit.collider.transform.IsChildOf(transform)) continue;
+
+            fin = hit.point;
+            return;
+        }
+    }
+
+    private bool BuscarPrimerObjetivoIntercambio(
+        float distanciaRayo,
+        out Collider objetivo,
+        out Vector3 inicio,
+        out Vector3 fin
+    )
+    {
+        objetivo = null;
 
         Transform origen = puntoDisparoRayo != null ? puntoDisparoRayo : transform;
 
-        float fuerzaVibracion = 0.12f * (1f - t);
-        float vibracion = Mathf.Sin(Time.time * 45f) * fuerzaVibracion;
+        inicio = origen.position;
+        Vector3 direccion = origen.forward;
 
-        finCarga += origen.right * vibracion;
+        fin = inicio + direccion * distanciaRayo;
 
-        float alphaInicio = Mathf.Lerp(0.35f, 1f, t);
+        int mascara = capasDetectablesRayo.value == 0
+            ? Physics.DefaultRaycastLayers
+            : capasDetectablesRayo.value;
 
-        Color colorInicio = new Color(
-            colorRayo.r,
-            colorRayo.g,
-            colorRayo.b,
-            alphaInicio
+        RaycastHit[] hits = Physics.RaycastAll(
+            inicio,
+            direccion,
+            distanciaRayo,
+            mascara,
+            QueryTriggerInteraction.Ignore
         );
 
-        Color colorFinal = new Color(
-            colorRayo.r,
-            colorRayo.g,
-            colorRayo.b,
-            0f
-        );
+        if (hits.Length == 0) return false;
 
-        lineRendererRayo.startColor = colorInicio;
-        lineRendererRayo.endColor = colorFinal;
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
-        lineRendererRayo.startWidth = anchoActual;
-        lineRendererRayo.endWidth = anchoActual * 0.35f;
-
-        lineRendererRayo.SetPosition(0, inicioCarga);
-        lineRendererRayo.SetPosition(1, finCarga);
-        if (lineRendererGlowRayo != null)
+        foreach (RaycastHit hit in hits)
         {
-            lineRendererGlowRayo.SetPosition(0, inicioCarga);
-            lineRendererGlowRayo.SetPosition(1, finCarga);
+            // Evita golpearse a sí mismo
+            if (hit.collider.transform.IsChildOf(transform)) continue;
+
+            fin = hit.point;
+
+            KartPowerUpController otroPlayer = hit.collider.GetComponentInParent<KartPowerUpController>();
+            KartObstaculosIA otraIA = hit.collider.GetComponentInParent<KartObstaculosIA>();
+
+            bool esOtroPlayer = otroPlayer != null && otroPlayer != this;
+            bool esIA = otraIA != null;
+
+            if (esOtroPlayer || esIA)
+            {
+                objetivo = hit.collider;
+                return true;
+            }
+
+            // Si golpeó una pared u obstáculo antes que a un rival,
+            // el rayo se detiene ahí y no intercambia lugar.
+            return false;
         }
 
-        yield return null;
-    }
-
-    // ============================
-    // FASE 2: DISPARO REAL
-    // ============================
-
-    bool encontroObjetivo = BuscarPrimerObjetivoIntercambio(
-        distanciaRayo,
-        out Collider objetivo,
-        out Vector3 inicioFinal,
-        out Vector3 finFinal
-    );
-
-    if (encontroObjetivo && objetivo != null)
-    {
-        IntercambiarLugarCon(objetivo);
-    }
-
-    lineRendererRayo.startColor = colorRayo;
-    lineRendererRayo.endColor = new Color(colorRayo.r, colorRayo.g, colorRayo.b, 0f);
-
-    lineRendererRayo.startWidth = anchoFinalRayo;
-    lineRendererRayo.endWidth = anchoFinalRayo * 0.35f;
-
-    lineRendererRayo.SetPosition(0, inicioFinal);
-    lineRendererRayo.SetPosition(1, finFinal);
-    if (lineRendererGlowRayo != null)
-    {
-        lineRendererGlowRayo.SetPosition(0, inicioFinal);
-        lineRendererGlowRayo.SetPosition(1, finFinal);
-    }
-
-    Debug.DrawLine(inicioFinal, finFinal, colorRayo, 1f);
-
-    yield return new WaitForSeconds(tiempoVisibleRayoFinal);
-
-    lineRendererRayo.enabled = false;
-
-    if (lineRendererGlowRayo != null)
-    {
-        lineRendererGlowRayo.enabled = false;
-    }
-    rutinaRayo = null;
-}
-
-private void ObtenerLineaRayoIntercambio(
-    float distanciaRayo,
-    out Vector3 inicio,
-    out Vector3 fin
-)
-{
-    Transform origen = puntoDisparoRayo != null ? puntoDisparoRayo : transform;
-
-    inicio = origen.position;
-    Vector3 direccion = origen.forward;
-
-    fin = inicio + direccion * distanciaRayo;
-
-    int mascara = capasDetectablesRayo.value == 0
-        ? Physics.DefaultRaycastLayers
-        : capasDetectablesRayo.value;
-
-    RaycastHit[] hits = Physics.RaycastAll(
-        inicio,
-        direccion,
-        distanciaRayo,
-        mascara,
-        QueryTriggerInteraction.Ignore
-    );
-
-    if (hits.Length == 0) return;
-
-    System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-
-    foreach (RaycastHit hit in hits)
-    {
-        // Evita que el rayo se pegue a sí mismo
-        if (hit.collider.transform.IsChildOf(transform)) continue;
-
-        fin = hit.point;
-        return;
-    }
-}
-
-private bool BuscarPrimerObjetivoIntercambio(
-    float distanciaRayo,
-    out Collider objetivo,
-    out Vector3 inicio,
-    out Vector3 fin
-)
-{
-    objetivo = null;
-
-    Transform origen = puntoDisparoRayo != null ? puntoDisparoRayo : transform;
-
-    inicio = origen.position;
-    Vector3 direccion = origen.forward;
-
-    fin = inicio + direccion * distanciaRayo;
-
-    int mascara = capasDetectablesRayo.value == 0
-        ? Physics.DefaultRaycastLayers
-        : capasDetectablesRayo.value;
-
-    RaycastHit[] hits = Physics.RaycastAll(
-        inicio,
-        direccion,
-        distanciaRayo,
-        mascara,
-        QueryTriggerInteraction.Ignore
-    );
-
-    if (hits.Length == 0) return false;
-
-    System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-
-    foreach (RaycastHit hit in hits)
-    {
-        // Evita golpearse a sí mismo
-        if (hit.collider.transform.IsChildOf(transform)) continue;
-
-        fin = hit.point;
-
-        KartPowerUpController otroPlayer = hit.collider.GetComponentInParent<KartPowerUpController>();
-        KartObstaculosIA otraIA = hit.collider.GetComponentInParent<KartObstaculosIA>();
-
-        bool esOtroPlayer = otroPlayer != null && otroPlayer != this;
-        bool esIA = otraIA != null;
-
-        if (esOtroPlayer || esIA)
-        {
-            objetivo = hit.collider;
-            return true;
-        }
-
-        // Si golpeó una pared u obstáculo antes que a un rival,
-        // el rayo se detiene ahí y no intercambia lugar.
         return false;
     }
 
-    return false;
-}
-
-private void IntercambiarLugarCon(Collider objetivoCollider)
-{
-    KartPowerUpController otroPlayer = objetivoCollider.GetComponentInParent<KartPowerUpController>();
-    KartObstaculosIA otraIA = objetivoCollider.GetComponentInParent<KartObstaculosIA>();
-
-    Transform objetivoTransform = null;
-
-    if (otroPlayer != null && otroPlayer != this)
+    private void IntercambiarLugarCon(Collider objetivoCollider)
     {
-        if (otroPlayer.HasShield())
+        KartPowerUpController otroPlayer = objetivoCollider.GetComponentInParent<KartPowerUpController>();
+        KartObstaculosIA otraIA = objetivoCollider.GetComponentInParent<KartObstaculosIA>();
+
+        Transform objetivoTransform = null;
+
+        if (otroPlayer != null && otroPlayer != this)
         {
-            Debug.Log("El objetivo tenía escudo. No se intercambió lugar.");
+            if (otroPlayer.HasShield())
+            {
+                Debug.Log("El objetivo tenía escudo. No se intercambió lugar.");
+                return;
+            }
+
+            objetivoTransform = otroPlayer.transform;
+        }
+        else if (otraIA != null)
+        {
+            objetivoTransform = otraIA.transform;
+        }
+
+        if (objetivoTransform == null || objetivoTransform == transform)
+        {
             return;
         }
 
-        objetivoTransform = otroPlayer.transform;
-    }
-    else if (otraIA != null)
-    {
-        objetivoTransform = otraIA.transform;
-    }
+        Rigidbody rbUsuario = GetComponent<Rigidbody>();
+        Rigidbody rbObjetivo = objetivoTransform.GetComponent<Rigidbody>();
 
-    if (objetivoTransform == null || objetivoTransform == transform)
-    {
-        return;
-    }
+        Vector3 posicionUsuario = transform.position;
+        Quaternion rotacionUsuario = transform.rotation;
 
-    Rigidbody rbUsuario = GetComponent<Rigidbody>();
-    Rigidbody rbObjetivo = objetivoTransform.GetComponent<Rigidbody>();
+        Vector3 posicionObjetivo = objetivoTransform.position;
+        Quaternion rotacionObjetivo = objetivoTransform.rotation;
 
-    Vector3 posicionUsuario = transform.position;
-    Quaternion rotacionUsuario = transform.rotation;
+        Vector3 velocidadUsuario = rbUsuario != null ? rbUsuario.linearVelocity : Vector3.zero;
+        Vector3 velocidadAngularUsuario = rbUsuario != null ? rbUsuario.angularVelocity : Vector3.zero;
 
-    Vector3 posicionObjetivo = objetivoTransform.position;
-    Quaternion rotacionObjetivo = objetivoTransform.rotation;
+        Vector3 velocidadObjetivo = rbObjetivo != null ? rbObjetivo.linearVelocity : Vector3.zero;
+        Vector3 velocidadAngularObjetivo = rbObjetivo != null ? rbObjetivo.angularVelocity : Vector3.zero;
 
-    Vector3 velocidadUsuario = rbUsuario != null ? rbUsuario.linearVelocity : Vector3.zero;
-    Vector3 velocidadAngularUsuario = rbUsuario != null ? rbUsuario.angularVelocity : Vector3.zero;
-
-    Vector3 velocidadObjetivo = rbObjetivo != null ? rbObjetivo.linearVelocity : Vector3.zero;
-    Vector3 velocidadAngularObjetivo = rbObjetivo != null ? rbObjetivo.angularVelocity : Vector3.zero;
-
-    // Usuario va al lugar del objetivo
-    MoverKartParaIntercambio(
-        transform,
-        rbUsuario,
-        posicionObjetivo,
-        rotacionObjetivo
-    );
-
-    // Objetivo va al lugar del usuario
-    MoverKartParaIntercambio(
-        objetivoTransform,
-        rbObjetivo,
-        posicionUsuario,
-        rotacionUsuario
-    );
-
-    // Intercambiamos también velocidades para que no se sienta raro físicamente
-    if (rbUsuario != null)
-    {
-        rbUsuario.linearVelocity = velocidadObjetivo;
-        rbUsuario.angularVelocity = velocidadAngularObjetivo;
-    }
-
-    if (rbObjetivo != null)
-    {
-        rbObjetivo.linearVelocity = velocidadUsuario;
-        rbObjetivo.angularVelocity = velocidadAngularUsuario;
-    }
-
-    Physics.SyncTransforms();
-
-    Debug.Log("Intercambio de lugar realizado con: " + objetivoTransform.name);
-}
-
-private void MoverKartParaIntercambio(
-    Transform kartTransform,
-    Rigidbody kartRigidbody,
-    Vector3 nuevaPosicion,
-    Quaternion nuevaRotacion
-)
-{
-    if (kartRigidbody != null)
-    {
-        kartRigidbody.position = nuevaPosicion;
-        kartRigidbody.rotation = nuevaRotacion;
-
-        kartRigidbody.transform.SetPositionAndRotation(
-            nuevaPosicion,
-            nuevaRotacion
+        // Usuario va al lugar del objetivo
+        MoverKartParaIntercambio(
+            transform,
+            rbUsuario,
+            posicionObjetivo,
+            rotacionObjetivo
         );
-    }
-    else
-    {
-        kartTransform.SetPositionAndRotation(
-            nuevaPosicion,
-            nuevaRotacion
+
+        // Objetivo va al lugar del usuario
+        MoverKartParaIntercambio(
+            objetivoTransform,
+            rbObjetivo,
+            posicionUsuario,
+            rotacionUsuario
         );
+
+        // Intercambiamos también velocidades para que no se sienta raro físicamente
+        if (rbUsuario != null)
+        {
+            rbUsuario.linearVelocity = velocidadObjetivo;
+            rbUsuario.angularVelocity = velocidadAngularObjetivo;
+        }
+
+        if (rbObjetivo != null)
+        {
+            rbObjetivo.linearVelocity = velocidadUsuario;
+            rbObjetivo.angularVelocity = velocidadAngularUsuario;
+        }
+
+        Physics.SyncTransforms();
+
+        Debug.Log("Intercambio de lugar realizado con: " + objetivoTransform.name);
     }
-}
+
+    private void MoverKartParaIntercambio(
+        Transform kartTransform,
+        Rigidbody kartRigidbody,
+        Vector3 nuevaPosicion,
+        Quaternion nuevaRotacion
+    )
+    {
+        if (kartRigidbody != null)
+        {
+            kartRigidbody.position = nuevaPosicion;
+            kartRigidbody.rotation = nuevaRotacion;
+
+            kartRigidbody.transform.SetPositionAndRotation(
+                nuevaPosicion,
+                nuevaRotacion
+            );
+        }
+        else
+        {
+            kartTransform.SetPositionAndRotation(
+                nuevaPosicion,
+                nuevaRotacion
+            );
+        }
+    }
 
     public bool IsStunned() => isStunned;
     public bool HasShield() => hasShield;
@@ -1008,7 +1010,7 @@ private void MoverKartParaIntercambio(
             boostMultiplier = 1f;
 
             kart.SetSpeedMultiplier(1f);
-            
+
             //Stop VFX Boost Function call
             VFXController.GetInstance()?.StopBoostVFX();
         }
@@ -1044,11 +1046,9 @@ private void MoverKartParaIntercambio(
             kart.SetJumpForce(originalJumpForce);
         }
     }
-    
+
     private void PlayShieldBlockFeedback()
     {
-       
-
         if (audioSource != null && shieldBlockSfx != null)
             audioSource.PlayOneShot(shieldBlockSfx);
     }
