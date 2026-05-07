@@ -818,6 +818,9 @@ public class KartController : MonoBehaviour
 
         // Solo reaccionar a choques medio frontales
         if (impactDot <= 0.15f) return;
+        
+        //Call the Collision VFX
+        VFXController.GetInstance()?.SpawnCollisionVFX(contact.point);
 
         // Guardar velocidad previa
         float impactSpeed = Mathf.Abs(currentSpeed);

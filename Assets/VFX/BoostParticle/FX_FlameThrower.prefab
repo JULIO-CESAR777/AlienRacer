@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3397750342968579962}
   - component: {fileID: 365824301028648447}
   - component: {fileID: 8064277272402328243}
-  - component: {fileID: 8618233524512454123}
   m_Layer: 0
   m_Name: FX_FlameThrower
   m_TagString: Untagged
@@ -4829,15 +4828,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!114 &8618233524512454123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264109654488165867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2718a97eb06339d058c191812cab099e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PooledVFX
