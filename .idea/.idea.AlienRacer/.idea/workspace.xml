@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Bullet/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Bullet/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Bullet/Bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Bullet/Bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/IA/IA.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IA/IA.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
-    </list>
+    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,6 +188,7 @@
       <workItem from="1777926163341" duration="4781000" />
       <workItem from="1778124761135" duration="1042000" />
       <workItem from="1778171288107" duration="1677000" />
+      <workItem from="1778176817534" duration="123000" />
     </task>
     <servers />
   </component>
