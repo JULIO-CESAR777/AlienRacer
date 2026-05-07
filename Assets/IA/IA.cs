@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class KartObstaculosIA : MonoBehaviour
@@ -438,7 +440,12 @@ public class KartObstaculosIA : MonoBehaviour
         {
             AplicarResbalon(1.5f);
         }
-        else if (other.CompareTag("Bullet"))
+       
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
             AplicarImpactoBala(1.3f);

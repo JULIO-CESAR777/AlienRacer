@@ -5339,7 +5339,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 7.7309, y: -22.824}
-  m_SizeDelta: {x: 270.0994, y: 145.65}
+  m_SizeDelta: {x: 100, y: 145.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155923768
 MonoBehaviour:
@@ -11926,7 +11926,6 @@ MonoBehaviour:
   - {fileID: 659835032}
   - {fileID: 83223731}
   currentMenuIndex: 0
-  currentHorizontal: 0
   menusIndex: 0
 --- !u!1 &392812104
 GameObject:
@@ -59812,7 +59811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000022888, y: -35.23108}
+  m_AnchoredPosition: {x: 4.5, y: -35.23108}
   m_SizeDelta: {x: 170.4623, y: 170.4622}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991764893
@@ -64857,6 +64856,10 @@ PrefabInstance:
       propertyPath: synergyManager
       value: 
       objectReference: {fileID: 845179664}
+    - target: {fileID: 6186419909642306215, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

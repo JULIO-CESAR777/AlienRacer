@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TPSinergy
   itemA: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
   itemB: {fileID: 11400000, guid: 982cf5a7a1761eb48ac7598c62d92110, type: 2}
-  icon: {fileID: 21300028, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  icon: {fileID: 21300000, guid: 0bd6998a96f492745bf638a507294d42, type: 3}
   distanciaRayo: 35
   colorRayo: {r: 0.45376468, g: 0.9716981, b: 0.8814059, a: 1}
   anchoInicialCarga: 1

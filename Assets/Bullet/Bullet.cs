@@ -50,12 +50,19 @@ public class Bullet : MonoBehaviour
         moveDirection = direction.normalized;
         rb.linearVelocity = moveDirection * speed;
     }
-
+    
     void OnCollisionEnter(Collision collision)
     {
         if (isPaused) return;
-        
-        if(collision.gameObject.layer != LayerMask.NameToLayer("Wall")) Destroy(gameObject);
+
+        Debug.Log("La bala chocó con: " + collision.gameObject.name + 
+                  " Layer: " + LayerMask.LayerToName(collision.gameObject.layer));
+
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Wall"))
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         if (bounceCount >= maxBounces)
         {
@@ -66,11 +73,11 @@ public class Bullet : MonoBehaviour
         ContactPoint contact = collision.contacts[0];
         Vector3 normal = contact.normal;
 
-        // Reflejar dirección
         moveDirection = Vector3.Reflect(moveDirection, normal).normalized;
 
         rb.linearVelocity = moveDirection * speed;
 
         bounceCount++;
     }
+
 }
