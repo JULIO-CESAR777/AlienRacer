@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +186,7 @@
       <workItem from="1777483953742" duration="4493000" />
       <workItem from="1777504173182" duration="2698000" />
       <workItem from="1777926163341" duration="4781000" />
-      <workItem from="1778124761135" duration="308000" />
+      <workItem from="1778124761135" duration="1042000" />
     </task>
     <servers />
   </component>
