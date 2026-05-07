@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New Gun Item
   m_EditorClassIdentifier: Assembly-CSharp::GunItem
   itemName: Gun
-  icon: {fileID: 1234740225, guid: 9729bdd3dbd70596eb119577bb0007a0, type: 3}
+  icon: {fileID: 21300000, guid: 0bd6998a96f492745bf638a507294d42, type: 3}
   gunPrefab: {fileID: 598341308779072587, guid: 0deb6f84f23da3647ac16c7df46b969e, type: 3}

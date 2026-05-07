@@ -17,7 +17,7 @@ MonoBehaviour:
   distanciaRayo: 35
   duracionRalentizacion: 3
   multiplicadorRalentizacion: 0.45
-  colorRayo: {r: 0, g: 1, b: 1, a: 1}
+  colorRayo: {r: 0.4919455, g: 0.5188679, b: 0.5188679, a: 1}
   anchoRayoFinal: 0.18
   tiempoVisibleRayoFinal: 0.18
   tiempoCarga: 0.6

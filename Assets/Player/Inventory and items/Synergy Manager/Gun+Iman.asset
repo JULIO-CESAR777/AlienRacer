@@ -16,8 +16,8 @@ MonoBehaviour:
   itemB: {fileID: 11400000, guid: 982cf5a7a1761eb48ac7598c62d92110, type: 2}
   icon: {fileID: 21300028, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   distanciaRayo: 35
-  colorRayo: {r: 0, g: 0.040804863, b: 1, a: 1}
-  anchoInicialCarga: 1.5
-  anchoFinalRayo: 0.18
+  colorRayo: {r: 0.45376468, g: 0.9716981, b: 0.8814059, a: 1}
+  anchoInicialCarga: 1
+  anchoFinalRayo: 0
   tiempoCarga: 1
   tiempoVisibleRayoFinal: 0.18
