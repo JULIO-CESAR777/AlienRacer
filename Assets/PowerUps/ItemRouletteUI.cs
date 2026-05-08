@@ -21,6 +21,13 @@ public class ItemRouletteUI : MonoBehaviour
     [Tooltip("2 = penúltimo, 3 = antepenúltimo")]
     [SerializeField] private int resultFromEnd = 2;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip tickSound;
+    [SerializeField] private AudioClip winSound;
+    [Tooltip("Distancia en píxeles que debe moverse para sonar un tick (Ancho del item + espaciado)")]
+    [SerializeField] private float distanceBetweenTicks = 100f;
+
     private readonly List<ItemBase> ribbon = new();
     private bool spinning;
     private int forcedResultIndex;
@@ -76,7 +83,6 @@ public class ItemRouletteUI : MonoBehaviour
         if (panel != null)
             panel.SetActive(true);
 
-        // Limpiar hijos viejos y esperar 1 frame
         yield return StartCoroutine(ClearContentCR());
 
         BuildRibbon(finalResult, visualPool);
@@ -87,6 +93,8 @@ public class ItemRouletteUI : MonoBehaviour
         yield return null;
 
         content.anchoredPosition = Vector2.zero;
+
+        float lastTickX = content.anchoredPosition.x;
 
         float t = 0f;
 
@@ -99,6 +107,14 @@ public class ItemRouletteUI : MonoBehaviour
             }
 
             MoveRibbon(spinSpeed);
+
+            float currentX = content.anchoredPosition.x;
+            if (Mathf.Abs(currentX - lastTickX) >= distanceBetweenTicks)
+            {
+                PlayTickSound();
+                lastTickX = currentX;
+            }
+
             t += Time.deltaTime;
             yield return null;
         }
@@ -111,6 +127,7 @@ public class ItemRouletteUI : MonoBehaviour
         float targetX = GetContentXToCenterIndex(forcedResultIndex);
 
         t = 0f;
+
         while (t < slowSeconds)
         {
             if (isPaused)
@@ -126,10 +143,22 @@ public class ItemRouletteUI : MonoBehaviour
             float x = Mathf.Lerp(startX, targetX, eased);
             content.anchoredPosition = new Vector2(x, content.anchoredPosition.y);
 
+            float currentX = content.anchoredPosition.x;
+            if (Mathf.Abs(currentX - lastTickX) >= distanceBetweenTicks)
+            {
+                PlayTickSound();
+                lastTickX = currentX;
+            }
+
             yield return null;
         }
 
         content.anchoredPosition = new Vector2(targetX, content.anchoredPosition.y);
+
+        if (audioSource != null && winSound != null)
+        {
+            audioSource.PlayOneShot(winSound);
+        }
 
         onDone?.Invoke(finalResult);
 
@@ -152,6 +181,15 @@ public class ItemRouletteUI : MonoBehaviour
         spinning = false;
     }
 
+    private void PlayTickSound()
+    {
+        if (audioSource != null && tickSound != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(tickSound);
+        }
+    }
+
     private IEnumerator ClearContentCR()
     {
         for (int i = content.childCount - 1; i >= 0; i--)
@@ -159,7 +197,6 @@ public class ItemRouletteUI : MonoBehaviour
             Destroy(content.GetChild(i).gameObject);
         }
 
-        // Espera a que Unity sí los elimine de verdad
         yield return null;
 
         ribbon.Clear();
@@ -190,8 +227,6 @@ public class ItemRouletteUI : MonoBehaviour
         Image forcedImg = content.GetChild(forcedResultIndex).GetComponent<Image>();
         forcedImg.sprite = finalResult.icon;
         forcedImg.enabled = finalResult.icon != null;
-
-        Debug.Log($"FORCED RESULT = {finalResult.name} en índice {forcedResultIndex}");
     }
 
     private ItemBase GetRandomItemExcluding(ItemBase excluded, List<ItemBase> pool)
