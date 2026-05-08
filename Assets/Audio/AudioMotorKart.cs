@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(KartController))]
 public class AudioMotorKart : MonoBehaviour
 {
     public AudioSource motorAudioSource;
@@ -12,7 +13,7 @@ public class AudioMotorKart : MonoBehaviour
 
     [Header("Rangos de Tono")]
     public float pitchMinimo = 0.8f;
-    public float pitchMaximo = 2.4f; 
+    public float pitchMaximo = 2.4f;
     public float suavizadoPitch = 15f;
 
     private int marchaActual = 0;
@@ -21,15 +22,17 @@ public class AudioMotorKart : MonoBehaviour
     private bool estaAcelerando;
 
     private MainManager manager;
+    private KartController kartController;
 
     void Start()
     {
         manager = MainManager.GetInstance();
+        kartController = GetComponent<KartController>();
     }
 
     void Update()
     {
-        if (motorAudioSource == null || kartRb == null || manager == null) return;
+        if (motorAudioSource == null || kartRb == null || manager == null || kartController == null) return;
 
         if (manager.gameState != GameState.Play)
         {
@@ -37,7 +40,7 @@ public class AudioMotorKart : MonoBehaviour
             {
                 motorAudioSource.Pause();
             }
-            return; 
+            return;
         }
         else
         {
@@ -48,7 +51,8 @@ public class AudioMotorKart : MonoBehaviour
         }
 
         float velocidadActual = kartRb.linearVelocity.magnitude;
-        estaAcelerando = Input.GetAxis("Vertical") > 0.1f;
+
+        estaAcelerando = kartController.IsAccelerating;
 
         float marchaSegunVelocidad = (velocidadActual / 22f) * numeroMarchas;
 
@@ -64,7 +68,7 @@ public class AudioMotorKart : MonoBehaviour
                     {
                         marchaActual++;
                         temporizadorMarcha = 0f;
-                        motorAudioSource.pitch *= 0.85f; 
+                        motorAudioSource.pitch *= 0.85f;
                     }
                 }
             }
@@ -87,11 +91,9 @@ public class AudioMotorKart : MonoBehaviour
         float progreso = temporizadorMarcha / tiempoPorMarcha;
 
         float basePitch = pitchMinimo + (marchaActual * 0.1f);
-
         float factorSubida = (marchaActual == numeroMarchas - 1) ? caidaPitchCambio * 0.4f : caidaPitchCambio;
 
         pitchObjetivo = basePitch + (progreso * factorSubida);
-
         pitchObjetivo = Mathf.Min(pitchObjetivo, pitchMaximo);
 
         motorAudioSource.pitch = Mathf.Lerp(motorAudioSource.pitch, pitchObjetivo, Time.deltaTime * suavizadoPitch);

@@ -129,6 +129,8 @@ public class KartController : MonoBehaviour
 
     private KartPowerUpController powerUps;
     public bool IsBoosting => speedMultiplier > 1.05f;
+    //NO BORRAR LINEA, ES PARA EL AUDIO CON CONTROL
+    public bool IsAccelerating => moveInput > 0.1f;
 
     private bool isPaused = false;
     private float savedSpeed;
