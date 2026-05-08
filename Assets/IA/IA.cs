@@ -450,6 +450,22 @@ public class KartObstaculosIA : MonoBehaviour
             Destroy(other.gameObject);
             AplicarImpactoBala(1.3f);
         }
+        else if(other.gameObject.CompareTag("Player"))
+        {
+            KartPowerUpController kartpower = other.gameObject.GetComponent<KartPowerUpController>();
+
+            if (kartpower != null)
+            {
+                if(kartpower.hasStar)
+                {
+
+                    AplicarStun(kartpower.starStunSeconds);
+
+                }
+
+            }
+
+        }
     }
 
     public void AplicarResbalon(float duracion)

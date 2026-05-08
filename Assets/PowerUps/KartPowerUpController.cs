@@ -16,9 +16,9 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private float shieldTimer = 0f;
 
     [Header("Star")]
-    [SerializeField] private bool hasStar = false;
+    [SerializeField] public bool hasStar = false;
     [SerializeField] private float starTimer = 0f;
-    [SerializeField] private float starStunSeconds = 1.5f;
+    [SerializeField] public float starStunSeconds = 1.5f;
 
     [SerializeField] private float starHitCooldown = 0.5f;
     private readonly Dictionary<int, float> starHitCdByTarget = new Dictionary<int, float>();
@@ -140,6 +140,7 @@ public class KartPowerUpController : MonoBehaviour
         jumpTimer = Mathf.Max(jumpTimer, duration);
 
         kart.SetJumpForce(boostedJumpForce);
+        kart.HandleJump();
     }
 
     public void Stun(float seconds, bool refresh = true)
@@ -1044,6 +1045,7 @@ public class KartPowerUpController : MonoBehaviour
             jumpTimer = 0f;
 
             kart.SetJumpForce(originalJumpForce);
+           
         }
     }
 

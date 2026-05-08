@@ -664,7 +664,7 @@ public class KartController : MonoBehaviour
         return angle;
     }
     
-    void HandleJump()
+    public void HandleJump()
     {
         if (!isGrounded) return;
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
