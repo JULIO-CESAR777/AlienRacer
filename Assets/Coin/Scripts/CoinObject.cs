@@ -4,8 +4,11 @@ using System.Collections;
 public class CoinObject : MonoBehaviour
 {
     [Header("Efectos Visuales")]
-    [Tooltip("Arrastra aquí el PREFAB de las partículas o el objeto hijo actual")]
+    [Tooltip("Arrastra aquí el PREFAB de las partículas")]
     [SerializeField] private GameObject efectoParticulasPrefab;
+
+    [Tooltip("OBJETO VACÍO:")]
+    [SerializeField] private Transform puntoEmision;
 
     [Header("Configuración de Reaparición")]
     [SerializeField] private float tiempoReaparicion = 5f;
@@ -16,8 +19,12 @@ public class CoinObject : MonoBehaviour
 
     private void Awake()
     {
-        _renderer = GetComponent<MeshRenderer>();
+        _renderer = GetComponentInChildren<MeshRenderer>();
         _collider = GetComponent<Collider>();
+        if (puntoEmision == null)
+        {
+            puntoEmision = transform;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,29 +38,24 @@ public class CoinObject : MonoBehaviour
     private void Recoger(Collider player)
     {
         _estaRecogida = true;
-
-        // 1. Lógica del juego
         if (player.transform.root.TryGetComponent(out KartController kart))
         {
             kart.AddCoin();
         }
+
         if (efectoParticulasPrefab != null)
         {
-            // Creamos una copia de las partículas en el mundo
-            GameObject particulas = Instantiate(efectoParticulasPrefab, transform.position, transform.rotation);
-
-            // Si el objeto tiene un ParticleSystem, le damos Play
+            GameObject particulas = Instantiate(efectoParticulasPrefab, puntoEmision.position, Quaternion.identity);
             if (particulas.TryGetComponent(out ParticleSystem ps))
             {
                 ps.Play();
             }
-
             Destroy(particulas, 2f);
         }
 
-        // 3. DESACTIVAR VISUALES (La moneda "desaparece" pero el script sigue vivo)
-        _renderer.enabled = false;
-        _collider.enabled = false;
+        // 3. DESACTIVAR VISUALES
+        if (_renderer != null) _renderer.enabled = false;
+        if (_collider != null) _collider.enabled = false;
 
         StartCoroutine(RutinaReaparicion());
     }
@@ -62,8 +64,8 @@ public class CoinObject : MonoBehaviour
     {
         yield return new WaitForSeconds(tiempoReaparicion);
 
-        _renderer.enabled = true;
-        _collider.enabled = true;
+        if (_renderer != null) _renderer.enabled = true;
+        if (_collider != null) _collider.enabled = true;
         _estaRecogida = false;
     }
 }

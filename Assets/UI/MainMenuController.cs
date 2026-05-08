@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // <-- IMPORTANTE: Añadido para poder cambiar de escenas
 
 public class MainMenuController : MonoBehaviour
 {
-    
     public static MainMenuController instance;
     public static MainMenuController GetInstance() => instance;
 
@@ -16,7 +16,6 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-
     [Header("Camera Controller")]
     [SerializeField] private MenuCameraController cameraController;
     [SerializeField] private MenuAnimatorController playAnims;
@@ -26,7 +25,7 @@ public class MainMenuController : MonoBehaviour
 
     private LanguageManager languageManager;
     private DisplaySettings displaySettings;
-    
+
     [Header("Menus")]
     public Selectable[] mainMenu;
     public Selectable[] playMenu;
@@ -44,7 +43,7 @@ public class MainMenuController : MonoBehaviour
     public bool isOnAnim;
 
     private InputManager input;
-    
+
     private void Start()
     {
         displaySettings = DisplaySettings.GetInstance();
@@ -63,16 +62,15 @@ public class MainMenuController : MonoBehaviour
         if (input == null || currentMenu == null || currentMenu.Length == 0) return;
 
         if (isOnAnim) return;
-        
+
         if (HandleBackSubmit()) return;
 
         HandleVerticalNavigation();
         HandleHorizontalNavigation();
-        
+
         HandleSubmit();
     }
-    
-    
+
     private bool HandleBackSubmit()
     {
         if (!input.IsButtonDown(BUTTONS.X)) return false;
@@ -108,7 +106,6 @@ public class MainMenuController : MonoBehaviour
         float verticalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
         float verticalDpad = input.GetAXis(AXIS.VERTICAL_DPAD);
 
-        // Tomamos el input más fuerte (stick o dpad)
         float vertical = Mathf.Abs(verticalDpad) > Mathf.Abs(verticalStick)
             ? verticalDpad
             : verticalStick;
@@ -136,7 +133,6 @@ public class MainMenuController : MonoBehaviour
         float horizontalStick = input.GetAXis(AXIS.LEFT_STICK_HORIZONTAL);
         float horizontalDpad = input.GetAXis(AXIS.HORIZONTAL_DPAD);
 
-        // Tomamos el input más fuerte (stick o dpad)
         float horizontal = Mathf.Abs(horizontalDpad) > Mathf.Abs(horizontalStick)
             ? horizontalDpad
             : horizontalStick;
@@ -249,7 +245,8 @@ public class MainMenuController : MonoBehaviour
         switch (currentMenuIndex)
         {
             case 0:
-                // Tutorial
+                // --- AQUÍ ESTÁ EL CAMBIO PARA EL MODO LIBRE / TUTORIAL ---
+                SceneManager.LoadScene("Tutorial");
                 break;
 
             case 1:
@@ -428,5 +425,4 @@ public class MainMenuController : MonoBehaviour
     {
         isOnAnim = !isOnAnim;
     }
-    
 }
