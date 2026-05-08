@@ -61,6 +61,15 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private AudioClip shieldActivateSfx;
     [SerializeField] private AudioClip shieldBreakSfx;
     [SerializeField] private AudioClip shieldBlockSfx;
+    
+    [Header("Star Feel")]
+    [SerializeField] private Renderer[] starRenderers;
+    [SerializeField] private float starColorSpeed = 8f;
+    [SerializeField] private float starEmissionIntensity = 3f;
+
+    private Material[][] originalMaterials;
+    private Material[][] starMaterials;
+    private bool starVisualActive = false;
 
     [Header("Controlador de Audio Externo")]
     public PowerUpAudioController powerUpAudio;
@@ -77,6 +86,8 @@ public class KartPowerUpController : MonoBehaviour
         originalJumpForce = kart.GetJumpForce();
 
         PrepararLineRendererRayo(Color.cyan, 0.18f);
+
+        GuardarMaterialesOriginalesEstrella();
     }
 
     void Update()
@@ -107,7 +118,7 @@ public class KartPowerUpController : MonoBehaviour
             audioSource.PlayOneShot(shieldActivateSfx);
     }
 
-    public void ActivateStar(float duration, float stunSeconds = 1.5f)
+    public void ActivateStar(float duration, float stunSeconds)
     {
         hasStar = true;
         starTimer = Mathf.Max(starTimer, duration);
@@ -116,9 +127,100 @@ public class KartPowerUpController : MonoBehaviour
         hasShield = true;
         shieldTimer = Mathf.Max(shieldTimer, duration);
 
+        StartStarVisual();
         if (powerUpAudio != null)
             powerUpAudio.PlayEstrella();
     }
+    
+    private void GuardarMaterialesOriginalesEstrella()
+{
+    if (starRenderers == null || starRenderers.Length == 0) return;
+
+    originalMaterials = new Material[starRenderers.Length][];
+    starMaterials = new Material[starRenderers.Length][];
+
+    for (int i = 0; i < starRenderers.Length; i++)
+    {
+        if (starRenderers[i] == null) continue;
+
+        originalMaterials[i] = starRenderers[i].materials;
+        starMaterials[i] = new Material[originalMaterials[i].Length];
+
+        for (int j = 0; j < originalMaterials[i].Length; j++)
+        {
+            starMaterials[i][j] = new Material(originalMaterials[i][j]);
+
+            if (starMaterials[i][j].HasProperty("_EmissionColor"))
+            {
+                starMaterials[i][j].EnableKeyword("_EMISSION");
+            }
+        }
+    }
+}
+
+private void StartStarVisual()
+{
+    if (starRenderers == null || starRenderers.Length == 0) return;
+
+    starVisualActive = true;
+
+    for (int i = 0; i < starRenderers.Length; i++)
+    {
+        if (starRenderers[i] == null) continue;
+        if (starMaterials == null || starMaterials[i] == null) continue;
+
+        starRenderers[i].materials = starMaterials[i];
+    }
+}
+
+private void UpdateStarVisual()
+{
+    if (!starVisualActive) return;
+    if (starMaterials == null) return;
+
+    float hue = Mathf.Repeat(Time.time * starColorSpeed * 0.1f, 1f);
+    Color starColor = Color.HSVToRGB(hue, 1f, 1f);
+
+    Color emissionColor = starColor * starEmissionIntensity;
+
+    for (int i = 0; i < starMaterials.Length; i++)
+    {
+        if (starMaterials[i] == null) continue;
+
+        for (int j = 0; j < starMaterials[i].Length; j++)
+        {
+            Material mat = starMaterials[i][j];
+
+            if (mat == null) continue;
+
+            if (mat.HasProperty("_BaseColor"))
+                mat.SetColor("_BaseColor", starColor);
+
+            if (mat.HasProperty("_Color"))
+                mat.SetColor("_Color", starColor);
+
+            if (mat.HasProperty("_EmissionColor"))
+                mat.SetColor("_EmissionColor", emissionColor);
+        }
+    }
+}
+
+private void StopStarVisual()
+{
+    if (!starVisualActive) return;
+
+    starVisualActive = false;
+
+    if (starRenderers == null || originalMaterials == null) return;
+
+    for (int i = 0; i < starRenderers.Length; i++)
+    {
+        if (starRenderers[i] == null) continue;
+        if (originalMaterials[i] == null) continue;
+
+        starRenderers[i].materials = originalMaterials[i];
+    }
+}
 
     public void ApplyBoost(float multiplier, float duration)
     {
@@ -988,6 +1090,8 @@ public class KartPowerUpController : MonoBehaviour
     {
         if (!hasStar) return;
 
+        UpdateStarVisual();
+
         starTimer -= Time.deltaTime;
 
         if (starTimer <= 0f)
@@ -995,6 +1099,8 @@ public class KartPowerUpController : MonoBehaviour
             hasStar = false;
             starTimer = 0f;
             starHitCdByTarget.Clear();
+
+            StopStarVisual();
         }
     }
 

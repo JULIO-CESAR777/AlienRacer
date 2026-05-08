@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="" />
+    <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Camera/PhysicalKartCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Camera/PhysicalKartCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/Synergy Manager/Boost+Shield.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/Synergy Manager/Boost+Shield.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/Synergy Manager/Boost+Shield.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/Synergy Manager/Boost+Shield.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Player_v2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Player_v2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/Oil/Oil.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/Oil/Oil.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa_2.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -189,6 +199,7 @@
       <workItem from="1778124761135" duration="1042000" />
       <workItem from="1778171288107" duration="1677000" />
       <workItem from="1778176817534" duration="123000" />
+      <workItem from="1778208326193" duration="2346000" />
     </task>
     <servers />
   </component>

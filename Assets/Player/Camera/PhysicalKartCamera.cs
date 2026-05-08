@@ -40,6 +40,22 @@ public class PhysicalKartCamera : MonoBehaviour
     [SerializeField] private float topFOV = 70f;
     [SerializeField] private float maxSpeedFOV = 85f;
     [SerializeField] private float fovSharpness = 5f;
+    
+    [Header("Boost Camera Feel")]
+    [SerializeField] private float boostFOVAdd = 8f;
+    [SerializeField] private float boostPunchFOVAdd = 12f;
+    [SerializeField] private float boostPunchDuration = 0.12f;
+    [SerializeField] private float boostFOVSharpness = 10f;
+    [SerializeField] private float absoluteMaxFOV = 92f;
+
+    [Header("Boost Camera Position")]
+    [SerializeField] private float boostDistanceAdd = 1.2f;
+    [SerializeField] private float boostHeightAdd = 0.25f;
+    [SerializeField] private float boostViewSharpness = 8f;
+
+    private bool wasBoosting;
+    private float boostPunchTimer;
+    private float boostViewBlend;
 
     private Camera cam;
     private float topBlend;
@@ -58,10 +74,23 @@ public class PhysicalKartCamera : MonoBehaviour
 
         Vector3 lookTarget = target.position + Vector3.up * lookAtHeight;
 
-        Vector3 normalDesiredPosition =
-            target.position
-            - target.forward * normalDistance
-            + Vector3.up * normalHeight;
+       bool isBoosting = kart != null && kart.IsBoosting;
+       
+       float targetBoostBlend = isBoosting ? 1f : 0f;
+       
+       boostViewBlend = Mathf.Lerp(
+           boostViewBlend,
+           targetBoostBlend,
+           1f - Mathf.Exp(-boostViewSharpness * Time.deltaTime)
+       );
+       
+       float currentDistance = normalDistance + boostDistanceAdd * boostViewBlend;
+       float currentHeight = normalHeight + boostHeightAdd * boostViewBlend;
+       
+       Vector3 normalDesiredPosition =
+           target.position
+           - target.forward * currentDistance
+           + Vector3.up * currentHeight;
 
         CameraCollisionResult normalCollision =
             ResolveCameraCollision(lookTarget, normalDesiredPosition);
@@ -206,15 +235,41 @@ public class PhysicalKartCamera : MonoBehaviour
             speedPercent = Mathf.InverseLerp(0f, kart.maxSpeed, Mathf.Abs(kart.currentSpeed));
 
         float speedFOV = Mathf.Lerp(normalFOV, maxSpeedFOV, speedPercent);
+
+        bool isBoosting = kart != null && kart.IsBoosting;
+
+        if (isBoosting && !wasBoosting)
+        {
+            boostPunchTimer = boostPunchDuration;
+        }
+
+        wasBoosting = isBoosting;
+
+        if (isBoosting)
+        {
+            speedFOV += boostFOVAdd;
+        }
+
+        if (boostPunchTimer > 0f)
+        {
+            boostPunchTimer -= Time.deltaTime;
+
+            float punchPercent = boostPunchTimer / Mathf.Max(0.01f, boostPunchDuration);
+            speedFOV += boostPunchFOVAdd * punchPercent;
+        }
+
+        speedFOV = Mathf.Min(speedFOV, absoluteMaxFOV);
+
         float targetFOV = Mathf.Lerp(speedFOV, topFOV, topBlend);
+
+        float sharpness = isBoosting ? boostFOVSharpness : fovSharpness;
 
         cam.fieldOfView = Mathf.Lerp(
             cam.fieldOfView,
             targetFOV,
-            1f - Mathf.Exp(-fovSharpness * Time.deltaTime)
+            1f - Mathf.Exp(-sharpness * Time.deltaTime)
         );
     }
-
     private struct CameraCollisionResult
     {
         public Vector3 safePosition;
