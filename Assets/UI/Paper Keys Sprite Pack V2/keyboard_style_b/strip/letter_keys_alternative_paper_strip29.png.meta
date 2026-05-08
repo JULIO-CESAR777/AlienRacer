@@ -1,0 +1,786 @@
+fileFormatVersion: 2
+guid: 759c722adb26855419d8bc42b2a52529
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 81
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827de92c56fb3144e94428defa523475
+      internalID: -1989200764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 383c94d62aeec5a42aae6d637dd180c3
+      internalID: 810626512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_2
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77ea647ea8d6904c951e05e553c68c6
+      internalID: 745510907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_3
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 3
+        width: 81
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeef8f695aa6dc442bbfe3a25ed4a56a
+      internalID: 2059217136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_4
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2078f5f14b58c4eaac55afec0bf035
+      internalID: -944439815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1306e19b5a5a6584d83cfb65b312b7d0
+      internalID: 1125021130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_6
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c720de9b648d246ae0051416c6d274
+      internalID: 377438979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_7
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a38812e39d5929418db5ea98fe674e5
+      internalID: 785398395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_8
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ab77903c0510d4c87f861b3ec166d6
+      internalID: 688290257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_9
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8781413e97ad6874583b371005ee15fa
+      internalID: -1314857320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_10
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b349acb6c3fee6c4a8cb3f11f15e9e09
+      internalID: 271285526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_11
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec84102d70e30d40a593c2ca5d9732b
+      internalID: -940216936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_12
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e614b0b000bfa48a51a55e91164dfd
+      internalID: -919128726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_13
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2783d2f288357564b9842dc902ff7d80
+      internalID: 1551264621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_14
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071c8348f76c7e547a5b8af26f3946bd
+      internalID: -1451817566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_15
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e194c2488f4410542b38090ce3e7adc1
+      internalID: -1239343110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_16
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 3
+        width: 80
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a076d50d8f8c046a417cd08cbcfe64
+      internalID: -1800474985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_17
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42546ea501c4ebd44a6b80532eacdb14
+      internalID: 535140338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_18
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db3991786200064eb2503168af6fb7a
+      internalID: 1415772456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_19
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404bf555b1225274eba1d8dfce23769c
+      internalID: 1883570389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_20
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b9468ac36bbbb84390325b02c4723f6
+      internalID: -1664679941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_21
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef6fcb6cfbb1e5247a5c249cc119f088
+      internalID: -1812364506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_22
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48879ee6571978c419a413b0d4291b3f
+      internalID: -1761500831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_23
+      rect:
+        serializedVersion: 2
+        x: 1886
+        y: 4
+        width: 80
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0699f48e94e75d849b126742a5378b24
+      internalID: -778970650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_24
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 3
+        width: 81
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75997138fede5d8419858e479d11b1b2
+      internalID: -62805448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_25
+      rect:
+        serializedVersion: 2
+        x: 2050
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 779b11de1f8f3d9489eecd2f57a53e28
+      internalID: -941707817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_26
+      rect:
+        serializedVersion: 2
+        x: 2132
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4876ff0bb450f464c916c2eb42a6ab84
+      internalID: 137596039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_27
+      rect:
+        serializedVersion: 2
+        x: 2214
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3dd9f120a23974db1d13a0c67f018e
+      internalID: -1868695624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: letter_keys_alternative_paper_strip29_28
+      rect:
+        serializedVersion: 2
+        x: 2296
+        y: 0
+        width: 81
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336bb8f7f2a6ecf48a7dede64531a4b3
+      internalID: 833235172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1a2143c13a447904ba62c554a4e548ff
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      letter_keys_alternative_paper_strip29_0: -1989200764
+      letter_keys_alternative_paper_strip29_1: 810626512
+      letter_keys_alternative_paper_strip29_10: 271285526
+      letter_keys_alternative_paper_strip29_11: -940216936
+      letter_keys_alternative_paper_strip29_12: -919128726
+      letter_keys_alternative_paper_strip29_13: 1551264621
+      letter_keys_alternative_paper_strip29_14: -1451817566
+      letter_keys_alternative_paper_strip29_15: -1239343110
+      letter_keys_alternative_paper_strip29_16: -1800474985
+      letter_keys_alternative_paper_strip29_17: 535140338
+      letter_keys_alternative_paper_strip29_18: 1415772456
+      letter_keys_alternative_paper_strip29_19: 1883570389
+      letter_keys_alternative_paper_strip29_2: 745510907
+      letter_keys_alternative_paper_strip29_20: -1664679941
+      letter_keys_alternative_paper_strip29_21: -1812364506
+      letter_keys_alternative_paper_strip29_22: -1761500831
+      letter_keys_alternative_paper_strip29_23: -778970650
+      letter_keys_alternative_paper_strip29_24: -62805448
+      letter_keys_alternative_paper_strip29_25: -941707817
+      letter_keys_alternative_paper_strip29_26: 137596039
+      letter_keys_alternative_paper_strip29_27: -1868695624
+      letter_keys_alternative_paper_strip29_28: 833235172
+      letter_keys_alternative_paper_strip29_3: 2059217136
+      letter_keys_alternative_paper_strip29_4: -944439815
+      letter_keys_alternative_paper_strip29_5: 1125021130
+      letter_keys_alternative_paper_strip29_6: 377438979
+      letter_keys_alternative_paper_strip29_7: 785398395
+      letter_keys_alternative_paper_strip29_8: 688290257
+      letter_keys_alternative_paper_strip29_9: -1314857320
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
