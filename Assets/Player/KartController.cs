@@ -91,6 +91,32 @@ public class KartController : MonoBehaviour
     [Header("Jump")]
     public float jumpPower = 10f;
     public bool isGrounded = false;
+    
+    [Header("Surface Speed")]
+    [SerializeField] private LayerMask roadMask;
+    [SerializeField] private LayerMask offRoadMask;
+
+    [SerializeField, Range(0.1f, 1f)]
+    private float offRoadMaxSpeedMultiplier = 0.55f;
+
+    [SerializeField, Range(0.1f, 1f)]
+    private float offRoadAccelerationMultiplier = 0.45f;
+
+    [SerializeField] private float surfaceSpeedSmooth = 10f;
+    [SerializeField] private float offRoadSlowDownForce = 18f;
+
+    [SerializeField] private bool unknownGroundCountsAsOffRoad = true;
+
+    public bool isOnRoad;
+
+    private float targetSurfaceMaxSpeedMultiplier = 1f;
+    private float currentSurfaceMaxSpeedMultiplier = 1f;
+    
+    private float targetSurfaceAccelerationMultiplier = 1f;
+    private float currentSurfaceAccelerationMultiplier = 1f;
+    
+    private float currentSurfaceSpeedMultiplier = 1f;
+    
 
     private Vector3 smoothedGroundNormal = Vector3.up;
 
@@ -324,6 +350,8 @@ public class KartController : MonoBehaviour
 
         if (isPaused) return;
 
+        CheckGround();
+        
         if (!isBumping)
         {
             HandleMovement();
@@ -340,7 +368,6 @@ public class KartController : MonoBehaviour
 
         HandleDriftVisual();
         HandleBetterGravity();
-        CheckGround();
 
         // Pegado al suelo
         if (isGrounded && rb.linearVelocity.y <= 0.1f)
@@ -417,54 +444,58 @@ public class KartController : MonoBehaviour
 
     void HandleMovement()
     {
-        // acelera / frena
+        float currentAcceleration = acceleration * currentSurfaceAccelerationMultiplier;
+
         if (moveInput > 0)
         {
-            float finalAcceleration = acceleration * speedMultiplier;
+            float finalAcceleration = currentAcceleration * speedMultiplier;
             currentSpeed += finalAcceleration * Time.fixedDeltaTime;
         }
         else if (moveInput < 0)
         {
             if (currentSpeed > 0)
             {
-                // Frenar fuerte si vas hacia adelante
-                currentSpeed -= acceleration * 1.5f * Time.fixedDeltaTime;
+                currentSpeed -= currentAcceleration * 1.5f * Time.fixedDeltaTime;
             }
             else
             {
-                // Reversa cuando ya estás en negativo
                 currentSpeed -= reverseAcceleration * Time.fixedDeltaTime;
             }
         }
         else
         {
-            float deceleration = acceleration * 0.8f;
+            float deceleration = currentAcceleration * 0.8f;
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
         }
 
-        // monedas
         float coinBoost = coins * speedPerCoin;
 
-        // maxSpeed final
-        float finalMaxSpeed = (maxSpeed + coinBoost) * speedMultiplier;
+        float finalMaxSpeed = (maxSpeed + coinBoost) * currentSurfaceMaxSpeedMultiplier * speedMultiplier;
 
         if (empujandoKartMuerto)
         {
-            finalMaxSpeed = 4f; // Limitamos la velocidad máxima drásticamente como si empujaras algo pesado
+            finalMaxSpeed = 4f;
+
             if (currentSpeed > finalMaxSpeed)
             {
                 currentSpeed = Mathf.Lerp(currentSpeed, finalMaxSpeed, 15f * Time.fixedDeltaTime);
             }
         }
 
-        // clamp
+        if (currentSpeed > finalMaxSpeed)
+        {
+            currentSpeed = Mathf.MoveTowards(
+                currentSpeed,
+                finalMaxSpeed,
+                offRoadSlowDownForce * Time.fixedDeltaTime
+            );
+        }
+
         currentSpeed = Mathf.Clamp(currentSpeed, -maxReverseSpeed, finalMaxSpeed);
 
-        // aplica al RB
         Vector3 forwardMove = transform.forward * currentSpeed;
         rb.linearVelocity = new Vector3(forwardMove.x, rb.linearVelocity.y, forwardMove.z);
     }
-
     void HandleSteering()
     {
         if (!isGrounded) return;
@@ -477,7 +508,7 @@ public class KartController : MonoBehaviour
         if (isDrifting)
             steeringInput = driftDirection;
 
-        float realMaxSpeed = (maxSpeed + (coins * speedPerCoin)) * speedMultiplier;
+        float realMaxSpeed = (maxSpeed + (coins * speedPerCoin)) * currentSurfaceSpeedMultiplier * speedMultiplier;
         float speedPercent = Mathf.Clamp01(Mathf.Abs(currentSpeed) / Mathf.Max(0.01f, realMaxSpeed));
 
         float dynamicTurnSpeed = Mathf.Lerp(
@@ -710,7 +741,6 @@ public class KartController : MonoBehaviour
 
         if (Physics.SphereCast(origin, groundSphereRadius, Vector3.down, out RaycastHit hit, groundCheckDistance))
         {
-
             if (hit.normal.y < 0.3f)
             {
                 isGrounded = false;
@@ -719,7 +749,6 @@ public class KartController : MonoBehaviour
 
             float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
 
-            // Si es demasiado vertical, es pared/banqueta grande
             if (slopeAngle > 50f)
             {
                 isGrounded = false;
@@ -729,15 +758,82 @@ public class KartController : MonoBehaviour
             isGrounded = true;
 
             groundNormal = hit.normal;
-            smoothedGroundNormal = Vector3.Slerp(smoothedGroundNormal, groundNormal, 12f * Time.deltaTime);
+            smoothedGroundNormal = Vector3.Slerp(
+                smoothedGroundNormal,
+                groundNormal,
+                12f * Time.deltaTime
+            );
 
+            UpdateSurfaceSpeed(hit.collider);
         }
         else
         {
             isGrounded = false;
-            smoothedGroundNormal = Vector3.Slerp(smoothedGroundNormal, Vector3.up, 5f * Time.deltaTime);
+
+            smoothedGroundNormal = Vector3.Slerp(
+                smoothedGroundNormal,
+                Vector3.up,
+                5f * Time.deltaTime
+            );
         }
+
+        currentSurfaceMaxSpeedMultiplier = Mathf.Lerp(
+            currentSurfaceMaxSpeedMultiplier,
+            targetSurfaceMaxSpeedMultiplier,
+            1f - Mathf.Exp(-surfaceSpeedSmooth * Time.fixedDeltaTime)
+        );
+
+        currentSurfaceAccelerationMultiplier = Mathf.Lerp(
+            currentSurfaceAccelerationMultiplier,
+            targetSurfaceAccelerationMultiplier,
+            1f - Mathf.Exp(-surfaceSpeedSmooth * Time.fixedDeltaTime)
+        );
     }
+    
+    private void UpdateSurfaceSpeed(Collider groundCollider)
+    {
+        if (groundCollider == null) return;
+
+        int groundLayer = groundCollider.gameObject.layer;
+
+        if (IsLayerInMask(groundLayer, roadMask))
+        {
+            isOnRoad = true;
+
+            targetSurfaceMaxSpeedMultiplier = 1f;
+            targetSurfaceAccelerationMultiplier = 1f;
+        }
+        else if (IsLayerInMask(groundLayer, offRoadMask))
+        {
+            isOnRoad = false;
+
+            targetSurfaceMaxSpeedMultiplier = offRoadMaxSpeedMultiplier;
+            targetSurfaceAccelerationMultiplier = offRoadAccelerationMultiplier;
+        }
+        else
+        {
+            isOnRoad = false;
+
+            if (unknownGroundCountsAsOffRoad)
+            {
+                targetSurfaceMaxSpeedMultiplier = offRoadMaxSpeedMultiplier;
+                targetSurfaceAccelerationMultiplier = offRoadAccelerationMultiplier;
+            }
+            else
+            {
+                targetSurfaceMaxSpeedMultiplier = 1f;
+                targetSurfaceAccelerationMultiplier = 1f;
+            }
+        }
+        Debug.Log("Ground detected: " + groundCollider.name + " | Layer: " + LayerMask.LayerToName(groundCollider.gameObject.layer));
+    }
+
+    private bool IsLayerInMask(int layer, LayerMask mask)
+    {
+        return (mask.value & (1 << layer)) != 0;
+    }
+    
+    
 
     // --- API para PowerUps (sin meter lógica de powerups aquí) ---
     public void SetControlEnabled(bool enabled)
