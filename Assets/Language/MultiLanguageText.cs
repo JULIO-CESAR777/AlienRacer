@@ -8,20 +8,25 @@ public class MultiLanguageText : MonoBehaviour
     [SerializeField] public string[] texts;
 
     bool setUp = false;
-    
+
     private void Start()
     {
         uiText = GetComponent<TextMeshProUGUI>();
         uiText.text = texts[LanguageManager.GetInstance().GetCurrentLanguageByte()];
-        LanguageManager.GetInstance().OnLanguageChanged += OnLanguageChanged; 
+        LanguageManager.GetInstance().OnLanguageChanged += OnLanguageChanged;
         setUp = true;
     }
 
     private void OnEnable()
     {
         if (setUp == false) return;
-        uiText.text = texts[LanguageManager.GetInstance().GetCurrentLanguageByte()];
-        LanguageManager.GetInstance().OnLanguageChanged += OnLanguageChanged; 
+
+        // También es buena práctica validar aquí por si acaso
+        if (LanguageManager.GetInstance() != null)
+        {
+            uiText.text = texts[LanguageManager.GetInstance().GetCurrentLanguageByte()];
+            LanguageManager.GetInstance().OnLanguageChanged += OnLanguageChanged;
+        }
     }
 
     void OnLanguageChanged(LANGUAGES newLanguage)
@@ -31,6 +36,9 @@ public class MultiLanguageText : MonoBehaviour
 
     private void OnDisable()
     {
-        LanguageManager.GetInstance().OnLanguageChanged -= OnLanguageChanged;
+        if (LanguageManager.GetInstance() != null)
+        {
+            LanguageManager.GetInstance().OnLanguageChanged -= OnLanguageChanged;
+        }
     }
 }

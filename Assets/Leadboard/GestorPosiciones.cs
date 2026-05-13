@@ -134,7 +134,11 @@ public class GestorPosiciones : MonoBehaviour
         if (corredor.transform.CompareTag("Player"))
         {
             bool gano = corredor.posicion == 1;
+
+            // 1. Mostrar el panel
             if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
+
+            // 2. Actualizar el texto
             if (textoResultado != null && LanguageManager.GetInstance() != null)
             {
                 if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.SPANISH)
@@ -142,8 +146,16 @@ public class GestorPosiciones : MonoBehaviour
                 else
                     textoResultado.text = gano ? "Victory" : "Position: " + corredor.posicion + "°";
             }
+
+            // 3. Guardar progreso si ganó
             if (gano) SlotSaveSystem.CompleteLevelInActiveSlot(currentLevel);
-            StartCoroutine(EsperarYCambiarEscena(3f, gano));
+
+            // 4. (Opcional) Pausar el juego visualmente
+            Time.timeScale = 0f;
+            // Ya no cambiamos de escena automáticamente. Dejamos que el nuevo script del UI lo haga.
+
+            // Si RaceResultSystem.Instance.CargarResultado cambiaba de escena, 
+            // también lo omitimos aquí y lo mandamos llamar desde los botones (ver Paso 2).
         }
     }
 

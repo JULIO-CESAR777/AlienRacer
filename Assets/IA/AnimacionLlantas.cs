@@ -23,12 +23,16 @@ public class AnimacionLlantas : MonoBehaviour
 
     void Update()
     {
+    
+        if (Time.deltaTime == 0f || Time.timeScale == 0f) return;
+
         Vector3 desplazamiento = transform.position - posicionAnterior;
         float distancia = desplazamiento.magnitude;
         float direccionMovimiento = Vector3.Dot(transform.forward, desplazamiento.normalized) >= 0 ? 1f : -1f;
 
         rotacionXActual += distancia * multiplicadorRodada * direccionMovimiento;
 
+        // Aquí es donde ocurría el error porque Time.deltaTime era 0
         float velocidadAngularY = Mathf.DeltaAngle(rotacionYAnterior, transform.eulerAngles.y) / Time.deltaTime;
         float anguloObjetivo = Mathf.Clamp(velocidadAngularY * sensibilidadDireccion, -anguloMaximoDireccion, anguloMaximoDireccion);
 
