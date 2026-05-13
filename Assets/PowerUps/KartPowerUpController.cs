@@ -280,19 +280,102 @@ private void StopStarVisual()
         float tiempoVisible
     )
     {
-        float anchoInicialCarga = anchoRayo * 8f;
-        float tiempoCarga = 0.55f;
+        if (rutinaRayo != null)
+        {
+            StopCoroutine(rutinaRayo);
 
-        DispararRayoRalentizadorConCarga(
+            if (lineRendererRayo != null)
+                lineRendererRayo.enabled = false;
+
+            if (lineRendererGlowRayo != null)
+                lineRendererGlowRayo.enabled = false;
+        }
+
+        rutinaRayo = StartCoroutine(RutinaRayoRalentizadorInstantaneo(
             distanciaRayo,
             duracionRalentizacion,
             multiplicadorRalentizacion,
             colorRayo,
-            anchoInicialCarga,
             anchoRayo,
-            tiempoCarga,
             tiempoVisible
-        );
+        ));
+    }
+    private IEnumerator RutinaRayoRalentizadorInstantaneo(
+        float distanciaRayo,
+        float duracionRalentizacion,
+        float multiplicadorRalentizacion,
+        Color colorRayo,
+        float anchoRayo,
+        float tiempoVisible
+    )
+    {
+        PrepararLineRendererRayo(colorRayo, anchoRayo);
+
+        lineRendererRayo.enabled = true;
+
+        if (lineRendererGlowRayo != null)
+            lineRendererGlowRayo.enabled = true;
+
+        lineRendererRayo.startColor = colorRayo;
+        lineRendererRayo.endColor = new Color(colorRayo.r, colorRayo.g, colorRayo.b, 0f);
+
+        lineRendererRayo.startWidth = anchoRayo;
+        lineRendererRayo.endWidth = anchoRayo * 0.35f;
+
+        float tiempo = 0f;
+
+        while (tiempo < tiempoVisible)
+        {
+            tiempo += Time.deltaTime;
+
+            ObtenerDatosRayo(
+                distanciaRayo,
+                out Vector3 inicio,
+                out Vector3 fin,
+                out RaycastHit hit,
+                out bool hayHit
+            );
+
+            lineRendererRayo.SetPosition(0, inicio);
+            lineRendererRayo.SetPosition(1, fin);
+
+            if (lineRendererGlowRayo != null)
+            {
+                lineRendererGlowRayo.SetPosition(0, inicio);
+                lineRendererGlowRayo.SetPosition(1, fin);
+            }
+
+            if (mostrarDebugRayo)
+            {
+                Debug.DrawLine(inicio, fin, colorRayo);
+            }
+
+            if (hayHit)
+            {
+                KartObstaculosIA rival = hit.collider.GetComponentInParent<KartObstaculosIA>();
+
+                if (rival != null)
+                {
+                    rival.AplicarRalentizacion(
+                        duracionRalentizacion,
+                        multiplicadorRalentizacion
+                    );
+
+                    Debug.Log("Rayo ralentizó a: " + rival.name);
+
+                    break;
+                }
+            }
+
+            yield return null;
+        }
+
+        lineRendererRayo.enabled = false;
+
+        if (lineRendererGlowRayo != null)
+            lineRendererGlowRayo.enabled = false;
+
+        rutinaRayo = null;
     }
 
 
@@ -664,17 +747,85 @@ private void StopStarVisual()
         float tiempoVisible
     )
     {
-        float anchoInicialCarga = anchoRayo * 8f;
-        float tiempoCarga = 0.55f;
+        if (rutinaRayo != null)
+        {
+            StopCoroutine(rutinaRayo);
 
-        DispararRayoIntercambioConCarga(
+            if (lineRendererRayo != null)
+                lineRendererRayo.enabled = false;
+
+            if (lineRendererGlowRayo != null)
+                lineRendererGlowRayo.enabled = false;
+        }
+
+        rutinaRayo = StartCoroutine(RutinaRayoIntercambioInstantaneo(
             distanciaRayo,
             colorRayo,
-            anchoInicialCarga,
             anchoRayo,
-            tiempoCarga,
             tiempoVisible
-        );
+        ));
+    }
+    
+    
+    private IEnumerator RutinaRayoIntercambioInstantaneo(
+        float distanciaRayo,
+        Color colorRayo,
+        float anchoRayo,
+        float tiempoVisible
+    )
+    {
+        PrepararLineRendererRayo(colorRayo, anchoRayo);
+
+        lineRendererRayo.enabled = true;
+
+        if (lineRendererGlowRayo != null)
+            lineRendererGlowRayo.enabled = true;
+
+        lineRendererRayo.startColor = colorRayo;
+        lineRendererRayo.endColor = new Color(colorRayo.r, colorRayo.g, colorRayo.b, 0f);
+
+        lineRendererRayo.startWidth = anchoRayo;
+        lineRendererRayo.endWidth = anchoRayo * 0.35f;
+
+        float tiempo = 0f;
+
+        while (tiempo < tiempoVisible)
+        {
+            tiempo += Time.deltaTime;
+
+            bool encontroObjetivo = BuscarPrimerObjetivoIntercambio(
+                distanciaRayo,
+                out Collider objetivo,
+                out Vector3 inicio,
+                out Vector3 fin
+            );
+
+            lineRendererRayo.SetPosition(0, inicio);
+            lineRendererRayo.SetPosition(1, fin);
+
+            if (lineRendererGlowRayo != null)
+            {
+                lineRendererGlowRayo.SetPosition(0, inicio);
+                lineRendererGlowRayo.SetPosition(1, fin);
+            }
+
+            Debug.DrawLine(inicio, fin, colorRayo);
+
+            if (encontroObjetivo && objetivo != null)
+            {
+                IntercambiarLugarCon(objetivo);
+                break;
+            }
+
+            yield return null;
+        }
+
+        lineRendererRayo.enabled = false;
+
+        if (lineRendererGlowRayo != null)
+            lineRendererGlowRayo.enabled = false;
+
+        rutinaRayo = null;
     }
 
     public void DispararRayoIntercambioConCarga(

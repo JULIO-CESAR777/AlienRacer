@@ -429,6 +429,8 @@ public class KartObstaculosIA : MonoBehaviour
 
     public void AplicarRalentizacion(float duracion, float multiplicador)
     {
+        
+        print("ralentizacionrayo");
         if (tiempoEscudo > 0 || tiempoStun > 0) return;
         tiempoRalentizado = duracion;
         multiplicadorRalentizacion = multiplicador;

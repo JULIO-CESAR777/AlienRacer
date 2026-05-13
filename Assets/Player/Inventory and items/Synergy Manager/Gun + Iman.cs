@@ -8,9 +8,7 @@ public class TPSinergy : ItemSynergy
 
     [Header("Visual")]
     public Color colorRayo = Color.magenta;
-    public float anchoInicialCarga = 1.5f;
     public float anchoFinalRayo = 0.18f;
-    public float tiempoCarga = 0.55f;
     public float tiempoVisibleRayoFinal = 0.18f;
 
     public override void Execute(KartController user)
@@ -23,12 +21,10 @@ public class TPSinergy : ItemSynergy
             return;
         }
 
-        powerUp.DispararRayoIntercambioConCarga(
+        powerUp.DispararRayoIntercambio(
             distanciaRayo,
             colorRayo,
-            anchoInicialCarga,
             anchoFinalRayo,
-            tiempoCarga,
             tiempoVisibleRayoFinal
         );
     }

@@ -15,10 +15,7 @@ public class ImanTiem : ItemBase
     public float anchoRayoFinal = 0.18f;
     public float tiempoVisibleRayoFinal = 0.18f;
 
-    [Header("Carga")]
-    public float tiempoCarga = 0.6f;
-    public float anchoInicialCarga = 2.2f;
-
+ 
     public override void Use(KartController user)
     {
         KartPowerUpController powerUp = user.GetComponent<KartPowerUpController>();
@@ -29,14 +26,12 @@ public class ImanTiem : ItemBase
             return;
         }
 
-        powerUp.DispararRayoRalentizadorConCarga(
+        powerUp.DispararRayoRalentizador(
             distanciaRayo,
             duracionRalentizacion,
             multiplicadorRalentizacion,
             colorRayo,
-            anchoInicialCarga,
             anchoRayoFinal,
-            tiempoCarga,
             tiempoVisibleRayoFinal
         );
     }
