@@ -19,6 +19,4 @@ MonoBehaviour:
   multiplicadorRalentizacion: 0.45
   colorRayo: {r: 0.4919455, g: 0.5188679, b: 0.5188679, a: 1}
   anchoRayoFinal: 0.18
-  tiempoVisibleRayoFinal: 0.18
-  tiempoCarga: 0.6
-  anchoInicialCarga: 2.2
+  tiempoVisibleRayoFinal: 1
