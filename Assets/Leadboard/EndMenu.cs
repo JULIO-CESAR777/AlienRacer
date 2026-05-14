@@ -10,9 +10,9 @@ public class EndRaceMenuController : MonoBehaviour
     public Selectable[] endMenuOptions;
 
     [Header("Configuración de Auto-Carga (Victoria)")]
-    [SerializeField] private GameObject contenedorConteo;
-    [SerializeField] private Image imagenCargaFilled;
-    [SerializeField] private float tiempoDeEspera = 5f;
+    [SerializeField] private GameObject contenedorConteo; // El objeto que contiene la imagen de carga
+    [SerializeField] private Image imagenCargaFilled;     // La imagen con Image Type = Filled
+    [SerializeField] private float tiempoDeEspera = 5f;    // Cuánto tiempo tarda en cargar
 
     private int currentMenuIndex;
     private bool canMove;
@@ -31,37 +31,19 @@ public class EndRaceMenuController : MonoBehaviour
         input = InputManager.GetInstance();
     }
 
-    // ---  Esto activa la lógica cada frame ---
-    private void Update()
-    {
-        if (input == null || endMenuOptions == null || endMenuOptions.Length == 0) return;
-
-        HandleVerticalNavigation();
-        HandleSubmit();
-    }
-
-    // ---Esto reinicia la selección cuando el panel aparece ---
-    private void OnEnable()
-    {
-        if (input == null) input = InputManager.GetInstance();
-
-        currentMenuIndex = 0;
-        canMove = false; // Se pondrá en true cuando el stick regrese al centro
-        SelectCurrentOption();
-    }
-
     public void MostrarPanel(bool gano)
     {
         playerWon = gano;
-        gameObject.SetActive(true); // Esto dispara el OnEnable()
+        gameObject.SetActive(true);
 
         if (playerWon)
         {
-            if (winCoroutine != null) StopCoroutine(winCoroutine);
+            // Si ganó, iniciamos el conteo visual
             winCoroutine = StartCoroutine(RutinaConteoVictoria());
         }
         else
         {
+            // Si perdió, nos aseguramos que el conteo esté apagado
             if (contenedorConteo != null) contenedorConteo.SetActive(false);
         }
     }
@@ -75,52 +57,29 @@ public class EndRaceMenuController : MonoBehaviour
 
         while (timer < tiempoDeEspera)
         {
-            timer += Time.unscaledDeltaTime;
+            timer += Time.deltaTime;
             imagenCargaFilled.fillAmount = timer / tiempoDeEspera;
             yield return null;
         }
 
-        EjecutarCargaDeEscena(true);
+        // Al terminar el tiempo, carga la siguiente escena
+        CargarSiguienteNivel();
     }
 
-    public void ExecuteAction()
+    private void OnEnable()
     {
-        Time.timeScale = 1f;
-
-        switch (currentMenuIndex)
-        {
-            case 0: // REINTENTAR
-                if (winCoroutine != null) StopCoroutine(winCoroutine);
-                EjecutarCargaDeEscena(false);
-                break;
-
-            case 1: // SALIR
-                if (winCoroutine != null) StopCoroutine(winCoroutine);
-                IrAlMenu();
-                break;
-        }
+        if (input == null) input = InputManager.GetInstance();
+        currentMenuIndex = 0;
+        canMove = false;
+        SelectCurrentOption();
     }
 
-    private void EjecutarCargaDeEscena(bool victoria)
+    private void Update()
     {
-        if (RaceResultSystem.Instance != null)
-        {
-            RaceResultSystem.Instance.CargarResultado(victoria);
-        }
-        else
-        {
-            if (victoria) CargarEscenaSegura(SceneManager.GetActiveScene().buildIndex + 1);
-            else CargarEscenaSegura(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
+        if (input == null || endMenuOptions == null || endMenuOptions.Length == 0) return;
 
-    private void IrAlMenu()
-    {
-        if (UINavigationController.Instance != null)
-        {
-            UINavigationController.GetInstance().SetDestination(UINavigationController.UIDestination.MainMenu);
-        }
-        CargarEscenaSegura(0);
+        HandleVerticalNavigation();
+        HandleSubmit();
     }
 
     private void HandleVerticalNavigation()
@@ -151,9 +110,49 @@ public class EndRaceMenuController : MonoBehaviour
     {
         if (!input.IsButtonDown(BUTTONS.B)) return;
         if (!IsValidSelectableIndex(currentMenuIndex)) return;
+
+        // Si el jugador presiona un botón manualmente, cancelamos el auto-conteo
+        if (winCoroutine != null) StopCoroutine(winCoroutine);
+
         ExecuteAction();
     }
 
+    public void ExecuteAction()
+    {
+        Time.timeScale = 1f;
+
+        switch (currentMenuIndex)
+        {
+            case 0: // REINTENTAR
+                ReintentarNivel();
+                break;
+
+            case 1: // SALIR AL MENÚ
+                IrAlMenu();
+                break;
+        }
+    }
+
+    private void ReintentarNivel()
+    {
+        CargarEscenaSegura(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void CargarSiguienteNivel()
+    {
+        CargarEscenaSegura(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void IrAlMenu()
+    {
+        if (UINavigationController.Instance != null)
+        {
+            UINavigationController.GetInstance().SetDestination(UINavigationController.UIDestination.MainMenu);
+        }
+        CargarEscenaSegura(0);
+    }
+
+    // --- LÓGICA DE NAVEGACIÓN (Mantenida) ---
     private void MoveSelection(int direction)
     {
         int attempts = 0;
