@@ -10,7 +10,6 @@ public class EndRaceMenuController : MonoBehaviour
     public Selectable[] endMenuOptions;
 
     [Header("Configuración del Botón Inteligente")]
-    public TextMeshProUGUI textoBotonPrincipal; // Arrastra aquí el Text (TMP) del primer botón
     public string textoReintentar = "REINTENTAR";
     public string textoSiguienteNivel = "SIGUIENTE NIVEL";
 
