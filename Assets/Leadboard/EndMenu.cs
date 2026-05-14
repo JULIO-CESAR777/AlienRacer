@@ -1,27 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro; // <-- Importante para cambiar el texto del botón
+using System.Collections;
 
 public class EndRaceMenuController : MonoBehaviour
 {
     [Header("Menu Options")]
-    [Tooltip("Arrastra aquí los botones. 0 = Inteligente (Reintentar/Sig Nivel), 1 = Menú Principal")]
+    [Tooltip("0 = Reintentar, 1 = Menú Principal")]
     public Selectable[] endMenuOptions;
 
-    [Header("Configuración del Botón Inteligente")]
-    public TextMeshProUGUI textoBotonPrincipal; // Arrastra aquí el Text (TMP) del primer botón
-    public string textoReintentar = "REINTENTAR";
-    public string textoSiguienteNivel = "SIGUIENTE NIVEL";
+    [Header("Configuración de Auto-Carga (Victoria)")]
+    [SerializeField] private GameObject contenedorConteo; // El objeto que contiene la imagen de carga
+    [SerializeField] private Image imagenCargaFilled;     // La imagen con Image Type = Filled
+    [SerializeField] private float tiempoDeEspera = 5f;    // Cuánto tiempo tarda en cargar
 
     private int currentMenuIndex;
     private bool canMove;
     private InputManager input;
-    private bool playerWon; // Guarda si ganamos o no
+    private bool playerWon;
+    private Coroutine winCoroutine;
 
     private void Awake()
     {
         gameObject.SetActive(false);
+        if (contenedorConteo != null) contenedorConteo.SetActive(false);
     }
 
     private void Start()
@@ -29,27 +31,46 @@ public class EndRaceMenuController : MonoBehaviour
         input = InputManager.GetInstance();
     }
 
-    // --- NUEVO: LLAMA A ESTO DESDE TU GESTOR AL TERMINAR LA CARRERA ---
     public void MostrarPanel(bool gano)
     {
         playerWon = gano;
+        gameObject.SetActive(true);
 
-        // Cambiamos el texto antes de prender el panel
-        if (textoBotonPrincipal != null)
+        if (playerWon)
         {
-            textoBotonPrincipal.text = playerWon ? textoSiguienteNivel : textoReintentar;
+            // Si ganó, iniciamos el conteo visual
+            winCoroutine = StartCoroutine(RutinaConteoVictoria());
+        }
+        else
+        {
+            // Si perdió, nos aseguramos que el conteo esté apagado
+            if (contenedorConteo != null) contenedorConteo.SetActive(false);
+        }
+    }
+
+    private IEnumerator RutinaConteoVictoria()
+    {
+        if (contenedorConteo == null || imagenCargaFilled == null) yield break;
+
+        contenedorConteo.SetActive(true);
+        float timer = 0;
+
+        while (timer < tiempoDeEspera)
+        {
+            timer += Time.deltaTime;
+            imagenCargaFilled.fillAmount = timer / tiempoDeEspera;
+            yield return null;
         }
 
-        gameObject.SetActive(true);
+        // Al terminar el tiempo, carga la siguiente escena
+        CargarSiguienteNivel();
     }
 
     private void OnEnable()
     {
         if (input == null) input = InputManager.GetInstance();
-
         currentMenuIndex = 0;
         canMove = false;
-
         SelectCurrentOption();
     }
 
@@ -65,25 +86,21 @@ public class EndRaceMenuController : MonoBehaviour
     {
         float verticalStick = input.GetAXis(AXIS.LEFT_STICK_VERTICAL);
         float verticalDpad = input.GetAXis(AXIS.VERTICAL_DPAD);
+        float vertical = Mathf.Abs(verticalDpad) > Mathf.Abs(verticalStick) ? verticalDpad : verticalStick;
 
-        float vertical = Mathf.Abs(verticalDpad) > Mathf.Abs(verticalStick)
-            ? verticalDpad
-            : verticalStick;
-
-        // --- ARREGLO DE RESPONSIVIDAD AQUÍ ---
         if (vertical > 0.5f && canMove)
         {
             canMove = false;
             MoveSelection(-1);
             SelectCurrentOption();
         }
-        else if (vertical < -0.5f && canMove) // <-- Cambiado de 0 a -0.5f
+        else if (vertical < -0.5f && canMove)
         {
             canMove = false;
             MoveSelection(1);
             SelectCurrentOption();
         }
-        else if (Mathf.Abs(vertical) < 0.3f) // <-- Cambiado de == 0 a < 0.3f
+        else if (Mathf.Abs(vertical) < 0.3f)
         {
             canMove = true;
         }
@@ -91,96 +108,76 @@ public class EndRaceMenuController : MonoBehaviour
 
     private void HandleSubmit()
     {
-        if (!input.IsButtonDown(BUTTONS.B)) return; // Usa B o A según ocupes
+        if (!input.IsButtonDown(BUTTONS.B)) return;
         if (!IsValidSelectableIndex(currentMenuIndex)) return;
 
+        // Si el jugador presiona un botón manualmente, cancelamos el auto-conteo
+        if (winCoroutine != null) StopCoroutine(winCoroutine);
+
         ExecuteAction();
-    }
-
-    private void MoveSelection(int direction)
-    {
-        if (endMenuOptions == null || endMenuOptions.Length == 0) return;
-
-        int attempts = 0;
-
-        do
-        {
-            currentMenuIndex += direction;
-
-            if (currentMenuIndex < 0)
-                currentMenuIndex = endMenuOptions.Length - 1;
-            else if (currentMenuIndex >= endMenuOptions.Length)
-                currentMenuIndex = 0;
-
-            attempts++;
-
-            if (IsValidSelectableIndex(currentMenuIndex))
-                return;
-
-        } while (attempts < endMenuOptions.Length);
-    }
-
-    private void SelectCurrentOption()
-    {
-        if (!IsValidSelectableIndex(currentMenuIndex))
-        {
-            currentMenuIndex = GetFirstValidSelectableIndex();
-        }
-
-        if (currentMenuIndex == -1) return;
-
-        endMenuOptions[currentMenuIndex].Select();
-    }
-
-    private bool IsValidSelectableIndex(int index)
-    {
-        if (endMenuOptions == null) return false;
-        if (index < 0 || index >= endMenuOptions.Length) return false;
-        if (endMenuOptions[index] == null) return false;
-
-        return endMenuOptions[index].interactable;
-    }
-
-    private int GetFirstValidSelectableIndex()
-    {
-        if (endMenuOptions == null) return -1;
-
-        for (int i = 0; i < endMenuOptions.Length; i++)
-        {
-            if (IsValidSelectableIndex(i))
-                return i;
-        }
-
-        return -1;
     }
 
     public void ExecuteAction()
     {
         Time.timeScale = 1f;
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
 
         switch (currentMenuIndex)
         {
-            case 0: // BOTÓN INTELIGENTE (REINTENTAR / SIGUIENTE NIVEL)
-                if (playerWon)
-                {
-                    CargarEscenaSegura(currentScene + 1); // Carga el siguiente nivel
-                }
-                else
-                {
-                    CargarEscenaSegura(currentScene); // Reintenta el actual
-                }
+            case 0: // REINTENTAR
+                ReintentarNivel();
                 break;
 
             case 1: // SALIR AL MENÚ
-                if (UINavigationController.Instance != null)
-                {
-                    UINavigationController.GetInstance().SetDestination(UINavigationController.UIDestination.MainMenu);
-                }
-
-                CargarEscenaSegura(0);
+                IrAlMenu();
                 break;
         }
+    }
+
+    private void ReintentarNivel()
+    {
+        CargarEscenaSegura(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void CargarSiguienteNivel()
+    {
+        CargarEscenaSegura(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void IrAlMenu()
+    {
+        if (UINavigationController.Instance != null)
+        {
+            UINavigationController.GetInstance().SetDestination(UINavigationController.UIDestination.MainMenu);
+        }
+        CargarEscenaSegura(0);
+    }
+
+    // --- LÓGICA DE NAVEGACIÓN (Mantenida) ---
+    private void MoveSelection(int direction)
+    {
+        int attempts = 0;
+        do
+        {
+            currentMenuIndex += direction;
+            if (currentMenuIndex < 0) currentMenuIndex = endMenuOptions.Length - 1;
+            else if (currentMenuIndex >= endMenuOptions.Length) currentMenuIndex = 0;
+            attempts++;
+            if (IsValidSelectableIndex(currentMenuIndex)) return;
+        } while (attempts < endMenuOptions.Length);
+    }
+
+    private void SelectCurrentOption()
+    {
+        if (!IsValidSelectableIndex(currentMenuIndex)) currentMenuIndex = GetFirstValidSelectableIndex();
+        if (currentMenuIndex != -1) endMenuOptions[currentMenuIndex].Select();
+    }
+
+    private bool IsValidSelectableIndex(int index) => (endMenuOptions != null && index >= 0 && index < endMenuOptions.Length && endMenuOptions[index] != null && endMenuOptions[index].interactable);
+
+    private int GetFirstValidSelectableIndex()
+    {
+        for (int i = 0; i < endMenuOptions.Length; i++) if (IsValidSelectableIndex(i)) return i;
+        return -1;
     }
 
     private void CargarEscenaSegura(int index)
@@ -193,12 +190,7 @@ public class EndRaceMenuController : MonoBehaviour
                 return;
             }
         }
-        catch
-        {
-            // Plan B silencioso
-        }
-
-        Debug.LogWarning("Usando SceneManager nativo.");
+        catch { }
         SceneManager.LoadScene(index);
     }
 }

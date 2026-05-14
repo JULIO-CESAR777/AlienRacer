@@ -135,10 +135,30 @@ public class GestorPosiciones : MonoBehaviour
         {
             bool gano = corredor.posicion == 1;
 
-            // 1. Mostrar el panel
-            if (panelFinCarrera != null) panelFinCarrera.SetActive(true);
+            // --- 1. QUITAR EL CONTROL AL JUGADOR ---
+            // Apagamos el script KartController para que ya no reciba input (acelerar, frenar, girar).
+            // El coche seguirá moviéndose por inercia física, pero el jugador ya no interactúa con él.
+            KartController controlJugador = corredor.transform.GetComponent<KartController>();
+            if (controlJugador != null)
+            {
+                controlJugador.enabled = false;
+            }
 
-            // 2. Actualizar el texto
+            // --- 2. MOSTRAR EL MENÚ ---
+            if (panelFinCarrera != null)
+            {
+                EndRaceMenuController endMenu = panelFinCarrera.GetComponent<EndRaceMenuController>();
+                if (endMenu != null)
+                {
+                    endMenu.MostrarPanel(gano);
+                }
+                else
+                {
+                    panelFinCarrera.SetActive(true);
+                }
+            }
+
+            // --- 3. ACTUALIZAR TEXTOS ---
             if (textoResultado != null && LanguageManager.GetInstance() != null)
             {
                 if (LanguageManager.GetInstance().currentLanguage == LANGUAGES.SPANISH)
@@ -147,15 +167,10 @@ public class GestorPosiciones : MonoBehaviour
                     textoResultado.text = gano ? "Victory" : "Position: " + corredor.posicion + "°";
             }
 
-            // 3. Guardar progreso si ganó
+            // --- 4. GUARDAR PROGRESO ---
             if (gano) SlotSaveSystem.CompleteLevelInActiveSlot(currentLevel);
 
-            // 4. (Opcional) Pausar el juego visualmente
-            Time.timeScale = 0f;
-            // Ya no cambiamos de escena automáticamente. Dejamos que el nuevo script del UI lo haga.
-
-            // Si RaceResultSystem.Instance.CargarResultado cambiaba de escena, 
-            // también lo omitimos aquí y lo mandamos llamar desde los botones (ver Paso 2).
+            // ¡LISTO! Ya no hay Time.timeScale = 0f;
         }
     }
 
