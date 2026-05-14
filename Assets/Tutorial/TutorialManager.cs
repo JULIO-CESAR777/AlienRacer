@@ -10,11 +10,13 @@ public struct TutorialSprites
     public string nombreMecanica;
     public Sprite teclado;
     public Sprite xbox;
-    // public Sprite playstation;
+
+    [Header("Configuración de Monedas")]
+    public int monedasObjetivo;
 
     [Header("Textos (0 = Español, 1 = Inglés)")]
-    [TextArea] public string[] textoTeclado; // <-- Cambiado a arreglo
-    [TextArea] public string[] textoXbox;    // <-- Cambiado a arreglo
+    [TextArea] public string[] textoTeclado;
+    [TextArea] public string[] textoXbox;
 }
 
 public class TutorialManager : MonoBehaviour
@@ -28,12 +30,17 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float fadeSpeed = 2f;
 
+    [Header("Configuracion de Monedas UI")]
+    [SerializeField] private TextMeshProUGUI coinGoalText;
+    [SerializeField] private string[] mensajeMonedas = { "Recolecta {0}/{1} monedas", "Collect {0}/{1} coins" };
+
     [Header("Base de Datos de Imagenes")]
     public TutorialSprites[] listaMecanicas;
 
     private TutorialSprites currentMecanica;
     private bool isTutorialActive = false;
     private bool isFading = false;
+    private KartController playerKart;
 
     private void Awake()
     {
@@ -44,50 +51,42 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        // Suscripción al input
+        // Buscar al jugador
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) playerKart = playerObj.GetComponent<KartController>();
+
+        // Suscripciones a los Managers
         if (InputManager.instance != null)
         {
             InputManager.instance.OnChangeInputType += OnDeviceChanged;
         }
 
-        // Suscripción al cambio de idioma
         if (LanguageManager.GetInstance() != null)
         {
             LanguageManager.GetInstance().OnLanguageChanged += OnLanguageChanged;
         }
     }
 
-    private void OnDestroy()
+    private void Update()
     {
-        // Desuscripción al input
-        if (InputManager.instance != null)
+        if (isTutorialActive && currentMecanica.monedasObjetivo > 0)
         {
-            InputManager.instance.OnChangeInputType -= OnDeviceChanged;
-        }
-
-        // Desuscripción al cambio de idioma
-        if (LanguageManager.GetInstance() != null)
-        {
-            LanguageManager.GetInstance().OnLanguageChanged -= OnLanguageChanged;
+            ActualizarContadorMonedas();
         }
     }
 
-    private void OnDeviceChanged(INPUT_TYPE newType)
+    private void ActualizarContadorMonedas()
     {
-        if (isTutorialActive)
-        {
-            UpdateUI(newType);
-        }
-    }
+        if (playerKart == null || coinGoalText == null) return;
 
-    // Nuevo método para escuchar el evento de idioma
-    private void OnLanguageChanged(LANGUAGES newLanguage)
-    {
-        if (isTutorialActive)
-        {
-            // Forzamos la actualización de la UI con el input actual para reflejar el nuevo idioma
-            UpdateUI(InputManager.instance.currentInputType);
-        }
+        byte langIndex = LanguageManager.GetInstance().GetCurrentLanguageByte();
+
+        coinGoalText.text = string.Format(mensajeMonedas[langIndex], playerKart.coins, currentMecanica.monedasObjetivo);
+
+        if (playerKart.coins >= currentMecanica.monedasObjetivo)
+            coinGoalText.color = Color.green;
+        else
+            coinGoalText.color = Color.white;
     }
 
     public void MostrarTutorial(string nombre)
@@ -99,6 +98,10 @@ public class TutorialManager : MonoBehaviour
             if (item.nombreMecanica == nombre)
             {
                 currentMecanica = item;
+
+                if (coinGoalText != null)
+                    coinGoalText.gameObject.SetActive(currentMecanica.monedasObjetivo > 0);
+
                 UpdateUI(InputManager.instance.currentInputType);
                 StartCoroutine(FadeTutorial(true));
                 return;
@@ -115,7 +118,6 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator FadeTutorial(bool fadeIn)
     {
         isFading = true;
-
         if (fadeIn)
         {
             isTutorialActive = true;
@@ -138,13 +140,11 @@ public class TutorialManager : MonoBehaviour
             panelTutorial.SetActive(false);
             isTutorialActive = false;
         }
-
         isFading = false;
     }
 
     private void UpdateUI(INPUT_TYPE type)
     {
-        // Obtenemos el índice del idioma actual (0 = Español, 1 = Inglés)
         byte langIndex = LanguageManager.GetInstance().GetCurrentLanguageByte();
 
         switch (type)
@@ -163,17 +163,37 @@ public class TutorialManager : MonoBehaviour
                 break;
         }
 
-        if (tutorialDisplayImage.sprite != null)
-        {
-            tutorialDisplayImage.SetNativeSize();
-        }
+        if (tutorialDisplayImage.sprite != null) tutorialDisplayImage.SetNativeSize();
     }
 
-    // Método de seguridad para evitar errores 
     private string GetLocalizedText(string[] texts, byte index)
     {
         if (texts == null || texts.Length == 0) return "";
-        if (index >= texts.Length) return texts[0]; // Retorna el primer idioma si hay un desajuste de índices
+        if (index >= texts.Length) return texts[0];
         return texts[index];
+    }
+
+    // --- ESTAS ERAN LAS DOS FUNCIONES QUE FALTABAN ---
+    private void OnDeviceChanged(INPUT_TYPE newType)
+    {
+        if (isTutorialActive) UpdateUI(newType);
+    }
+
+    private void OnLanguageChanged(LANGUAGES newLanguage)
+    {
+        if (isTutorialActive) UpdateUI(InputManager.instance.currentInputType);
+    }
+
+    private void OnDestroy()
+    {
+        if (InputManager.instance != null)
+        {
+            InputManager.instance.OnChangeInputType -= OnDeviceChanged;
+        }
+
+        if (LanguageManager.GetInstance() != null)
+        {
+            LanguageManager.GetInstance().OnLanguageChanged -= OnLanguageChanged;
+        }
     }
 }
