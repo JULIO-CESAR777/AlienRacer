@@ -5374,6 +5374,7 @@ GameObject:
   - component: {fileID: 384048384}
   - component: {fileID: 384048388}
   - component: {fileID: 384048387}
+  - component: {fileID: 384048389}
   m_Layer: 0
   m_Name: Pista1
   m_TagString: Untagged
@@ -5525,6 +5526,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
   m_Delegates: []
+--- !u!114 &384048389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384048381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f5a836b40fb474fb54047177d7a8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slotIndex: 0
+  label: {fileID: 0}
+  emptySlotTexts: []
+  lastRaceTexts: []
+  raceTexts: []
 --- !u!1 &388867561
 GameObject:
   m_ObjectHideFlags: 0
@@ -7388,6 +7406,7 @@ GameObject:
   - component: {fileID: 569724654}
   - component: {fileID: 569724653}
   - component: {fileID: 569724652}
+  - component: {fileID: 569724655}
   m_Layer: 0
   m_Name: Pista2
   m_TagString: Untagged
@@ -7497,6 +7516,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569724650}
   m_CullTransparentMesh: 1
+--- !u!114 &569724655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569724650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f5a836b40fb474fb54047177d7a8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slotIndex: 1
+  label: {fileID: 1435153934}
+  emptySlotTexts:
+  - "Slot {0} - Vac\xEDo"
+  - Slot {0} - Empty
+  lastRaceTexts:
+  - "Slot {0} - \xDAltima carrera"
+  - Slot {0} - Final race
+  raceTexts:
+  - Slot {0} - Carrera {1}
+  - Slot {0} - Race {1}
 --- !u!1 &577246452
 GameObject:
   m_ObjectHideFlags: 0
@@ -12472,6 +12514,9 @@ MonoBehaviour:
   winPanel: {fileID: 1121526675}
   losePanel: {fileID: 2057843261}
   _menuCameraController: {fileID: 1787410699}
+  _timeBetweenFireworks: 0.4
+  _spawnRadius: 3
+  _maxFireworks: 20
 --- !u!4 &919910821
 Transform:
   m_ObjectHideFlags: 0
@@ -12973,6 +13018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdc1bfc582827d42bae752a12006914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSlotButtonHandler
+  slotUIs:
+  - {fileID: 1148895247}
+  - {fileID: 569724655}
+  - {fileID: 1176327497}
 --- !u!114 &962240104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16168,6 +16217,7 @@ GameObject:
   - component: {fileID: 1148895246}
   - component: {fileID: 1148895245}
   - component: {fileID: 1148895244}
+  - component: {fileID: 1148895247}
   m_Layer: 0
   m_Name: Pista1
   m_TagString: Untagged
@@ -16277,6 +16327,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148895242}
   m_CullTransparentMesh: 1
+--- !u!114 &1148895247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148895242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f5a836b40fb474fb54047177d7a8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slotIndex: 0
+  label: {fileID: 2072563379}
+  emptySlotTexts:
+  - "Slot {0} - Vac\xEDo"
+  - Slot {0} - Empty
+  lastRaceTexts:
+  - "Slot {0} - \xDAltima carrera"
+  - Slot {0} - Final race
+  raceTexts:
+  - Slot {0} - Carrera {1}
+  - Slot {0} - Race {1}
 --- !u!1 &1149158686
 GameObject:
   m_ObjectHideFlags: 0
@@ -16733,6 +16806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdc1bfc582827d42bae752a12006914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSlotButtonHandler
+  slotUIs: []
 --- !u!1 &1154896820
 GameObject:
   m_ObjectHideFlags: 0
@@ -17069,6 +17143,7 @@ GameObject:
   - component: {fileID: 1176327496}
   - component: {fileID: 1176327495}
   - component: {fileID: 1176327494}
+  - component: {fileID: 1176327497}
   m_Layer: 0
   m_Name: pista3
   m_TagString: Untagged
@@ -17178,6 +17253,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176327491}
   m_CullTransparentMesh: 1
+--- !u!114 &1176327497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176327491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f5a836b40fb474fb54047177d7a8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slotIndex: 2
+  label: {fileID: 1855450286}
+  emptySlotTexts:
+  - "Slot {0} - Vac\xEDo"
+  - Slot {0} - Empty
+  lastRaceTexts:
+  - "Slot {0} - \xDAltima carrera"
+  - Slot {0} - Final race
+  raceTexts:
+  - Slot {0} - Carrera {1}
+  - Slot {0} - Race {1}
 --- !u!1 &1187209126
 GameObject:
   m_ObjectHideFlags: 0
@@ -18038,7 +18136,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218116983}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18046,7 +18144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -116, y: -41.5}
+  m_AnchoredPosition: {x: -139.1, y: -41.5}
   m_SizeDelta: {x: 180.43, y: 41.354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1218116985
@@ -22380,7 +22478,6 @@ GameObject:
   - component: {fileID: 1435153933}
   - component: {fileID: 1435153935}
   - component: {fileID: 1435153934}
-  - component: {fileID: 1435153936}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -22427,7 +22524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slot 2
+  m_text: Slot 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -22454,12 +22551,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.25
-  m_fontSizeBase: 24
+  m_fontSize: 22.7
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 15
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
@@ -22471,9 +22568,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -22493,7 +22590,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.867088, y: 7.033777, z: 8.483879, w: 0.48581314}
+  m_margin: {x: 12.6243515, y: 6.252693, z: 8.168022, w: 0.7388611}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -22507,21 +22604,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435153932}
   m_CullTransparentMesh: 1
---- !u!114 &1435153936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435153932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1509c76861bc3a4bb59603b78b22d71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MultiLanguageText
-  texts:
-  - Ranura 2
-  - Slot 2
 --- !u!1 &1436408694
 GameObject:
   m_ObjectHideFlags: 0
@@ -28659,7 +28741,6 @@ GameObject:
   - component: {fileID: 1855450285}
   - component: {fileID: 1855450287}
   - component: {fileID: 1855450286}
-  - component: {fileID: 1855450288}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -28706,7 +28787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slot 3
+  m_text: Slot 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
   m_sharedMaterial: {fileID: -3387060084047611021, guid: 01d5934ae6241674f820142e3c088b29, type: 2}
@@ -28733,12 +28814,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.25
-  m_fontSizeBase: 24
+  m_fontSize: 22.7
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 15
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
@@ -28750,9 +28831,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -28772,7 +28853,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.867088, y: 7.033777, z: 8.483879, w: 0.48581314}
+  m_margin: {x: 12.6243515, y: 6.252693, z: 8.168022, w: 0.7388611}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -28786,21 +28867,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855450284}
   m_CullTransparentMesh: 1
---- !u!114 &1855450288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855450284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1509c76861bc3a4bb59603b78b22d71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MultiLanguageText
-  texts:
-  - Ranura 3
-  - Slot 3
 --- !u!1 &1863339978
 GameObject:
   m_ObjectHideFlags: 0
@@ -31964,7 +32030,6 @@ GameObject:
   - component: {fileID: 2072563378}
   - component: {fileID: 2072563380}
   - component: {fileID: 2072563379}
-  - component: {fileID: 2072563381}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -32039,11 +32104,11 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 22.7
-  m_fontSizeBase: 24
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 15
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
@@ -32055,9 +32120,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -32091,21 +32156,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072563377}
   m_CullTransparentMesh: 1
---- !u!114 &2072563381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072563377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1509c76861bc3a4bb59603b78b22d71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MultiLanguageText
-  texts:
-  - Ranura 1
-  - Slot 1
 --- !u!1 &2077941160
 GameObject:
   m_ObjectHideFlags: 0

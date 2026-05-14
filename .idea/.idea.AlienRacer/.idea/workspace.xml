@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/IA/IA.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IA/IA.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotButtonHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SlotButtonUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SlotButtonUI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/KartInventoryUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/KartInventoryUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotButtonHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/LevelLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/LevelProgressSave.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/MainMenuLevels.cs" root0="FORCE_HIGHLIGHTING" />
@@ -196,6 +202,7 @@
       <workItem from="1778610787430" duration="2506000" />
       <workItem from="1778701632365" duration="2100000" />
       <workItem from="1778704309247" duration="259000" />
+      <workItem from="1778775182999" duration="3671000" />
     </task>
     <servers />
   </component>
