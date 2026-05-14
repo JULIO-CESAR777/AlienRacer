@@ -11,6 +11,7 @@ public class KartInventoryUI : MonoBehaviour
 
     [Header("Synergy icon")]
     [SerializeField] private Image synergyIcon;
+    [SerializeField] private Image synergyBackground;
 
     private void OnEnable()
     {
@@ -28,19 +29,24 @@ public class KartInventoryUI : MonoBehaviour
         ApplyItemIcon(slot1Icon, s1);
         ApplyItemIcon(slot2Icon, s2);
 
-       
         ItemSynergy syn = null;
+
         if (inventory.synergyManager != null)
             syn = inventory.synergyManager.GetSynergy(s1, s2);
 
-        if (syn != null && syn.icon != null)
+        bool hasSynergy = syn != null && syn.icon != null;
+
+        synergyIcon.enabled = hasSynergy;
+    
+        if (synergyBackground != null)
+            synergyBackground.enabled = hasSynergy;
+
+        if (hasSynergy)
         {
-            synergyIcon.enabled = true;
             synergyIcon.sprite = syn.icon;
         }
         else
         {
-            synergyIcon.enabled = false;
             synergyIcon.sprite = null;
         }
     }

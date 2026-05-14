@@ -12434,6 +12434,7 @@ MonoBehaviour:
   slot1Icon: {fileID: 173880926}
   slot2Icon: {fileID: 1966335747}
   synergyIcon: {fileID: 196327631}
+  synergyBackground: {fileID: 919099102}
 --- !u!114 &388693593
 MonoBehaviour:
   m_ObjectHideFlags: 0
