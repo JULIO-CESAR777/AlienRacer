@@ -54,7 +54,7 @@ public class SaveSlotUI : MonoBehaviour
 
     public void Refresh()
     {
-        print("refrescando");
+        //print("refrescando");
         if (label == null) return;
 
         SlotSaveData data = SlotSaveSystem.LoadSlot(slotIndex);

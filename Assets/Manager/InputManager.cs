@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class InputManager : MonoBehaviour
         #endregion
     
         // Action para revisar el input type
-        public INPUT_TYPE currentInputType = INPUT_TYPE.KEYBOARD;
+        public INPUT_TYPE currentInputType;
         public Action<INPUT_TYPE> OnChangeInputType;
     
         KeyCode[] KeyboardController =
@@ -111,19 +112,29 @@ public class InputManager : MonoBehaviour
         {
             controllersAxis = new string[][] {keyboardAxis, xboxControllerAxis, playstationAxis};
             controllers = new KeyCode[][]{KeyboardController, XboxController, PlaystationController};
-            CheckAndChangeInputType();
-        }
-    
-        private void Update()
+#if UNITY_EDITOR
+        //CheckAndChangeInputType();
+            currentInputType = INPUT_TYPE.XBOX;
+#endif
+
+#if !UNITY_EDITOR
+        currentInputType = INPUT_TYPE.XBOX;
+#endif
+
+    }
+
+    private void Update()
+    {
+#if UNITY_EDITOR
+        if (currentInputType == INPUT_TYPE.KEYBOARD)
         {
-            if (currentInputType == INPUT_TYPE.KEYBOARD)
+            if (CheckIfButtonPressOfController())
             {
-                if (CheckIfButtonPressOfController())
-                {
-                    CheckAndChangeInputType();
-                }
+                //CheckAndChangeInputType();
             }
         }
+#endif
+    }
     
         private int framesToCheckInput = 60;
         
@@ -135,7 +146,7 @@ public class InputManager : MonoBehaviour
                 if (framesToCheckInput < 0)
                 {
                     framesToCheckInput = 60;
-                    CheckAndChangeInputType();
+                    //CheckAndChangeInputType();
                 }
             }
         }
@@ -146,7 +157,7 @@ public class InputManager : MonoBehaviour
             {
                 if (Event.current.isKey)
                 {
-                    ChangeInputType(INPUT_TYPE.KEYBOARD);
+                    //ChangeInputType(INPUT_TYPE.KEYBOARD);
                 }
             }
         }
@@ -206,13 +217,15 @@ public class InputManager : MonoBehaviour
         {
             return Input.GetKey(controllers[(byte)currentInputType][(byte)_button]);
         }
-        
+
+        //[SerializeField] TextMeshProUGUI inputButtonText;
         public bool IsButtonDown(BUTTONS _button)
         {
             bool pressed = Input.GetKeyDown(controllers[(byte)currentInputType][(byte)_button]); 
                 
             if (pressed)
             {
+                //inputButtonText.text = "Se presiono el boton: " + _button;
                 //Debug.Log("Button Pressed: " + _button + " | Device: " + currentInputType);
             }    
             return pressed;

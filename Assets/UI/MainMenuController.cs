@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // <-- IMPORTANTE: Añadido para poder cambiar de escenas
+using UnityEngine.SceneManagement;
+using TMPro; // <-- IMPORTANTE: Añadido para poder cambiar de escenas
 
 public class MainMenuController : MonoBehaviour
 {
@@ -55,10 +56,12 @@ public class MainMenuController : MonoBehaviour
         isOnAnim = false;
 
         ChangeMenu(mainMenu, 0, 0);
+
     }
 
     private void Update()
     {
+        //textoDeInputs.text = input.currentInputType.ToString();
         if (input == null || currentMenu == null || currentMenu.Length == 0) return;
 
         if (isOnAnim) return;
@@ -153,11 +156,19 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    //[SerializeField] TextMeshProUGUI textoDeInputs;
+    //[SerializeField] TextMeshProUGUI textDePrueba;
+    string text;
+
     private void HandleSubmit()
     {
         if (!input.IsButtonDown(BUTTONS.B)) return;
 
-        if (!IsValidSelectableIndex(currentMenuIndex)) return;
+        if (!IsValidSelectableIndex(currentMenuIndex)) {
+
+            //textDePrueba.text = "No es un index valido";
+            return;
+        };
 
         MenusActions(menusIndex);
     }
@@ -189,6 +200,7 @@ public class MainMenuController : MonoBehaviour
 
     private void MenusActions(int index)
     {
+        //textDePrueba.text = "El index es: " + index + " ";
         switch (index)
         {
             case 0:
@@ -220,6 +232,7 @@ public class MainMenuController : MonoBehaviour
         switch (currentMenuIndex)
         {
             case 0:
+                //textDePrueba.text = text + " tiene que ir a juego";
                 cameraController.GoToPlay();
                 ChangeMenu(playMenu, 1, 0);
                 break;
