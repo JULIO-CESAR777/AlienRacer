@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/IA/Racer 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IA/Racer 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/IA/Racer 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IA/Racer 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/IA/IA.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IA/IA.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/VFX/Scripts/VFXController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Scripts/VFXController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -226,6 +222,7 @@
       <workItem from="1779080533762" duration="127000" />
       <workItem from="1779080853787" duration="756000" />
       <workItem from="1779083974301" duration="652000" />
+      <workItem from="1779103859884" duration="386000" />
     </task>
     <servers />
   </component>

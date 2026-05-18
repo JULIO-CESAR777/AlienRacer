@@ -57,7 +57,7 @@ public class VFXController : MonoBehaviour
         {
             GameObject boostObj = Instantiate(_boostVFXPrefab, _boostVFXTransform);
             boostObj.transform.localPosition = Vector3.zero;
-            boostObj.transform.localRotation = Quaternion.identity;
+            boostObj.transform.localRotation = transform.rotation;
             _boostPS = boostObj.GetComponent<ParticleSystem>();
             _boostPS.Stop();
         }

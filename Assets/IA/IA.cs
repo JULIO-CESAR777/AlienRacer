@@ -476,6 +476,7 @@ public class KartObstaculosIA : MonoBehaviour
 
         tiempoResbalando = duracion;
         enReversa = false;
+        VFXController.GetInstance()?.SpawnResbalonImpactVFX(transform.position);
     }
 
     public void AplicarImpactoBala(float duracion)
@@ -495,6 +496,8 @@ public class KartObstaculosIA : MonoBehaviour
         tiempoStun = duracion;
         tiempoResbalando = 0f;
         enReversa = false;
+        
+        VFXController.GetInstance()?.SpawnResbalonImpactVFX(transform.position);
     }
 
     void ProcesarResbalonProcedural()
