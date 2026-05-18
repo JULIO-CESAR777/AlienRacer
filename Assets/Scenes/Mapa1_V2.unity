@@ -3290,72 +3290,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.083588, y: 1.693, z: 1.34}
   m_Center: {x: 0, y: 0.8465, z: 0}
---- !u!1001 &106682040
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &106682041 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 106682040}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &113448037
 GameObject:
   m_ObjectHideFlags: 0
@@ -13254,49 +13188,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7543623636664196183, guid: c1c8828a0baf57b46952b58e3a646c36, type: 3}
---- !u!1 &412169169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 412169170}
-  m_Layer: 0
-  m_Name: AmbientVFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &412169170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412169169}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81.4, y: 0.12400013, z: -43.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2005717571}
-  - {fileID: 1134601291}
-  - {fileID: 1738942514}
-  - {fileID: 1371785653}
-  - {fileID: 1965565451}
-  - {fileID: 1056135742}
-  - {fileID: 777191446}
-  - {fileID: 1954154166}
-  - {fileID: 743238547}
-  - {fileID: 1342707486}
-  - {fileID: 808278997}
-  - {fileID: 106682041}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &415403721
 GameObject:
   m_ObjectHideFlags: 0
@@ -23489,72 +23380,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738990229}
   m_Mesh: {fileID: -2843237350243111150, guid: 0dbdcd755314b3a4aae1a7d6100b5872, type: 3}
---- !u!1001 &743238546
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 50.799995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 150.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &743238547 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 743238546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &743815823
 GameObject:
   m_ObjectHideFlags: 0
@@ -24486,72 +24311,6 @@ MeshCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
   m_PrefabInstance: {fileID: 71971168}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &777191445
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.900002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 145.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &777191446 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 777191445}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &779824120
 GameObject:
@@ -26135,72 +25894,6 @@ Transform:
   - {fileID: 610549133}
   m_Father: {fileID: 20442908}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!1001 &808278996
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 45.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 42.199997
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &808278997 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 808278996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &809502442
 GameObject:
   m_ObjectHideFlags: 0
@@ -32728,72 +32421,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.083588, y: 1.693, z: 1.34}
   m_Center: {x: 0.0000009536743, y: 0.8465, z: 0}
---- !u!1001 &1056135741
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.20000458
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 182.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1056135742 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1056135741}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057965990
 GameObject:
   m_ObjectHideFlags: 0
@@ -35931,72 +35558,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0835881, y: 1.4699999, z: 0.9419998}
   m_Center: {x: -0.0000005364418, y: 0.73499995, z: -0.0000010579824}
---- !u!1001 &1134601290
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -32.037514
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1134601291 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1134601290}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1142086343
 GameObject:
   m_ObjectHideFlags: 0
@@ -42802,72 +42363,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0835876, y: 1.4699999, z: 0.94199973}
   m_Center: {x: 0, y: 0.73499995, z: -0.0000005662441}
---- !u!1001 &1342707485
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 74.299995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 97.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1342707486 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1342707485}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1346319579
 GameObject:
   m_ObjectHideFlags: 0
@@ -44048,72 +43543,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370295063}
   m_Mesh: {fileID: -1288185598507278496, guid: 098cabc77fcead24a92468d9d004ca8d, type: 3}
---- !u!1001 &1371785652
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -52.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 123.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1371785653 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1371785652}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1374714935
 GameObject:
   m_ObjectHideFlags: 0
@@ -52868,6 +52297,12 @@ MonoBehaviour:
   _victoryPoolSize: 4
   _boostVFXTransform: {fileID: 6367368024217836356}
   _boostVFXPrefab: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+  _bulletImpactVFXPrefab: {fileID: 5339739117810204693, guid: 26e1cb216e3635e4a820f58a1118d6b9, type: 3}
+  _bulletImpactVFXTransform: {fileID: 6367368024217836357}
+  _bulletImpactPoolSize: 10
+  _resbalonVFXPrefab: {fileID: 3187647067869052980, guid: ab8802a00020db74c81635f3c5db9bcf, type: 3}
+  _resbalonVFXTransform: {fileID: 6367368024217836355}
+  _resbalonPoolSize: 8
 --- !u!4 &1694792805
 Transform:
   m_ObjectHideFlags: 0
@@ -54491,72 +53926,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3721940987790506958, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
   m_PrefabInstance: {fileID: 520504217}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1738942513
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -47.100002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 65.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1738942514 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1738942513}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1739223935
 GameObject:
@@ -59689,72 +59058,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!1001 &1954154165
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 41.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 202.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1954154166 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1954154165}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1957278221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60135,72 +59438,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
---- !u!1001 &1965565450
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
-    m_Modifications:
-    - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Name
-      value: CFXR3 Ambient Glows (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000254, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -52.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 171.70001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
---- !u!4 &1965565451 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
-  m_PrefabInstance: {fileID: 1965565450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1966335745
 GameObject:
   m_ObjectHideFlags: 0
@@ -61256,7 +60493,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 412169170}
+    m_TransformParent: {fileID: 6367368024217836358}
     m_Modifications:
     - target: {fileID: 4364354964670000192, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_Name
@@ -61268,31 +60505,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.037514
+      value: -3.2075403
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.24530506
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.9000015
+      value: 23.341364
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.97992474
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.19936788
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.0000003066423
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.000000062387066
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -66159,13 +65396,24 @@ PrefabInstance:
       propertyPath: m_RenderPostProcessing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3787774829052650954, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.461
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787774829052650954, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.068
+      objectReference: {fileID: 0}
     - target: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: synergyManager
       value: 
       objectReference: {fileID: 845179664}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7442122893981053823, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2005717571}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd89c28110890134e83c51f2915baffb, type: 3}
 --- !u!4 &6367368024217836355 stripped
@@ -66181,6 +65429,11 @@ Transform:
 --- !u!4 &6367368024217836357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5644099883346947568, guid: bd89c28110890134e83c51f2915baffb, type: 3}
+  m_PrefabInstance: {fileID: 6367368024217836354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6367368024217836358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7442122893981053823, guid: bd89c28110890134e83c51f2915baffb, type: 3}
   m_PrefabInstance: {fileID: 6367368024217836354}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6503611579903161516
@@ -66615,4 +65868,3 @@ SceneRoots:
   - {fileID: 6621833307609258126}
   - {fileID: 1957278221}
   - {fileID: 1694792805}
-  - {fileID: 412169170}

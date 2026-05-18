@@ -22,11 +22,23 @@ public class VFXController : MonoBehaviour
     [Header("Boost VFX")]
     [SerializeField] private Transform _boostVFXTransform = default;
     [SerializeField] private GameObject _boostVFXPrefab = default;
+    
+    [Header("Pooled Bullet")]
+    [SerializeField] private GameObject _bulletImpactVFXPrefab = default;
+    [SerializeField] private Transform _bulletImpactVFXTransform = default;
+    [SerializeField] private int _bulletImpactPoolSize = 10;
+    
+    [Header("Resbalon VFX")]
+    [SerializeField] private GameObject _resbalonVFXPrefab = default;
+    [SerializeField] private Transform _resbalonVFXTransform = default;
+    [SerializeField] private int _resbalonPoolSize = 8;
 
     private ObjectPool _collisionPool;
     private ObjectPool _deadPool;
     private ObjectPool _victoryPool;
     private ParticleSystem _boostPS;
+    private ObjectPool _bulletImpactPool;
+    private ObjectPool _resbalonPool;
 
     private void Awake()
     {
@@ -36,6 +48,9 @@ public class VFXController : MonoBehaviour
         _collisionPool = CreatePool(_collisionVFXPrefab, _collisionVFXTransform, _collisionPoolSize);
         _deadPool      = CreatePool(_deadVFXPrefab,      _deadVFXTransform,      _deadPoolSize);
         _victoryPool   = CreatePool(_victoryVFXPrefab,   _victoryVFXTransform,   _victoryPoolSize);
+        _bulletImpactPool = CreatePool(_bulletImpactVFXPrefab, _bulletImpactVFXTransform, _bulletImpactPoolSize);
+        _resbalonPool = CreatePool(_resbalonVFXPrefab, _resbalonVFXTransform, _resbalonPoolSize);
+        
 
         // Boost se maneja diferente — trail continuo
         if (_boostVFXPrefab != null)
@@ -63,6 +78,8 @@ public class VFXController : MonoBehaviour
     public void SpawnCollisionVFX(Vector3 position) => SpawnFromPool(_collisionPool, position, "Collision");
     public void SpawnDeadVFX(Vector3 position)      => SpawnFromPool(_deadPool,      position, "Dead");
     public void SpawnVictoryVFX(Vector3 position)   => SpawnFromPool(_victoryPool,   position, "Victory");
+    public void SpawnBulletImpactVFX(Vector3 position) => SpawnFromPool(_bulletImpactPool, position, "BulletImpact");
+    public void SpawnResbalonImpactVFX(Vector3 position) => SpawnFromPool(_resbalonPool, position, "Resbalon");
 
     // Boost VFX — trail continuo
     public void StartBoostVFX()
