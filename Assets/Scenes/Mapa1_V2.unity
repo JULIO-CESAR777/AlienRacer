@@ -66320,7 +66320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2874041315408210221, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_RenderPostProcessing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5352318440883066326, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: synergyManager
