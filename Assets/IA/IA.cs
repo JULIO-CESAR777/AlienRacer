@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -414,12 +415,16 @@ public class KartObstaculosIA : MonoBehaviour
 
         tiempoStun = duracion;
         enReversa = false;
+        
+        VFXController.GetInstance()?.SpawnStunVFX(transform.position);
     }
 
     public void AplicarBoost(float duracion, float multiplicador)
     {
         tiempoBoost = duracion;
         multiplicadorBoostActual = multiplicador;
+        
+        //VFXController.GetInstance()?.StartBoostVFX();
     }
 
     public void AplicarEscudo(float duracion)

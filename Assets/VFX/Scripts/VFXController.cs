@@ -32,6 +32,11 @@ public class VFXController : MonoBehaviour
     [SerializeField] private GameObject _resbalonVFXPrefab = default;
     [SerializeField] private Transform _resbalonVFXTransform = default;
     [SerializeField] private int _resbalonPoolSize = 8;
+    
+    [Header("Stun VFX")]
+    [SerializeField] private GameObject _stunVFXPrefab = default;
+    [SerializeField] private Transform _stunVFXTransform = default;
+    [SerializeField] private int _stunPoolSize = 5;
 
     private ObjectPool _collisionPool;
     private ObjectPool _deadPool;
@@ -39,6 +44,7 @@ public class VFXController : MonoBehaviour
     private ParticleSystem _boostPS;
     private ObjectPool _bulletImpactPool;
     private ObjectPool _resbalonPool;
+    private ObjectPool _stunPool;
 
     private void Awake()
     {
@@ -50,6 +56,7 @@ public class VFXController : MonoBehaviour
         _victoryPool   = CreatePool(_victoryVFXPrefab,   _victoryVFXTransform,   _victoryPoolSize);
         _bulletImpactPool = CreatePool(_bulletImpactVFXPrefab, _bulletImpactVFXTransform, _bulletImpactPoolSize);
         _resbalonPool = CreatePool(_resbalonVFXPrefab, _resbalonVFXTransform, _resbalonPoolSize);
+        _stunPool = CreatePool(_stunVFXPrefab, _stunVFXTransform, _stunPoolSize);
         
 
         // Boost se maneja diferente — trail continuo
@@ -80,6 +87,7 @@ public class VFXController : MonoBehaviour
     public void SpawnVictoryVFX(Vector3 position)   => SpawnFromPool(_victoryPool,   position, "Victory");
     public void SpawnBulletImpactVFX(Vector3 position) => SpawnFromPool(_bulletImpactPool, position, "BulletImpact");
     public void SpawnResbalonImpactVFX(Vector3 position) => SpawnFromPool(_resbalonPool, position, "Resbalon");
+    public void SpawnStunVFX(Vector3 position) => SpawnFromPool(_stunPool, position, "Stun");
 
     // Boost VFX — trail continuo
     public void StartBoostVFX()
