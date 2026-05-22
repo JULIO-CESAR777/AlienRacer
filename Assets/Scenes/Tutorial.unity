@@ -18637,7 +18637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &914908548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20513,7 +20513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1084225763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24184,6 +24184,7 @@ MonoBehaviour:
   slot1Icon: {fileID: 626542136}
   slot2Icon: {fileID: 625261730}
   synergyIcon: {fileID: 1825384372}
+  synergyBackground: {fileID: 0}
 --- !u!114 &1280422688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36670,7 +36671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2874041315408210221, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: m_RenderPostProcessing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5121570838653753222, guid: bd89c28110890134e83c51f2915baffb, type: 3}
       propertyPath: shootPoint
