@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 4b78978c6cc1b294c8c4e6565c5b978f, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -14224,7 +14224,7 @@ GameObject:
   - component: {fileID: 433467830}
   - component: {fileID: 433467829}
   - component: {fileID: 433467828}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16680,7 +16680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 546966466027508972, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.35
+      value: 28.33
       objectReference: {fileID: 0}
     - target: {fileID: 546966466027508972, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16724,7 +16724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3097940358937719346, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.2
+      value: 34.18
       objectReference: {fileID: 0}
     - target: {fileID: 3640016289705400931, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_Name
@@ -16740,11 +16740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008611015718773631, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.41
+      value: -5.47
       objectReference: {fileID: 0}
     - target: {fileID: 4008611015718773631, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50.69
+      value: 50.44
       objectReference: {fileID: 0}
     - target: {fileID: 4620337693595300980, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16806,9 +16806,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 86.06
       objectReference: {fileID: 0}
+    - target: {fileID: 7616138613558415840, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.97
+      objectReference: {fileID: 0}
     - target: {fileID: 7836594116943789076, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.81
+      value: 26.06
       objectReference: {fileID: 0}
     - target: {fileID: 7836594116943789076, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16888,7 +16892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514516321646959150, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.27
+      value: 31.61
       objectReference: {fileID: 0}
     - target: {fileID: 8583401231767680278, guid: a5d7a8ceca610364d871866b92b89761, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17385,7 +17389,7 @@ GameObject:
   - component: {fileID: 562899322}
   - component: {fileID: 562899321}
   - component: {fileID: 562899320}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20904,7 +20908,7 @@ GameObject:
   - component: {fileID: 648267786}
   - component: {fileID: 648267785}
   - component: {fileID: 648267784}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21632,6 +21636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSliderSync
   targetAudio: 1
+  stepSize: 0.1
 --- !u!1 &662112715
 GameObject:
   m_ObjectHideFlags: 0
@@ -24108,7 +24113,7 @@ Transform:
   m_GameObject: {fileID: 751332978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.7312, y: 0.09, z: -106.96}
+  m_LocalPosition: {x: 23.7312, y: 0.11, z: -106.96}
   m_LocalScale: {x: 3.8087223, y: 9, z: 7.238851}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -26533,7 +26538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1740136281351818708, guid: 2e9d0fb806adc75459c816f2e1e65198, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72.16
+      value: 71.980545
       objectReference: {fileID: 0}
     - target: {fileID: 1740136281351818708, guid: 2e9d0fb806adc75459c816f2e1e65198, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26541,7 +26546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1740136281351818708, guid: 2e9d0fb806adc75459c816f2e1e65198, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.81
+      value: -18.818068
       objectReference: {fileID: 0}
     - target: {fileID: 1740136281351818708, guid: 2e9d0fb806adc75459c816f2e1e65198, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26829,7 +26834,7 @@ GameObject:
   - component: {fileID: 820712494}
   - component: {fileID: 820712493}
   - component: {fileID: 820712492}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34720,6 +34725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSliderSync
   targetAudio: 0
+  stepSize: 0.1
 --- !u!1 &1099745951
 GameObject:
   m_ObjectHideFlags: 0
@@ -36434,8 +36440,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0835881, y: 1.4699999, z: 0.9419998}
-  m_Center: {x: -0.0000005364418, y: 0.73499995, z: -0.0000010579824}
+  m_Size: {x: 2.0835881, y: 1.3871679, z: 0.9419998}
+  m_Center: {x: -0.00000055631006, y: 0.69358397, z: -0.0000010728836}
 --- !u!1001 &1134601290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36754,7 +36760,7 @@ GameObject:
   - component: {fileID: 1143846694}
   - component: {fileID: 1143846693}
   - component: {fileID: 1143846692}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41786,7 +41792,7 @@ GameObject:
   - component: {fileID: 1275305534}
   - component: {fileID: 1275305533}
   - component: {fileID: 1275305532}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49322,7 +49328,7 @@ GameObject:
   - component: {fileID: 1546004673}
   - component: {fileID: 1546004672}
   - component: {fileID: 1546004671}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66365,8 +66371,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9.0189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.767742
+      value: -13.7491
       objectReference: {fileID: 0}
     - target: {fileID: 5982022234648854586, guid: f313f90f0eea265449cb7328663ac291, type: 3}
       propertyPath: m_LocalPosition.y
