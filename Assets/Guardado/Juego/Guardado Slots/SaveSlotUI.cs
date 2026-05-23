@@ -25,6 +25,12 @@ public class SaveSlotUI : MonoBehaviour
             label = GetComponentInChildren<TextMeshProUGUI>();
     }
 
+    private void Start()
+    {
+        
+        Refresh();
+    }
+
     private void OnEnable()
     {
         languageManager = LanguageManager.GetInstance();

@@ -130,7 +130,7 @@ public class InputManager : MonoBehaviour
         {
             if (CheckIfButtonPressOfController())
             {
-                //CheckAndChangeInputType();
+                CheckAndChangeInputType();  //comentar estas
             }
         }
 #endif
@@ -146,7 +146,7 @@ public class InputManager : MonoBehaviour
                 if (framesToCheckInput < 0)
                 {
                     framesToCheckInput = 60;
-                    //CheckAndChangeInputType();
+                    CheckAndChangeInputType(); //comentar estas
                 }
             }
         }
@@ -157,7 +157,7 @@ public class InputManager : MonoBehaviour
             {
                 if (Event.current.isKey)
                 {
-                    //ChangeInputType(INPUT_TYPE.KEYBOARD);
+                    ChangeInputType(INPUT_TYPE.KEYBOARD); //comentar estas
                 }
             }
         }

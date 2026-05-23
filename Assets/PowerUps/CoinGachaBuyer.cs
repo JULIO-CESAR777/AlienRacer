@@ -26,6 +26,14 @@ public class CoinGachaBuyer : MonoBehaviour
     private InputManager input;
     private MainManager gm;
 
+    
+    [Tooltip("El Audio Source de tu Kart dedicado a los SFX")]
+    public AudioSource sfxSource;
+
+    [Header("Efectos de Sonido")]
+    public AudioClip wrongGacha;
+    
+    
     private bool isPaused = false;
 
     private void Awake()
@@ -64,6 +72,8 @@ public class CoinGachaBuyer : MonoBehaviour
     {
         isPaused = newState != GameState.Play;
     }
+    
+ 
 
     private void Update()
     {
@@ -79,9 +89,21 @@ public class CoinGachaBuyer : MonoBehaviour
 
     private void TryBuy()
     {
-        if (isPaused) return;
-        if (lootTable == null || rouletteUI == null) return;
-        if (kart == null || inv == null) return;
+       
+        if (isPaused || lootTable == null || rouletteUI == null || kart == null || inv == null || inv.IsFull)
+        {
+            if (sfxSource != null && wrongGacha != null)
+            {
+                sfxSource.PlayOneShot(wrongGacha);
+            }
+
+            return;
+        }
+  
+       
+        
+          
+        
 
         if (!kart.TrySpendCoins(coinCost))
             return;

@@ -32,7 +32,15 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private bool hasJump = false;
     [SerializeField] private float boostedJumpForce = 15f;
     [SerializeField] private float jumpTimer = 0f;
+    
+    
+    [Header("Materiales Rayo")]
+    [SerializeField] private Material materialRayoBase;
+    [SerializeField] private Material materialGlowRayoBase;
 
+    private Material materialRayoRuntime;
+    private Material materialGlowRayoRuntime;
+    
     [Header("Rayo Ralentizador")]
     [SerializeField] private Transform puntoDisparoRayo;
     [SerializeField] private LayerMask capasDetectablesRayo;
@@ -48,8 +56,17 @@ public class KartPowerUpController : MonoBehaviour
     [SerializeField] private float intensidadEmisionRayo = 4f;
     [SerializeField] private float multiplicadorAnchoGlow = 3.5f;
     [SerializeField] private float alphaGlow = 0.45f;
+    
+    
+    
 
     private Coroutine rutinaRayo;
+
+    private Material materialRayoCached;
+    private Material materialGlowRayoCached;
+    private Shader shaderRayoCached;
+
+
 
     private float originalJumpForce;
 
@@ -88,6 +105,41 @@ public class KartPowerUpController : MonoBehaviour
         PrepararLineRendererRayo(Color.cyan, 0.18f);
 
         GuardarMaterialesOriginalesEstrella();
+
+        PrewarmPowerUps();
+    }
+
+    private void PrewarmPowerUps()
+    {
+        // Precalentar escudo
+        if (shieldVisual != null)
+        {
+            shieldVisual.SetActive(true);
+            shieldVisual.SetActive(false);
+        }
+
+        if (shieldParticles != null)
+        {
+            shieldParticles.Play();
+            shieldParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        // Precalentar rayo
+        if (lineRendererRayo != null)
+        {
+            lineRendererRayo.enabled = true;
+            lineRendererRayo.SetPosition(0, transform.position);
+            lineRendererRayo.SetPosition(1, transform.position + transform.forward);
+            lineRendererRayo.enabled = false;
+        }
+
+        if (lineRendererGlowRayo != null)
+        {
+            lineRendererGlowRayo.enabled = true;
+            lineRendererGlowRayo.SetPosition(0, transform.position);
+            lineRendererGlowRayo.SetPosition(1, transform.position + transform.forward);
+            lineRendererGlowRayo.enabled = false;
+        }
     }
 
     void Update()
@@ -560,81 +612,90 @@ private void StopStarVisual()
     }
 
     private void PrepararLineRendererRayo(Color colorRayo, float anchoRayo)
+{
+    if (lineRendererRayo == null)
+        lineRendererRayo = gameObject.AddComponent<LineRenderer>();
+
+    if (lineRendererGlowRayo == null)
     {
-        if (lineRendererRayo == null)
-        {
-            lineRendererRayo = gameObject.AddComponent<LineRenderer>();
-        }
+        GameObject glowObj = new GameObject("Glow Rayo");
+        glowObj.transform.SetParent(transform);
+        glowObj.transform.localPosition = Vector3.zero;
+        glowObj.transform.localRotation = Quaternion.identity;
 
-        if (lineRendererGlowRayo == null)
-        {
-            GameObject glowObj = new GameObject("Glow Rayo");
-            glowObj.transform.SetParent(transform);
-            glowObj.transform.localPosition = Vector3.zero;
-            glowObj.transform.localRotation = Quaternion.identity;
-
-            lineRendererGlowRayo = glowObj.AddComponent<LineRenderer>();
-        }
-
-        Material materialRayo = CrearMaterialEmisivo(colorRayo);
-        Material materialGlow = CrearMaterialEmisivo(colorRayo);
-
-        // Rayo principal
-        ConfigurarLineRendererBase(
-            lineRendererRayo,
-            materialRayo,
-            colorRayo,
-            anchoRayo,
-            anchoRayo * 0.35f
-        );
-
-        // Glow externo
-        Color colorGlowInicio = new Color(
-            colorRayo.r * intensidadEmisionRayo,
-            colorRayo.g * intensidadEmisionRayo,
-            colorRayo.b * intensidadEmisionRayo,
-            alphaGlow
-        );
-
-        Color colorGlowFinal = new Color(
-            colorRayo.r * intensidadEmisionRayo,
-            colorRayo.g * intensidadEmisionRayo,
-            colorRayo.b * intensidadEmisionRayo,
-            0f
-        );
-
-        lineRendererGlowRayo.positionCount = 2;
-        lineRendererGlowRayo.useWorldSpace = true;
-        lineRendererGlowRayo.enabled = false;
-
-        lineRendererGlowRayo.material = materialGlow;
-
-        lineRendererGlowRayo.startWidth = anchoRayo * multiplicadorAnchoGlow;
-        lineRendererGlowRayo.endWidth = anchoRayo * multiplicadorAnchoGlow * 0.35f;
-
-        lineRendererGlowRayo.startColor = colorGlowInicio;
-        lineRendererGlowRayo.endColor = colorGlowFinal;
-
-        lineRendererGlowRayo.numCapVertices = 8;
-        lineRendererGlowRayo.numCornerVertices = 8;
+        lineRendererGlowRayo = glowObj.AddComponent<LineRenderer>();
     }
 
+    if (materialRayoRuntime == null && materialRayoBase != null)
+        materialRayoRuntime = new Material(materialRayoBase);
+
+    if (materialGlowRayoRuntime == null && materialGlowRayoBase != null)
+        materialGlowRayoRuntime = new Material(materialGlowRayoBase);
+
+    if (materialRayoRuntime != null)
+        ActualizarColorMaterial(materialRayoRuntime, colorRayo);
+
+    if (materialGlowRayoRuntime != null)
+        ActualizarColorMaterial(materialGlowRayoRuntime, colorRayo);
+
+    ConfigurarLineRendererBase(
+        lineRendererRayo,
+        materialRayoRuntime,
+        colorRayo,
+        anchoRayo,
+        anchoRayo * 0.35f
+    );
+
+    lineRendererGlowRayo.positionCount = 2;
+    lineRendererGlowRayo.useWorldSpace = true;
+    lineRendererGlowRayo.enabled = false;
+
+    lineRendererGlowRayo.material = materialGlowRayoRuntime;
+
+    lineRendererGlowRayo.startWidth = anchoRayo * multiplicadorAnchoGlow;
+    lineRendererGlowRayo.endWidth = anchoRayo * multiplicadorAnchoGlow * 0.35f;
+
+    lineRendererGlowRayo.startColor = new Color(
+        colorRayo.r * intensidadEmisionRayo,
+        colorRayo.g * intensidadEmisionRayo,
+        colorRayo.b * intensidadEmisionRayo,
+        alphaGlow
+    );
+
+    lineRendererGlowRayo.endColor = new Color(
+        colorRayo.r * intensidadEmisionRayo,
+        colorRayo.g * intensidadEmisionRayo,
+        colorRayo.b * intensidadEmisionRayo,
+        0f
+    );
+
+    lineRendererGlowRayo.numCapVertices = 8;
+    lineRendererGlowRayo.numCornerVertices = 8;
+}
 
     private Material CrearMaterialEmisivo(Color colorRayo)
     {
-        Shader shader = Shader.Find("Universal Render Pipeline/Particles/Unlit");
-
-        if (shader == null)
+        if (shaderRayoCached == null)
         {
-            shader = Shader.Find("Universal Render Pipeline/Unlit");
+            shaderRayoCached = Shader.Find("Universal Render Pipeline/Particles/Unlit");
+
+            if (shaderRayoCached == null)
+                shaderRayoCached = Shader.Find("Universal Render Pipeline/Unlit");
+
+            if (shaderRayoCached == null)
+                shaderRayoCached = Shader.Find("Sprites/Default");
         }
 
-        if (shader == null)
-        {
-            shader = Shader.Find("Sprites/Default");
-        }
+        Material mat = new Material(shaderRayoCached);
 
-        Material mat = new Material(shader);
+        ActualizarColorMaterial(mat, colorRayo);
+
+        return mat;
+    }
+    
+    private void ActualizarColorMaterial(Material mat, Color colorRayo)
+    {
+        if (mat == null) return;
 
         Color colorHDR = new Color(
             colorRayo.r * intensidadEmisionRayo,
@@ -644,22 +705,16 @@ private void StopStarVisual()
         );
 
         if (mat.HasProperty("_BaseColor"))
-        {
             mat.SetColor("_BaseColor", colorHDR);
-        }
 
         if (mat.HasProperty("_Color"))
-        {
             mat.SetColor("_Color", colorHDR);
-        }
 
         if (mat.HasProperty("_EmissionColor"))
         {
             mat.EnableKeyword("_EMISSION");
             mat.SetColor("_EmissionColor", colorHDR);
         }
-
-        return mat;
     }
 
     private void ConfigurarLineRendererBase(
@@ -670,11 +725,14 @@ private void StopStarVisual()
         float anchoFinal
     )
     {
+        if (lr == null) return;
+
         lr.positionCount = 2;
         lr.useWorldSpace = true;
         lr.enabled = false;
 
-        lr.material = material;
+        if (material != null)
+            lr.material = material;
 
         lr.startWidth = anchoInicio;
         lr.endWidth = anchoFinal;

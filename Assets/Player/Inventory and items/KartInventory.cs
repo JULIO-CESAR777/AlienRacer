@@ -10,7 +10,8 @@ public class KartInventory : MonoBehaviour
     public ItemSynergyManager synergyManager;
 
     private InputManager input;
-
+    public bool IsFull => slot1 != null && slot2 != null;
+    public bool HasFreeSlot => slot1 == null || slot2 == null;
     
     public event Action<ItemBase, ItemBase> OnInventoryChanged;
 
@@ -64,13 +65,23 @@ public class KartInventory : MonoBehaviour
     {
         if (item == null) return false;
 
-        if (slot1 == null) { slot1 = item; NotifyChanged(); return true; }
-        if (slot2 == null) { slot2 = item; NotifyChanged(); return true; }
+        if (slot1 == null)
+        {
+            slot1 = item;
+            NotifyChanged();
+            return true;
+        }
 
-        // reemplaza slot1
-        slot1 = item;
-        NotifyChanged();
-        return true;
+        if (slot2 == null)
+        {
+            slot2 = item;
+            NotifyChanged();
+            return true;
+        }
+
+        // Inventario lleno, NO reemplaza nada
+        
+        return false;
     }
 
     private void NotifyChanged()
