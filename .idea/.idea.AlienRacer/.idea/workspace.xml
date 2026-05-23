@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/[Particles]/PausableTrail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/[Particles]/PausableTrail.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +58,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/LevelLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/LevelProgressSave.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Guardado/Juego/MainMenuLevels.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/IA/AnimacionLlantas.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/IA/IA.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Language/LanguageManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Language/ScreenModeLocalizedText.cs" root0="FORCE_HIGHLIGHTING" />
@@ -229,6 +231,7 @@
       <workItem from="1779103859884" duration="386000" />
       <workItem from="1779148070546" duration="1704000" />
       <workItem from="1779494240948" duration="2331000" />
+      <workItem from="1779498612853" duration="76000" />
     </task>
     <servers />
   </component>

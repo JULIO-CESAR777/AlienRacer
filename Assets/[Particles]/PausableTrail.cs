@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PauseableTrail : MonoBehaviour
+public class PausableTrail : MonoBehaviour
 {
     private ParticleSystem ps;
     private bool wasPaused = false;
