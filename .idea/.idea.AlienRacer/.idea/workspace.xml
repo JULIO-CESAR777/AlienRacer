@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlienRacer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Guardado/Juego/Guardado Slots/SaveSlotUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Manager/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Manager/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/KartInventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/KartInventory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Player/Player_v2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Player_v2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/CoinGachaBuyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/CoinGachaBuyer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa1_V2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mapa_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mapa_2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Tutorial.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,6 +202,7 @@
       <workItem from="1778817466474" duration="1137000" />
       <workItem from="1778870183859" duration="26000" />
       <workItem from="1779507263073" duration="3479000" />
+      <workItem from="1779567389604" duration="214000" />
     </task>
     <servers />
   </component>

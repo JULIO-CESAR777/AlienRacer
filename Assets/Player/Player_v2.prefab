@@ -5602,7 +5602,7 @@ MonoBehaviour:
   boostTimer: 0
   boostMultiplier: 1
   hasJump: 0
-  boostedJumpForce: 15
+  boostedJumpForce: 25
   jumpTimer: 0
   materialRayoBase: {fileID: 2100000, guid: db782b0b7455df9438568f230a43bdc5, type: 2}
   materialGlowRayoBase: {fileID: 2100000, guid: db782b0b7455df9438568f230a43bdc5, type: 2}

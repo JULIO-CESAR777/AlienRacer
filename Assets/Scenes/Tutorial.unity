@@ -7096,6 +7096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSliderSync
   targetAudio: 1
+  stepSize: 0.1
 --- !u!114 &308675447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24241,7 +24242,7 @@ MonoBehaviour:
   slot1Icon: {fileID: 626542136}
   slot2Icon: {fileID: 625261730}
   synergyIcon: {fileID: 1825384372}
-  synergyBackground: {fileID: 0}
+  synergyBackground: {fileID: 44961317}
 --- !u!114 &1280422688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24988,6 +24989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSliderSync
   targetAudio: 0
+  stepSize: 0.1
 --- !u!114 &1292461460
 MonoBehaviour:
   m_ObjectHideFlags: 0
