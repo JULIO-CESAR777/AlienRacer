@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Player_v2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Player_v2.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Tutorial.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +201,7 @@
       <workItem from="1778870183859" duration="26000" />
       <workItem from="1779507263073" duration="3479000" />
       <workItem from="1779567389604" duration="214000" />
+      <workItem from="1779569290126" duration="621000" />
     </task>
     <servers />
   </component>

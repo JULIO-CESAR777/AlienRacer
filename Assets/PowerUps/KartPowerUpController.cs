@@ -753,7 +753,7 @@ private void StopStarVisual()
 
         lr.startColor = colorHDRInicio;
         lr.endColor = colorHDRFinal;
-r
+
         lr.numCapVertices = 8;
         lr.numCornerVertices = 8;
     }
