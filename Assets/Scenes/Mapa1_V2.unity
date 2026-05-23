@@ -25010,7 +25010,7 @@ MonoBehaviour:
   - nombreHito: 
     variantesFisicas:
     - {fileID: 1150511756}
-  totalVueltas: 2
+  totalVueltas: 1
   panelFinCarrera: {fileID: 1736194109}
   textoResultado: {fileID: 2047539703}
   textoVueltas: {fileID: 499134496}
@@ -46378,7 +46378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -210, y: -23}
+  m_AnchoredPosition: {x: -508, y: 6.888918}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431861886
@@ -46467,7 +46467,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10.867447, y: 0, z: -425.06686, w: -106.25685}
+  m_margin: {x: 10.867447, y: 0, z: -1004.4657, w: -106.25685}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -60874,7 +60874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3ae3981d9916f249a5eb19bf939d946, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3ae3981d9916f249a5eb19bf939d946, type: 3}
       propertyPath: m_LocalPosition.z
