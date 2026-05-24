@@ -3,11 +3,13 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using TMPro;
+using System.Collections.Generic;
 
 [Serializable]
 public struct TutorialSprites
 {
     public string nombreMecanica;
+
     public Sprite teclado;
     public Sprite xbox;
 
@@ -32,10 +34,25 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Configuracion de Monedas UI")]
     [SerializeField] private TextMeshProUGUI coinGoalText;
-    [SerializeField] private string[] mensajeMonedas = { "Recolecta {0}/{1} monedas", "Collect {0}/{1} coins" };
+
+    [SerializeField]
+    private string[] mensajeMonedas =
+    {
+        "Recolecta {0}/{1} monedas",
+        "Collect {0}/{1} coins"
+    };
 
     [Header("Base de Datos de Imagenes")]
     public TutorialSprites[] listaMecanicas;
+
+    // =========================================
+    // NUEVO SISTEMA DE ESTADOS
+    // =========================================
+
+    private Dictionary<string, bool> tutorialStates =
+        new Dictionary<string, bool>();
+
+    // =========================================
 
     private TutorialSprites currentMecanica;
     private bool isTutorialActive = false;
@@ -45,17 +62,20 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        if (canvasGroup != null) canvasGroup.alpha = 0;
+
+        if (canvasGroup != null)
+            canvasGroup.alpha = 0;
+
         panelTutorial.SetActive(false);
     }
 
     private void Start()
     {
-        // Buscar al jugador
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) playerKart = playerObj.GetComponent<KartController>();
 
-        // Suscripciones a los Managers
+        if (playerObj != null)
+            playerKart = playerObj.GetComponent<KartController>();
+
         if (InputManager.instance != null)
         {
             InputManager.instance.OnChangeInputType += OnDeviceChanged;
@@ -77,11 +97,17 @@ public class TutorialManager : MonoBehaviour
 
     private void ActualizarContadorMonedas()
     {
-        if (playerKart == null || coinGoalText == null) return;
+        if (playerKart == null || coinGoalText == null)
+            return;
 
-        byte langIndex = LanguageManager.GetInstance().GetCurrentLanguageByte();
+        byte langIndex =
+            LanguageManager.GetInstance().GetCurrentLanguageByte();
 
-        coinGoalText.text = string.Format(mensajeMonedas[langIndex], playerKart.coins, currentMecanica.monedasObjetivo);
+        coinGoalText.text = string.Format(
+            mensajeMonedas[langIndex],
+            playerKart.coins,
+            currentMecanica.monedasObjetivo
+        );
 
         if (playerKart.coins >= currentMecanica.monedasObjetivo)
             coinGoalText.color = Color.green;
@@ -91,7 +117,8 @@ public class TutorialManager : MonoBehaviour
 
     public void MostrarTutorial(string nombre)
     {
-        if (isFading || isTutorialActive) return;
+        if (isFading || isTutorialActive)
+            return;
 
         foreach (var item in listaMecanicas)
         {
@@ -100,10 +127,16 @@ public class TutorialManager : MonoBehaviour
                 currentMecanica = item;
 
                 if (coinGoalText != null)
-                    coinGoalText.gameObject.SetActive(currentMecanica.monedasObjetivo > 0);
+                {
+                    coinGoalText.gameObject.SetActive(
+                        currentMecanica.monedasObjetivo > 0
+                    );
+                }
 
                 UpdateUI(InputManager.instance.currentInputType);
+
                 StartCoroutine(FadeTutorial(true));
+
                 return;
             }
         }
@@ -111,22 +144,28 @@ public class TutorialManager : MonoBehaviour
 
     public void OcultarTutorial()
     {
-        if (isFading || !isTutorialActive) return;
+        if (isFading || !isTutorialActive)
+            return;
+
         StartCoroutine(FadeTutorial(false));
     }
 
     private IEnumerator FadeTutorial(bool fadeIn)
     {
         isFading = true;
+
         if (fadeIn)
         {
             isTutorialActive = true;
+
             panelTutorial.SetActive(true);
+
             while (canvasGroup.alpha < 1)
             {
                 canvasGroup.alpha += Time.deltaTime * fadeSpeed;
                 yield return null;
             }
+
             canvasGroup.alpha = 1;
         }
         else
@@ -136,52 +175,92 @@ public class TutorialManager : MonoBehaviour
                 canvasGroup.alpha -= Time.deltaTime * fadeSpeed;
                 yield return null;
             }
+
             canvasGroup.alpha = 0;
+
             panelTutorial.SetActive(false);
+
             isTutorialActive = false;
         }
+
         isFading = false;
     }
 
     private void UpdateUI(INPUT_TYPE type)
     {
-        byte langIndex = LanguageManager.GetInstance().GetCurrentLanguageByte();
+        byte langIndex =
+            LanguageManager.GetInstance().GetCurrentLanguageByte();
 
         switch (type)
         {
             case INPUT_TYPE.KEYBOARD:
+
                 tutorialDisplayImage.sprite = currentMecanica.teclado;
-                tutorialDisplayText.text = GetLocalizedText(currentMecanica.textoTeclado, langIndex);
+
+                tutorialDisplayText.text =
+                    GetLocalizedText(currentMecanica.textoTeclado, langIndex);
+
                 break;
+
             case INPUT_TYPE.XBOX:
+
                 tutorialDisplayImage.sprite = currentMecanica.xbox;
-                tutorialDisplayText.text = GetLocalizedText(currentMecanica.textoXbox, langIndex);
+
+                tutorialDisplayText.text =
+                    GetLocalizedText(currentMecanica.textoXbox, langIndex);
+
                 break;
+
             default:
+
                 tutorialDisplayImage.sprite = currentMecanica.teclado;
-                tutorialDisplayText.text = GetLocalizedText(currentMecanica.textoTeclado, langIndex);
+
+                tutorialDisplayText.text =
+                    GetLocalizedText(currentMecanica.textoTeclado, langIndex);
+
                 break;
         }
 
-        if (tutorialDisplayImage.sprite != null) tutorialDisplayImage.SetNativeSize();
+        if (tutorialDisplayImage.sprite != null)
+            tutorialDisplayImage.SetNativeSize();
     }
 
     private string GetLocalizedText(string[] texts, byte index)
     {
-        if (texts == null || texts.Length == 0) return "";
-        if (index >= texts.Length) return texts[0];
+        if (texts == null || texts.Length == 0)
+            return "";
+
+        if (index >= texts.Length)
+            return texts[0];
+
         return texts[index];
     }
 
-    // --- ESTAS ERAN LAS DOS FUNCIONES QUE FALTABAN ---
     private void OnDeviceChanged(INPUT_TYPE newType)
     {
-        if (isTutorialActive) UpdateUI(newType);
+        if (isTutorialActive)
+            UpdateUI(newType);
     }
 
     private void OnLanguageChanged(LANGUAGES newLanguage)
     {
-        if (isTutorialActive) UpdateUI(InputManager.instance.currentInputType);
+        if (isTutorialActive)
+            UpdateUI(InputManager.instance.currentInputType);
+    }
+
+    public void CompleteTutorial(string tutorialID)
+    {
+        tutorialStates[tutorialID] = true;
+
+        Debug.Log($"Tutorial completado: {tutorialID}");
+    }
+
+    public bool IsTutorialCompleted(string tutorialID)
+    {
+        if (tutorialStates.ContainsKey(tutorialID))
+            return tutorialStates[tutorialID];
+
+        return false;
     }
 
     private void OnDestroy()
