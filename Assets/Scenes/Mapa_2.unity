@@ -77987,6 +77987,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6981974544024406261, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5036842
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981974544024406261, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8518421
+      objectReference: {fileID: 0}
     - target: {fileID: 9200048392086637587, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: sfxAudioSource
       value: 
@@ -93860,6 +93868,14 @@ PrefabInstance:
     - target: {fileID: 3045467933629644184, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: m_Name
       value: Racer 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801583418770474811, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.473046
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801583418770474811, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Center.y
+      value: 0.836523
       objectReference: {fileID: 0}
     - target: {fileID: 5185618828332409631, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: m_Interpolate

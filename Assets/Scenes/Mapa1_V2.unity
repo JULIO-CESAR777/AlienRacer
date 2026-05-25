@@ -25385,6 +25385,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Racer 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4801583418770474811, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3269697
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801583418770474811, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
+      propertyPath: m_Center.y
+      value: 0.7634849
+      objectReference: {fileID: 0}
     - target: {fileID: 6671215431751331360, guid: 315084c3b4759bc4bb92f630039aeca0, type: 3}
       propertyPath: factorDerrape
       value: 5
@@ -27408,6 +27416,14 @@ PrefabInstance:
     - target: {fileID: 6785246241017944766, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981974544024406261, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3125007
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981974544024406261, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
+      propertyPath: m_Center.y
+      value: 0.7562504
       objectReference: {fileID: 0}
     - target: {fileID: 9200048392086637587, guid: 4ad976fe93da5a646ab668a52cb7415c, type: 3}
       propertyPath: factorDerrape
