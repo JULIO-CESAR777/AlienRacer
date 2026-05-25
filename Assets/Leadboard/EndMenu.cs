@@ -53,7 +53,21 @@ public class EndRaceMenuController : MonoBehaviour
     public void MostrarPanel(bool gano)
     {
         playerWon = gano;
+
+        // Mostrar/Ocultar botón de Reintentar
+        if (endMenuOptions != null && endMenuOptions.Length > 0)
+        {
+            GameObject retryButton = endMenuOptions[0].gameObject;
+
+            // Si ganó -> ocultar
+            // Si perdió -> mostrar
+            retryButton.SetActive(!playerWon);
+        }
+
         gameObject.SetActive(true); // Esto dispara el OnEnable()
+
+        // Ajustar selección inicial
+        currentMenuIndex = playerWon ? 1 : 0;
 
         if (playerWon)
         {
@@ -62,7 +76,8 @@ public class EndRaceMenuController : MonoBehaviour
         }
         else
         {
-            if (contenedorConteo != null) contenedorConteo.SetActive(false);
+            if (contenedorConteo != null)
+                contenedorConteo.SetActive(false);
         }
     }
 

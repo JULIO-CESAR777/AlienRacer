@@ -24752,7 +24752,7 @@ MonoBehaviour:
   - nombreHito: 
     variantesFisicas:
     - {fileID: 1150511756}
-  totalVueltas: 2
+  totalVueltas: 1
   panelFinCarrera: {fileID: 1736194109}
   textoResultado: {fileID: 2047539703}
   textoVueltas: {fileID: 499134496}
@@ -65521,7 +65521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &809798954629356312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 733822208020131877, guid: bd89c28110890134e83c51f2915baffb, type: 3}

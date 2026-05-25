@@ -3861,11 +3861,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9899616
+      value: 0.9899593
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 212.96994
+      value: 215.56995
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4428,63 +4428,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151805751}
   m_Mesh: {fileID: 3873243663718610209, guid: bc340408f54969f4792342b046492f86, type: 3}
---- !u!1001 &152147609
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 156.756
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9899616
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 217.79993
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071072
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071065
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7127836128001897936, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_Name
-      value: CoinPadreV2.1 (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
 --- !u!1 &153006793
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,7 +4806,7 @@ GameObject:
   - component: {fileID: 176618490}
   - component: {fileID: 176618489}
   - component: {fileID: 176618488}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10714,11 +10657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9899634
+      value: 0.9899595
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 215.79993
+      value: 220.19992
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12817,11 +12760,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9899634
+      value: 0.9899595
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 215.79993
+      value: 220.19992
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18054,7 +17997,7 @@ GameObject:
   - component: {fileID: 750498769}
   - component: {fileID: 750498768}
   - component: {fileID: 750498767}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20116,63 +20059,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &832063870
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 152.256
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9899616
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 217.79993
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071072
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071065
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7127836128001897936, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
-      propertyPath: m_Name
-      value: CoinPadreV2.1 (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
 --- !u!1001 &833459424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25256,11 +25142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9899616
+      value: 0.9899593
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 212.96994
+      value: 215.56995
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27612,7 +27498,7 @@ MonoBehaviour:
   - nombreMecanica: Monedas10
     teclado: {fileID: -851498645, guid: 6a65e97d21ac34a849a558ac20e6bad6, type: 3}
     xbox: {fileID: -851498645, guid: 6a65e97d21ac34a849a558ac20e6bad6, type: 3}
-    monedasObjetivo: 10
+    monedasObjetivo: 8
     textoTeclado:
     - Recolecta monedas
     - Pick coins
@@ -29753,11 +29639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9899634
+      value: 0.9899595
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 215.79993
+      value: 220.19992
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33113,7 +32999,7 @@ GameObject:
   - component: {fileID: 1504254830}
   - component: {fileID: 1504254829}
   - component: {fileID: 1504254828}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36613,11 +36499,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9899634
+      value: 0.9899595
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 215.79993
+      value: 220.19992
       objectReference: {fileID: 0}
     - target: {fileID: 3528067576103040856, guid: 4ef01a266a2f6594b8b55a1570037058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -41641,7 +41527,7 @@ GameObject:
   - component: {fileID: 1917800512}
   - component: {fileID: 1917800511}
   - component: {fileID: 1917800510}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: construction-cone (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41657,7 +41543,7 @@ Transform:
   m_GameObject: {fileID: 1917800508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000004172325}
-  m_LocalPosition: {x: -577.9493, y: -0.010039178, z: -613.9362}
+  m_LocalPosition: {x: -577.53, y: -0.010039178, z: -613.9362}
   m_LocalScale: {x: 9.15, y: 9.15, z: 9.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -45923,8 +45809,6 @@ SceneRoots:
   - {fileID: 1252821591}
   - {fileID: 2125957996}
   - {fileID: 193325383}
-  - {fileID: 152147609}
-  - {fileID: 832063870}
   - {fileID: 583176011}
   - {fileID: 1697305604}
   - {fileID: 410261676}
