@@ -825,7 +825,7 @@ public class KartController : MonoBehaviour
                 targetSurfaceAccelerationMultiplier = 1f;
             }
         }
-       // Debug.Log("Ground detected: " + groundCollider.name + " | Layer: " + LayerMask.LayerToName(groundCollider.gameObject.layer));
+        Debug.Log("Ground detected: " + groundCollider.name + " | Layer: " + LayerMask.LayerToName(groundCollider.gameObject.layer));
     }
 
     private bool IsLayerInMask(int layer, LayerMask mask)
