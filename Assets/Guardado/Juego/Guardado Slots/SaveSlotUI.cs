@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -18,38 +19,56 @@ public class SaveSlotUI : MonoBehaviour
     [SerializeField] private string[] raceTexts;
 
     private LanguageManager languageManager;
+    private Coroutine setupCoroutine;
 
     private void Awake()
     {
         if (label == null)
-            label = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    private void Start()
-    {
-        
-        Refresh();
+            label = GetComponentInChildren<TextMeshProUGUI>(true);
     }
 
     private void OnEnable()
     {
-        languageManager = LanguageManager.GetInstance();
-
-        if (languageManager != null)
-            languageManager.OnLanguageChanged += OnLanguageChanged;
-
-        Refresh();
+        setupCoroutine = StartCoroutine(SetupLanguage());
     }
 
     private void OnDisable()
     {
+        if (setupCoroutine != null)
+        {
+            StopCoroutine(setupCoroutine);
+            setupCoroutine = null;
+        }
+
         if (languageManager != null)
             languageManager.OnLanguageChanged -= OnLanguageChanged;
     }
 
+    private IEnumerator SetupLanguage()
+    {
+        // Espera hasta que LanguageManager exista
+        while (LanguageManager.GetInstance() == null)
+        {
+            yield return null;
+        }
+
+        languageManager = LanguageManager.GetInstance();
+
+        // Evita suscribirte doble
+        languageManager.OnLanguageChanged -= OnLanguageChanged;
+        languageManager.OnLanguageChanged += OnLanguageChanged;
+
+        // Espera un frame extra para que todo termine de inicializar
+        yield return null;
+
+        Refresh();
+
+       
+    }
+
     private void OnLanguageChanged(LANGUAGES newLanguage)
     {
-        Refresh();
+        Refresh((byte)newLanguage);
     }
 
     public void SetSlotIndex(int newSlotIndex)
@@ -60,8 +79,24 @@ public class SaveSlotUI : MonoBehaviour
 
     public void Refresh()
     {
-        //print("refrescando");
-        if (label == null) return;
+        int languageIndex = 0;
+
+        if (languageManager == null)
+            languageManager = LanguageManager.GetInstance();
+
+        if (languageManager != null)
+            languageIndex = languageManager.GetCurrentLanguageByte();
+
+        Refresh(languageIndex);
+    }
+
+    private void Refresh(int languageIndex)
+    {
+        if (label == null)
+        {
+          
+            return;
+        }
 
         SlotSaveData data = SlotSaveSystem.LoadSlot(slotIndex);
 
@@ -71,6 +106,7 @@ public class SaveSlotUI : MonoBehaviour
         {
             label.text = GetText(
                 emptySlotTexts,
+                languageIndex,
                 $"Slot {slotNumber} - Vacío",
                 slotNumber
             );
@@ -82,6 +118,7 @@ public class SaveSlotUI : MonoBehaviour
         {
             label.text = GetText(
                 lastRaceTexts,
+                languageIndex,
                 $"Slot {slotNumber} - Última carrera",
                 slotNumber
             );
@@ -91,22 +128,15 @@ public class SaveSlotUI : MonoBehaviour
 
         label.text = GetText(
             raceTexts,
+            languageIndex,
             $"Slot {slotNumber} - Carrera {data.nextLevelToPlay}",
             slotNumber,
             data.nextLevelToPlay
         );
     }
 
-    private string GetText(string[] texts, string fallback, params object[] values)
+    private string GetText(string[] texts, int languageIndex, string fallback, params object[] values)
     {
-        if (languageManager == null)
-            languageManager = LanguageManager.GetInstance();
-
-        int languageIndex = 0;
-
-        if (languageManager != null)
-            languageIndex = languageManager.GetCurrentLanguageByte();
-
         if (texts == null || texts.Length == 0)
             return fallback;
 

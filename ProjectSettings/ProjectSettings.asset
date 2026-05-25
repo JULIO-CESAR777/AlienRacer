@@ -301,7 +301,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 2236c8e2865a33847aa954b81648a3b2, type: 3}
+      m_Icon: {fileID: 2800000, guid: f1916610665ba864fb943fa81b3a22aa, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -890,7 +890,8 @@ PlayerSettings:
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 00dc16342a06de01
   metroApplicationDescription: My project (1)
-  wsaImages: {}
+  wsaImages:
+    65636: Assets/50x50_redimensaionada.jpg
   metroTileShortName: My project (1)
   metroTileShowName: 0
   metroMediumTileShowName: 0
