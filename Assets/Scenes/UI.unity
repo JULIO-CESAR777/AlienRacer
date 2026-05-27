@@ -27914,7 +27914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ALIEN RACER
+  m_text: RACING WITH AN ALIEN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1632884c6782d0b37bc501b7bd9172c5, type: 2}
   m_sharedMaterial: {fileID: -8205226787280790484, guid: 1632884c6782d0b37bc501b7bd9172c5, type: 2}
@@ -27941,7 +27941,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.2
+  m_fontSize: 25.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
