@@ -96,6 +96,18 @@ public class KartPowerUpController : MonoBehaviour
     public Transform shootPoint;
     public bool IgnoreBumpThisFrame { get; private set; }
 
+    
+    private float distanciaRayo = 35f;
+
+   
+    private float duracionRalentizacion = .2f;
+    [Range(0.1f, 1f)] public float multiplicadorRalentizacion = 0.45f;
+
+  
+    private Color colorRayo = Color.cyan;
+    private float anchoRayoFinal = 0.18f;
+    private float tiempoVisibleRayoFinal = 0.18f;
+
     void Awake()
     {
         kart = GetComponent<KartController>();
@@ -140,6 +152,19 @@ public class KartPowerUpController : MonoBehaviour
             lineRendererGlowRayo.SetPosition(1, transform.position + transform.forward);
             lineRendererGlowRayo.enabled = false;
         }
+    }
+
+    void Start()
+    {
+        DispararRayoRalentizador(distanciaRayo,
+            duracionRalentizacion,
+            multiplicadorRalentizacion,
+            colorRayo,
+            anchoRayoFinal,
+            tiempoVisibleRayoFinal);
+        print("lance rayo");
+
+
     }
 
     void Update()
