@@ -100,13 +100,13 @@ public class KartPowerUpController : MonoBehaviour
     private float distanciaRayo = 35f;
 
    
-    private float duracionRalentizacion = .2f;
+    private float duracionRalentizacion = 1f;
     [Range(0.1f, 1f)] public float multiplicadorRalentizacion = 0.45f;
 
   
     private Color colorRayo = Color.cyan;
-    private float anchoRayoFinal = 0.18f;
-    private float tiempoVisibleRayoFinal = 0.18f;
+    private float anchoRayoFinal = 0.1f;
+    private float tiempoVisibleRayoFinal = 0.1f;
 
     void Awake()
     {
@@ -162,7 +162,9 @@ public class KartPowerUpController : MonoBehaviour
             colorRayo,
             anchoRayoFinal,
             tiempoVisibleRayoFinal);
-        print("lance rayo");
+
+
+        ActivateShield(0.1f);
 
 
     }
