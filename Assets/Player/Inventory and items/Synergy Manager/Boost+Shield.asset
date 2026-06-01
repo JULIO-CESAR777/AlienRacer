@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boost+Shield
   m_EditorClassIdentifier: Assembly-CSharp::StarSynergy
   itemA: {fileID: 11400000, guid: 196ea9b7eefbe944a92334a02e490d60, type: 2}
-  itemB: {fileID: 11400000, guid: e1814d86e251a414cb48df89f077cf5a, type: 2}
+  itemB: {fileID: 11400000, guid: a2a484d7118797244bfa96e88bfcadcc, type: 2}
   icon: {fileID: 449144829, guid: 9729bdd3dbd70596eb119577bb0007a0, type: 3}
   stunduration: 1.5
   boostmultiplier: 1.2

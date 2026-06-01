@@ -106,7 +106,7 @@ public class KartPowerUpController : MonoBehaviour
   
     private Color colorRayo = Color.cyan;
     private float anchoRayoFinal = 0.1f;
-    private float tiempoVisibleRayoFinal = 0.1f;
+    private float tiempoVisibleRayoFinal = 0.2f;
 
     void Awake()
     {
@@ -164,7 +164,7 @@ public class KartPowerUpController : MonoBehaviour
             tiempoVisibleRayoFinal);
 
 
-        ActivateShield(0.1f);
+       
 
 
     }
