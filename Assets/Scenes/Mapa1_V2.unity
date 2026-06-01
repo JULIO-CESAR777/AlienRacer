@@ -22723,7 +22723,7 @@ MonoBehaviour:
   - nombreHito: 
     variantesFisicas:
     - {fileID: 1150511756}
-  totalVueltas: 1
+  totalVueltas: 2
   panelFinCarrera: {fileID: 1736194109}
   textoResultado: {fileID: 2047539703}
   textoVueltas: {fileID: 499134496}
