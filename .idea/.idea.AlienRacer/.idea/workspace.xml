@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c66230fc-8397-487b-9335-613afddcce97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Inventory and items/Synergy Manager/Boost+Shield.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Inventory and items/Synergy Manager/Boost+Shield.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/KartPowerUpController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUps/LootTable.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,6 +207,7 @@
       <workItem from="1779681357984" duration="795000" />
       <workItem from="1780092131124" duration="8000" />
       <workItem from="1780356271654" duration="70000" />
+      <workItem from="1780357965934" duration="186000" />
     </task>
     <servers />
   </component>
