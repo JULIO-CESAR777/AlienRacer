@@ -38,7 +38,7 @@ public class LoadingScreenUI : MonoBehaviour
             _targetProgress, _smoothSpeed * Time.unscaledDeltaTime);
         
         _progressBar.value = _displayedProgress;
-        _progressText.text = $"Cargando... {Mathf.RoundToInt(_displayedProgress * 100)}%";
+        _progressText.text = $"{Mathf.RoundToInt(_displayedProgress * 100)}%";
     }
 
     private void HandleProgress(float progress)
