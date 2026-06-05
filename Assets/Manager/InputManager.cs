@@ -125,7 +125,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (currentInputType == INPUT_TYPE.KEYBOARD)
         {
             if (CheckIfButtonPressOfController())
@@ -133,7 +133,7 @@ public class InputManager : MonoBehaviour
               CheckAndChangeInputType();  //comentar estas
             }
         }
-#endif
+//#endif
     }
     
         private int framesToCheckInput = 60;
