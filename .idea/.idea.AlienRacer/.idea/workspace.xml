@@ -73,7 +73,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Downloads/BuildAlienRacer\Racing with an alien.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/AlienRacerPC\Racing with an alien.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\JULIO EL LIDER\Downloads\AlienRacer" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -207,6 +207,7 @@
       <workItem from="1780356271654" duration="70000" />
       <workItem from="1780357965934" duration="186000" />
       <workItem from="1780464278308" duration="739000" />
+      <workItem from="1780624810708" duration="43000" />
     </task>
     <servers />
   </component>
